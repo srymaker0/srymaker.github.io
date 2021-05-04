@@ -3266,12 +3266,12 @@ blockquote footer cite:before {
   transition: all 0.5s;
 }
 #page-header.full_page {
-  height: 100px;
+  height: 100vh;
   background-attachment: fixed;
 }
 #page-header.full_page #site-info {
   position: absolute;
-  top: 100px;
+  top: 43%;
   padding: 0 0.5rem;
   width: 100%;
 }
