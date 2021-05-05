@@ -1,0 +1,451 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>栈 | Learn &amp; Share</title><meta name="robots" content="noindex"><meta name="keywords" content="C++，Datastruct，Leetcode"><meta name="author" content="srymaker0"><meta name="copyright" content="srymaker0"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="栈 用一句话概括栈到底能解决哪些问题    ⭐可以处理具有完全包含关系的问题 什么是完全包含关系？   可以由leetcode20——括号匹配引出   递归，表达式求值，二叉树遍历👇     ❗要注意思维泛化——把栈和其他东西联系起来    栈的典型应用场景线程栈 表达式求值 线程栈   定义的局部变量为被压入系统栈中  void funcA() {     int a, b, c;     f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="栈">
+<meta property="og:url" content="http://example.com/let_2_%E6%A0%88/index.html">
+<meta property="og:site_name" content="Learn &amp; Share">
+<meta property="og:description" content="栈 用一句话概括栈到底能解决哪些问题    ⭐可以处理具有完全包含关系的问题 什么是完全包含关系？   可以由leetcode20——括号匹配引出   递归，表达式求值，二叉树遍历👇     ❗要注意思维泛化——把栈和其他东西联系起来    栈的典型应用场景线程栈 表达式求值 线程栈   定义的局部变量为被压入系统栈中  void funcA() {     int a, b, c;     f">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2021-05-05T05:26:52.000Z">
+<meta property="article:modified_time" content="2021-05-05T07:14:59.698Z">
+<meta property="article:author" content="srymaker0">
+<meta property="article:tag" content="C++，Datastruct，Leetcode">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210504142319.png"><link rel="canonical" href="http://example.com/let_2_%E6%A0%88/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#121212","position":"bottom-left"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-05-05 15:14:59'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const fontSizeVal = saveToLocal.get('global-font-size')
+    if (fontSizeVal !== undefined) {
+      document.documentElement.style.setProperty('--global-font-size', fontSizeVal + 'px')
+    }
+    })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CCKNBC/ccknbc.github.io@latest/css/ccknbc.css"><meta name="generator" content="Hexo 5.4.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210503135612.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Learn &amp; Share</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">栈</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-05T05:26:52.000Z" title="发表于 2021-05-05 13:26:52">2021-05-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-05T07:14:59.698Z" title="更新于 2021-05-05 15:14:59">2021-05-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="栈"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><ul>
+<li><p>用一句话概括栈到底能解决哪些问题</p>
+<ul>
+<li>  <span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>可以处理具有完全包含关系的问题</li>
+<li>什么是完全包含关系？<ul>
+<li>  可以由leetcode20——括号匹配引出</li>
+<li>  递归，表达式求值，二叉树遍历<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+</ul>
+</li>
+<li>  <span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>要注意思维泛化——把栈和其他东西联系起来</li>
+</ul>
+</li>
+</ul>
+<h2 id="栈的典型应用场景"><a href="#栈的典型应用场景" class="headerlink" title="栈的典型应用场景"></a>栈的典型应用场景</h2><p>线程栈</p>
+<p>表达式求值</p>
+<h3 id="线程栈"><a href="#线程栈" class="headerlink" title="线程栈"></a>线程栈</h3><ul>
+<li>  定义的局部变量为被压入系统栈中</li>
+</ul>
+<pre class=" language-c++"><code class="language-c++">void funcA() {
+    int a, b, c;
+    funcB();
+    return ;
+}
+
+void funcB() {
+    int d;
+}
+</code></pre>
+<ul>
+<li><p>  如上，局部变量a，b，c，d会依次被压入系统栈中。</p>
+</li>
+<li><p>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/10/C1BO8R57a9gKIlq.png"></p>
+</li>
+<li><p>  我的机器行默认栈大小为8192KB，也就是8M</p>
+</li>
+<li><p>爆栈</p>
+<ul>
+<li>  比如我们在调用递归函数的时候，递归深度过深，数据大小超过了8M，这么栈存不下数据，就会引起爆栈</li>
+<li>  一个int类型占4字节，8M约800万字节，也就是存200万个int类型变量也会爆栈</li>
+</ul>
+</li>
+</ul>
+<h3 id="表达式求值"><a href="#表达式求值" class="headerlink" title="表达式求值"></a>表达式求值</h3><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/oSCUPGZneKaFfzD.png"></p>
+<ul>
+<li><p>理解</p>
+<ul>
+<li>  给你一个表达式，根据表达式求出最终的值</li>
+<li>  右边的被称为表达式树——以运算符作为根节点，操作数作为相应的子节点</li>
+</ul>
+</li>
+<li><p>对于这样一个表达式怎么算$3 \times(3 + 5)$</p>
+<ul>
+<li>  我们可以设置优先级，根据优先级判断，”-+” 设置1优先级，”*/“设置2优先级</li>
+<li>对于括号内的运算符，计算其优先级时加100<ul>
+<li>  比如$3 \times(3 \times (3 + 5))$</li>
+<li>  第一个✖️号优先级为2， 第二个✖️优先级为102（2 + 100），第三个➕号优先级为201（1 + 100 + 100 因为有两层括号）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>可以用递归，也可以用栈</p>
+<ul>
+<li>  两者本质上并无区别</li>
+</ul>
+</li>
+</ul>
+<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/3ZSUyGtCocl8MEb.png"></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/abPRxqz9AEQLoYF.png"></p>
+<h1 id="Leetcode"><a href="#Leetcode" class="headerlink" title="Leetcode"></a>Leetcode</h1><h2 id="面试题-03-04-化栈为队"><a href="#面试题-03-04-化栈为队" class="headerlink" title="面试题 03.04. 化栈为队"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-queue-using-stacks-lcci/">面试题 03.04. 化栈为队</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/djWcS1fiOVazMCE.png"></p>
+<pre class=" language-c++"><code class="language-c++">class MyQueue {
+public:
+    /** Initialize your data structure here. */
+    stack<int> s1, s2;
+    MyQueue() {
+
+    }
+    
+    /** Push element x to the back of queue. */
+    void push(int x) {
+        s1.push(x);
+        return ;
+    }
+    
+    /** Removes the element from in front of queue and returns that element. */
+    int pop() {
+        if (s2.empty() == 1) {
+            while (!s1.empty()) {
+                s2.push(s1.top());
+                s1.pop();
+            }
+        }
+        int ret = s2.top();
+        s2.pop();
+        return ret;     
+    }
+    
+    /** Get the front element. */
+    int peek() {
+        if (s2.empty() == 1) {
+            while (!s1.empty()) {
+                s2.push(s1.top());
+                s1.pop();
+            }
+        } 
+        return s2.top();    
+    }
+    
+    /** Returns whether the queue is empty. */
+    bool empty() {
+        return s1.empty() && s2.empty();
+    }
+};
+</code></pre>
+<h2 id="682-棒球比赛"><a href="#682-棒球比赛" class="headerlink" title="682. 棒球比赛"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/baseball-game/">682. 棒球比赛</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/bTK6gq9jzusL3wh.png"></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/sfqiMxloNhGX3YE.png"></p>
+<h2 id="844-比较含退格的字符串"><a href="#844-比较含退格的字符串" class="headerlink" title="844. 比较含退格的字符串"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/backspace-string-compare/">844. 比较含退格的字符串</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/9DBxQApX6dUHaNj.png"></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/XSWuQDxv3Z7oRyE.png"></p>
+<h2 id="946-验证栈序列"><a href="#946-验证栈序列" class="headerlink" title="946. 验证栈序列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/validate-stack-sequences/">946. 验证栈序列</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/NQ6tkEziIShYUK9.png"></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/nil9Ev3kLRUT5jN.png"></p>
+<h2 id="1021-删除最外层的括号"><a href="#1021-删除最外层的括号" class="headerlink" title="1021. 删除最外层的括号"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-outermost-parentheses/">1021. 删除最外层的括号</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/ja6lmToex92QGu7.png"></p>
+<ul>
+<li>思路<ul>
+<li>  记录左右括号的差值——遇到左括号➕1，遇到右括号➖1</li>
+<li>  在值为0的位置就是我们要分解的位置</li>
+</ul>
+</li>
+<li>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/LbOBN18oFijJ34d.png"></li>
+</ul>
+<h2 id="1249-移除无效的括号"><a href="#1249-移除无效的括号" class="headerlink" title="1249. 移除无效的括号"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-remove-to-make-valid-parentheses/">1249. 移除无效的括号</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/o6YJyMcHAuFp4Xe.png"></p>
+<ul>
+<li>思路<ul>
+<li>  遍历两边，先遍历原字符串，删除多余的’)’括号，得到s1</li>
+<li>  接着遍历s1，删除多余的’(‘括号即可</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>  代码</li>
+</ul>
+<pre class=" language-c++"><code class="language-c++">class Solution {
+public:
+    string minRemoveToMakeValid(string s) {
+        string ret1;
+        string ret2;
+        int cnt1 = 0;
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] != '(' && s[i] != ')') {
+                ret1 += s[i];
+            } else {
+                if (s[i] == '(')  {
+                    cnt1++;        
+                    ret1 += s[i];
+                } else {
+                    if (cnt1 > 0) {
+                        cnt1--;       
+                        ret1 += s[i];              
+                    }  
+                }
+            }
+        }
+        int cnt2 = 0;
+        for (int i = ret1.size() - 1; i >= 0; i--) {
+            if (ret1[i] != '(' && ret1[i] != ')') {
+                ret2 += ret1[i];
+            } else {
+                if (ret1[i] == ')')  {
+                    cnt2++;        
+                    ret2 += ret1[i];
+                } else {
+                    if (cnt2 > 0) {
+                        cnt2--;       
+                        ret2 += ret1[i];                
+                    }
+                }
+            }
+        }
+        reverse(ret2.begin(), ret2.end());
+        return ret2;
+    }
+};
+</code></pre>
+<h2 id="145-二叉树的后序遍历"><a href="#145-二叉树的后序遍历" class="headerlink" title="145. 二叉树的后序遍历"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-postorder-traversal/">145. 二叉树的后序遍历</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/KgGDYBjeUayO37P.png"></p>
+<ul>
+<li>此题如题目，就是二叉树的后序遍历<ul>
+<li>  用递归就可以做——但前面一直说递归的本质其实和栈是一样</li>
+<li>  递归本身就是调用系统栈去实现的</li>
+<li>  此题就是模拟系统栈的过程</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/ITMhy97u42BfwAS.png"></p>
+</li>
+<li><p>这是用栈模拟递归程序的通用方法</p>
+<ul>
+<li>  定义两个栈，s1表示递归过程中的局部变量，s2表示状态栈——用于记录递归到的程序位置</li>
+</ul>
+</li>
+</ul>
+<h2 id="331-验证二叉树的前序序列化"><a href="#331-验证二叉树的前序序列化" class="headerlink" title="331. 验证二叉树的前序序列化"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/verify-preorder-serialization-of-a-binary-tree/">331. 验证二叉树的前序序列化</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/stHnj4FdR6UAwcm.png"></p>
+<ul>
+<li><p>解题方法——缩点思维</p>
+<ul>
+<li>  若数字后面有两个“#”，那么把这个数字和后面两个“#”合并成一个“#”，例如示例1<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+<li>  第一次合并后变为“93#1##2#6##”，第二次“93##2#6##”，第三次“9#2#6##”，第四次“9#2##”，第五次“9##”，第六次“#”</li>
+<li>  当且仅当只剩下一个“#”后我们认为这个序列是合法的前序序列</li>
+</ul>
+</li>
+<li><p>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/nFQ1eitAkMhHwar.png"></p>
+</li>
+<li><p>  注意要处理“，”</p>
+</li>
+<li><p>  将字符存入字符串数组中</p>
+</li>
+</ul>
+<h2 id="227-基本计算器-II"><a href="#227-基本计算器-II" class="headerlink" title="227. 基本计算器 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/basic-calculator-ii/">227. 基本计算器 II</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/hRHs7VJ6mLy8wvQ.png"></p>
+<ul>
+<li>  见代码注释</li>
+<li>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/Pia8gnuHW9e4MkX.png"></li>
+</ul>
+<h2 id="636-函数的独占时间"><a href="#636-函数的独占时间" class="headerlink" title="636. 函数的独占时间"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/exclusive-time-of-functions/">636. 函数的独占时间</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/25/1hsHqNxE2kfejTI.png"></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/25/gLI3XxO2ezvkdyH.png"></p>
+<h2 id="1124-表现良好的最长时间段"><a href="#1124-表现良好的最长时间段" class="headerlink" title="1124. 表现良好的最长时间段"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-well-performing-interval/">1124. 表现良好的最长时间段</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/25/dZue3tMh7Kq9SDV.png"></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/25/n5g6X2kzQhJeCvu.png"></p>
+<pre class=" language-c++"><code class="language-c++">9 9 6 0 6 6 9
+1 1 -1 -1 -1 -1 1  处理完后的数组
+第一个0是-1下标
+0 1 2 1 0 -1 -2 -1 前缀和
+</code></pre>
+<!-- flag of hidden posts --></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">srymaker0</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/let_2_%E6%A0%88/">http://example.com/let_2_栈/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Learn & Share</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/C-%EF%BC%8CDatastruct%EF%BC%8CLeetcode/">C++，Datastruct，Leetcode</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210504151445.png" target="_blank"><img class="post-qr-code-img" src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210504151445.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210504151350.png" target="_blank"><img class="post-qr-code-img" src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210504151350.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A0%88"><span class="toc-number">1.</span> <span class="toc-text">栈</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88%E7%9A%84%E5%85%B8%E5%9E%8B%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.1.</span> <span class="toc-text">栈的典型应用场景</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%A0%88"><span class="toc-number">1.1.1.</span> <span class="toc-text">线程栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC"><span class="toc-number">1.1.2.</span> <span class="toc-text">表达式求值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E6%BC%94%E7%A4%BA"><span class="toc-number">1.1.3.</span> <span class="toc-text">代码演示</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode"><span class="toc-number">2.</span> <span class="toc-text">Leetcode</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E8%AF%95%E9%A2%98-03-04-%E5%8C%96%E6%A0%88%E4%B8%BA%E9%98%9F"><span class="toc-number">2.1.</span> <span class="toc-text">面试题 03.04. 化栈为队</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#682-%E6%A3%92%E7%90%83%E6%AF%94%E8%B5%9B"><span class="toc-number">2.2.</span> <span class="toc-text">682. 棒球比赛</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#844-%E6%AF%94%E8%BE%83%E5%90%AB%E9%80%80%E6%A0%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">2.3.</span> <span class="toc-text">844. 比较含退格的字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#946-%E9%AA%8C%E8%AF%81%E6%A0%88%E5%BA%8F%E5%88%97"><span class="toc-number">2.4.</span> <span class="toc-text">946. 验证栈序列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1021-%E5%88%A0%E9%99%A4%E6%9C%80%E5%A4%96%E5%B1%82%E7%9A%84%E6%8B%AC%E5%8F%B7"><span class="toc-number">2.5.</span> <span class="toc-text">1021. 删除最外层的括号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1249-%E7%A7%BB%E9%99%A4%E6%97%A0%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7"><span class="toc-number">2.6.</span> <span class="toc-text">1249. 移除无效的括号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#145-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-number">2.7.</span> <span class="toc-text">145. 二叉树的后序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#331-%E9%AA%8C%E8%AF%81%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">2.8.</span> <span class="toc-text">331. 验证二叉树的前序序列化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#227-%E5%9F%BA%E6%9C%AC%E8%AE%A1%E7%AE%97%E5%99%A8-II"><span class="toc-number">2.9.</span> <span class="toc-text">227. 基本计算器 II</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#636-%E5%87%BD%E6%95%B0%E7%9A%84%E7%8B%AC%E5%8D%A0%E6%97%B6%E9%97%B4"><span class="toc-number">2.10.</span> <span class="toc-text">636. 函数的独占时间</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1124-%E8%A1%A8%E7%8E%B0%E8%89%AF%E5%A5%BD%E7%9A%84%E6%9C%80%E9%95%BF%E6%97%B6%E9%97%B4%E6%AE%B5"><span class="toc-number">2.11.</span> <span class="toc-text">1124. 表现良好的最长时间段</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By srymaker0</div><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank" href="https://hexo.io/"><img src="/img/loading.gif" data-original="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为 Hexo" alt="HEXO"></a><a style="margin-inline:5px"target="_blank" href="https://butterfly.js.org/"><img src="/img/loading.gif" data-original="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用 Butterfly" alt="Butterfly"></a><a style="margin-inline:5px"target="_blank" href="https://www.jsdelivr.com/"><img src="/img/loading.gif" data-original="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用 Jsdelivr 为静态资源提供CDN加速" alt="Jsdelivr"></a><a style="margin-inline:5px"target="_blank" href="https://github.com/"><img src="/img/loading.gif" data-original="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由 GitHub 托管" alt="GitHub"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="/img/loading.gif" data-original="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" alt="img" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', '', 'katex-wrap')
+  })
+})()</script><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'nEiQmW5sudWU8qxAvdOcD1wB-gzGzoHsz',
+      appKey: 'pFNcskuOgHsbDVMLzenxFOFP',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: 'https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script src="https://cdn.jsdelivr.net/gh/CCKNBC/ccknbc.github.io@latest/js/ccknbc.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 1,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(n){n.imageLazyLoadSetting.processImages=o;var e=n.imageLazyLoadSetting.isSPA,i=n.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function o(){e&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,a=0;a<r.length;a++)0<=(t=(t=r[a]).getBoundingClientRect()).bottom&&0<=t.left&&t.top<=(n.innerHeight*i||document.documentElement.clientHeight*i)&&function(){var t,e,n,i,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},n=new Image,i=t.getAttribute("data-original"),n.onload=function(){t.src=i,e&&e()},t.src!==i&&(n.src=i)}()}o(),n.addEventListener("scroll",function(){var t,e;t=o,e=n,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body></html>
