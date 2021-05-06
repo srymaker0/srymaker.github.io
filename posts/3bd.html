@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>构造与析构 | The Srymaker0</title><meta name="robots" content="noindex"><meta name="keywords" content="C++, 面向对象"><meta name="author" content="srymaker0"><meta name="copyright" content="srymaker0"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="构造函数    作用：用来初始化对象，没有返回值，函数名字和类名一样   凡是一个对象，它的产生之初一定调用构造函数，然后经历一段时间的使用过程，最后一定会调用析构函数。  #include  using namespace std;  class Data { public :     Data(int x, int y) : x(x), y(y) {} private :     int x,">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>构造与析构 | The Srymaker0</title><meta name="robots" content="noindex"><meta name="keywords" content="C++, 面向对象"><meta name="author" content="srymaker0"><meta name="copyright" content="srymaker0"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="构造函数  作用：用来初始化对象，没有返回值，函数名字和类名一样 凡是一个对象，它的产生之初一定调用构造函数，然后经历一段时间的使用过程，最后一定会调用析构函数。  #include  using namespace std;  class Data { public :     Data(int x, int y) : x(x), y(y) {} private :     int x, y;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="构造与析构">
 <meta property="og:url" content="http://srymaker0.com/posts/3bd">
 <meta property="og:site_name" content="The Srymaker0">
-<meta property="og:description" content="构造函数    作用：用来初始化对象，没有返回值，函数名字和类名一样   凡是一个对象，它的产生之初一定调用构造函数，然后经历一段时间的使用过程，最后一定会调用析构函数。  #include  using namespace std;  class Data { public :     Data(int x, int y) : x(x), y(y) {} private :     int x,">
+<meta property="og:description" content="构造函数  作用：用来初始化对象，没有返回值，函数名字和类名一样 凡是一个对象，它的产生之初一定调用构造函数，然后经历一段时间的使用过程，最后一定会调用析构函数。  #include  using namespace std;  class Data { public :     Data(int x, int y) : x(x), y(y) {} private :     int x, y;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
 <meta property="article:published_time" content="2021-05-03T09:26:52.000Z">
@@ -165,12 +165,12 @@
     }
     })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CCKNBC/ccknbc.github.io@latest/css/ccknbc.css"><link rel="stylesheet" href="/css/mycss.css"><meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210503135612.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">The Srymaker0</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">构造与析构</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-03T09:26:52.000Z" title="发表于 2021-05-03 17:26:52">2021-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-06T08:01:41.355Z" title="更新于 2021-05-06 16:01:41">2021-05-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">303</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="构造与析构"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/07/uNwszhVPW7K8xnB.png"></p>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210503135612.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">The Srymaker0</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">构造与析构</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-03T09:26:52.000Z" title="发表于 2021-05-03 17:26:52">2021-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-06T08:01:41.355Z" title="更新于 2021-05-06 16:01:41">2021-05-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">303</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="构造与析构"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h1><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/07/uNwszhVPW7K8xnB.png" alt=""></p>
 <ul>
-<li>  作用：用来初始化对象，没有返回值，函数名字和类名一样</li>
-<li>  凡是一个对象，它的产生之初一定调用构造函数，然后经历一段时间的使用过程，最后一定会调用析构函数。</li>
+<li>作用：用来初始化对象，没有返回值，函数名字和类名一样</li>
+<li>凡是一个对象，它的产生之初一定调用构造函数，然后经历一段时间的使用过程，最后一定会调用析构函数。</li>
 </ul>
-<pre class=" language-c++"><code class="language-c++">#include <iostream>
+<pre class=" language-lang-c++"><code class="language-lang-c++">#include <iostream>
 using namespace std;
 
 class Data {
@@ -215,34 +215,33 @@ int main() {
 }
 </code></pre>
 <ul>
-<li><p>  功能上的构造（逻辑上）：要完整的实现我们所认为的逻辑才算构造完</p>
-</li>
-<li><p>编译器所谓的构造（实际上）：其实在第13行就已经构造完成了，意思是我们可以在第14行就可以访问成员属性和方法了</p>
-<ul>
-<li>  当前对象真正的构造行为发生在初始化列表里，要保证进到大括号内时已经构造完了对象</li>
+<li>功能上的构造（逻辑上）：要完整的实现我们所认为的逻辑才算构造完</li>
+<li>编译器所谓的构造（实际上）：其实在第13行就已经构造完成了，意思是我们可以在第14行就可以访问成员属性和方法了<ul>
+<li>当前对象真正的构造行为发生在初始化列表里，要保证进到大括号内时已经构造完了对象</li>
 </ul>
 </li>
 <li><p>初始化参数列表：所有的构造行为我们应该放入初始化列表中去完成</p>
 <ul>
-<li>  在初始化参数列表中，我们可以显示的让对象调用指定的构造函数</li>
+<li>在初始化参数列表中，我们可以显示的让对象调用指定的构造函数</li>
 </ul>
 </li>
-<li><p>  <span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>成员属性的构造顺序跟初始化列表里的顺序没有关系，只跟成员属性声明顺序有关</p>
+<li><p><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>成员属性的构造顺序跟初始化列表里的顺序没有关系，只跟成员属性声明顺序有关</p>
 </li>
 </ul>
 <h2 id="默认构造函数"><a href="#默认构造函数" class="headerlink" title="默认构造函数"></a>默认构造函数</h2><ul>
-<li><p>  本质上是不传递任何参数的构造函数</p>
-</li>
+<li>本质上是不传递任何参数的构造函数</li>
 <li><p>编译器自动帮我们生成的</p>
 <ul>
-<li>  如果我们写了有参构造函数，编译器会删除原来的默认构造函数</li>
-<li>如果不想用默认构造函数，那么最好显示的删除默认构造函数（在后面会讲到）</li>
-<li>  此时若我们还想用默认构造函数，就要显示性的写上默认构造函数</li>
+<li>如果我们写了有参构造函数，编译器会删除原来的默认构造函数</li>
+<li><p>如果不想用默认构造函数，那么最好显示的删除默认构造函数（在后面会讲到）</p>
+</li>
+<li><p>此时若我们还想用默认构造函数，就要显示性的写上默认构造函数</p>
+</li>
 </ul>
 </li>
 </ul>
 <h2 id="有参构造函数"><a href="#有参构造函数" class="headerlink" title="有参构造函数"></a>有参构造函数</h2><ul>
-<li><p>  参数可以是1个或者多个</p>
+<li><p>参数可以是1个或者多个</p>
 </li>
 <li><p>参数只有1个的构造函数我们称之为转换构造函数如：$A(int x)$</p>
 <ul>
@@ -251,9 +250,9 @@ int main() {
 </li>
 <li><p>分析a = 123这行代码到底经历了啥</p>
 <ul>
-<li>  代码38行为什么123一个整型能赋值给一个a对象？ <span class="github-emoji"><span>👉</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>从逻辑上来讲是123转换为了A类型的值然后给a对象</li>
+<li>代码38行为什么123一个整型能赋值给一个a对象？ <span class="github-emoji"><span>👉</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>从逻辑上来讲是123转换为了A类型的值然后给a对象</li>
 </ul>
-<pre class=" language-c++"><code class="language-c++">A &operator=(const A &a) {
+<pre class=" language-lang-c++"><code class="language-lang-c++">A &operator=(const A &a) {
         cout << this << " : operator=" << endl;
         return *this;
     }
@@ -261,225 +260,236 @@ int main() {
 a = 123;
 </code></pre>
 <ul>
-<li>首先这行代码会调用赋值运算符，可以看到传入的参数是A类型，而123是整型</li>
-<li>  此时由于A类型拥有转换构造函数，可以把123临时转换成A类型的对象，然后传给赋值运算符</li>
-<li>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/07/k4Armncuio9gex7.png"></li>
-<li>  看输出的结果中地址尾号为67的就是创建的临时对象</li>
+<li><p>首先这行代码会调用赋值运算符，可以看到传入的参数是A类型，而123是整型</p>
+</li>
+<li><p>此时由于A类型拥有转换构造函数，可以把123临时转换成A类型的对象，然后传给赋值运算符</p>
+</li>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/07/k4Armncuio9gex7.png" alt=""></li>
+<li>看输出的结果中地址尾号为67的就是创建的临时对象</li>
 </ul>
 </li>
 </ul>
 <h2 id="拷贝构造函数"><a href="#拷贝构造函数" class="headerlink" title="拷贝构造函数"></a>拷贝构造函数</h2><ul>
-<li>  特殊的有参构造<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
-<li>  当传入的参数和对象的类型一致时，我们称这类构造函数为拷贝构造函数</li>
-<li>  拷贝构造和“=”赋值运算符完全不等价</li>
+<li>特殊的有参构造<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+<li>当传入的参数和对象的类型一致时，我们称这类构造函数为拷贝构造函数</li>
+<li>拷贝构造和“=”赋值运算符完全不等价</li>
 </ul>
-<pre class=" language-c++"><code class="language-c++">A(const A &a) {                                 // &a 是引用 const为了防止a对象被修改 const变量不允许被修改 正确写法
+<pre class=" language-lang-c++"><code class="language-lang-c++">A(const A &a) {                                 // &a 是引用 const为了防止a对象被修改 const变量不允许被修改 正确写法
     cout << this << " : copy constructor" << endl;
 }
 
 //A(A a) {}  //不能这么写拷贝构造函数
 
-A b = a; //和 A b(a); 是等价的 但是只在定义的时候等价 
+A b = a; //和 A b(a); 是等价的 但是只在定义的时候等价
 </code></pre>
 <ul>
-<li><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>假设你的拷贝构造函数按照第5行这么写<ul>
-<li>  如果按第5行的代码执行，则运行第7行代码时，b会调用拷贝函数，并把a参数传入</li>
-<li>而A(A  a‘)这句话等于A(A  a’ = a),然后a‘还会进行调用拷贝构造函数<span class="github-emoji"><span>👉</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>会无限套娃下去</li>
-<li>所以拷贝构造函数的参数不能值传递，不然会让参数调用拷贝构造，接着再调用参数的参数的拷贝构造</li>
+<li><p><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>假设你的拷贝构造函数按照第5行这么写</p>
+<ul>
+<li>如果按第5行的代码执行，则运行第7行代码时，b会调用拷贝函数，并把a参数传入</li>
+<li><p>而A(A  a‘)这句话等于A(A  a’ = a),然后a‘还会进行调用拷贝构造函数<span class="github-emoji"><span>👉</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>会无限套娃下去</p>
+</li>
+<li><p>所以拷贝构造函数的参数不能值传递，不然会让参数调用拷贝构造，接着再调用参数的参数的拷贝构造</p>
+</li>
 </ul>
 </li>
-<li>为什么拷贝构造函数的参数要有const<ul>
-<li>  1⃣️为了能处理const和非const类型的对象</li>
-<li>  如果定义一个const类型的对象，而拷贝构造函数参数不加const修饰，则会产生bug，因为这样你就可以在构造函数中修改a变量的值了，从逻辑上讲这样不行。</li>
+<li><p>为什么拷贝构造函数的参数要有const</p>
+<ul>
+<li>1⃣️为了能处理const和非const类型的对象</li>
+<li>如果定义一个const类型的对象，而拷贝构造函数参数不加const修饰，则会产生bug，因为这样你就可以在构造函数中修改a变量的值了，从逻辑上讲这样不行。</li>
 </ul>
 </li>
 </ul>
 <h2 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h2><ul>
 <li>浅拷贝：两个对象一一对应，连指向的地址都是同一块，相当于在原对象上改数据<ul>
-<li>  编译器默认的拷贝构造函数是浅拷贝</li>
+<li>编译器默认的拷贝构造函数是浅拷贝</li>
 </ul>
 </li>
-<li>  深拷贝：要自己写拷贝构造函数，重新给对象b分配一段存储空间</li>
+<li>深拷贝：要自己写拷贝构造函数，重新给对象b分配一段存储空间</li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/07/B4EZhVmoca8FSRp.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/07/JSe6uzMF3j8V1ri.png"></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/07/B4EZhVmoca8FSRp.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/07/JSe6uzMF3j8V1ri.png" alt=""></p>
 <ul>
-<li>  end: 当[]号访问越界时，统一返回end</li>
+<li>end: 当[]号访问越界时，统一返回end</li>
 <li>这里的深拷贝其实有问题：data中没有调用构造函数，应该用原地构造<ul>
-<li>  我们只是把数据拷贝过去了，而不是把对象拷贝过去</li>
+<li>我们只是把数据拷贝过去了，而不是把对象拷贝过去</li>
 </ul>
 </li>
 </ul>
 <h1 id="default和-delete"><a href="#default和-delete" class="headerlink" title="=default和=delete"></a>=default和=delete</h1><ul>
-<li>  c++的潜在规则如此之多，以至于我们可能在工程开发中搞不清在类中到底什么函数被默认调用或者被人为的调用，为了避免人为的疏忽和潜在规则之间产生的bug，c++给我们引入了两个关键字</li>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/08/9nIYcMGxEZeXJrV.png"><ul>
-<li>  这样我们就显示的删除了默认构造函数（delete），以及我们显示的使用了默认拷贝构造函数（default）</li>
-<li>  <span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>尽管这样的代码并没有实际意义上的功能，但是方便日后我们找bug，c++设计哲学<span class="github-emoji"><span>😄</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+<li>c++的潜在规则如此之多，以至于我们可能在工程开发中搞不清在类中到底什么函数被默认调用或者被人为的调用，为了避免人为的疏忽和潜在规则之间产生的bug，c++给我们引入了两个关键字</li>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/08/9nIYcMGxEZeXJrV.png" alt=""><ul>
+<li>这样我们就显示的删除了默认构造函数（delete），以及我们显示的使用了默认拷贝构造函数（default）</li>
+<li><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>尽管这样的代码并没有实际意义上的功能，但是方便日后我们找bug，c++设计哲学<span class="github-emoji"><span>😄</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
 </ul>
 </li>
 <li><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>实现让某个类完全不能发生拷贝行为<ul>
-<li>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/08/yCKlgUwTQHamGEF.png"></li>
-<li>  让这个类的拷贝构造函数和赋值运算符全都失效，放入private中，让外部访问不到</li>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/08/yCKlgUwTQHamGEF.png" alt=""></li>
+<li>让这个类的拷贝构造函数和赋值运算符全都失效，放入private中，让外部访问不到</li>
 </ul>
 </li>
 </ul>
 <h1 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h1><ul>
-<li><p>  功能：销毁对象，没有返回值，函数名和类名一样，只是多了一个‘～’</p>
+<li><p>功能：销毁对象，没有返回值，函数名和类名一样，只是多了一个‘～’</p>
 </li>
-<li><p>  调用时间：在主函数结束后</p>
+<li><p>调用时间：在主函数结束后</p>
 </li>
-<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/07/nlDB1igQEXUItO5.png"></p>
-<p>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/07/k4Armncuio9gex7.png"></p>
+<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/07/nlDB1igQEXUItO5.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/07/k4Armncuio9gex7.png" alt=""></p>
 </li>
 <li><p><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>析构函数调用顺序</p>
 <ul>
-<li>  我们定义了两个对象a和b，根据38行，39行可知输出信息中a，b的地址，在看输出的倒数两行我们发现先初始化的对象反而后析构</li>
+<li>我们定义了两个对象a和b，根据38行，39行可知输出信息中a，b的地址，在看输出的倒数两行我们发现先初始化的对象反而后析构</li>
 <li>思考：这是语言特性？还是特例？<ul>
-<li>  和定义在哪没关系，就算将a，b定义在全局中也是b先析构，a后析构</li>
-<li>  假设我们在设计一个很复杂的功能，那么b对象可能很复杂，并且可能依赖于a对象——b对象的构造可能依赖于a对象的信息那么b对象在析构的时候也可能会依赖于a的信息，所以在析构b对象之前一定不能先析构a对象，否则b对象无法完成析构</li>
+<li>和定义在哪没关系，就算将a，b定义在全局中也是b先析构，a后析构</li>
+<li>假设我们在设计一个很复杂的功能，那么b对象可能很复杂，并且可能依赖于a对象——b对象的构造可能依赖于a对象的信息那么b对象在析构的时候也可能会依赖于a的信息，所以在析构b对象之前一定不能先析构a对象，否则b对象无法完成析构</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><p>这肯定是语言特性<span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
 <ul>
-<li>  编译器只管哪个先构造就后析构。</li>
+<li>编译器只管哪个先构造就后析构。</li>
 </ul>
 </li>
 </ul>
 <h1 id="重载"><a href="#重载" class="headerlink" title="重载"></a>重载</h1><ul>
-<li><p>函数重载：如果一个作用域内几个函数名字相同但是参数列表不同，称为函数重载</p>
-<ul>
-<li>  <span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>注意 : 与返回值没有关系</li>
+<li>函数重载：如果一个作用域内几个函数名字相同但是参数列表不同，称为函数重载<ul>
+<li><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>注意 : 与返回值没有关系</li>
 </ul>
 </li>
 <li><p>重载的意义：</p>
 <ul>
-<li>  通过函数名对函数功能进行提示</li>
-<li>  通过函数参数列表对函数的用法进行提示</li>
-<li>  扩展已有的功能</li>
+<li>通过函数名对函数功能进行提示</li>
+<li>通过函数参数列表对函数的用法进行提示</li>
+<li>扩展已有的功能</li>
 </ul>
 </li>
-<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/08/QG9HDf4jiFAbuYa.png"></p>
+<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/08/QG9HDf4jiFAbuYa.png" alt=""></p>
 <ul>
-<li>  若函数参数有默认值，则会引起冲突。</li>
+<li>若函数参数有默认值，则会引起冲突。</li>
 </ul>
 </li>
 </ul>
 <ul>
 <li><p>运算符重载</p>
 <ul>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/08/qVlzG5X2POkeU9J.png"><ul>
-<li>  <span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>sizeof也不能被重载，sizeof实际上是一个运算符</li>
-<li>  new和delete也是运算符 </li>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/08/qVlzG5X2POkeU9J.png" alt=""><ul>
+<li><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>sizeof也不能被重载，sizeof实际上是一个运算符</li>
+<li>new和delete也是运算符 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/08/2u9bHQnJSYL8V6I.png"></p>
+<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/08/2u9bHQnJSYL8V6I.png" alt=""></p>
 </li>
 <li><p>”+“类外重载</p>
 <ul>
-<li><p>  低优先级</p>
+<li><p>低优先级</p>
 </li>
-<li><p>  第一个参数表示”+“号左边的值， 第二个参数表示”+“右边的值</p>
+<li><p>第一个参数表示”+“号左边的值， 第二个参数表示”+“右边的值</p>
 </li>
 </ul>
 </li>
 <li><p>”+“类内重载</p>
 <ul>
-<li>  高优先级</li>
-<li>  只需要一个参数，红框里的x是成员属性，也可以使用this来指向成员属性</li>
-<li>  从逻辑上来讲，在开发者视角来看可能不知道在哪进行定义类外重载，但是类内重载可以看到，并且好找BUG</li>
+<li>高优先级</li>
+<li>只需要一个参数，红框里的x是成员属性，也可以使用this来指向成员属性</li>
+<li>从逻辑上来讲，在开发者视角来看可能不知道在哪进行定义类外重载，但是类内重载可以看到，并且好找BUG</li>
 </ul>
 </li>
 <li><p>运算符重载函数返回值</p>
 <ul>
 <li>返回引用<ul>
-<li>  从功能上来说，可以实现连续”=“，”+=“等的一些操作</li>
+<li>从功能上来说，可以实现连续”=“，”+=“等的一些操作</li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>特殊运算符的重载</p>
-<ul>
-<li>   <code>=</code>  赋值运算符  | 下标<code>[]</code>👉数组对象  |调用<code>()</code>👉函数对象→仿函数 |  间接引用<code>-&gt;</code>👉指针对象      -   例如：数组对象→当一个类重载了下标<code>[]</code>运算符时，这个类的对象就能使用<code>[]</code>,这个对象表现的像数组，但本质上还是一个对象，因此叫数组对象      -   函数对象又叫<strong>可调用对象</strong>也叫<strong>仿函数</strong>👉同上</li>
-<li>  这四种运算符只支持类内重载</li>
+<li>特殊运算符的重载<ul>
+<li><code>=</code>  赋值运算符  | 下标<code>[]</code>👉数组对象  |调用<code>()</code>👉函数对象→仿函数 |  间接引用<code>-&gt;</code>👉指针对象<ul>
+<li>例如：数组对象→当一个类重载了下标<code>[]</code>运算符时，这个类的对象就能使用<code>[]</code>,这个对象表现的像数组，但本质上还是一个对象，因此叫数组对象</li>
+<li>函数对象又叫<strong>可调用对象</strong>也叫<strong>仿函数</strong>👉同上</li>
+</ul>
+</li>
+<li>这四种运算符只支持类内重载</li>
 </ul>
 </li>
 </ul>
 <h1 id="友元函数"><a href="#友元函数" class="headerlink" title="友元函数"></a>友元函数</h1><ul>
-<li>  能让类外的函数访问成员私有属性</li>
+<li>能让类外的函数访问成员私有属性</li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/08/sI1wiOD2yXjHtC8.png"></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/08/sI1wiOD2yXjHtC8.png" alt=""></p>
 <ul>
-<li>  友元函数本质上是一个类外部的函数，但是其有friend修饰，可以访问类内部的私有成员属性</li>
+<li>友元函数本质上是一个类外部的函数，但是其有friend修饰，可以访问类内部的私有成员属性</li>
 </ul>
 <h1 id="智能指针对象"><a href="#智能指针对象" class="headerlink" title="智能指针对象"></a>智能指针对象</h1><ul>
-<li><p>  外在表现像一个指针，重载了<code>-&gt;</code>运算符以及<code>*</code>运算符</p>
+<li><p>外在表现像一个指针，重载了<code>-&gt;</code>运算符以及<code>*</code>运算符</p>
 </li>
 <li><p>用来防止内存泄漏的</p>
 <ul>
-<li>内存泄漏👉一片存储区是属于我当前进程的，但是我当前进程却找不到我的存储区了</li>
-<li>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/08/9O8nDEovlp5Rh6c.png"></li>
-<li>  可以看到这里只调用了默认构造函数，并没有发生析构，说明发生了内存泄漏</li>
+<li><p>内存泄漏👉一片存储区是属于我当前进程的，但是我当前进程却找不到我的存储区了</p>
+</li>
+<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/08/9O8nDEovlp5Rh6c.png" alt=""></p>
+</li>
+<li>可以看到这里只调用了默认构造函数，并没有发生析构，说明发生了内存泄漏</li>
 </ul>
 </li>
-<li><p>  假设现在有两个智能指针P1, P2指向了同一个对象，那么只有当指向当前对象的指针数量为0的时候，这个时候智能指针对象就会把当前对象给析构掉</p>
+<li><p>假设现在有两个智能指针P1, P2指向了同一个对象，那么只有当指向当前对象的指针数量为0的时候，这个时候智能指针对象就会把当前对象给析构掉</p>
 </li>
-<li><p>原理：</p>
+<li>原理：<ul>
+<li>利用了引用计数：记录当前对象到底有多少个智能指针指向对象</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/09/WSGXV3THEcPiNZy.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/09/r3XvYz2Mo4UBSDL.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/19/c517Vg2ABajOtfR.png" alt=""></p>
 <ul>
-<li>  利用了引用计数：记录当前对象到底有多少个智能指针指向对象</li>
+<li>91行代码过后为什么p2的cnt也变成2个了<ul>
+<li><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>因为此时调用的是拷贝构造函数</li>
+<li>且cnt是是一个指针，两者的cnt指向同一片空间</li>
 </ul>
 </li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/09/WSGXV3THEcPiNZy.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/09/r3XvYz2Mo4UBSDL.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/19/c517Vg2ABajOtfR.png"></p>
-<ul>
-<li>  91行代码过后为什么p2的cnt也变成2个了</li>
-<li>  <span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>因为此时调用的是拷贝构造函数    -   且cnt是是一个指针，两者的cnt指向同一片空间</li>
 </ul>
 <h1 id="可调用对象"><a href="#可调用对象" class="headerlink" title="可调用对象"></a>可调用对象</h1><ul>
-<li>  实际是一个对象，只是表现的像一个函数</li>
+<li>实际是一个对象，只是表现的像一个函数</li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/09/jrHNWRfZhTtiYX5.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/09/c4H1aCXTLK5gU6s.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/09/5DEybJhNvOIxkew.png"></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/09/jrHNWRfZhTtiYX5.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/09/c4H1aCXTLK5gU6s.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/09/5DEybJhNvOIxkew.png" alt=""></p>
 <h1 id="三-五法则"><a href="#三-五法则" class="headerlink" title="三/五法则"></a>三/五法则</h1><ul>
 <li>需要析构函数的类也需要拷贝构造函数和拷贝赋值函数<ul>
-<li>  当我在类中有一些属性是要申请空间的时候，就需要析构函数进行资源回收。</li>
-<li>  当这些属性发生拷贝行为时，必须要深拷贝</li>
+<li>当我在类中有一些属性是要申请空间的时候，就需要析构函数进行资源回收。</li>
+<li>当这些属性发生拷贝行为时，必须要深拷贝</li>
 </ul>
 </li>
 <li>需要拷贝操作的类也需要赋值操作，反之亦然<ul>
-<li>  一般都要考虑重载赋值运算符</li>
+<li>一般都要考虑重载赋值运算符</li>
 </ul>
 </li>
-<li>  析构函数不能是删除的</li>
+<li>析构函数不能是删除的</li>
 <li>如果一个类有删除的或不可访问的析构函数，那么其默认和拷贝构造函数会被 定义为删除的。<ul>
-<li>  一个类如果不能自动销毁，那么其就不能自动产生（逻辑上）</li>
+<li>一个类如果不能自动销毁，那么其就不能自动产生（逻辑上）</li>
 </ul>
 </li>
-<li>  如果一个类有const或引用成员，则不能使用合成的拷贝赋值操作</li>
+<li>如果一个类有const或引用成员，则不能使用合成的拷贝赋值操作</li>
 </ul>
 <h1 id="小知识"><a href="#小知识" class="headerlink" title="小知识"></a>小知识</h1><ul>
 <li><p>在实际工程开发中，我们会将构造函数和析构函数设计的极其简单</p>
 <ul>
-<li>  原因：如果在构造函数中进行大资源的申请并出现了BUG， C++的异常捕获机制将很难捕获到，也很难处理</li>
-<li>  解决： 额外的做一个伪构造函数和一个伪析构函数——类似设计模式中的工厂模式</li>
+<li>原因：如果在构造函数中进行大资源的申请并出现了BUG， C++的异常捕获机制将很难捕获到，也很难处理</li>
+<li>解决： 额外的做一个伪构造函数和一个伪析构函数——类似设计模式中的工厂模式</li>
 </ul>
 </li>
 <li><p>C++11标准是让C++重回神坛的一个标准</p>
 <ul>
-<li>  C++11之前没有区分左值和右值的概念，也就是常驻值和临时值 </li>
-<li>  我们在使用stl工具时会发生大量拷贝操作——移动构造 </li>
+<li>C++11之前没有区分左值和右值的概念，也就是常驻值和临时值 </li>
+<li>我们在使用stl工具时会发生大量拷贝操作——移动构造 </li>
 </ul>
 </li>
-<li><p>C++学习重点</p>
-<ul>
-<li>  程序的处理流程 </li>
-<li>  当C++调用一个函数时，背后可能发生的是非常复杂的处理流程</li>
+<li>C++学习重点<ul>
+<li>程序的处理流程 </li>
+<li>当C++调用一个函数时，背后可能发生的是非常复杂的处理流程</li>
 </ul>
 </li>
 </ul>
@@ -494,11 +504,52 @@ A b = a; //和 A b(a); 是等价的 但是只在定义的时候等价
 
   }
 }
-window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
-  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
-    btf.wrap(item, 'div', '', 'katex-wrap')
-  })
-})()</script><script>function loadValine () {
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
   function initValine () {
     const valine = new Valine(Object.assign({
       el: '#vcomment',

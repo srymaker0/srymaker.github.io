@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>c++零碎知识点 | The Srymaker0</title><meta name="robots" content="noindex"><meta name="keywords" content="C++, 面向对象"><meta name="author" content="srymaker0"><meta name="copyright" content="srymaker0"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="auto 作用：在C++中可以自动推导变量的类型    其实在C语言中就有，只不过在C语言中在变量类型前加auto表现的就像局部变量，多余   ❗在编译期的行为   限制    ①不能作为函数参数   ②不能作为模板参数（C++11）,  但是在C++14和C++17中可以作为模板参数   ③不能定义数组   ④不能定义非静态的成员属性   容器    封装好的数据结构——比如：map&lt;in">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>c++零碎知识点 | The Srymaker0</title><meta name="robots" content="noindex"><meta name="keywords" content="C++, 面向对象"><meta name="author" content="srymaker0"><meta name="copyright" content="srymaker0"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="auto 作用：在C++中可以自动推导变量的类型  其实在C语言中就有，只不过在C语言中在变量类型前加auto表现的就像局部变量，多余 ❗在编译期的行为   限制  ①不能作为函数参数 ②不能作为模板参数（C++11）,  但是在C++14和C++17中可以作为模板参数 ③不能定义数组 ④不能定义非静态的成员属性   容器  封装好的数据结构——比如：map&lt;int, int&gt;  遍历">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c++零碎知识点">
 <meta property="og:url" content="http://srymaker0.com/posts/b26a">
 <meta property="og:site_name" content="The Srymaker0">
-<meta property="og:description" content="auto 作用：在C++中可以自动推导变量的类型    其实在C语言中就有，只不过在C语言中在变量类型前加auto表现的就像局部变量，多余   ❗在编译期的行为   限制    ①不能作为函数参数   ②不能作为模板参数（C++11）,  但是在C++14和C++17中可以作为模板参数   ③不能定义数组   ④不能定义非静态的成员属性   容器    封装好的数据结构——比如：map&lt;in">
+<meta property="og:description" content="auto 作用：在C++中可以自动推导变量的类型  其实在C语言中就有，只不过在C语言中在变量类型前加auto表现的就像局部变量，多余 ❗在编译期的行为   限制  ①不能作为函数参数 ②不能作为模板参数（C++11）,  但是在C++14和C++17中可以作为模板参数 ③不能定义数组 ④不能定义非静态的成员属性   容器  封装好的数据结构——比如：map&lt;int, int&gt;  遍历">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
 <meta property="article:published_time" content="2021-05-03T09:26:52.000Z">
@@ -168,26 +168,26 @@
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210503135612.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">The Srymaker0</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">c++零碎知识点</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-03T09:26:52.000Z" title="发表于 2021-05-03 17:26:52">2021-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-06T08:01:41.357Z" title="更新于 2021-05-06 16:01:41">2021-05-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">234</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="c++零碎知识点"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h1><ul>
 <li><p>作用：在C++中可以自动推导变量的类型</p>
 <ul>
-<li>  其实在C语言中就有，只不过在C语言中在变量类型前加auto表现的就像局部变量，多余</li>
-<li>  <span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>在编译期的行为</li>
+<li>其实在C语言中就有，只不过在C语言中在变量类型前加auto表现的就像局部变量，多余</li>
+<li><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>在编译期的行为</li>
 </ul>
 </li>
 <li><p>限制</p>
 <ul>
-<li>  ①不能作为函数参数</li>
-<li>  ②不能作为模板参数（C++11）,  但是在C++14和C++17中可以作为模板参数</li>
-<li>  ③不能定义数组</li>
-<li>  ④不能定义非静态的成员属性</li>
+<li>①不能作为函数参数</li>
+<li>②不能作为模板参数（C++11）,  但是在C++14和C++17中可以作为模板参数</li>
+<li>③不能定义数组</li>
+<li>④不能定义非静态的成员属性</li>
 </ul>
 </li>
 <li><p>容器</p>
 <ul>
-<li><p>  封装好的数据结构——比如：<code>map&lt;int, int&gt;</code></p>
+<li><p>封装好的数据结构——比如：<code>map&lt;int, int&gt;</code></p>
 </li>
-<li><p>  遍历容器的工具类型：迭代器类型——<code>map&lt;int, int&gt;::iterator</code>👉遍历整型到整型的map类型的迭代器类型</p>
+<li><p>遍历容器的工具类型：迭代器类型——<code>map&lt;int, int&gt;::iterator</code>👉遍历整型到整型的map类型的迭代器类型</p>
 </li>
 <li><p><code>iter-&gt;first</code><span class="github-emoji"><span>👉</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>map中的key值， <code>iter-&gt;second</code><span class="github-emoji"><span>👉</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>map中的value值​</p>
-<pre class=" language-c++"><code class="language-c++">     map<int, int> arr;   
+<pre class=" language-lang-c++"><code class="language-lang-c++">     map<int, int> arr;   
     for (int i = 0; i < 10; i++) {
         arr[rand() % 100] = rand();
     }
@@ -202,32 +202,32 @@
 </code></pre>
 </li>
 <li><p>但是这个迭代器类型太长了，所以auto关键字就起作用了，可以把第5行代码改成下面这种形式</p>
-<pre class=" language-c++"><code class="language-c++">auto iter = arr.begin();        //auto会自动推导iter的类型  iter的类型由arr.begin()的返回值类型决定 
+<pre class=" language-lang-c++"><code class="language-lang-c++">auto iter = arr.begin();        //auto会自动推导iter的类型  iter的类型由arr.begin()的返回值类型决定
 </code></pre>
 </li>
 </ul>
 </li>
 <li><p>问题</p>
 <ul>
-<li><pre class=" language-c++"><code class="language-c++">  auto y = 12.3;      //编译器怎么推导出y到底是double类型还是float类型
-  
-  //使用typeid运算符， 返回的是类型信息对象，若要获取类型信息的名字， 就像下面这样写
-  cout << typeid(y).name() << endl;       //输出一个d，表示double类型 
+<li><pre class=" language-lang-c++"><code class="language-lang-c++">auto y = 12.3;      //编译器怎么推导出y到底是double类型还是float类型
+
+//使用typeid运算符， 返回的是类型信息对象，若要获取类型信息的名字， 就像下面这样写
+cout << typeid(y).name() << endl;       //输出一个d，表示double类型
 </code></pre>
 </li>
 <li><p>typeid()</p>
 <ul>
-<li><p>  每一种类型在typeid中的哈希值都是不一样的，可以通过比较哈希值来判断一个变量到底是不是这种类型的</p>
+<li><p>每一种类型在typeid中的哈希值都是不一样的，可以通过比较哈希值来判断一个变量到底是不是这种类型的</p>
 </li>
-<li><p>  在模板中功能更大</p>
+<li><p>在模板中功能更大</p>
 </li>
-<li><pre class=" language-c++"><code class="language-c++">      auto y = 12.3;  
-      if (typeid(y).hash_code() == typeid(float).hash_code()) {
-          cout << "float type" << endl;
-      }
-      if (typeid(y).hash_code() == typeid(double).hash_code()) {
-          cout << "double type" << endl;
-      }
+<li><pre class=" language-lang-c++"><code class="language-lang-c++">    auto y = 12.3;  
+    if (typeid(y).hash_code() == typeid(float).hash_code()) {
+        cout << "float type" << endl;
+    }
+    if (typeid(y).hash_code() == typeid(double).hash_code()) {
+        cout << "double type" << endl;
+    }
 </code></pre>
 </li>
 </ul>
@@ -236,33 +236,37 @@
 </li>
 </ul>
 <h1 id="constexpr——表达式常量"><a href="#constexpr——表达式常量" class="headerlink" title="constexpr——表达式常量"></a>constexpr——表达式常量</h1><ul>
-<li>  区别于const</li>
+<li>区别于const</li>
 </ul>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">关键字</th>
-<th align="center">const</th>
-<th align="center">constexpr</th>
+<th style="text-align:center">关键字</th>
+<th style="text-align:center">const</th>
+<th style="text-align:center">constexpr</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">语义</td>
-<td align="center">不严谨</td>
-<td align="center">严谨</td>
+<tbody>
+<tr>
+<td style="text-align:center">语义</td>
+<td style="text-align:center">不严谨</td>
+<td style="text-align:center">严谨</td>
 </tr>
 <tr>
-<td align="center">发生时段</td>
-<td align="center">运行期</td>
-<td align="center">编译期</td>
+<td style="text-align:center">发生时段</td>
+<td style="text-align:center">运行期</td>
+<td style="text-align:center">编译期</td>
 </tr>
 <tr>
-<td align="center">定义的常量值</td>
-<td align="center">可以在运行期确定</td>
-<td align="center">必须在编译期就确定</td>
+<td style="text-align:center">定义的常量值</td>
+<td style="text-align:center">可以在运行期确定</td>
+<td style="text-align:center">必须在编译期就确定</td>
 </tr>
-</tbody></table>
-<pre class=" language-c++"><code class="language-c++">int main() {    
+</tbody>
+</table>
+</div>
+<pre class=" language-lang-c++"><code class="language-lang-c++">int main() {    
     const int x = 123;
     constexpr int y = 123;
     *const_cast<int *>(&x) = 456;       //const_cast可以修改const变量
@@ -278,12 +282,12 @@
 </code></pre>
 <ul>
 <li>第10行为什么会输出123？<ul>
-<li>  因为编译器认为x是一个常量，作了优化，可以理解为直接从第2行代码跳到了第10行</li>
-<li>  取地址是一个运行期的功能，不会被编译器优化，所以能改变x的值</li>
+<li>因为编译器认为x是一个常量，作了优化，可以理解为直接从第2行代码跳到了第10行</li>
+<li>取地址是一个运行期的功能，不会被编译器优化，所以能改变x的值</li>
 </ul>
 </li>
 </ul>
-<pre class=" language-c++"><code class="language-c++">constexpr int f(int x) {
+<pre class=" language-lang-c++"><code class="language-lang-c++">constexpr int f(int x) {
     return 2 * x;
 }
 
@@ -303,11 +307,11 @@ int main() {
 }
 </code></pre>
 <ul>
-<li>  constexpr所定义的变量，在编译期就要确定变量的值是多少。 </li>
-<li>  同样的y变量若是接受一个函数返回值，那么这个函数的返回值也必须修饰为constexpr，让编译器知道这是在编译期就能够确定的值</li>
-<li>  constexpr定义的对象调用的构造函数也要用constexpr修饰</li>
+<li>constexpr所定义的变量，在编译期就要确定变量的值是多少。 </li>
+<li>同样的y变量若是接受一个函数返回值，那么这个函数的返回值也必须修饰为constexpr，让编译器知道这是在编译期就能够确定的值</li>
+<li>constexpr定义的对象调用的构造函数也要用constexpr修饰</li>
 </ul>
-<h1 id="nullptr"><a href="#nullptr" class="headerlink" title="nullptr"></a>nullptr</h1><pre class=" language-c++"><code class="language-c++">#include <iostream>
+<h1 id="nullptr"><a href="#nullptr" class="headerlink" title="nullptr"></a>nullptr</h1><pre class=" language-lang-c++"><code class="language-lang-c++">#include <iostream>
 #include <string>
 using namespace std;
 
@@ -344,12 +348,12 @@ int main() {
 </code></pre>
 <ul>
 <li>NULL和nullptr<ul>
-<li>  NULL是一个整数0，同时也代表了空地址?  32行不知道调用哪个func</li>
-<li>  <span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>nullptr只代表了空地址，更加明确，建议在C++中若想表示空地址，尽量用nullptr</li>
+<li>NULL是一个整数0，同时也代表了空地址?  32行不知道调用哪个func</li>
+<li><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>nullptr只代表了空地址，更加明确，建议在C++中若想表示空地址，尽量用nullptr</li>
 </ul>
 </li>
 </ul>
-<h1 id="左值与右值"><a href="#左值与右值" class="headerlink" title="左值与右值"></a>左值与右值</h1><pre class=" language-C++"><code class="language-C++">#include <iostream>
+<h1 id="左值与右值"><a href="#左值与右值" class="headerlink" title="左值与右值"></a>左值与右值</h1><pre class=" language-lang-C++"><code class="language-lang-C++">#include <iostream>
 using namespace std;
 
 #define func(x) __func(x, "func(" #x ")")
@@ -397,62 +401,59 @@ int main() {
 }
 </code></pre>
 <ul>
-<li><p>变量x是一个左值，绑定在左值上的引用就是左值引用</p>
-<ul>
-<li>  语法：<code>int y = 123; int &amp;x = y;</code>   此时x就是一个左值引用</li>
+<li>变量x是一个左值，绑定在左值上的引用就是左值引用<ul>
+<li>语法：<code>int y = 123; int &amp;x = y;</code>   此时x就是一个左值引用</li>
 </ul>
 </li>
-<li><p>常量1234是一个右值， 绑定在右值上的引用就是右值引用</p>
-<ul>
-<li>  语法 ：<code>int &amp;&amp;x = 123;</code> 此时x就是一个右值引用</li>
+<li>常量1234是一个右值， 绑定在右值上的引用就是右值引用<ul>
+<li>语法 ：<code>int &amp;&amp;x = 123;</code> 此时x就是一个右值引用</li>
 </ul>
 </li>
-<li><p><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>如何区别左值和右值</p>
-<ul>
-<li>  当我们看到一个值时，到了代码的下一行的时候，能通过单一变量访问到相关的值，能-&gt;左值  不能-&gt;右值</li>
-<li>  常量一定是一个右值</li>
-<li>  <span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>注意：左值，左值引用，右值，右值引用，这四个东西其实并不冲突，可以当成四种概念去学！</li>
+<li><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>如何区别左值和右值<ul>
+<li>当我们看到一个值时，到了代码的下一行的时候，能通过单一变量访问到相关的值，能-&gt;左值  不能-&gt;右值</li>
+<li>常量一定是一个右值</li>
+<li><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>注意：左值，左值引用，右值，右值引用，这四个东西其实并不冲突，可以当成四种概念去学！</li>
 </ul>
 </li>
 <li><p>move和forward</p>
 <ul>
-<li>  作用：都可以把一个具有左/右值特性的变量强制转换为右/左值特性</li>
-<li>  区别：<code>forward</code>更加灵活，可以更改类型，forward&lt;int &amp;&amp;&gt; (x)  表示一定会匹配第一个参数是int &amp;&amp;的函数 👉 参数的完美转发</li>
-<li>  准确的调用到函数的某种重载形式</li>
+<li>作用：都可以把一个具有左/右值特性的变量强制转换为右/左值特性</li>
+<li>区别：<code>forward</code>更加灵活，可以更改类型，forward<int &&=""> (x)  表示一定会匹配第一个参数是int &amp;&amp;的函数 👉 参数的完美转发</int></li>
+<li>准确的调用到函数的某种重载形式</li>
 </ul>
 </li>
 <li><p>可以参考</p>
 <ul>
-<li>  <a target="_blank" rel="noopener" href="https://blog.csdn.net/tonglin12138/article/details/91479048">C++：浅谈右值引用</a></li>
-<li>  <a target="_blank" rel="noopener" href="https://www.cnblogs.com/AndyJee/p/4550457.html">关于++i和i++的左值、右值问题</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/tonglin12138/article/details/91479048">C++：浅谈右值引用</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/AndyJee/p/4550457.html">关于++i和i++的左值、右值问题</a></li>
 </ul>
 </li>
 <li><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/cpp-value-categories">左值右值更严谨的判断方式</a></p>
 </li>
-<li><p>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/15/MR5IB3Y2kmiwzXy.png"></p>
+<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/15/MR5IB3Y2kmiwzXy.png" alt=""></p>
 </li>
-<li><p>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/15/zHx68tIykuGvmpK.png"></p>
+<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/15/zHx68tIykuGvmpK.png" alt=""></p>
 </li>
 <li><p>可以看到把func1函数的其它重载形式给注释了，发现调用的全是const int&amp;版本<span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
 <ul>
-<li>  <span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>可以说明的是<code>const int &amp;</code>可以处理所有的数据</li>
+<li><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>可以说明的是<code>const int &amp;</code>可以处理所有的数据</li>
 </ul>
 </li>
 </ul>
 <h1 id="star-移动构造"><a href="#star-移动构造" class="headerlink" title=":star:移动构造"></a><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>移动构造</h1><ul>
 <li>作用：提高拷贝效率<ul>
-<li>  直接把数据拿过来，然后只需改动一下指针就可以</li>
-<li>  配合深拷贝</li>
+<li>直接把数据拿过来，然后只需改动一下指针就可以</li>
+<li>配合深拷贝</li>
 </ul>
 </li>
-<li>  因为C++11标准引入了右值和右值引用的概念，这才有了移动构造，让C++重回神坛的原因</li>
+<li>因为C++11标准引入了右值和右值引用的概念，这才有了移动构造，让C++重回神坛的原因</li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/15/SczjrKumNM1LtyG.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/15/CU9ea68SAGzpMg5.png"></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/15/SczjrKumNM1LtyG.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/03/15/CU9ea68SAGzpMg5.png" alt=""></p>
 <ul>
 <li>让两个数组相加<ul>
-<li>  要复制数据</li>
-<li>  要增加数组容量</li>
+<li>要复制数据</li>
+<li>要增加数组容量</li>
 </ul>
 </li>
 </ul>
@@ -467,11 +468,52 @@ int main() {
 
   }
 }
-window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
-  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
-    btf.wrap(item, 'div', '', 'katex-wrap')
-  })
-})()</script><script>function loadValine () {
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
   function initValine () {
     const valine = new Valine(Object.assign({
       el: '#vcomment',

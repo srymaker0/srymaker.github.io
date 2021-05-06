@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>栈 | The Srymaker0</title><meta name="robots" content="noindex"><meta name="keywords" content="C++，Datastruct，Leetcode"><meta name="author" content="srymaker0"><meta name="copyright" content="srymaker0"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="栈 用一句话概括栈到底能解决哪些问题    ⭐可以处理具有完全包含关系的问题 什么是完全包含关系？   可以由leetcode20——括号匹配引出   递归，表达式求值，二叉树遍历👇     ❗要注意思维泛化——把栈和其他东西联系起来    栈的典型应用场景线程栈 表达式求值 线程栈   定义的局部变量为被压入系统栈中  void funcA() {     int a, b, c;     f">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>栈 | The Srymaker0</title><meta name="robots" content="noindex"><meta name="keywords" content="C++，Datastruct，Leetcode"><meta name="author" content="srymaker0"><meta name="copyright" content="srymaker0"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="栈 用一句话概括栈到底能解决哪些问题  ⭐可以处理具有完全包含关系的问题 什么是完全包含关系？ 可以由leetcode20——括号匹配引出 递归，表达式求值，二叉树遍历👇   ❗要注意思维泛化——把栈和其他东西联系起来    栈的典型应用场景线程栈 表达式求值 线程栈 定义的局部变量为被压入系统栈中  void funcA() {     int a, b, c;     funcB();">
 <meta property="og:type" content="article">
 <meta property="og:title" content="栈">
 <meta property="og:url" content="http://srymaker0.com/posts/9199">
 <meta property="og:site_name" content="The Srymaker0">
-<meta property="og:description" content="栈 用一句话概括栈到底能解决哪些问题    ⭐可以处理具有完全包含关系的问题 什么是完全包含关系？   可以由leetcode20——括号匹配引出   递归，表达式求值，二叉树遍历👇     ❗要注意思维泛化——把栈和其他东西联系起来    栈的典型应用场景线程栈 表达式求值 线程栈   定义的局部变量为被压入系统栈中  void funcA() {     int a, b, c;     f">
+<meta property="og:description" content="栈 用一句话概括栈到底能解决哪些问题  ⭐可以处理具有完全包含关系的问题 什么是完全包含关系？ 可以由leetcode20——括号匹配引出 递归，表达式求值，二叉树遍历👇   ❗要注意思维泛化——把栈和其他东西联系起来    栈的典型应用场景线程栈 表达式求值 线程栈 定义的局部变量为被压入系统栈中  void funcA() {     int a, b, c;     funcB();">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
 <meta property="article:published_time" content="2021-05-05T05:26:52.000Z">
@@ -168,22 +168,22 @@
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210503135612.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">The Srymaker0</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">栈</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-05T05:26:52.000Z" title="发表于 2021-05-05 13:26:52">2021-05-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-06T08:01:41.361Z" title="更新于 2021-05-06 16:01:41">2021-05-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="栈"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h1><ul>
 <li><p>用一句话概括栈到底能解决哪些问题</p>
 <ul>
-<li>  <span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>可以处理具有完全包含关系的问题</li>
+<li><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>可以处理具有完全包含关系的问题</li>
 <li>什么是完全包含关系？<ul>
-<li>  可以由leetcode20——括号匹配引出</li>
-<li>  递归，表达式求值，二叉树遍历<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+<li>可以由leetcode20——括号匹配引出</li>
+<li>递归，表达式求值，二叉树遍历<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
 </ul>
 </li>
-<li>  <span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>要注意思维泛化——把栈和其他东西联系起来</li>
+<li><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>要注意思维泛化——把栈和其他东西联系起来</li>
 </ul>
 </li>
 </ul>
 <h2 id="栈的典型应用场景"><a href="#栈的典型应用场景" class="headerlink" title="栈的典型应用场景"></a>栈的典型应用场景</h2><p>线程栈</p>
 <p>表达式求值</p>
 <h3 id="线程栈"><a href="#线程栈" class="headerlink" title="线程栈"></a>线程栈</h3><ul>
-<li>  定义的局部变量为被压入系统栈中</li>
+<li>定义的局部变量为被压入系统栈中</li>
 </ul>
-<pre class=" language-c++"><code class="language-c++">void funcA() {
+<pre class=" language-lang-c++"><code class="language-lang-c++">void funcA() {
     int a, b, c;
     funcB();
     return ;
@@ -194,60 +194,57 @@ void funcB() {
 }
 </code></pre>
 <ul>
-<li><p>  如上，局部变量a，b，c，d会依次被压入系统栈中。</p>
-</li>
-<li><p>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/10/C1BO8R57a9gKIlq.png"></p>
-</li>
-<li><p>  我的机器行默认栈大小为8192KB，也就是8M</p>
+<li>如上，局部变量a，b，c，d会依次被压入系统栈中。</li>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/10/C1BO8R57a9gKIlq.png" alt=""></li>
+<li><p>我的机器行默认栈大小为8192KB，也就是8M</p>
 </li>
 <li><p>爆栈</p>
 <ul>
-<li>  比如我们在调用递归函数的时候，递归深度过深，数据大小超过了8M，这么栈存不下数据，就会引起爆栈</li>
-<li>  一个int类型占4字节，8M约800万字节，也就是存200万个int类型变量也会爆栈</li>
+<li>比如我们在调用递归函数的时候，递归深度过深，数据大小超过了8M，这么栈存不下数据，就会引起爆栈</li>
+<li>一个int类型占4字节，8M约800万字节，也就是存200万个int类型变量也会爆栈</li>
 </ul>
 </li>
 </ul>
-<h3 id="表达式求值"><a href="#表达式求值" class="headerlink" title="表达式求值"></a>表达式求值</h3><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/oSCUPGZneKaFfzD.png"></p>
+<h3 id="表达式求值"><a href="#表达式求值" class="headerlink" title="表达式求值"></a>表达式求值</h3><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/oSCUPGZneKaFfzD.png" alt=""></p>
 <ul>
-<li><p>理解</p>
-<ul>
-<li>  给你一个表达式，根据表达式求出最终的值</li>
-<li>  右边的被称为表达式树——以运算符作为根节点，操作数作为相应的子节点</li>
+<li>理解<ul>
+<li>给你一个表达式，根据表达式求出最终的值</li>
+<li>右边的被称为表达式树——以运算符作为根节点，操作数作为相应的子节点</li>
 </ul>
 </li>
 <li><p>对于这样一个表达式怎么算$3 \times(3 + 5)$</p>
 <ul>
-<li>  我们可以设置优先级，根据优先级判断，”-+” 设置1优先级，”*/“设置2优先级</li>
+<li>我们可以设置优先级，根据优先级判断，”-+” 设置1优先级，”*/“设置2优先级</li>
 <li>对于括号内的运算符，计算其优先级时加100<ul>
-<li>  比如$3 \times(3 \times (3 + 5))$</li>
-<li>  第一个✖️号优先级为2， 第二个✖️优先级为102（2 + 100），第三个➕号优先级为201（1 + 100 + 100 因为有两层括号）</li>
+<li>比如$3 \times(3 \times (3 + 5))$</li>
+<li>第一个✖️号优先级为2， 第二个✖️优先级为102（2 + 100），第三个➕号优先级为201（1 + 100 + 100 因为有两层括号）</li>
 </ul>
 </li>
 </ul>
 </li>
 <li><p>可以用递归，也可以用栈</p>
 <ul>
-<li>  两者本质上并无区别</li>
+<li>两者本质上并无区别</li>
 </ul>
 </li>
 </ul>
-<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/3ZSUyGtCocl8MEb.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/abPRxqz9AEQLoYF.png"></p>
-<h1 id="Leetcode"><a href="#Leetcode" class="headerlink" title="Leetcode"></a>Leetcode</h1><h2 id="面试题-03-04-化栈为队"><a href="#面试题-03-04-化栈为队" class="headerlink" title="面试题 03.04. 化栈为队"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-queue-using-stacks-lcci/">面试题 03.04. 化栈为队</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/djWcS1fiOVazMCE.png"></p>
-<pre class=" language-c++"><code class="language-c++">class MyQueue {
+<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/3ZSUyGtCocl8MEb.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/abPRxqz9AEQLoYF.png" alt=""></p>
+<h1 id="Leetcode"><a href="#Leetcode" class="headerlink" title="Leetcode"></a>Leetcode</h1><h2 id="面试题-03-04-化栈为队"><a href="#面试题-03-04-化栈为队" class="headerlink" title="面试题 03.04. 化栈为队"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/implement-queue-using-stacks-lcci/">面试题 03.04. 化栈为队</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/djWcS1fiOVazMCE.png" alt=""></p>
+<pre class=" language-lang-c++"><code class="language-lang-c++">class MyQueue {
 public:
     /** Initialize your data structure here. */
     stack<int> s1, s2;
     MyQueue() {
 
     }
-    
+
     /** Push element x to the back of queue. */
     void push(int x) {
         s1.push(x);
         return ;
     }
-    
+
     /** Removes the element from in front of queue and returns that element. */
     int pop() {
         if (s2.empty() == 1) {
@@ -260,7 +257,7 @@ public:
         s2.pop();
         return ret;     
     }
-    
+
     /** Get the front element. */
     int peek() {
         if (s2.empty() == 1) {
@@ -271,40 +268,40 @@ public:
         } 
         return s2.top();    
     }
-    
+
     /** Returns whether the queue is empty. */
     bool empty() {
         return s1.empty() && s2.empty();
     }
 };
 </code></pre>
-<h2 id="682-棒球比赛"><a href="#682-棒球比赛" class="headerlink" title="682. 棒球比赛"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/baseball-game/">682. 棒球比赛</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/bTK6gq9jzusL3wh.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/sfqiMxloNhGX3YE.png"></p>
-<h2 id="844-比较含退格的字符串"><a href="#844-比较含退格的字符串" class="headerlink" title="844. 比较含退格的字符串"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/backspace-string-compare/">844. 比较含退格的字符串</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/9DBxQApX6dUHaNj.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/XSWuQDxv3Z7oRyE.png"></p>
-<h2 id="946-验证栈序列"><a href="#946-验证栈序列" class="headerlink" title="946. 验证栈序列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/validate-stack-sequences/">946. 验证栈序列</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/NQ6tkEziIShYUK9.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/nil9Ev3kLRUT5jN.png"></p>
-<h2 id="1021-删除最外层的括号"><a href="#1021-删除最外层的括号" class="headerlink" title="1021. 删除最外层的括号"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-outermost-parentheses/">1021. 删除最外层的括号</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/ja6lmToex92QGu7.png"></p>
+<h2 id="682-棒球比赛"><a href="#682-棒球比赛" class="headerlink" title="682. 棒球比赛"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/baseball-game/">682. 棒球比赛</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/bTK6gq9jzusL3wh.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/sfqiMxloNhGX3YE.png" alt=""></p>
+<h2 id="844-比较含退格的字符串"><a href="#844-比较含退格的字符串" class="headerlink" title="844. 比较含退格的字符串"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/backspace-string-compare/">844. 比较含退格的字符串</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/9DBxQApX6dUHaNj.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/XSWuQDxv3Z7oRyE.png" alt=""></p>
+<h2 id="946-验证栈序列"><a href="#946-验证栈序列" class="headerlink" title="946. 验证栈序列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/validate-stack-sequences/">946. 验证栈序列</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/NQ6tkEziIShYUK9.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/nil9Ev3kLRUT5jN.png" alt=""></p>
+<h2 id="1021-删除最外层的括号"><a href="#1021-删除最外层的括号" class="headerlink" title="1021. 删除最外层的括号"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-outermost-parentheses/">1021. 删除最外层的括号</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/ja6lmToex92QGu7.png" alt=""></p>
 <ul>
 <li>思路<ul>
-<li>  记录左右括号的差值——遇到左括号➕1，遇到右括号➖1</li>
-<li>  在值为0的位置就是我们要分解的位置</li>
+<li>记录左右括号的差值——遇到左括号➕1，遇到右括号➖1</li>
+<li>在值为0的位置就是我们要分解的位置</li>
 </ul>
 </li>
-<li>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/LbOBN18oFijJ34d.png"></li>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/LbOBN18oFijJ34d.png" alt=""></li>
 </ul>
-<h2 id="1249-移除无效的括号"><a href="#1249-移除无效的括号" class="headerlink" title="1249. 移除无效的括号"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-remove-to-make-valid-parentheses/">1249. 移除无效的括号</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/o6YJyMcHAuFp4Xe.png"></p>
+<h2 id="1249-移除无效的括号"><a href="#1249-移除无效的括号" class="headerlink" title="1249. 移除无效的括号"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-remove-to-make-valid-parentheses/">1249. 移除无效的括号</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/20/o6YJyMcHAuFp4Xe.png" alt=""></p>
 <ul>
 <li>思路<ul>
-<li>  遍历两边，先遍历原字符串，删除多余的’)’括号，得到s1</li>
-<li>  接着遍历s1，删除多余的’(‘括号即可</li>
+<li>遍历两边，先遍历原字符串，删除多余的’)’括号，得到s1</li>
+<li>接着遍历s1，删除多余的’(‘括号即可</li>
 </ul>
 </li>
 </ul>
 <ul>
-<li>  代码</li>
+<li>代码</li>
 </ul>
-<pre class=" language-c++"><code class="language-c++">class Solution {
+<pre class=" language-lang-c++"><code class="language-lang-c++">class Solution {
 public:
     string minRemoveToMakeValid(string s) {
         string ret1;
@@ -346,50 +343,48 @@ public:
     }
 };
 </code></pre>
-<h2 id="145-二叉树的后序遍历"><a href="#145-二叉树的后序遍历" class="headerlink" title="145. 二叉树的后序遍历"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-postorder-traversal/">145. 二叉树的后序遍历</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/KgGDYBjeUayO37P.png"></p>
+<h2 id="145-二叉树的后序遍历"><a href="#145-二叉树的后序遍历" class="headerlink" title="145. 二叉树的后序遍历"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-postorder-traversal/">145. 二叉树的后序遍历</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/KgGDYBjeUayO37P.png" alt=""></p>
 <ul>
 <li>此题如题目，就是二叉树的后序遍历<ul>
-<li>  用递归就可以做——但前面一直说递归的本质其实和栈是一样</li>
-<li>  递归本身就是调用系统栈去实现的</li>
-<li>  此题就是模拟系统栈的过程</li>
+<li>用递归就可以做——但前面一直说递归的本质其实和栈是一样</li>
+<li>递归本身就是调用系统栈去实现的</li>
+<li>此题就是模拟系统栈的过程</li>
 </ul>
 </li>
 </ul>
 <ul>
-<li><p>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/ITMhy97u42BfwAS.png"></p>
+<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/ITMhy97u42BfwAS.png" alt=""></p>
 </li>
 <li><p>这是用栈模拟递归程序的通用方法</p>
 <ul>
-<li>  定义两个栈，s1表示递归过程中的局部变量，s2表示状态栈——用于记录递归到的程序位置</li>
+<li>定义两个栈，s1表示递归过程中的局部变量，s2表示状态栈——用于记录递归到的程序位置</li>
 </ul>
 </li>
 </ul>
-<h2 id="331-验证二叉树的前序序列化"><a href="#331-验证二叉树的前序序列化" class="headerlink" title="331. 验证二叉树的前序序列化"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/verify-preorder-serialization-of-a-binary-tree/">331. 验证二叉树的前序序列化</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/stHnj4FdR6UAwcm.png"></p>
+<h2 id="331-验证二叉树的前序序列化"><a href="#331-验证二叉树的前序序列化" class="headerlink" title="331. 验证二叉树的前序序列化"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/verify-preorder-serialization-of-a-binary-tree/">331. 验证二叉树的前序序列化</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/stHnj4FdR6UAwcm.png" alt=""></p>
 <ul>
-<li><p>解题方法——缩点思维</p>
+<li>解题方法——缩点思维<ul>
+<li>若数字后面有两个“#”，那么把这个数字和后面两个“#”合并成一个“#”，例如示例1<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+<li>第一次合并后变为“93#1##2#6##”，第二次“93##2#6##”，第三次“9#2#6##”，第四次“9#2##”，第五次“9##”，第六次“#”</li>
+<li>当且仅当只剩下一个“#”后我们认为这个序列是合法的前序序列</li>
+</ul>
+</li>
+<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/nFQ1eitAkMhHwar.png" alt=""></p>
+</li>
+<li><p>注意要处理“，”</p>
+</li>
+<li>将字符存入字符串数组中</li>
+</ul>
+<h2 id="227-基本计算器-II"><a href="#227-基本计算器-II" class="headerlink" title="227. 基本计算器 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/basic-calculator-ii/">227. 基本计算器 II</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/hRHs7VJ6mLy8wvQ.png" alt=""></p>
 <ul>
-<li>  若数字后面有两个“#”，那么把这个数字和后面两个“#”合并成一个“#”，例如示例1<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
-<li>  第一次合并后变为“93#1##2#6##”，第二次“93##2#6##”，第三次“9#2#6##”，第四次“9#2##”，第五次“9##”，第六次“#”</li>
-<li>  当且仅当只剩下一个“#”后我们认为这个序列是合法的前序序列</li>
+<li>见代码注释</li>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/Pia8gnuHW9e4MkX.png" alt=""></li>
 </ul>
-</li>
-<li><p>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/nFQ1eitAkMhHwar.png"></p>
-</li>
-<li><p>  注意要处理“，”</p>
-</li>
-<li><p>  将字符存入字符串数组中</p>
-</li>
-</ul>
-<h2 id="227-基本计算器-II"><a href="#227-基本计算器-II" class="headerlink" title="227. 基本计算器 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/basic-calculator-ii/">227. 基本计算器 II</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/hRHs7VJ6mLy8wvQ.png"></p>
-<ul>
-<li>  见代码注释</li>
-<li>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/22/Pia8gnuHW9e4MkX.png"></li>
-</ul>
-<h2 id="636-函数的独占时间"><a href="#636-函数的独占时间" class="headerlink" title="636. 函数的独占时间"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/exclusive-time-of-functions/">636. 函数的独占时间</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/25/1hsHqNxE2kfejTI.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/25/gLI3XxO2ezvkdyH.png"></p>
-<h2 id="1124-表现良好的最长时间段"><a href="#1124-表现良好的最长时间段" class="headerlink" title="1124. 表现良好的最长时间段"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-well-performing-interval/">1124. 表现良好的最长时间段</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/25/dZue3tMh7Kq9SDV.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/25/n5g6X2kzQhJeCvu.png"></p>
-<pre class=" language-c++"><code class="language-c++">9 9 6 0 6 6 9
+<h2 id="636-函数的独占时间"><a href="#636-函数的独占时间" class="headerlink" title="636. 函数的独占时间"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/exclusive-time-of-functions/">636. 函数的独占时间</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/25/1hsHqNxE2kfejTI.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/25/gLI3XxO2ezvkdyH.png" alt=""></p>
+<h2 id="1124-表现良好的最长时间段"><a href="#1124-表现良好的最长时间段" class="headerlink" title="1124. 表现良好的最长时间段"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-well-performing-interval/">1124. 表现良好的最长时间段</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/25/dZue3tMh7Kq9SDV.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/25/n5g6X2kzQhJeCvu.png" alt=""></p>
+<pre class=" language-lang-c++"><code class="language-lang-c++">9 9 6 0 6 6 9
 1 1 -1 -1 -1 -1 1  处理完后的数组
 第一个0是-1下标
 0 1 2 1 0 -1 -2 -1 前缀和
@@ -405,11 +400,52 @@ public:
 
   }
 }
-window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
-  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
-    btf.wrap(item, 'div', '', 'katex-wrap')
-  })
-})()</script><script>function loadValine () {
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
   function initValine () {
     const valine = new Valine(Object.assign({
       el: '#vcomment',

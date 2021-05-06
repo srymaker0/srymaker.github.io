@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>二叉树 | The Srymaker0</title><meta name="robots" content="noindex"><meta name="keywords" content="C++，Datastruct，Leetcode"><meta name="author" content="srymaker0"><meta name="copyright" content="srymaker0"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="二叉树每个节点度最多为2 度为0的节点比度为2的节点多1个    证明   注意边和节点的关系，结点 &#x3D; 边数 + 1， 二叉树中有n个结点说明就有n-1条边 假设$n_0&#x3D;度为0度节点，n_1&#x3D;度为1的节点，n2&#x3D;度为2度节点 $   则$n_0+n_1+n_2&#x3D;n_1+2n_2+1$，节点 &#x3D; 边数 + 1   化简等式后得$n_0&#x3D;n_2+1$      完全二叉树    最后一行最右边缺少">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>二叉树 | The Srymaker0</title><meta name="robots" content="noindex"><meta name="keywords" content="C++，Datastruct，Leetcode"><meta name="author" content="srymaker0"><meta name="copyright" content="srymaker0"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="二叉树每个节点度最多为2 度为0的节点比度为2的节点多1个  证明 注意边和节点的关系，结点 &#x3D; 边数 + 1， 二叉树中有n个结点说明就有n-1条边 假设$n_0&#x3D;度为0度节点，n_1&#x3D;度为1的节点，n2&#x3D;度为2度节点 $ 则$n_0+n_1+n_2&#x3D;n_1+2n_2+1$，节点 &#x3D; 边数 + 1 化简等式后得$n_0&#x3D;n_2+1$      完全二叉树  最后一行最右边缺少节点   满二叉树（">
 <meta property="og:type" content="article">
 <meta property="og:title" content="二叉树">
 <meta property="og:url" content="http://srymaker0.com/posts/2a0c">
 <meta property="og:site_name" content="The Srymaker0">
-<meta property="og:description" content="二叉树每个节点度最多为2 度为0的节点比度为2的节点多1个    证明   注意边和节点的关系，结点 &#x3D; 边数 + 1， 二叉树中有n个结点说明就有n-1条边 假设$n_0&#x3D;度为0度节点，n_1&#x3D;度为1的节点，n2&#x3D;度为2度节点 $   则$n_0+n_1+n_2&#x3D;n_1+2n_2+1$，节点 &#x3D; 边数 + 1   化简等式后得$n_0&#x3D;n_2+1$      完全二叉树    最后一行最右边缺少">
+<meta property="og:description" content="二叉树每个节点度最多为2 度为0的节点比度为2的节点多1个  证明 注意边和节点的关系，结点 &#x3D; 边数 + 1， 二叉树中有n个结点说明就有n-1条边 假设$n_0&#x3D;度为0度节点，n_1&#x3D;度为1的节点，n2&#x3D;度为2度节点 $ 则$n_0+n_1+n_2&#x3D;n_1+2n_2+1$，节点 &#x3D; 边数 + 1 化简等式后得$n_0&#x3D;n_2+1$      完全二叉树  最后一行最右边缺少节点   满二叉树（">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
 <meta property="article:published_time" content="2021-05-05T05:26:52.000Z">
-<meta property="article:modified_time" content="2021-05-06T08:34:43.967Z">
+<meta property="article:modified_time" content="2021-05-06T08:40:30.567Z">
 <meta property="article:author" content="srymaker0">
 <meta property="article:tag" content="C++，Datastruct，Leetcode">
 <meta name="twitter:card" content="summary">
@@ -57,7 +57,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2021-05-06 16:34:43'
+  postUpdate: '2021-05-06 16:40:30'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -165,32 +165,31 @@
     }
     })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CCKNBC/ccknbc.github.io@latest/css/ccknbc.css"><link rel="stylesheet" href="/css/mycss.css"><meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210503135612.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">The Srymaker0</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">二叉树</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-05T05:26:52.000Z" title="发表于 2021-05-05 13:26:52">2021-05-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-06T08:34:43.967Z" title="更新于 2021-05-06 16:34:43">2021-05-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="二叉树"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><p>每个节点度最多为2</p>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210503135612.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">The Srymaker0</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">二叉树</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-05T05:26:52.000Z" title="发表于 2021-05-05 13:26:52">2021-05-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-06T08:40:30.567Z" title="更新于 2021-05-06 16:40:30">2021-05-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="二叉树"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><p>每个节点度最多为2</p>
 <p>度为0的节点比度为2的节点多1个</p>
 <ul>
-<li>  证明</li>
-<li>  注意边和节点的关系，结点 = 边数 + 1， 二叉树中有n个结点说明就有n-1条边</li>
+<li>证明</li>
+<li>注意边和节点的关系，结点 = 边数 + 1， 二叉树中有n个结点说明就有n-1条边</li>
 <li>假设$n_0=度为0度节点，n_1=度为1的节点，n2=度为2度节点 $<ul>
-<li>  则$n_0+n_1+n_2=n_1+2n_2+1$，节点 = 边数 + 1</li>
-<li>  化简等式后得$n_0=n_2+1$</li>
+<li>则$n_0+n_1+n_2=n_1+2n_2+1$，节点 = 边数 + 1</li>
+<li>化简等式后得$n_0=n_2+1$</li>
 </ul>
 </li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/r1leQJs2vmy5zfE.png"></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/r1leQJs2vmy5zfE.png" alt=""></p>
 <ul>
 <li><p>完全二叉树</p>
 <ul>
-<li>  最后一行最右边缺少节点</li>
+<li>最后一行最右边缺少节点</li>
 </ul>
 </li>
 <li><p>满二叉树（上图中间的）</p>
 <ul>
-<li>  没有度为1度节点</li>
+<li>没有度为1度节点</li>
 </ul>
 </li>
-<li><p>完美二叉树</p>
-<ul>
-<li>  上图最后一种</li>
+<li>完美二叉树<ul>
+<li>上图最后一种</li>
 </ul>
 </li>
 </ul>
@@ -200,9 +199,9 @@
 <ul>
 <li><p>优点——节省大量的存储空间</p>
 <ul>
-<li>  节省的是边的存储空间——因为子节点可以通过父节点的编号来获取</li>
+<li>节省的是边的存储空间——因为子节点可以通过父节点的编号来获取</li>
 <li>算法思想——计算式和记录式的转化<ul>
-<li>  空间和时间的互换</li>
+<li>空间和时间的互换</li>
 </ul>
 </li>
 </ul>
@@ -210,147 +209,145 @@
 </ul>
 <p>可以用连续空间存储（数组）</p>
 <ul>
-<li>  连续编号，所以可以用连续的存 储空间</li>
-<li>  <span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>尽管是存在数组中，但是我们在思维层面中可以看成一棵完全二叉树</li>
+<li>连续编号，所以可以用连续的存 储空间</li>
+<li><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>尽管是存在数组中，但是我们在思维层面中可以看成一棵完全二叉树</li>
 </ul>
 <h2 id="树结构的深入理解"><a href="#树结构的深入理解" class="headerlink" title="树结构的深入理解"></a>树结构的深入理解</h2><ul>
 <li>节点——集合，边——关系<ul>
-<li>  父节点——全集， 子节点——互不相交的多个子集</li>
-<li>  查询操作</li>
+<li>父节点——全集， 子节点——互不相交的多个子集</li>
+<li>查询操作</li>
 </ul>
 </li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/01/mcv7S8EkDyGeajl.png"></p>
-<h1 id="练习递归技巧的最佳选择"><a href="#练习递归技巧的最佳选择" class="headerlink" title="练习递归技巧的最佳选择"></a>练习递归技巧的最佳选择</h1><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/01/s9dOTiAcDGbp3Qk.png"></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/01/mcv7S8EkDyGeajl.png" alt=""></p>
+<h1 id="练习递归技巧的最佳选择"><a href="#练习递归技巧的最佳选择" class="headerlink" title="练习递归技巧的最佳选择"></a>练习递归技巧的最佳选择</h1><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/01/s9dOTiAcDGbp3Qk.png" alt=""></p>
 <ul>
 <li>顶层思维——证明程序是正确的就行，不用管递归函数到底是怎么样展开的<ul>
-<li>  数学归纳法——证明边界条件正确 = 证明$k_0$正确</li>
-<li>  实现递归过程——$k_i\to k_i + 1$</li>
+<li>数学归纳法——证明边界条件正确 = 证明$k_0$正确</li>
+<li>实现递归过程——$k_i\to k_i + 1$</li>
 </ul>
 </li>
 </ul>
-<h1 id="左孩子右兄弟表示法节省空间"><a href="#左孩子右兄弟表示法节省空间" class="headerlink" title="左孩子右兄弟表示法节省空间"></a>左孩子右兄弟表示法节省空间</h1><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/iwSP28BGXLQ4oDg.png" style="zoom:50%;">
-
+<h1 id="左孩子右兄弟表示法节省空间"><a href="#左孩子右兄弟表示法节省空间" class="headerlink" title="左孩子右兄弟表示法节省空间"></a>左孩子右兄弟表示法节省空间</h1><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/iwSP28BGXLQ4oDg.png" style="zoom:50%;"></p>
 <ul>
 <li>左边是一颗三叉树——转化为右边的二叉树<ul>
-<li>  2是1的第一个左子树作为1的孩子，2的右边都是兄弟，把3，4接在2的右子树中</li>
-<li>  可以表示森林，当有很多个树的时候，根节点是有兄弟的，也就是说1有右孩子，这个孩子是其他树的根节点</li>
+<li>2是1的第一个左子树作为1的孩子，2的右边都是兄弟，把3，4接在2的右子树中</li>
+<li>可以表示森林，当有很多个树的时候，根节点是有兄弟的，也就是说1有右孩子，这个孩子是其他树的根节点</li>
 </ul>
 </li>
 <li>为什么节省空间<ul>
-<li>  一棵三叉树每个节点存储着3个指针域，6个节点就有18个指针域，而有效的指针域却只有5个，这样就浪费了13个空间</li>
-<li>  而把三叉树转化为了二叉树后，6个节点只有12个指针域，有效的指针域一样有5个，但是只浪费了7个空间</li>
+<li>一棵三叉树每个节点存储着3个指针域，6个节点就有18个指针域，而有效的指针域却只有5个，这样就浪费了13个空间</li>
+<li>而把三叉树转化为了二叉树后，6个节点只有12个指针域，有效的指针域一样有5个，但是只浪费了7个空间</li>
 </ul>
 </li>
 </ul>
-<h1 id="Leetcode环节"><a href="#Leetcode环节" class="headerlink" title="Leetcode环节"></a>Leetcode环节</h1><h2 id="144-二叉树的前序遍历"><a href="#144-二叉树的前序遍历" class="headerlink" title="144. 二叉树的前序遍历"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-preorder-traversal/">144. 二叉树的前序遍历</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/kYm3lpwZ8yXBucj.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/4kalnV5ex21Mzjv.png"></p>
-<h2 id="589-N-叉树的前序遍历"><a href="#589-N-叉树的前序遍历" class="headerlink" title="589. N 叉树的前序遍历"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/">589. N 叉树的前序遍历</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/4qrUTPivjR9NXOz.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/zVJ1v38cEN4fnKg.png"></p>
+<h1 id="Leetcode环节"><a href="#Leetcode环节" class="headerlink" title="Leetcode环节"></a>Leetcode环节</h1><h2 id="144-二叉树的前序遍历"><a href="#144-二叉树的前序遍历" class="headerlink" title="144. 二叉树的前序遍历"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-preorder-traversal/">144. 二叉树的前序遍历</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/kYm3lpwZ8yXBucj.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/4kalnV5ex21Mzjv.png" alt=""></p>
+<h2 id="589-N-叉树的前序遍历"><a href="#589-N-叉树的前序遍历" class="headerlink" title="589. N 叉树的前序遍历"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/">589. N 叉树的前序遍历</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/4qrUTPivjR9NXOz.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/zVJ1v38cEN4fnKg.png" alt=""></p>
 <ul>
-<li>  写递归函数没有必要展开理解</li>
-<li>  根据函数语义信息即可</li>
+<li>写递归函数没有必要展开理解</li>
+<li>根据函数语义信息即可</li>
 </ul>
-<h2 id="226-翻转二叉树"><a href="#226-翻转二叉树" class="headerlink" title="226. 翻转二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/invert-binary-tree/">226. 翻转二叉树</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/SachRk5EZNXpfg2.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/GtPhK7WrLjcXQSw.png"></p>
-<h2 id="剑指-Offer-32-II-从上到下打印二叉树-II"><a href="#剑指-Offer-32-II-从上到下打印二叉树-II" class="headerlink" title="剑指 Offer 32 - II. 从上到下打印二叉树 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/">剑指 Offer 32 - II. 从上到下打印二叉树 II</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/M1xk8STyjUZ7GOE.png"></p>
+<h2 id="226-翻转二叉树"><a href="#226-翻转二叉树" class="headerlink" title="226. 翻转二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/invert-binary-tree/">226. 翻转二叉树</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/SachRk5EZNXpfg2.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/GtPhK7WrLjcXQSw.png" alt=""></p>
+<h2 id="剑指-Offer-32-II-从上到下打印二叉树-II"><a href="#剑指-Offer-32-II-从上到下打印二叉树-II" class="headerlink" title="剑指 Offer 32 - II. 从上到下打印二叉树 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-ii-lcof/">剑指 Offer 32 - II. 从上到下打印二叉树 II</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/M1xk8STyjUZ7GOE.png" alt=""></p>
 <ul>
-<li>  递归版</li>
+<li>递归版</li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/noeNSCbKDxJuEhv.png"></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/noeNSCbKDxJuEhv.png" alt=""></p>
 <ul>
-<li>  k表示当前根节点的值到底要放入到第几个数组中</li>
-<li>  二维数组</li>
+<li>k表示当前根节点的值到底要放入到第几个数组中</li>
+<li>二维数组</li>
 </ul>
-<h2 id="107-二叉树的层序遍历-II"><a href="#107-二叉树的层序遍历-II" class="headerlink" title="107. 二叉树的层序遍历 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/">107. 二叉树的层序遍历 II</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/2vFyadAXwpbkUj9.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/tqDz4K3UhREwMSg.png"></p>
+<h2 id="107-二叉树的层序遍历-II"><a href="#107-二叉树的层序遍历-II" class="headerlink" title="107. 二叉树的层序遍历 II"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/">107. 二叉树的层序遍历 II</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/2vFyadAXwpbkUj9.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/tqDz4K3UhREwMSg.png" alt=""></p>
 <ul>
-<li>  层序遍历后再调换顺序输出</li>
+<li>层序遍历后再调换顺序输出</li>
 </ul>
-<h2 id="103-二叉树的锯齿形层序遍历"><a href="#103-二叉树的锯齿形层序遍历" class="headerlink" title="103. 二叉树的锯齿形层序遍历"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/">103. 二叉树的锯齿形层序遍历</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/X58Bp1LKHyU9WOP.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/6fWEDmhxwbZQ8gA.png"></p>
-<h2 id="110-平衡二叉树"><a href="#110-平衡二叉树" class="headerlink" title="110. 平衡二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/balanced-binary-tree/">110. 平衡二叉树</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/aKD19YIxXB6ndSR.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/HQmjwfOISBuU9DG.png"></p>
+<h2 id="103-二叉树的锯齿形层序遍历"><a href="#103-二叉树的锯齿形层序遍历" class="headerlink" title="103. 二叉树的锯齿形层序遍历"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/">103. 二叉树的锯齿形层序遍历</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/X58Bp1LKHyU9WOP.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/6fWEDmhxwbZQ8gA.png" alt=""></p>
+<h2 id="110-平衡二叉树"><a href="#110-平衡二叉树" class="headerlink" title="110. 平衡二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/balanced-binary-tree/">110. 平衡二叉树</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/aKD19YIxXB6ndSR.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/HQmjwfOISBuU9DG.png" alt=""></p>
 <ul>
 <li>只用一遍递归<ul>
-<li>  函数的定义比较重要</li>
-<li>  判断树高——根节点树高等于子树中最高的树高+1</li>
+<li>函数的定义比较重要</li>
+<li>判断树高——根节点树高等于子树中最高的树高+1</li>
 </ul>
 </li>
 </ul>
-<h2 id="112-路径总和"><a href="#112-路径总和" class="headerlink" title="112. 路径总和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-sum/">112. 路径总和</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/BwK6MLFQ7erNd5S.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/QmgAVe4OMzE1rcq.png"></p>
+<h2 id="112-路径总和"><a href="#112-路径总和" class="headerlink" title="112. 路径总和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/path-sum/">112. 路径总和</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/BwK6MLFQ7erNd5S.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/28/QmgAVe4OMzE1rcq.png" alt=""></p>
 <ul>
-<li>  树空，默认为false</li>
-<li>  每个根节点和目标值做减法</li>
+<li>树空，默认为false</li>
+<li>每个根节点和目标值做减法</li>
 </ul>
-<h2 id="105-从前序与中序遍历序列构造二叉树"><a href="#105-从前序与中序遍历序列构造二叉树" class="headerlink" title="105. 从前序与中序遍历序列构造二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105. 从前序与中序遍历序列构造二叉树</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/oZypCeh3dXvQYFU.png"></p>
+<h2 id="105-从前序与中序遍历序列构造二叉树"><a href="#105-从前序与中序遍历序列构造二叉树" class="headerlink" title="105. 从前序与中序遍历序列构造二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">105. 从前序与中序遍历序列构造二叉树</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/oZypCeh3dXvQYFU.png" alt=""></p>
 <ul>
 <li>理解<ul>
-<li>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/GevBOIZgbQ8F4E6.png"></li>
-<li>  红色——根节点，绿色——左子树，黄色——右子树</li>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/GevBOIZgbQ8F4E6.png" alt=""></li>
+<li>红色——根节点，绿色——左子树，黄色——右子树</li>
 </ul>
 </li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/mOWM7DoFzQsUfi5.png"></p>
-<h2 id="222-完全二叉树的节点个数"><a href="#222-完全二叉树的节点个数" class="headerlink" title="222. 完全二叉树的节点个数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/count-complete-tree-nodes/">222. 完全二叉树的节点个数</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/mSqeo1UhsPkKRM4.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/NoFQJdbpZGv9V1i.png"></p>
-<h2 id="剑指-Offer-54-二叉搜索树的第k大节点"><a href="#剑指-Offer-54-二叉搜索树的第k大节点" class="headerlink" title="剑指 Offer 54. 二叉搜索树的第k大节点"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/">剑指 Offer 54. 二叉搜索树的第k大节点</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/1Pmli7Zw85X62jS.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/mvxqn17s6gDeAOC.png"></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/mOWM7DoFzQsUfi5.png" alt=""></p>
+<h2 id="222-完全二叉树的节点个数"><a href="#222-完全二叉树的节点个数" class="headerlink" title="222. 完全二叉树的节点个数"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/count-complete-tree-nodes/">222. 完全二叉树的节点个数</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/mSqeo1UhsPkKRM4.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/NoFQJdbpZGv9V1i.png" alt=""></p>
+<h2 id="剑指-Offer-54-二叉搜索树的第k大节点"><a href="#剑指-Offer-54-二叉搜索树的第k大节点" class="headerlink" title="剑指 Offer 54. 二叉搜索树的第k大节点"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/">剑指 Offer 54. 二叉搜索树的第k大节点</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/1Pmli7Zw85X62jS.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/mvxqn17s6gDeAOC.png" alt=""></p>
 <ul>
 <li><p>二叉搜索树——左子树都比根节点小，右子树都比根节点大</p>
 <ul>
-<li>  若右子树的节点数大于k，则第k大的值在右子树中</li>
-<li>  若右子树的节点数等k - 1，则第k大的值是根节点</li>
-<li>  若右子树的节点数小于k - 1，则在左子树中找k - cnt_r - 1大</li>
+<li>若右子树的节点数大于k，则第k大的值在右子树中</li>
+<li>若右子树的节点数等k - 1，则第k大的值是根节点</li>
+<li>若右子树的节点数小于k - 1，则在左子树中找k - cnt_r - 1大</li>
 </ul>
 </li>
 <li><p>等同于中序遍历找倒数k个数</p>
 <ul>
-<li>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/4mnFxPjbogBNQSh.png"></li>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/4mnFxPjbogBNQSh.png" alt=""></li>
 </ul>
 </li>
 </ul>
-<h2 id="剑指-Offer-26-树的子结构"><a href="#剑指-Offer-26-树的子结构" class="headerlink" title="剑指 Offer 26. 树的子结构"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/">剑指 Offer 26. 树的子结构</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/hj1grOsP6HYq4J2.png"></p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/h1CFsOiIfAkj5c6.png"></p>
-<h2 id="662-二叉树最大宽度"><a href="#662-二叉树最大宽度" class="headerlink" title="662. 二叉树最大宽度"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-width-of-binary-tree/">662. 二叉树最大宽度</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/vq2rDKyCMZUAlTz.png"></p>
+<h2 id="剑指-Offer-26-树的子结构"><a href="#剑指-Offer-26-树的子结构" class="headerlink" title="剑指 Offer 26. 树的子结构"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/">剑指 Offer 26. 树的子结构</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/hj1grOsP6HYq4J2.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/h1CFsOiIfAkj5c6.png" alt=""></p>
+<h2 id="662-二叉树最大宽度"><a href="#662-二叉树最大宽度" class="headerlink" title="662. 二叉树最大宽度"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-width-of-binary-tree/">662. 二叉树最大宽度</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/vq2rDKyCMZUAlTz.png" alt=""></p>
 <ul>
 <li>思路<ul>
-<li>  把每个节点编号——根节点从i开始编号，左孩子$l$编号为$2\times{i}$，右孩子$r$编号为$2\times{i}+1$</li>
-<li>  我们把根节点编号为0，这样每层宽度为$r-l+1$</li>
+<li>把每个节点编号——根节点从i开始编号，左孩子$l$编号为$2\times{i}$，右孩子$r$编号为$2\times{i}+1$</li>
+<li>我们把根节点编号为0，这样每层宽度为$r-l+1$</li>
 </ul>
 </li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/MU4PyTugYN5GVcb.png"></p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/MU4PyTugYN5GVcb.png" alt=""></p>
 <ul>
 <li>注意27行代码有优化<ul>
-<li>  $(ind-l)\times2$是为了避免编号溢出，作了处理</li>
-<li>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/zRUlKpJeNoLyPAv.png" style="zoom:33%;"></li>
+<li>$(ind-l)\times2$是为了避免编号溢出，作了处理</li>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/zRUlKpJeNoLyPAv.png" style="zoom:33%;"></li>
 <li>假设一颗树长这样，可以看出其最长宽度为2，但是4和5的编号却是6和7，这样就会存在整形溢出问题<ul>
-<li>  要在不影响答案的情况下缩小编号的范围</li>
-<li>  4和5的编号这么大的本质原因是因为3的编号大</li>
+<li>要在不影响答案的情况下缩小编号的范围</li>
+<li>4和5的编号这么大的本质原因是因为3的编号大</li>
 </ul>
 </li>
-<li>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/hI82kg4ez1vjWaV.png" style="zoom:33%;"></li>
-<li>  重新处理编号，每个左节点的编号等于$(其父节点编号-上一行最小编号)\times{2}$ ，右子树编号等于$(其父节点编号-上一行最小编号)\times2+1$</li>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/hI82kg4ez1vjWaV.png" style="zoom:33%;"></li>
+<li>重新处理编号，每个左节点的编号等于$(其父节点编号-上一行最小编号)\times{2}$ ，右子树编号等于$(其父节点编号-上一行最小编号)\times2+1$</li>
 </ul>
 </li>
 </ul>
-<h2 id="968-监控二叉树"><a href="#968-监控二叉树" class="headerlink" title="968. 监控二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-cameras/">968. 监控二叉树</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/5QCkGFeR3uphE6m.png"></p>
+<h2 id="968-监控二叉树"><a href="#968-监控二叉树" class="headerlink" title="968. 监控二叉树"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-cameras/">968. 监控二叉树</a></h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/5QCkGFeR3uphE6m.png" alt=""></p>
 <ul>
-<li>  思路</li>
+<li>思路</li>
 </ul>
-<img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/IVqx4hvj8ryConE.png" style="zoom:33%;">
-
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/IVqx4hvj8ryConE.png" style="zoom:33%;"></p>
 <ul>
 <li><p>动态规划——$dp[2][2]$数组的含义，0表示不放摄像头，1表示放置摄像头</p>
 <ul>
-<li>  $dp[0][0]$表示在父节点和当前结点都不设置摄像头时覆盖子树的摄像头数量</li>
-<li>  dp数组中放的摄像头数量不包括父节点中的摄像头数量</li>
-<li>  在$l和r$中这几个数组中取最小值——$l[0][0]$表示左子树中的dp数组，$r[0][0]$表示右子树的dp数组</li>
+<li>$dp[0][0]$表示在父节点和当前结点都不设置摄像头时覆盖子树的摄像头数量</li>
+<li>dp数组中放的摄像头数量不包括父节点中的摄像头数量</li>
+<li>在$l和r$中这几个数组中取最小值——$l[0][0]$表示左子树中的dp数组，$r[0][0]$表示右子树的dp数组</li>
 </ul>
 </li>
-<li><p>  <img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/zPYcftSICg37ORh.png"></p>
+<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/04/29/zPYcftSICg37ORh.png" alt=""></p>
 </li>
 <li><h3 id="监控二叉树官方题解"><a href="#监控二叉树官方题解" class="headerlink" title="监控二叉树官方题解"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/binary-tree-cameras/solution/jian-kong-er-cha-shu-by-leetcode-solution/">监控二叉树官方题解</a></h3></li>
 </ul>
@@ -365,11 +362,52 @@
 
   }
 }
-window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
-  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
-    btf.wrap(item, 'div', '', 'katex-wrap')
-  })
-})()</script><script>function loadValine () {
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>function loadValine () {
   function initValine () {
     const valine = new Valine(Object.assign({
       el: '#vcomment',
