@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>大厂面试简答题</title>
+      <link href="posts/79b0.html"/>
+      <url>posts/79b0.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 面试 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>数据结构基础——C语言实现</title>
       <link href="posts/73f4.html"/>
       <url>posts/73f4.html</url>
@@ -33,7 +52,7 @@
       
         <tags>
             
-            <tag> C++，Data structure，Leetcode </tag>
+            <tag> Leetcode </tag>
             
         </tags>
       
