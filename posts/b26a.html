@@ -7,7 +7,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
 <meta property="article:published_time" content="2021-05-03T09:26:52.000Z">
-<meta property="article:modified_time" content="2021-07-12T12:24:22.600Z">
+<meta property="article:modified_time" content="2021-09-05T17:04:41.663Z">
 <meta property="article:author" content="srymaker0">
 <meta property="article:tag" content="C++, 面向对象">
 <meta name="twitter:card" content="summary">
@@ -57,7 +57,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2021-07-12 20:24:22'
+  postUpdate: '2021-09-06 01:04:41'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -165,7 +165,7 @@
     }
     })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CCKNBC/ccknbc.github.io@latest/css/ccknbc.css"><link rel="stylesheet" href="/css/mycss.css"><meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210503135612.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">The Srymaker0</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">auto、constexpr、nullptr、左值与右值、移动构造</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-03T09:26:52.000Z" title="发表于 2021-05-03 17:26:52">2021-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-07-12T12:24:22.600Z" title="更新于 2021-07-12 20:24:22">2021-07-12</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="auto、constexpr、nullptr、左值与右值、移动构造"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h1><ul>
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210503135612.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">11</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">The Srymaker0</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">auto、constexpr、nullptr、左值与右值、移动构造</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-05-03T09:26:52.000Z" title="发表于 2021-05-03 17:26:52">2021-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-09-05T17:04:41.663Z" title="更新于 2021-09-06 01:04:41">2021-09-06</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="auto、constexpr、nullptr、左值与右值、移动构造"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h1><ul>
 <!-- hexo-inject:begin --><!-- hexo-inject:end --><li><p>作用：在C++中可以自动推导变量的类型</p>
 <ul>
 <li>其实在C语言中就有，只不过在C语言中在变量类型前加auto表现的就像局部变量，多余</li>
@@ -187,27 +187,27 @@
 <li><p>遍历容器的工具类型：迭代器类型——<code>map&lt;int, int&gt;::iterator</code>👉遍历整型到整型的map类型的迭代器类型</p>
 </li>
 <li><p><code>iter-&gt;first</code><span class="github-emoji"><span>👉</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>map中的key值， <code>iter-&gt;second</code><span class="github-emoji"><span>👉</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>map中的value值​</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">map&lt;int, int&gt; arr;   
-  for (int i = 0; i &lt; 10; i++) {
-      arr[rand() % 100] = rand();
-  }
-  map&lt;int, int&gt;::iterator  iter = arr.begin();       //iter是一个变量
-  while (iter != arr.end()) {
-      cout &lt;&lt; iter-&gt;first &lt;&lt; " " &lt;&lt; iter-&gt;second &lt;&lt; endl;
-      iter++;
-  }
-for (auto x : arr) {    //for循环的特殊形式
-      cout &lt;&lt; x.first &lt;&lt; " " &lt;&lt; x.second &lt;&lt; endl;
-  }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&gt;</span> arr<span class="token punctuation">;</span>   
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      arr<span class="token punctuation">[</span><span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">100</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">rand</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  map<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token operator">&gt;</span><span class="token operator">::</span>iterator  iter <span class="token operator">=</span> arr<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">//iter是一个变量</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>iter <span class="token operator">!=</span> arr<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      cout <span class="token operator">&lt;&lt;</span> iter<span class="token operator">-&gt;</span>first <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> iter<span class="token operator">-&gt;</span>second <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+      iter<span class="token operator">++</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> x <span class="token operator">:</span> arr<span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token comment">//for循环的特殊形式</span>
+      cout <span class="token operator">&lt;&lt;</span> x<span class="token punctuation">.</span>first <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> x<span class="token punctuation">.</span>second <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>但是这个迭代器类型太长了，所以auto关键字就起作用了，可以把第5行代码改成下面这种形式</p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">auto iter = arr.begin();        //auto会自动推导iter的类型  iter的类型由arr.begin()的返回值类型决定 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">auto</span> iter <span class="token operator">=</span> arr<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">//auto会自动推导iter的类型  iter的类型由arr.begin()的返回值类型决定 </span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 </ul>
 </li>
 <li><p>问题</p>
 <ul>
-<li><p>```c++<br>auto y = 12.3;      //编译器怎么推导出y到底是double类型还是float类型</p>
+<li><p>```cpp<br>auto y = 12.3;      //编译器怎么推导出y到底是double类型还是float类型</p>
 <p>//使用typeid运算符， 返回的是类型信息对象，若要获取类型信息的名字， 就像下面这样写<br>cout &lt;&lt; typeid(y).name() &lt;&lt; endl;       //输出一个d，表示double类型 </p>
 <pre class="line-numbers language-none"><code class="language-none">
 -   typeid()
@@ -216,7 +216,7 @@ for (auto x : arr) {    //for循环的特殊形式
 
     -   在模板中功能更大
 
-    -   ```c++
+    -   ```cpp
         	auto y = 12.3;  
         	if (typeid(y).hash_code() == typeid(float).hash_code()) {
                 cout &lt;&lt; "float type" &lt;&lt; endl;
@@ -257,19 +257,19 @@ for (auto x : arr) {    //for循环的特殊形式
 </tbody>
 </table>
 </div>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">int main() {	
-	const int x = 123;
-    constexpr int y = 123;
-    *const_cast&lt;int *&gt;(&amp;x) = 456;       //const_cast可以修改const变量
-    *const_cast&lt;int *&gt;(&amp;y) = 456;
-    cout &lt;&lt; &amp;x &lt;&lt; endl;
-    cout &lt;&lt; &amp;y &lt;&lt; endl;
-    cout &lt;&lt; *const_cast&lt;int *&gt;(&amp;x) = 456;
-    cout &lt;&lt; *const_cast&lt;int *&gt;(&amp;y) = 456;
-    cout &lt;&lt; x &lt;&lt; endl;      // 输出123
-    cout &lt;&lt; *(&amp;x) &lt;&lt; endl;   // 输出456
-    cout &lt;&lt; *(&amp;y) &lt;&lt; endl;   // 456
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>	
+	<span class="token keyword">const</span> <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">constexpr</span> <span class="token keyword">int</span> y <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token operator">*</span><span class="token keyword">const_cast</span><span class="token operator">&lt;</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>x<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">456</span><span class="token punctuation">;</span>       <span class="token comment">//const_cast可以修改const变量</span>
+    <span class="token operator">*</span><span class="token keyword">const_cast</span><span class="token operator">&lt;</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>y<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">456</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token operator">&amp;</span>x <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token operator">&amp;</span>y <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span><span class="token keyword">const_cast</span><span class="token operator">&lt;</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>x<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">456</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span><span class="token keyword">const_cast</span><span class="token operator">&lt;</span><span class="token keyword">int</span> <span class="token operator">*</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>y<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">456</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> x <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>      <span class="token comment">// 输出123</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>x<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>   <span class="token comment">// 输出456</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>y<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>   <span class="token comment">// 456</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><p>第10行为什么会输出123？</p>
 <ul>
@@ -281,63 +281,63 @@ for (auto x : arr) {    //for循环的特殊形式
 </ul>
 </li>
 </ul>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">constexpr int f(int x) {
-    return 2 * x;
-}
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">constexpr</span> <span class="token keyword">int</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">2</span> <span class="token operator">*</span> x<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-class A {
-public :
-    constexpr A (int x) {}    //说明是编译期常量方法
-};
+<span class="token keyword">class</span> <span class="token class-name">A</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token operator">:</span>
+    <span class="token keyword">constexpr</span> <span class="token function">A</span> <span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>    <span class="token comment">//说明是编译期常量方法</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-int main() {
-    int n;
-    cin &gt;&gt; n;
-    const int x = n + 123;           //正确
-	constexpr int y1 = n + 123;       //报错, 运行期才能确定
-	constexpr int y2 = f(123);        //若f函数的返回值类型前不加constexpr修饰 这行代码会报错
-	const A a(123);
-    constexpr A b(123);      
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> n<span class="token punctuation">;</span>
+    cin <span class="token operator">&gt;&gt;</span> n<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token keyword">int</span> x <span class="token operator">=</span> n <span class="token operator">+</span> <span class="token number">123</span><span class="token punctuation">;</span>           <span class="token comment">//正确</span>
+	<span class="token keyword">constexpr</span> <span class="token keyword">int</span> y1 <span class="token operator">=</span> n <span class="token operator">+</span> <span class="token number">123</span><span class="token punctuation">;</span>       <span class="token comment">//报错, 运行期才能确定</span>
+	<span class="token keyword">constexpr</span> <span class="token keyword">int</span> y2 <span class="token operator">=</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token number">123</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">//若f函数的返回值类型前不加constexpr修饰 这行代码会报错</span>
+	<span class="token keyword">const</span> A <span class="token function">a</span><span class="token punctuation">(</span><span class="token number">123</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">constexpr</span> A <span class="token function">b</span><span class="token punctuation">(</span><span class="token number">123</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>constexpr所定义的变量，在编译期就要确定变量的值是多少。 </li>
 <li>同样的y变量若是接受一个函数返回值，那么这个函数的返回值也必须修饰为constexpr，让编译器知道这是在编译期就能够确定的值</li>
 <li>constexpr定义的对象调用的构造函数也要用constexpr修饰</li>
 </ul>
-<h1 id="nullptr"><a href="#nullptr" class="headerlink" title="nullptr"></a>nullptr</h1><pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">#include &lt;iostream&gt;
-#include &lt;string&gt;
-using namespace std;
+<h1 id="nullptr"><a href="#nullptr" class="headerlink" title="nullptr"></a>nullptr</h1><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
-void func(int x) {
-    cout &lt;&lt; __PRETTY_FUNCTION__ &lt;&lt; endl;           //用于显示调用的函数名
-    cout &lt;&lt; x &lt;&lt; endl;
-    return ;
-}
+<span class="token keyword">void</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    cout <span class="token operator">&lt;&lt;</span> __PRETTY_FUNCTION__ <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>           <span class="token comment">//用于显示调用的函数名</span>
+    cout <span class="token operator">&lt;&lt;</span> x <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-void func(int *x) {
-    cout &lt;&lt; __PRETTY_FUNCTION__ &lt;&lt; endl;           
-    cout &lt;&lt; x &lt;&lt; endl;
-    return ;
-}
+<span class="token keyword">void</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    cout <span class="token operator">&lt;&lt;</span> __PRETTY_FUNCTION__ <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>           
+    cout <span class="token operator">&lt;&lt;</span> x <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int main() {
-    //cout &lt;&lt; NULL &lt;&lt; endl;            //输出0
-    //cout &lt;&lt; nullptr &lt;&lt; endl;         //输出nullptr
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//cout &lt;&lt; NULL &lt;&lt; endl;            //输出0</span>
+    <span class="token comment">//cout &lt;&lt; nullptr &lt;&lt; endl;         //输出nullptr</span>
 
-    if (NULL) {
-        cout &lt;&lt; "true" &lt;&lt; endl;
-    } else {
-        cout &lt;&lt; "false" &lt;&lt; endl;
-    }
-    if (nullptr) {
-        cout &lt;&lt; "true" &lt;&lt; endl;
-    } else {
-        cout &lt;&lt; "false" &lt;&lt; endl;
-    }
-    func(nullptr);
-    //func(NULL);                   //报错
-    return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"true"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"false"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"true"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"false"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">func</span><span class="token punctuation">(</span><span class="token keyword">nullptr</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//func(NULL);                   //报错</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>NULL和nullptr<ul>
 <li>NULL是一个整数0，同时也代表了空地址?  32行不知道调用哪个func</li>
@@ -345,52 +345,52 @@ int main() {
 </ul>
 </li>
 </ul>
-<h1 id="左值与右值"><a href="#左值与右值" class="headerlink" title="左值与右值"></a>左值与右值</h1><pre class="line-numbers language-C++" data-language="C++"><code class="language-C++">#include &lt;iostream&gt;
-using namespace std;
+<h1 id="左值与右值"><a href="#左值与右值" class="headerlink" title="左值与右值"></a>左值与右值</h1><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
-#define func(x) __func(x, "func(" #x ")")
-#define func2(x) __func2(x, "func2(" #x ")")
-void __func2(int &amp;x, const char *str) {
-    cout &lt;&lt; str &lt;&lt; " is left value" &lt;&lt; endl;
-    return ;
-}
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">func</span><span class="token expression"><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token function">__func</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> </span><span class="token string">"func("</span> <span class="token expression"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">x</span> </span></span><span class="token string">")"</span><span class="token expression"><span class="token punctuation">)</span></span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">func2</span><span class="token expression"><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token function">__func2</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> </span><span class="token string">"func2("</span> <span class="token expression"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">x</span> </span></span><span class="token string">")"</span><span class="token expression"><span class="token punctuation">)</span></span></span>
+<span class="token keyword">void</span> <span class="token function">__func2</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>x<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    cout <span class="token operator">&lt;&lt;</span> str <span class="token operator">&lt;&lt;</span> <span class="token string">" is left value"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-void __func2(int &amp;&amp;x, const char *str) {
-    cout &lt;&lt; str &lt;&lt; " is right value " &lt;&lt; endl;
-    return ;
+<span class="token keyword">void</span> <span class="token function">__func2</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">&amp;&amp;</span>x<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    cout <span class="token operator">&lt;&lt;</span> str <span class="token operator">&lt;&lt;</span> <span class="token string">" is right value "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">;</span>
 
-}
-void __func(int &amp;x, const char *str) {    //左值引用
-    cout &lt;&lt; str &lt;&lt; " is left value" &lt;&lt; endl;
-    func2(x);
-    return ;
-}
+<span class="token punctuation">}</span>
+<span class="token keyword">void</span> <span class="token function">__func</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>x<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">)</span> <span class="token punctuation">{</span>    <span class="token comment">//左值引用</span>
+    cout <span class="token operator">&lt;&lt;</span> str <span class="token operator">&lt;&lt;</span> <span class="token string">" is left value"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token function">func2</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-void __func(int &amp;&amp;x, const char *str) {   //右值引用定义形式
-    cout &lt;&lt; str &lt;&lt; " is right value " &lt;&lt; endl;
-    //func2(x);         			//x就是一个变量，此时x表现的是左值特性  
-    //func2(move(x));  				//强制变右值特性   
-    func2(forward&lt;int &amp;&amp;&gt;(x));      //准确的向前传递x这个右值    
-    return ;
-}
+<span class="token keyword">void</span> <span class="token function">__func</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">&amp;&amp;</span>x<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> <span class="token operator">*</span>str<span class="token punctuation">)</span> <span class="token punctuation">{</span>   <span class="token comment">//右值引用定义形式</span>
+    cout <span class="token operator">&lt;&lt;</span> str <span class="token operator">&lt;&lt;</span> <span class="token string">" is right value "</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token comment">//func2(x);         			//x就是一个变量，此时x表现的是左值特性  </span>
+    <span class="token comment">//func2(move(x));  				//强制变右值特性   </span>
+    <span class="token function">func2</span><span class="token punctuation">(</span>forward<span class="token operator">&lt;</span><span class="token keyword">int</span> <span class="token operator">&amp;&amp;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">//准确的向前传递x这个右值    </span>
+    <span class="token keyword">return</span> <span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int main() {
-    int x = 1234, y = 456;
-    func(1234);       //右值
-    func(x);          //到了下一行我们通过x就能访问到x的值
-    func(x + y);      //x + y存储在一个临时变量当中，代码下一行无法通过单一变量访问到
-    func(x++);        //x++返回的是x存储的数据，是一个临时变量，并且是一个数据值，
-    func(++x);        //直接对x本身操作，返回的是x
-    func(x + 123);    //表达式作用在临时变量中
-    cout &lt;&lt; x &lt;&lt; endl;   
-    func(x *= 2);     //直接对x作用，返回的也是x
-    cout &lt;&lt; x &lt;&lt; endl;
-    func(y += 3);
-    cout &lt;&lt; y &lt;&lt; endl;
-    func(y * 3);
-    cout &lt;&lt; y &lt;&lt; endl;
-    return 0;  
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">1234</span><span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token number">456</span><span class="token punctuation">;</span>
+    <span class="token function">func</span><span class="token punctuation">(</span><span class="token number">1234</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">//右值</span>
+    <span class="token function">func</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">//到了下一行我们通过x就能访问到x的值</span>
+    <span class="token function">func</span><span class="token punctuation">(</span>x <span class="token operator">+</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">//x + y存储在一个临时变量当中，代码下一行无法通过单一变量访问到</span>
+    <span class="token function">func</span><span class="token punctuation">(</span>x<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">//x++返回的是x存储的数据，是一个临时变量，并且是一个数据值，</span>
+    <span class="token function">func</span><span class="token punctuation">(</span><span class="token operator">++</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">//直接对x本身操作，返回的是x</span>
+    <span class="token function">func</span><span class="token punctuation">(</span>x <span class="token operator">+</span> <span class="token number">123</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">//表达式作用在临时变量中</span>
+    cout <span class="token operator">&lt;&lt;</span> x <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>   
+    <span class="token function">func</span><span class="token punctuation">(</span>x <span class="token operator">*=</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">//直接对x作用，返回的也是x</span>
+    cout <span class="token operator">&lt;&lt;</span> x <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token function">func</span><span class="token punctuation">(</span>y <span class="token operator">+=</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> y <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token function">func</span><span class="token punctuation">(</span>y <span class="token operator">*</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> y <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>  
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210712190724.png" style="zoom:50%;"></p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210510162657.png" alt=""></p>
 <ul>
