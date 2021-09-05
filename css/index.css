@@ -1557,14 +1557,14 @@ img:not([src]) {
   text-decoration: none !important;
 }
 :root {
-  --hl-color: #a6accd;
-  --hl-bg: #292d3e;
-  --hltools-bg: #252938;
-  --hltools-color: #a6accd;
-  --hlnumber-bg: #292d3e;
-  --hlnumber-color: rgba(166,172,205,0.5);
-  --hlscrollbar-bg: #1d202c;
-  --hlexpand-bg: linear-gradient(180deg, rgba(41,45,62,0.6), rgba(41,45,62,0.9));
+  --hl-color: #eff;
+  --hl-bg: #212121;
+  --hltools-bg: #1c1c1c;
+  --hltools-color: rgba(238,255,255,0.8);
+  --hlnumber-bg: #212121;
+  --hlnumber-color: rgba(238,255,255,0.5);
+  --hlscrollbar-bg: #121212;
+  --hlexpand-bg: linear-gradient(180deg, rgba(33,33,33,0.6), rgba(33,33,33,0.9));
 }
 #article-container pre[class*='language-'].line-numbers {
   position: relative;
@@ -1609,10 +1609,10 @@ pre[class*='language-'] .token.comment,
 pre[class*='language-'] .token.prolog,
 pre[class*='language-'] .token.doctype,
 pre[class*='language-'] .token.cdata {
-  color: #6272a4;
+  color: #7c7c7c;
 }
 pre[class*='language-'] .token.punctuation {
-  color: #f8f8f2;
+  color: #c5c8c6;
 }
 pre[class*='language-'] .namespace {
   opacity: 0.7;
@@ -1620,15 +1620,23 @@ pre[class*='language-'] .namespace {
   filter: alpha(opacity=70);
 }
 pre[class*='language-'] .token.property,
-pre[class*='language-'] .token.tag,
-pre[class*='language-'] .token.constant,
-pre[class*='language-'] .token.symbol,
-pre[class*='language-'] .token.deleted {
-  color: #ff79c6;
+pre[class*='language-'] .token.keyword,
+pre[class*='language-'] .token.tag {
+  color: #96cbfe;
+}
+pre[class*='language-'] .token.class-name {
+  color: #ffffb6;
 }
 pre[class*='language-'] .token.boolean,
+pre[class*='language-'] .token.constant {
+  color: #9c9;
+}
+pre[class*='language-'] .token.symbol,
+pre[class*='language-'] .token.deleted {
+  color: #f92672;
+}
 pre[class*='language-'] .token.number {
-  color: #bd93f9;
+  color: #ff73fd;
 }
 pre[class*='language-'] .token.selector,
 pre[class*='language-'] .token.attr-name,
@@ -1636,28 +1644,37 @@ pre[class*='language-'] .token.string,
 pre[class*='language-'] .token.char,
 pre[class*='language-'] .token.builtin,
 pre[class*='language-'] .token.inserted {
-  color: #50fa7b;
+  color: #a8ff60;
 }
-pre[class*='language-'] .token.operator,
-pre[class*='language-'] .token.entity,
-pre[class*='language-'] .token.url,
-pre[class*='language-'] .language-css .token.string,
-pre[class*='language-'] .style .token.string,
 pre[class*='language-'] .token.variable {
-  color: #f8f8f2;
+  color: #c6c5fe;
+}
+pre[class*='language-'] .token.operator {
+  color: #ededed;
+}
+pre[class*='language-'] .token.entity {
+  color: #ffffb6;
+  cursor: help;
+}
+pre[class*='language-'] .token.url {
+  color: #96cbfe;
+}
+pre[class*='language-'] .language-css .token.string,
+pre[class*='language-'] .style .token.string {
+  color: #87c38a;
 }
 pre[class*='language-'] .token.atrule,
-pre[class*='language-'] .token.attr-value,
-pre[class*='language-'] .token.function,
-pre[class*='language-'] .token.class-name {
-  color: #f1fa8c;
+pre[class*='language-'] .token.attr-value {
+  color: #f9ee98;
 }
-pre[class*='language-'] .token.keyword {
-  color: #8be9fd;
+pre[class*='language-'] .token.function {
+  color: #dad085;
 }
-pre[class*='language-'] .token.regex,
+pre[class*='language-'] .token.regex {
+  color: #e9c062;
+}
 pre[class*='language-'] .token.important {
-  color: #ffb86c;
+  color: #fd971f;
 }
 pre[class*='language-'] .token.important,
 pre[class*='language-'] .token.bold {
@@ -1665,9 +1682,6 @@ pre[class*='language-'] .token.bold {
 }
 pre[class*='language-'] .token.italic {
   font-style: italic;
-}
-pre[class*='language-'] .token.entity {
-  cursor: help;
 }
 #article-container pre[class*='language-']::-webkit-scrollbar-thumb {
   background: var(--hlscrollbar-bg);
@@ -1851,6 +1865,48 @@ blockquote footer cite:before {
 }
 #article-container .gist table td {
   border: none;
+}
+#article-container figure.highlight {
+  margin: 0 0 1.2rem;
+  border-radius: 7px;
+  -webkit-box-shadow: 0 5px 10px 0 rgba(0,0,0,0.4);
+  box-shadow: 0 5px 10px 0 rgba(0,0,0,0.4);
+  -webkit-transform: translateZ(0);
+}
+#article-container figure.highlight .highlight-tools:after {
+  position: absolute;
+  left: 0.7rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fc625d;
+  -webkit-box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+  box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+  content: ' ';
+}
+#article-container figure.highlight .highlight-tools .expand {
+  right: 0;
+}
+#article-container figure.highlight .highlight-tools .expand.closed {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-transform: rotate(90deg) !important;
+  -moz-transform: rotate(90deg) !important;
+  -o-transform: rotate(90deg) !important;
+  -ms-transform: rotate(90deg) !important;
+  transform: rotate(90deg) !important;
+}
+#article-container figure.highlight .highlight-tools .expand ~ .copy-notice {
+  right: 2.8rem;
+}
+#article-container figure.highlight .highlight-tools .expand ~ .copy-button {
+  right: 1.8rem;
+}
+#article-container figure.highlight .highlight-tools .code-lang {
+  left: 3.8rem !important;
 }
 @-moz-keyframes code-expand-key {
   0% {
