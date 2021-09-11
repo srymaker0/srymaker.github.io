@@ -183,20 +183,20 @@
 </ul>
 <p>串行化（SERIALIZABLE）</p>
 <p>隔离级别的修改</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">//查看当前事务级别： 
-SELECT @@tx_isolation; 
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">//查看当前事务级别： </span>
+<span class="token keyword">SELECT</span> @<span class="token variable">@tx_isolation</span><span class="token punctuation">;</span> 
 
-//设置read uncommitted级别： 
-set session transaction isolation level read uncommitted;
+<span class="token comment">//设置read uncommitted级别： </span>
+<span class="token keyword">set</span> <span class="token keyword">session</span> <span class="token keyword">transaction</span> <span class="token keyword">isolation</span> <span class="token keyword">level</span> <span class="token keyword">read</span> <span class="token keyword">uncommitted</span><span class="token punctuation">;</span>
 
-//设置read committed级别： 
-set session transaction isolation level read committed;
+<span class="token comment">//设置read committed级别： </span>
+<span class="token keyword">set</span> <span class="token keyword">session</span> <span class="token keyword">transaction</span> <span class="token keyword">isolation</span> <span class="token keyword">level</span> <span class="token keyword">read</span> <span class="token keyword">committed</span><span class="token punctuation">;</span>
 
-//设置repeatable read级别：
-set session transaction isolation level repeatable read;
+<span class="token comment">//设置repeatable read级别：</span>
+<span class="token keyword">set</span> <span class="token keyword">session</span> <span class="token keyword">transaction</span> <span class="token keyword">isolation</span> <span class="token keyword">level</span> <span class="token keyword">repeatable</span> <span class="token keyword">read</span><span class="token punctuation">;</span>
 
-//设置serializable级别： 
-set session transaction isolation level serializable;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">//设置serializable级别： </span>
+<span class="token keyword">set</span> <span class="token keyword">session</span> <span class="token keyword">transaction</span> <span class="token keyword">isolation</span> <span class="token keyword">level</span> <span class="token keyword">serializable</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="LBCC和MVCC"><a href="#LBCC和MVCC" class="headerlink" title="LBCC和MVCC"></a>LBCC和MVCC</h2><p>两个事务针对同一数据都发生修改操作时，会存在丢失更新问题。</p>
 <p>以至于我们必须在事务对数据进行操作是加上锁</p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210911205246.png" alt=""></p>
@@ -245,18 +245,18 @@ set session transaction isolation level serializable;<span aria-hidden="true" cl
 <li>每次读取数据前都生成一个ReadView</li>
 </ul>
 <p>比方说现在系统里有两个id分别为100、200的事务在执行：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"># Transaction 100
-BEGIN;
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment"># Transaction 100</span>
+<span class="token keyword">BEGIN</span><span class="token punctuation">;</span>
 
-UPDATE t SET c = '关羽' WHERE id = 1;
+<span class="token keyword">UPDATE</span> t <span class="token keyword">SET</span> c <span class="token operator">=</span> <span class="token string">'关羽'</span> <span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
 
-UPDATE t SET c = '张飞' WHERE id = 1;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">UPDATE</span> t <span class="token keyword">SET</span> c <span class="token operator">=</span> <span class="token string">'张飞'</span> <span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意<code>Transaction 100</code>并没有提交</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"># Transaction 200 
-BEGIN;
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment"># Transaction 200 </span>
+<span class="token keyword">BEGIN</span><span class="token punctuation">;</span>
 
-# 更新了一些别的表的记录 
-...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># 更新了一些别的表的记录 </span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><code>Transaction 200</code> 等等会进行一些操作</p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210911214014.png" alt=""></p>
 <ul>
@@ -266,11 +266,11 @@ BEGIN;
 </li>
 </ul>
 <p>假设现在有一个使用READ COMMITTED隔离级别的事务开始执行：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"># 使用READ COMMITTED隔离级别的事务 
-BEGIN;
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment"># 使用READ COMMITTED隔离级别的事务 </span>
+<span class="token keyword">BEGIN</span><span class="token punctuation">;</span>
 
-# SELECT1：Transaction 100、200未提交 
-SELECT * FROM t WHERE id = 1; # 得到的列c的值为'刘备'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># SELECT1：Transaction 100、200未提交 </span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t <span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment"># 得到的列c的值为'刘备'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>此时的这个事务的并不会产生事务id，只有第一次发生修改的时候才会产生。<span class="github-emoji"><span>☝</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/261d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
 </ul>
@@ -283,33 +283,33 @@ SELECT * FROM t WHERE id = 1; # 得到的列c的值为'刘备'<span aria-hidden=
 </li>
 </ul>
 <p>我们把事务id为100的事务提交一下，就像这样：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"># Transaction 100 
-BEGIN;
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment"># Transaction 100 </span>
+<span class="token keyword">BEGIN</span><span class="token punctuation">;</span>
 
-UPDATE t SET c = '关羽' WHERE id = 1;
+<span class="token keyword">UPDATE</span> t <span class="token keyword">SET</span> c <span class="token operator">=</span> <span class="token string">'关羽'</span> <span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
 
-UPDATE t SET c = '张飞' WHERE id = 1;
+<span class="token keyword">UPDATE</span> t <span class="token keyword">SET</span> c <span class="token operator">=</span> <span class="token string">'张飞'</span> <span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
 
-COMMIT;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">COMMIT</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后再到事务id为200的事务中更新一下表中id为1的记录：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"># Transaction 200 BEGIN;
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment"># Transaction 200 BEGIN;</span>
 
-# 更新了一些别的表的记录 ...
+<span class="token comment"># 更新了一些别的表的记录 ...</span>
 
-UPDATE t SET c = '赵云' WHERE id = 1;
+<span class="token keyword">UPDATE</span> t <span class="token keyword">SET</span> c <span class="token operator">=</span> <span class="token string">'赵云'</span> <span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
 
-UPDATE t SET c = '诸葛亮' WHERE id = 1;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">UPDATE</span> t <span class="token keyword">SET</span> c <span class="token operator">=</span> <span class="token string">'诸葛亮'</span> <span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>此刻，表中id为1的记录的版本链就长这样：</p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210911215411.png" alt=""></p>
 <p>然后再到刚才使用READ COMMITTED隔离级别的事务中继续查找这个id为1的记录，如下：</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"># 使用READ COMMITTED隔离级别的事务 
-BEGIN;
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment"># 使用READ COMMITTED隔离级别的事务 </span>
+<span class="token keyword">BEGIN</span><span class="token punctuation">;</span>
 
-# SELECT1：Transaction 100、200均未提交 
-SELECT * FROM t WHERE id = 1; # 得到的列c的值为'刘备'
+<span class="token comment"># SELECT1：Transaction 100、200均未提交 </span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t <span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment"># 得到的列c的值为'刘备'</span>
 
-# SELECT2：Transaction 100提交， Transaction 200未提交 
-SELECT * FROM t WHERE id = 1; # 得到的列c的值为'张飞'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># SELECT2：Transaction 100提交， Transaction 200未提交 </span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t <span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment"># 得到的列c的值为'张飞'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这就是RC机制——在每次读数据前产生一个ReadView来确定应该读取哪个版本</p>
 <ul>
 <li><p>Transaction 100、200均未提交（说明是活跃的，存在在ReadView中）</p>
@@ -322,14 +322,14 @@ SELECT * FROM t WHERE id = 1; # 得到的列c的值为'张飞'<span aria-hidden=
 <p>至此，通过ReadView的产生时机，实现了RC这种隔离级别</p>
 <h4 id="对于RR来说"><a href="#对于RR来说" class="headerlink" title="对于RR来说"></a>对于RR来说</h4><p>在事务开始后第一次读取数据时生成一个ReadView</p>
 <p>针对RC的那个例子来讲，如下:</p>
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"># 使用REPEATABLE READ隔离级别的事务 
-BEGIN;
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment"># 使用REPEATABLE READ隔离级别的事务 </span>
+<span class="token keyword">BEGIN</span><span class="token punctuation">;</span>
 
-# SELECT1：Transaction 100、200均未提交 
-SELECT * FROM t WHERE id = 1; # 得到的列c的值为'刘备'
+<span class="token comment"># SELECT1：Transaction 100、200均未提交 </span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t <span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment"># 得到的列c的值为'刘备'</span>
 
-# SELECT2：Transaction 100提交， Transaction 200未提交 
-SELECT * FROM t WHERE id = 1; # 得到的列c的值仍为'刘备'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment"># SELECT2：Transaction 100提交， Transaction 200未提交 </span>
+<span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> t <span class="token keyword">WHERE</span> id <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment"># 得到的列c的值仍为'刘备'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>分析：</p>
 <p>因为在事务开始后第一次读取数据时生成一个ReadView</p>
 <ul>

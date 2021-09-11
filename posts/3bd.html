@@ -170,49 +170,49 @@
 <li>作用：用来初始化对象，没有返回值，函数名字和类名一样</li>
 <li>凡是一个对象，它的产生之初一定调用构造函数，然后经历一段时间的使用过程，最后一定会调用析构函数。</li>
 </ul>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">#include &lt;iostream&gt;
-using namespace std;
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
 
-class Data {
-public :
-    Data(int x, int y) : x(x), y(y) {}
-private :
-    int x, y;
-};
+<span class="token keyword">class</span> <span class="token class-name">Data</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token operator">:</span>
+    <span class="token function">Data</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> y<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">x</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">y</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">private</span> <span class="token operator">:</span>
+    <span class="token keyword">int</span> x<span class="token punctuation">,</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-class A {
-public :
-    A() : d(3, 4) {                                        //d 是一个对象， 这里调用的是有参构造
-        cout &lt;&lt; this &lt;&lt; " : constructor" &lt;&lt; endl;          // this 是 对象的地址
-    }
-    A(int x) : d(x, x) {                                      //转化构造函数  这里是把一个整型转换成A类型的对象
-        cout &lt;&lt; this &lt;&lt; " : transform constructor" &lt;&lt; endl;
-    }
-    A(const A &amp;a) : d(a.d) {                        // &amp;a 是引用 const为了防止a对象被修改 const变量不允许被修改
-        cout &lt;&lt; this &lt;&lt; " : copy constructor" &lt;&lt; endl;
-    }
-    A &amp;operator=(const A &amp;a) {
-        cout &lt;&lt; this &lt;&lt; " : operator=" &lt;&lt; endl;
-        return *this;
-    }
-    ~A() {
-        cout &lt;&lt; this &lt;&lt; " : destructor" &lt;&lt; endl;          //在主函数运行结束后被调用
-    }
-    Data d;
-};
+<span class="token keyword">class</span> <span class="token class-name">A</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token operator">:</span>
+    <span class="token function">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">d</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>                                        <span class="token comment">//d 是一个对象， 这里调用的是有参构造</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token keyword">this</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" : constructor"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>          <span class="token comment">// this 是 对象的地址</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">A</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">d</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> x<span class="token punctuation">)</span> <span class="token punctuation">{</span>                                      <span class="token comment">//转化构造函数  这里是把一个整型转换成A类型的对象</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token keyword">this</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" : transform constructor"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">A</span><span class="token punctuation">(</span><span class="token keyword">const</span> A <span class="token operator">&amp;</span>a<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">d</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>d<span class="token punctuation">)</span> <span class="token punctuation">{</span>                        <span class="token comment">// &amp;a 是引用 const为了防止a对象被修改 const变量不允许被修改</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token keyword">this</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" : copy constructor"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    A <span class="token operator">&amp;</span><span class="token keyword">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">const</span> A <span class="token operator">&amp;</span>a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token keyword">this</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" : operator="</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">*</span><span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token operator">~</span><span class="token function">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token keyword">this</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" : destructor"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>          <span class="token comment">//在主函数运行结束后被调用</span>
+    <span class="token punctuation">}</span>
+    Data d<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-//关键在于学习对象析构顺序 先构造的后析构
-int main() {
-    A a;                             //构造对象 调用默认构造函数
-    A b = a;                         //调用拷贝构造 和 A b(a); 一样
-    //b = a;                         //调用赋值运算符
-    A c = 3;
-    a = 123;
-    cout &lt;&lt; "a : " &lt;&lt; &amp;a &lt;&lt; endl;
-    cout &lt;&lt; "b : " &lt;&lt; &amp;b &lt;&lt; endl;
-    cout &lt;&lt; "end of main" &lt;&lt; endl;
-    return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token comment">//关键在于学习对象析构顺序 先构造的后析构</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    A a<span class="token punctuation">;</span>                             <span class="token comment">//构造对象 调用默认构造函数</span>
+    A b <span class="token operator">=</span> a<span class="token punctuation">;</span>                         <span class="token comment">//调用拷贝构造 和 A b(a); 一样</span>
+    <span class="token comment">//b = a;                         //调用赋值运算符</span>
+    A c <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
+    a <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"a : "</span> <span class="token operator">&lt;&lt;</span> <span class="token operator">&amp;</span>a <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"b : "</span> <span class="token operator">&lt;&lt;</span> <span class="token operator">&amp;</span>b <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"end of main"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>功能上的构造（逻辑上）：要完整的实现我们所认为的逻辑才算构造完</li>
 <li>编译器所谓的构造（实际上）：其实在第13行就已经构造完成了，意思是我们可以在第14行就可以访问成员属性和方法了<ul>
@@ -251,12 +251,12 @@ int main() {
 <ul>
 <li>代码38行为什么123一个整型能赋值给一个a对象？ <span class="github-emoji"><span>👉</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>从逻辑上来讲是123转换为了A类型的值然后给a对象</li>
 </ul>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">A &amp;operator=(const A &amp;a) {
-        cout &lt;&lt; this &lt;&lt; " : operator=" &lt;&lt; endl;
-        return *this;
-    }
-...........
-a = 123;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">A <span class="token operator">&amp;</span><span class="token keyword">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword">const</span> A <span class="token operator">&amp;</span>a<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token keyword">this</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" : operator="</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">*</span><span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+a <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><p>首先这行代码会调用赋值运算符，可以看到传入的参数是A类型，而123是整型</p>
 </li>
@@ -272,13 +272,13 @@ a = 123;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
 <li>当传入的参数和对象的类型一致时，我们称这类构造函数为拷贝构造函数</li>
 <li>拷贝构造和“=”赋值运算符完全不等价</li>
 </ul>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">A(const A &amp;a) {                                 // &amp;a 是引用 const为了防止a对象被修改 const变量不允许被修改 正确写法
-    cout &lt;&lt; this &lt;&lt; " : copy constructor" &lt;&lt; endl;
-}
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token function">A</span><span class="token punctuation">(</span><span class="token keyword">const</span> A <span class="token operator">&amp;</span>a<span class="token punctuation">)</span> <span class="token punctuation">{</span>                                 <span class="token comment">// &amp;a 是引用 const为了防止a对象被修改 const变量不允许被修改 正确写法</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token keyword">this</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" : copy constructor"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-//A(A a) {}  //不能这么写拷贝构造函数
+<span class="token comment">//A(A a) {}  //不能这么写拷贝构造函数</span>
 
-A b = a; //和 A b(a); 是等价的 但是只在定义的时候等价 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+A b <span class="token operator">=</span> a<span class="token punctuation">;</span> <span class="token comment">//和 A b(a); 是等价的 但是只在定义的时候等价 </span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><p><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>假设你的拷贝构造函数按照第5行这么写</p>
 <ul>

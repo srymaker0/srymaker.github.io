@@ -271,21 +271,21 @@
 <li>所以const方法就用来保证不会改变当前对象的所有属性</li>
 <li>一旦在const方法内部更改成员属性，会在编程器层面报错</li>
 </ul>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">class People {
-public :
-    .......
-    void say() const {
-    	cout &lt;&lt; "hahaha,funny!" &lt;&lt; endl;
-        say_cnt += 1;
-    	return ;
-	}
-    .......
-private :
-    int say_cnt;          //记录说话的次数
-	.......
-};
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">People</span> <span class="token punctuation">{</span>
+<span class="token keyword">public</span> <span class="token operator">:</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token keyword">void</span> <span class="token function">say</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+    	cout <span class="token operator">&lt;&lt;</span> <span class="token string">"hahaha,funny!"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+        say_cnt <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    	<span class="token keyword">return</span> <span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token keyword">private</span> <span class="token operator">:</span>
+    <span class="token keyword">int</span> say_cnt<span class="token punctuation">;</span>          <span class="token comment">//记录说话的次数</span>
+	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-.......<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>假设我在示例1中加这段代码，编译器肯定会报错</li>
 <li>因为我们正在一个const方法中尝试修改一个非const的值<ul>

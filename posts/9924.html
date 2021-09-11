@@ -173,7 +173,7 @@
 <li><p>执行👉 </p>
 <ul>
 <li><p>第一种 刚创建的<code>1.first.sh</code>没有可执行权限</p>
-   <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">chmod a+x 1.first.sh <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+   <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> a+x <span class="token number">1</span>.first.sh <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li><p>输入上面的命令让所有人获得可执行的权限</p>
 </li>
@@ -182,7 +182,7 @@
 </ul>
 </li>
 <li><p>第二种</p>
-   <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">bash 1.first.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+   <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> <span class="token number">1</span>.first.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>直接用<code>bash</code>命令可以直接运行<code>.sh</code>文件</li>
 </ul>
@@ -192,10 +192,10 @@
 </ul>
 <h2 id="变量与局部变量"><a href="#变量与局部变量" class="headerlink" title="变量与局部变量"></a>变量与局部变量</h2><ul>
 <li><p><strong>变量的定义</strong></p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">a=12
-a=helloworld
-a=`pwd`  #pwd是一个命令  ``这两个点是命令替换符 把命令的输出替换到``中去 再赋值gei
-a=$a:a<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">a</span><span class="token operator">=</span><span class="token number">12</span>
+<span class="token assign-left variable">a</span><span class="token operator">=</span>helloworld
+<span class="token assign-left variable">a</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">pwd</span><span class="token variable">`</span></span>  <span class="token comment">#pwd是一个命令  ``这两个点是命令替换符 把命令的输出替换到``中去 再赋值gei</span>
+<span class="token assign-left variable">a</span><span class="token operator">=</span><span class="token variable">$a</span>:a<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><p>注意⚡： <code>=</code>号两边的空格不能省略 否则会被终端理解为是一个命令而不是变量</p>
 </li>
@@ -210,13 +210,13 @@ a=$a:a<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
 <li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/05/QI2RwChaFJ9bqGe.png" alt=""></p>
 </li>
 <li><p>在一个变量后面加上一个字符串 实际上做的是简单的字符串拼接</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#!/bin/bash 
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash </span>
 
-#这是注释  用#开始  #！这是固定格式 表示用什么解释器解释这个程序这里是用bin目录下的bash解释器
+<span class="token comment">#这是注释  用#开始  #！这是固定格式 表示用什么解释器解释这个程序这里是用bin目录下的bash解释器</span>
 
-echo "Hello shit of Ynnubs!"
-WorkDir=`pwd`
-echo -e "In\033[31;32m ${WorkDir} \033[0m"
+<span class="token builtin class-name">echo</span> <span class="token string">"Hello shit of Ynnubs!"</span>
+<span class="token assign-left variable">WorkDir</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">pwd</span><span class="token variable">`</span></span>
+<span class="token builtin class-name">echo</span> -e <span class="token string">"In<span class="token entity" title="\033">\033</span>[31;32m <span class="token variable">${WorkDir}</span> <span class="token entity" title="\033">\033</span>[0m"</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
@@ -226,7 +226,7 @@ echo -e "In\033[31;32m ${WorkDir} \033[0m"
 <p>​        </p>
 <ul>
 <li><p><strong>局部变量</strong></p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">local a=12<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">local</span> <span class="token assign-left variable">a</span><span class="token operator">=</span><span class="token number">12</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </li>
 <li><p><strong>特殊变量</strong></p>
 <ul>
@@ -240,23 +240,23 @@ echo -e "In\033[31;32m ${WorkDir} \033[0m"
 </ul>
 </li>
 <li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/05/B8ZOFqQDYPkWihV.png" alt=""></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#!/bin/bash 
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash </span>
 
-#这是注释  用#开始  #！这是固定格式 表示用什么解释器解释这个程序这里是用bin目录下的bash解释器
+<span class="token comment">#这是注释  用#开始  #！这是固定格式 表示用什么解释器解释这个程序这里是用bin目录下的bash解释器</span>
 
-echo "Hello shit of Ynnubs!"
-WorkDir=`pwd`
-echo -e "In\033[31;32m ${WorkDir} \033[0m" #-e是打开转义的意思
-echo "Program Name : $0"
-echo "Arg1 : $1"
-echo "Arg2 : $2"
-echo "Arg3 : $3"
-echo "Arg4 : $4"
-echo "Arg5 : $5"
-echo "Arg6 : $6"
-echo "\$@ : $@"    # \ 为转义字符 你懂的 和c语言一样的
-echo "\$* : $*"
-echo "\$# : $#"
+<span class="token builtin class-name">echo</span> <span class="token string">"Hello shit of Ynnubs!"</span>
+<span class="token assign-left variable">WorkDir</span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">pwd</span><span class="token variable">`</span></span>
+<span class="token builtin class-name">echo</span> -e <span class="token string">"In<span class="token entity" title="\033">\033</span>[31;32m <span class="token variable">${WorkDir}</span> <span class="token entity" title="\033">\033</span>[0m"</span> <span class="token comment">#-e是打开转义的意思</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Program Name : <span class="token variable">$0</span>"</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Arg1 : <span class="token variable">$1</span>"</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Arg2 : <span class="token variable">$2</span>"</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Arg3 : <span class="token variable">$3</span>"</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Arg4 : <span class="token variable">$4</span>"</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Arg5 : <span class="token variable">$5</span>"</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"Arg6 : <span class="token variable">$6</span>"</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"\<span class="token variable">$@</span> : <span class="token variable">$@</span>"</span>    <span class="token comment"># \ 为转义字符 你懂的 和c语言一样的</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"\<span class="token variable">$*</span> : <span class="token variable">$*</span>"</span>
+<span class="token builtin class-name">echo</span> <span class="token string">"\<span class="token variable">$#</span> : <span class="token variable">$#</span>"</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p>运行效果</p>
@@ -299,14 +299,14 @@ echo "\$# : $#"
 <h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><ul>
 <li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/05/JVNw3ILP9YhlpTu.png" style="zoom: 33%;"></li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#!/bin/bash
-  #最好保留function 和() 增加可读性
-function __printf__() {  #两个下划线
-      echo "$1"
-      return
-  }
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+  <span class="token comment">#最好保留function 和() 增加可读性</span>
+<span class="token keyword">function</span> <span class="token function-name function">__printf__</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token comment">#两个下划线</span>
+      <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$1</span>"</span>
+      <span class="token builtin class-name">return</span>
+  <span class="token punctuation">}</span>
   
-  __printf__ "Hello shit of Ynnubs"  #这是函数的调用<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  __printf__ <span class="token string">"Hello shit of Ynnubs"</span>  <span class="token comment">#这是函数的调用</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>没有形参</li>
 <li>定义：写法很多，function、()、{}组合搭配，第3种更类似C语言写法</li>
@@ -318,15 +318,15 @@ function __printf__() {  #两个下划线
 <li><p><strong><code>if</code>语句</strong></p>
 </li>
 <li><p>建议写成这种形式 因为兼容性更强</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#!/bin/bash
-read a  #表示输入一个参数 个人感觉类似与scanf
-if [[ ${a} -gt 10 ]];then
-    echo "$a &gt; 10"
-elif [[ ${a} -eq 10 ]];then
-    echo "$a = 10"
-else
-    echo "${a} &lt; 10"
-fi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+<span class="token builtin class-name">read</span> a  <span class="token comment">#表示输入一个参数 个人感觉类似与scanf</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token variable">${a}</span> -gt <span class="token number">10</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$a</span> &gt; 10"</span>
+<span class="token keyword">elif</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token variable">${a}</span> -eq <span class="token number">10</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$a</span> = 10"</span>
+<span class="token keyword">else</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">${a}</span> &lt; 10"</span>
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
 <p>​    </p>
@@ -347,39 +347,39 @@ fi<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><
 </ul>
 </li>
 <li><p>我们再来举个例子</p>
-   <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#!/bin/bash
-TargetFile="a.c"
-if [[ -r ${TargetFile} ]];then    	# -r 文件存在并且可读
-gcc a.c -o a 					 	# 编译a.c
-    ./a 						     	# 执行
-else
-    echo "${TargetFile} not Found!" 	# 否则输出找不到
-fi
+   <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+<span class="token assign-left variable">TargetFile</span><span class="token operator">=</span><span class="token string">"a.c"</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> -r <span class="token variable">${TargetFile}</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>    	<span class="token comment"># -r 文件存在并且可读</span>
+gcc a.c -o a 					 	<span class="token comment"># 编译a.c</span>
+    ./a 						     	<span class="token comment"># 执行</span>
+<span class="token keyword">else</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">${TargetFile}</span> not Found!"</span> 	<span class="token comment"># 否则输出找不到</span>
+<span class="token keyword">fi</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-   <pre class="line-numbers language-c" data-language="c"><code class="language-c">//a.c文件
-#include &lt;stdio.h&gt;
-int main() {
-    printf("Czpei is my son!\n");
-    return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+   <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//a.c文件</span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Czpei is my son!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/06/Lp3KBva6qQdgTDI.png" alt=""></li>
 </ul>
 </li>
 <li><p><strong><code>case</code>语句</strong></p>
-   <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#!/bin/bash
-read a
-case $a in
-    1)
-        echo 1
-        ;;
-    2)
-        echo 2
-        ;;
-    *) #默认情况
-        echo "Not Found"
-        ;;
-esac
+   <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+<span class="token builtin class-name">read</span> a
+<span class="token keyword">case</span> <span class="token variable">$a</span> <span class="token keyword">in</span>
+    <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token builtin class-name">echo</span> <span class="token number">1</span>
+        <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    <span class="token number">2</span><span class="token punctuation">)</span>
+        <span class="token builtin class-name">echo</span> <span class="token number">2</span>
+        <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    *<span class="token punctuation">)</span> <span class="token comment">#默认情况</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">"Not Found"</span>
+        <span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">esac</span>
     <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>用的比较少 做菜单的时候可以使用case语句</li>
@@ -390,85 +390,85 @@ esac
 <li><p><code>for</code>两种形式</p>
 </li>
 <li><p>双小括号<code>(())</code>中的内容只要符合C语言运算规则即可，变量可以不使用变量前缀$，可以写i++，平常不可以用++</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#!/bin/bash
-for i in $@;do    #$@表示对所有参数
-    echo $i
-done
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+<span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> <span class="token variable">$@</span><span class="token punctuation">;</span><span class="token keyword">do</span>    <span class="token comment">#$@表示对所有参数</span>
+    <span class="token builtin class-name">echo</span> <span class="token variable">$i</span>
+<span class="token keyword">done</span>
 
-for ((i=1; i&lt;=100; i++));do
-echo $i
-done
+<span class="token keyword">for</span> <span class="token variable"><span class="token punctuation">((</span>i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">100</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">))</span></span><span class="token punctuation">;</span><span class="token keyword">do</span>
+<span class="token builtin class-name">echo</span> <span class="token variable">$i</span>
+<span class="token keyword">done</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p><code>while</code>语句</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#!/bin/bash
-num=0
-while [[ $num -lt 100 ]];do
-    echo ${num}
-    num=$[ ${num} + 1 ]
-done
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+<span class="token assign-left variable">num</span><span class="token operator">=</span><span class="token number">0</span>
+<span class="token keyword">while</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token variable">$num</span> -lt <span class="token number">100</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">do</span>
+    <span class="token builtin class-name">echo</span> <span class="token variable">${num}</span>
+    <span class="token assign-left variable">num</span><span class="token operator">=</span>$<span class="token punctuation">[</span> <span class="token variable">${num}</span> + <span class="token number">1</span> <span class="token punctuation">]</span>
+<span class="token keyword">done</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li><p><code>until</code>语句</p>
 <ul>
 <li><p>直到 满足某个条件才会结束循环</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#!/bin/bash
-num=0
-until [[ $num -eq 100 ]];do  
-    echo $num
-    num=$[ ${num} + 1 ]
-done
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+<span class="token assign-left variable">num</span><span class="token operator">=</span><span class="token number">0</span>
+<span class="token keyword">until</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token variable">$num</span> -eq <span class="token number">100</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">do</span>  
+    <span class="token builtin class-name">echo</span> <span class="token variable">$num</span>
+    <span class="token assign-left variable">num</span><span class="token operator">=</span>$<span class="token punctuation">[</span> <span class="token variable">${num}</span> + <span class="token number">1</span> <span class="token punctuation">]</span>
+<span class="token keyword">done</span>
     <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
 </li>
 <li><p>for循环求偶数和</p>
-   <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#!/bin/bash
-#for i in `seq 1 100`  #seq表示生成1-100的序列 但是效率低下 因为seq是个进程 系统会每次调用
-sum=0
-for (( i=1; i&lt;=100; i++ ));do
-    if [[ $[ ${i} % 2 ] -eq 0 ]];then
-        sum=$[ ${sum} + ${i}]
-    fi
-done
+   <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+<span class="token comment">#for i in `seq 1 100`  #seq表示生成1-100的序列 但是效率低下 因为seq是个进程 系统会每次调用</span>
+<span class="token assign-left variable">sum</span><span class="token operator">=</span><span class="token number">0</span>
+<span class="token keyword">for</span> <span class="token variable"><span class="token punctuation">((</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span><span class="token number">100</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">))</span></span><span class="token punctuation">;</span><span class="token keyword">do</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> $<span class="token punctuation">[</span> <span class="token variable">${i}</span> % <span class="token number">2</span> <span class="token punctuation">]</span> -eq <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+        <span class="token assign-left variable">sum</span><span class="token operator">=</span>$<span class="token punctuation">[</span> <span class="token variable">${sum}</span> + <span class="token variable">${i}</span><span class="token punctuation">]</span>
+    <span class="token keyword">fi</span>
+<span class="token keyword">done</span>
 
-echo "sum = ${sum}"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token builtin class-name">echo</span> <span class="token string">"sum = <span class="token variable">${sum}</span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
 </li>
 </ul>
-<h2 id="求素数和"><a href="#求素数和" class="headerlink" title="求素数和"></a>求素数和</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#!/bin/bash
-function Usage(){
-    echo "Usage : $0 start_num end_num" #$0获取当前执行shell脚本的文件名，包括路径
-    exit
-}
+<h2 id="求素数和"><a href="#求素数和" class="headerlink" title="求素数和"></a>求素数和</h2><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+<span class="token keyword">function</span> <span class="token function-name function">Usage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Usage : <span class="token variable">$0</span> start_num end_num"</span> <span class="token comment">#$0获取当前执行shell脚本的文件名，包括路径</span>
+    <span class="token builtin class-name">exit</span>
+<span class="token punctuation">}</span>
 
-function is_prime(){
-    num=$1
-    local i
-    for (( i=2; i&lt;${num}; i++ ));do
-        if [[ $[ ${num} % $i ] -eq 0 ]];then
-            return 1
-        fi
-    done
-    return 0
-}
+<span class="token keyword">function</span> <span class="token function-name function">is_prime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token assign-left variable">num</span><span class="token operator">=</span><span class="token variable">$1</span>
+    <span class="token builtin class-name">local</span> i
+    <span class="token keyword">for</span> <span class="token variable"><span class="token punctuation">((</span> i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>${num}<span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">))</span></span><span class="token punctuation">;</span><span class="token keyword">do</span>
+        <span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> $<span class="token punctuation">[</span> <span class="token variable">${num}</span> % <span class="token variable">$i</span> <span class="token punctuation">]</span> -eq <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+            <span class="token builtin class-name">return</span> <span class="token number">1</span>
+        <span class="token keyword">fi</span>
+    <span class="token keyword">done</span>
+    <span class="token builtin class-name">return</span> <span class="token number">0</span>
+<span class="token punctuation">}</span>
 
-if [[ $# -ne 2 ]];then # $#得到执行当前脚本的参数个数
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token variable">$#</span> -ne <span class="token number">2</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span> <span class="token comment"># $#得到执行当前脚本的参数个数</span>
     Usage
-fi
+<span class="token keyword">fi</span>
 
-Start=$1
-End=$2
+<span class="token assign-left variable">Start</span><span class="token operator">=</span><span class="token variable">$1</span>
+<span class="token assign-left variable">End</span><span class="token operator">=</span><span class="token variable">$2</span>
 
-for ((i=${Start}; i&lt;=${End}; i++));do
-    is_prime $i  #函数的调用
-    if [[ $? -eq 0 ]];then
-        sum=$[ ${sum} + $i ]
-    fi
-done
+<span class="token keyword">for</span> <span class="token variable"><span class="token punctuation">((</span>i<span class="token operator">=</span>${Start}<span class="token punctuation">;</span> i<span class="token operator">&lt;=</span>${End}<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">))</span></span><span class="token punctuation">;</span><span class="token keyword">do</span>
+    is_prime <span class="token variable">$i</span>  <span class="token comment">#函数的调用</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token variable">$?</span> -eq <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+        <span class="token assign-left variable">sum</span><span class="token operator">=</span>$<span class="token punctuation">[</span> <span class="token variable">${sum}</span> + <span class="token variable">$i</span> <span class="token punctuation">]</span>
+    <span class="token keyword">fi</span>
+<span class="token keyword">done</span>
 
-echo $sum
+<span class="token builtin class-name">echo</span> <span class="token variable">$sum</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li><p>⚡注意这种方法求解素数效率低下  求10-20000 内的素数和 cpu就快爆了  但是利用算法是可以提高效率的 </p>
@@ -480,9 +480,9 @@ echo $sum
 <li><p>全局调试<code>bash -x</code></p>
 </li>
 <li><p>局部调试</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">set -x
-#...代码段..#
-set +x<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">set</span> -x
+<span class="token comment">#...代码段..#</span>
+<span class="token builtin class-name">set</span> +x<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 </li>
 <li></li>
 </ul>
@@ -499,36 +499,36 @@ set +x<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
 <p>  <img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/06/ZDrE4X5g3IyOoQ1.png" alt=""></p>
 </li>
 </ul>
-<h3 id="素数筛求解"><a href="#素数筛求解" class="headerlink" title="素数筛求解"></a><strong>素数筛求解</strong></h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">#!/bin/bash
-if [[ $# -ne 2 ]];then
-    echo "Error"
-    exit
-fi
+<h3 id="素数筛求解"><a href="#素数筛求解" class="headerlink" title="素数筛求解"></a><strong>素数筛求解</strong></h3><pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token variable">$#</span> -ne <span class="token number">2</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"Error"</span>
+    <span class="token builtin class-name">exit</span>
+<span class="token keyword">fi</span>
 
-Start=$1
-End=$2
-declare -a Prime
+<span class="token assign-left variable">Start</span><span class="token operator">=</span><span class="token variable">$1</span>
+<span class="token assign-left variable">End</span><span class="token operator">=</span><span class="token variable">$2</span>
+<span class="token builtin class-name">declare</span> -a Prime
 
-function init_prime() {
-    local end=$1 						# 此时的$1表示传进去的第一个参数
-    local i
-    Prime[1]=1
-    for ((i=2; i&lt;=${end}; i++));do
-        for ((j=$[ ${i} * ${i} ]; j&lt;=${end}; j+=i));do
-            Prime[${j}]=1
-        done
-    done
-}
+<span class="token keyword">function</span> <span class="token function-name function">init_prime</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token builtin class-name">local</span> <span class="token assign-left variable">end</span><span class="token operator">=</span><span class="token variable">$1</span> 						<span class="token comment"># 此时的$1表示传进去的第一个参数</span>
+    <span class="token builtin class-name">local</span> i
+    Prime<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span>
+    <span class="token keyword">for</span> <span class="token variable"><span class="token punctuation">((</span>i<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span>${end}<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">))</span></span><span class="token punctuation">;</span><span class="token keyword">do</span>
+        <span class="token keyword">for</span> <span class="token variable"><span class="token punctuation">((</span>j<span class="token operator">=</span>$[ ${i} <span class="token operator">*</span> ${i} ]<span class="token punctuation">;</span> j<span class="token operator">&lt;=</span>${end}<span class="token punctuation">;</span> j<span class="token operator">+=</span>i<span class="token punctuation">))</span></span><span class="token punctuation">;</span><span class="token keyword">do</span>
+            Prime<span class="token punctuation">[</span><span class="token variable">${j}</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token number">1</span>
+        <span class="token keyword">done</span>
+    <span class="token keyword">done</span>
+<span class="token punctuation">}</span>
 
-init_prime ${End}  
+init_prime <span class="token variable">${End}</span>  
 
-for ((i=${Start}; i&lt;=${End}; i++));do
-    if [[ ${Prime[$i]}x == x ]];then  #x表示字符串拼接 这句话判断Prime[i]是否为空 若为空 则为素数
-        sum=$[ ${sum} + ${i} ]
-    fi
-done
+<span class="token keyword">for</span> <span class="token variable"><span class="token punctuation">((</span>i<span class="token operator">=</span>${Start}<span class="token punctuation">;</span> i<span class="token operator">&lt;=</span>${End}<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">))</span></span><span class="token punctuation">;</span><span class="token keyword">do</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token variable">${Prime<span class="token punctuation">[</span>$i<span class="token punctuation">]</span>}</span>x <span class="token operator">==</span> x <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>  <span class="token comment">#x表示字符串拼接 这句话判断Prime[i]是否为空 若为空 则为素数</span>
+        <span class="token assign-left variable">sum</span><span class="token operator">=</span>$<span class="token punctuation">[</span> <span class="token variable">${sum}</span> + <span class="token variable">${i}</span> <span class="token punctuation">]</span>
+    <span class="token keyword">fi</span>
+<span class="token keyword">done</span>
 
-echo ${sum}
+<span class="token builtin class-name">echo</span> <span class="token variable">${sum}</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="附加知识点"><a href="#附加知识点" class="headerlink" title="附加知识点"></a>附加知识点</h3><ul>
 <li><p>.sh脚本可以直接bash或source执行，如果要使用./需要有可执行权限</p>
@@ -578,9 +578,9 @@ echo ${sum}
 <li>⭐<a target="_blank" rel="noopener" href="https://zh-google-styleguide.readthedocs.io/en/latest/google-shell-styleguide/contents/">Shell 风格指南</a>——Google 开源项目风格指南——Shell编程规范</li>
 <li><a target="_blank" rel="noopener" href="https://sukbeta.github.io/shell-comment/">Shell脚本多行注释和单行注释的方法</a>——博客</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">:&lt;&lt;!
-[要注释的代码]
-!
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">:<span class="token operator">&lt;&lt;</span><span class="token operator">!</span>
+<span class="token punctuation">[</span>要注释的代码<span class="token punctuation">]</span>
+<span class="token operator">!</span>
 复制代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>可以了解<a target="_blank" rel="noopener" href="https://www.runoob.com/linux/linux-comm-let.html">let</a>——菜鸟教程，方便的语法</li>
