@@ -20,187 +20,6 @@
       </tags>
   </entry>
   <entry>
-    <title>MySQL事务</title>
-    <url>/posts/5a4f.html</url>
-    <content><![CDATA[<h1 id="MySQL事务进阶"><a href="#MySQL事务进阶" class="headerlink" title="MySQL事务进阶"></a>MySQL事务进阶</h1><p>一些MySQL事务基础知识，请移步<a href="https://srymaker0.com/posts/3361">mysql之基础篇——事务</a></p>
-<p>在MySQL 中的事务是由存储引擎实现的，主要理解InnoDB的MVCC机制，因为这个知识我理解了半天才搞懂</p>
-<h2 id="隔离级别（隔离性）"><a href="#隔离级别（隔离性）" class="headerlink" title="隔离级别（隔离性）"></a>隔离级别（隔离性）</h2><p>未提交读（ READ UNCOMMITTED/RU）</p>
-<p><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>已提交读（ READ COMMITTED/RC）</p>
-<ul>
-<li>读取已经提交的，读到的数据是最新的（幻读）</li>
-</ul>
-<p><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>可重复读（ REPEATABLE READ/RR）</p>
-<ul>
-<li>可以解决幻读</li>
-<li>隔离级别高，两事务之间操作相互不影响</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210911204407.png" style="zoom: 50%;"></p>
-<ul>
-<li>被称为可重复读的原因：A事务读到的依旧是之前查到的值，好像忽略了B事务对数据的修改，重复读了自己的值</li>
-</ul>
-<p>串行化（SERIALIZABLE）</p>
-<p>隔离级别的修改</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">//查看当前事务级别： 
-SELECT @@tx_isolation; 
-
-//设置read uncommitted级别： 
-set session transaction isolation level read uncommitted;
-
-//设置read committed级别： 
-set session transaction isolation level read committed;
-
-//设置repeatable read级别：
-set session transaction isolation level repeatable read;
-
-//设置serializable级别： 
-set session transaction isolation level serializable;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="LBCC和MVCC"><a href="#LBCC和MVCC" class="headerlink" title="LBCC和MVCC"></a>LBCC和MVCC</h2><p>两个事务针对同一数据都发生修改操作时，会存在丢失更新问题。</p>
-<p>以至于我们必须在事务对数据进行操作是加上锁</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210911205246.png" alt=""></p>
-<p><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>若不加锁，则会引发非常严重的问题</p>
-<h3 id="LBCC"><a href="#LBCC" class="headerlink" title="LBCC"></a>LBCC</h3><p>Lock Based Concurrency Control——基于锁的并发控制</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210911205156.png" alt=""></p>
-<ul>
-<li>虽然解决了数据安全性问题，但是考虑到真实场景中（有几千万条的数据），这样子加锁，也就意味着当前数据只允许一个事务进行操作，此时其他事务想对该数据操作只能等待，大大降低性能</li>
-<li>特点：读写都加锁，所以读读不冲突，读写会冲突，写写更会冲突（死锁问题）</li>
-</ul>
-<h3 id="MVCC机制（RR和RC）"><a href="#MVCC机制（RR和RC）" class="headerlink" title="MVCC机制（RR和RC）"></a>MVCC机制（RR和RC）</h3><p>Multi Version Concurrency——多版本的并发控制</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210911211559.png" alt=""></p>
-<blockquote>
-<p>  MVCC使得数据库读不会对数据加锁，普通的SELECT请求不会加锁，提高了数据库的 并发处理能力。</p>
-<p>  借助MVCC，数据库可以实现READ COMMITTED，REPEATABLE READ等隔离级别，用户可以查看当前数据的前一个或者前几个历史版本，保证了ACID中的I特性 （隔离性)。</p>
-</blockquote>
-<p>特点：读不加锁，读写不冲突</p>
-<h2 id="InnoDB中MVCC的实现"><a href="#InnoDB中MVCC的实现" class="headerlink" title="InnoDB中MVCC的实现"></a>InnoDB中MVCC的实现</h2><blockquote>
-<p>  MVCC 是用于数据库提供并发访问控制的并发控制技术</p>
-<p>  由于读不加锁，读写不冲突的特性，提高了系统的并发性能，几乎所有的RDBMS都支持了MVCC</p>
-<p>  其核心理念就是数据快照，不同的事务访问不同版本的数据快照，从而实现不同的事务隔离级别。</p>
-</blockquote>
-<p><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>MVCC在mysql中的实现依赖的是<code>undo log</code> 与 <code>read view</code></p>
-<h3 id="Undo-log"><a href="#Undo-log" class="headerlink" title="Undo log"></a>Undo log</h3><p><code>insert undo log</code> </p>
-<ul>
-<li>insert undo log是指在insert操作中产生的undo log。由于insert操作的记录，只是对本事务可见，其他事务不可见，所以undo log可以在事务提交后直接删除，而不需要purge操作。</li>
-</ul>
-<p><code>update undo log</code></p>
-<ul>
-<li>update undo log是指在delete和update操作中产生的undo log。该undo log会被后续用 于MVCC当中，因此不能提交的时候删除。提交后会放入undo log的链表，等待purge 线程进行最后的删除。</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210911213233.png" alt=""></p>
-<h3 id="ReadView"><a href="#ReadView" class="headerlink" title="ReadView"></a>ReadView</h3><blockquote>
-<p>  使用 READ COMMITTED 和 REPEATABLE READ 隔离级别的事务来说，就需要用到我们上边所说的版本链了。</p>
-<p>  核心问题就是需要判断一下版本链中的哪个版本是当前事务可见的。</p>
-<p>  所以设计 InnoD B 的设计者提出了一个ReadView的概念，这个 ReadView 中主要包含当前系统中还有哪些 活跃的读写事务，把它们的事务id放到一个列表中，我们把这个列表命名为为m_ids，并确定三个变量的值：</p>
-<p>  m_up_limit_id: m_ids事务列表中的最小事务id，如果当前列表为空那么就等于 m_low_limit_id。事务id的下限。</p>
-<p>  m_low_limit_id ：系统中将要产生的下一个事务id的值。 事务id的上限。 </p>
-<p>  m_creator_trx_id：当前事务id，m_ids中不包含当前事务id。</p>
-</blockquote>
-<p>事务id</p>
-<ul>
-<li>事务执行过程中，只有在第一次真正修改记录时（比如使用INSERT、 DELETE、UPDATE语句），才会被分配一个单独的事务id，这个事务id是递增的。</li>
-</ul>
-<h4 id="对于RC来说"><a href="#对于RC来说" class="headerlink" title="对于RC来说"></a>对于RC来说</h4><ul>
-<li>每次读取数据前都生成一个ReadView</li>
-</ul>
-<p>比方说现在系统里有两个id分别为100、200的事务在执行：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql"># Transaction 100
-BEGIN;
-
-UPDATE t SET c = '关羽' WHERE id = 1;
-
-UPDATE t SET c = '张飞' WHERE id = 1;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>注意<code>Transaction 100</code>并没有提交</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql"># Transaction 200 
-BEGIN;
-
-# 更新了一些别的表的记录 
-...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>Transaction 200</code> 等等会进行一些操作</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210911214014.png" alt=""></p>
-<ul>
-<li><p>活跃的事务：没有提交的事务，还活着</p>
-</li>
-<li><p>刘备是最初的数据，事务id（trx_id）是80，是最老的数据。接着<code>事物100</code>更新了id=1的数据</p>
-</li>
-</ul>
-<p>假设现在有一个使用READ COMMITTED隔离级别的事务开始执行：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql"># 使用READ COMMITTED隔离级别的事务 
-BEGIN;
-
-# SELECT1：Transaction 100、200未提交 
-SELECT * FROM t WHERE id = 1; # 得到的列c的值为'刘备'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>此时的这个事务的并不会产生事务id，只有第一次发生修改的时候才会产生。<span class="github-emoji"><span>☝</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/261d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
-</ul>
-<p>分析：</p>
-<ul>
-<li>之前我们说对于RC级别来讲每次查询操作都会返回最新的数据</li>
-<li><p>RC级别在<code>读取数据前</code>会生成一个ReadView，此时我们正在干这个事（select读数据），接着产生一个ReadView（存放活跃的事务），范围在【100，200】之间</p>
-</li>
-<li><p>事务100并没有提交，所以读到的数据还是原来的刘备</p>
-</li>
-</ul>
-<p>我们把事务id为100的事务提交一下，就像这样：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql"># Transaction 100 
-BEGIN;
-
-UPDATE t SET c = '关羽' WHERE id = 1;
-
-UPDATE t SET c = '张飞' WHERE id = 1;
-
-COMMIT;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>然后再到事务id为200的事务中更新一下表中id为1的记录：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql"># Transaction 200 BEGIN;
-
-# 更新了一些别的表的记录 ...
-
-UPDATE t SET c = '赵云' WHERE id = 1;
-
-UPDATE t SET c = '诸葛亮' WHERE id = 1;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>此刻，表中id为1的记录的版本链就长这样：</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210911215411.png" alt=""></p>
-<p>然后再到刚才使用READ COMMITTED隔离级别的事务中继续查找这个id为1的记录，如下：</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql"># 使用READ COMMITTED隔离级别的事务 
-BEGIN;
-
-# SELECT1：Transaction 100、200均未提交 
-SELECT * FROM t WHERE id = 1; # 得到的列c的值为'刘备'
-
-# SELECT2：Transaction 100提交， Transaction 200未提交 
-SELECT * FROM t WHERE id = 1; # 得到的列c的值为'张飞'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这就是RC机制——在每次读数据前产生一个ReadView来确定应该读取哪个版本</p>
-<ul>
-<li><p>Transaction 100、200均未提交（说明是活跃的，存在在ReadView中）</p>
-<p>——ReadView【100，200】，刘备的版本号&lt;100, 则选择刘备，因为可以这样认为，事务id=80是最新的，RC应该返回它给用户</p>
-</li>
-<li><p>Transaction 100提交， Transaction 200未提交（100已提交，因此不会存在在ReadView中） </p>
-<p>——ReadView【200，200】，张飞和关羽的事物id都小于200，说明对于当前事物这两条记录都可以被看见，但返回第一个看到的版本，也就是张飞，因为其是最新的数据</p>
-</li>
-</ul>
-<p>至此，通过ReadView的产生时机，实现了RC这种隔离级别</p>
-<h4 id="对于RR来说"><a href="#对于RR来说" class="headerlink" title="对于RR来说"></a>对于RR来说</h4><p>在事务开始后第一次读取数据时生成一个ReadView</p>
-<p>针对RC的那个例子来讲，如下:</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql"># 使用REPEATABLE READ隔离级别的事务 
-BEGIN;
-
-# SELECT1：Transaction 100、200均未提交 
-SELECT * FROM t WHERE id = 1; # 得到的列c的值为'刘备'
-
-# SELECT2：Transaction 100提交， Transaction 200未提交 
-SELECT * FROM t WHERE id = 1; # 得到的列c的值仍为'刘备'<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>分析：</p>
-<p>因为在事务开始后第一次读取数据时生成一个ReadView</p>
-<ul>
-<li>Transaction 100、200均未提交 ——我们生成的ReadView【100，200】，此时做<code>select</code>操作，在版本链中应该找到事务id&lt;100的事务，也就是刘备这条记录</li>
-<li>Transaction 100提交， Transaction 200未提交 ——生成的ReadView还是【100，200】，如上操作的话，查找到的记录还是刘备</li>
-</ul>
-<p><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>RC和RR隔离级别下，形成的ReadView的时机以及内容是不⼀样的。这就导致了不同隔离级别下同 样的案例，结果是不⼀样的</p>
-<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><ul>
-<li>如果某个版本的数据对当前事务不可见的话，那就顺着版本链找到下一个版本的数据，继续按照上边的步骤判断可见性，依此类推，直到版本链中的最后一个版本，如果最后一个版本也不可见的话，那么就意味着该条记录对该事务不可见，查询结果就不包含该记录。</li>
-<li>在 MySQL 中，<code>READ COMMITTED</code>和<code>REPEATABLE READ</code> 它们生成ReadView的时机不同</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>Taekwondo之540</title>
     <url>/posts/e584.html</url>
     <content><![CDATA[<h1 id="跆拳道540个人练习"><a href="#跆拳道540个人练习" class="headerlink" title="跆拳道540个人练习"></a>跆拳道540个人练习</h1><p>因为是一位码农，所以才会想要挑战自我！</p>
@@ -285,6 +104,263 @@ SELECT * FROM t WHERE id = 1; # 得到的列c的值仍为'刘备'<span aria-hidd
 <p>设计巧妙之处：一个数据经过3个哈希函数，得到3个数组下标，查找数组若这3个下标对应的值都为1，则说明这个数据大概率存在，若有一个是0，则一定不存在</p>
 <p>缺点：存在误判，只能准确判断一个数据不存在</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>IO多路复用</title>
+    <url>/posts/0.html</url>
+    <content><![CDATA[<h1 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h1><p><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>为什么会出现IO多路复用</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721145201.png" alt=""></p>
+<ul>
+<li><p>系统调用会带来额外的开销：</p>
+<ul>
+<li>操作系统层面(准确)：作为用户程序如何调用系统资源</li>
+<li>更宏观的层面：调用系统函数(system call)</li>
+</ul>
+</li>
+<li><p>内核态：执行特权指令 ｜ 用户态：执行非特权指令</p>
+<ul>
+<li>从用户态到内核态：通过系统调用（主要）、中断、异常</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>  高并发需要考虑系统调用的开销<br>  因为从用户态下沉到内核态往往伴随着数据的拷贝，加上本身切换的时间成本，会影响性能，因此减少数据的拷贝次数是提高高并发性能的关键。</p>
+</blockquote>
+<ul>
+<li>NIO（非阻塞IO）实现并发：在循环中采用轮询机制——同时和100个女朋友聊天，其中一个不理我，那就找下一个聊，过会再来看看(EAGAIN)<ul>
+<li>弊端，需要自己反复的查看，而没有一种通知机制</li>
+</ul>
+</li>
+<li>解决：使用IO多路复用</li>
+</ul>
+<h1 id="select"><a href="#select" class="headerlink" title="select"></a>select</h1><blockquote>
+<p>  船长奇特类比：假设我拥有很多女朋友（文件描述符），每天只关心三件事，女友想跟我说话（可读），女友想听我说话（可写），女友想跟我分手（异常），<code>select</code>会在女朋友的思想里（内核中）监控，告诉你有多少女朋友想跟你说话、你可以跟她说话、或者要跟你分手（这三个都是就绪态），但是不会具体指出哪一个。此时我想知道是哪个女朋友能跟我进行对话（就绪），我只能去问<code>select</code>，并且是一个一个问三种状态（可选择）。</p>
+</blockquote>
+<p>通过这个类比可以得出一些结论：</p>
+<ul>
+<li><p><code>select</code>时间复杂度高：假设有1000个女朋友，只有第999个是就绪态的，那么我需要从第一个轮询到第999个</p>
+<ul>
+<li><p>用户态和内核态都需要轮询</p>
+</li>
+<li><p>三种状态可以选择，若是只需要监听有哪些文件是可读的，只需要问一种状态即可，在较小的客户量下使用select完全可以处理过来</p>
+</li>
+</ul>
+</li>
+<li><p>拷贝次数多：<code>select</code>执行先从用户态拿到需要监听的集合，然后下沉到内核态进行监听，接着返回给用户态有哪些文件描述符是就绪的，这里发生了两次数据拷贝行为</p>
+<ul>
+<li>通过<code>FD_ISSET</code>去轮询</li>
+</ul>
+</li>
+<li><p>并发量有上限</p>
+</li>
+</ul>
+<p>原型</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721150123.png" alt=""></p>
+<ul>
+<li>nfds: 文件描述符集合——底层使用数组维护，数量有一个上限，一般为1024</li>
+<li>fd_set: 定义文件描述符的集合状态——可读，可写，异常</li>
+<li>timeout: 时间间隔——一直等（NULL），等多久（&gt;0），立即返回（0）</li>
+<li>四个宏操作集合<ul>
+<li>FD_CLR——从集合中删除一个文件描述符</li>
+<li>FD_ISSET——查看一个文件描述符是否在集合中</li>
+<li>FD_SET——添加一个文件描述符到集合中</li>
+<li>FD_ZERO——清空集合</li>
+</ul>
+</li>
+</ul>
+<p>描述</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721151433.png"></p>
+<p><code>select</code>和 <code>pselect</code> 允许程序监视多个文件描述符，等待一个或多个文件描述符变成“ready”进行某类 I/O 操作</p>
+<ul>
+<li>ready：就绪态，无阻塞的读或足够小的写</li>
+</ul>
+<p><code>select</code>和<code>pselect</code>的区别：</p>
+<ol>
+<li><p>精度不一样：前者的timeval结构体使用秒和微秒，后者的timespec使用秒和纳秒</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721153619.png" style="zoom: 33%;"></p>
+</li>
+<li><p><code>select</code> 可能会更新超时参数以指示还剩多少时间。  <code>pselect</code>不会改变这个参数。</p>
+</li>
+<li><p><code>select</code>没有 <code>sigmask</code> 参数，其行为与使用<code>NULL sigmask</code>调用的<code>pselect</code> 一样。</p>
+<ul>
+<li><code>pselect</code>可以忽略<code>sigmask</code>设置的信号</li>
+</ul>
+</li>
+</ol>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721152415.png" alt=""></p>
+<p>select监视三组独立的文件描述集合</p>
+<ol>
+<li>可读的——文件描述符是否有内容</li>
+<li>可写的——监视文件描述符中是否有可用空间写入</li>
+<li>异常的——文件描述符是否存在异常</li>
+</ol>
+<p>退出的时候，每个文件描述符集合会被修改，只留下状态发生变化的文件描述符，起指示作用</p>
+<ul>
+<li>所以，如果循环使用select，每次调用select前需要重新初始化每个集合</li>
+</ul>
+<p><code>nfds</code>的值应该是最大文件描述符+1，因为文件描述符从0开始</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721175220.png" alt=""></p>
+<ul>
+<li>使用<code>select</code>可以制作更加精确的计时器，并且可移植</li>
+<li>nfds设置为0，三个集合设置为NULL，timeout非NUL</li>
+</ul>
+<p>返回值</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721153718.png" alt=""></p>
+<ul>
+<li>成功时，select() 和 pselect() 返回三个返回的描述符集中包含的文件描述符的数量（readfds、writefds、exceptfds）</li>
+<li><p>如果超时，可能返回0</p>
+</li>
+<li><p>出错，返回-1</p>
+</li>
+</ul>
+<h1 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h1><blockquote>
+<p>本质上和select是一样的，只是底层数据结构不一样</p>
+<p>继承了基本上select的所有缺点，除了最大文件描述符的限制</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721212821.png" alt=""></p>
+<ul>
+<li>fds：一个结构体数组</li>
+<li>nfds：数组大小</li>
+<li>timeout：时间间隔</li>
+</ul>
+<p><code>struct pollfd</code>结构体成员</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721213301.png" alt=""></p>
+<ul>
+<li>fd：打开文件的文件描述符<ul>
+<li>若为负数，events字段被忽略，revents返回0</li>
+</ul>
+</li>
+<li>events：输入参数，下沉到内核<ul>
+<li>16位的位掩码，每一位可表示一个状态</li>
+<li>指定感兴趣的事件文件描述符fd</li>
+</ul>
+</li>
+<li>revents：输出参数，返回给用户态<ul>
+<li>由内核填充实际发生的事件</li>
+<li>返回包括事件中指定的任何值</li>
+<li>还可以返回<code>POLLERR</code>,<code>POLLHUP</code>,<code>POLLNVAL</code>，这三个值在events中没有意义</li>
+</ul>
+</li>
+</ul>
+<p><code>标志位</code></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721214246.png" alt=""></p>
+<ul>
+<li>POLLIN：可读标志位</li>
+<li>POLLOUT：可写标志位</li>
+</ul>
+<p>返回值</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721220024.png" alt=""></p>
+<ul>
+<li>&gt;0: 返回一个revents字段不是0的结构体个数<ul>
+<li>可能包含events或者出错</li>
+</ul>
+</li>
+<li>=0: 超时或者没有文件描述符就绪</li>
+<li>-1：出错，设置errno值</li>
+</ul>
+<h1 id="star-epoll"><a href="#star-epoll" class="headerlink" title=":star:epoll"></a><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>epoll</h1><p>描述</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722003304.png" alt=""></p>
+<ul>
+<li><code>epoll</code>——IO事件驱动设备</li>
+<li>三个系统调用<ul>
+<li><code>epoll_create</code>：创建一个实例，返回一个指向该实例的文件描述符</li>
+<li><code>epoll_ctl</code>：注册感兴趣的文件描述符</li>
+<li><code>epoll_wait</code>：等待IO事件，若当前没有可用事件，则一直阻塞</li>
+</ul>
+</li>
+<li>两种触发模式——水平触发（LT）、边缘触发（ET）</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722004313.png" alt=""></p>
+<p>man手册中举了一种情况解释边缘触发：</p>
+<ol>
+<li>代表管道<code>rfd</code>读取端的文件描述符注册在<code>epoll</code> 实例上。</li>
+<li>管道写入器在管道的写入端写入 2 kB 的数据。</li>
+<li>调用<code>epoll_wait</code>将返回 <code>rfd</code> 作为<code>ready</code>的文件描述符。</li>
+<li>管道读取器从 <code>rfd</code> 读取 1 kB 的数据。</li>
+<li>完成对 <code>epoll_wait</code> 的调用。</li>
+</ol>
+<p>如果此时使用边缘触发，则<code>epoll_wait</code>将一直阻塞在第5步中，原因是边缘触发仅在受监视的文件描述符发生更改时才传递事件。</p>
+<ul>
+<li>在此例中，管道读取了数据，文件描述符发生了改变，并完成第5步。但是其实并没有把全部数据读取出来，并且在完成调用后文件描述符并没有发生改变，因此<code>epoll_wait</code>会一直阻塞</li>
+</ul>
+<p>要避免这种情况发生，必须设置相应的文件描述符为非阻塞</p>
+<h2 id="epoll-creat"><a href="#epoll-creat" class="headerlink" title="epoll_creat"></a>epoll_creat</h2><p>描述</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722010315.png" alt=""></p>
+<ul>
+<li>创建一个epoll实例<ul>
+<li>返回一个文件描述符指向该实例</li>
+<li>当不需要使用文件描述符时，调用close关闭</li>
+<li>当所有的文件描述符都关闭时，才销毁实例</li>
+</ul>
+</li>
+</ul>
+<p>返回值</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722010927.png" alt=""></p>
+<ul>
+<li>返回一个非负的文件描述符</li>
+</ul>
+<p>注意点</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722011130.png" alt=""></p>
+<ul>
+<li>size的值<ul>
+<li>此参数会提示内核分配多少空间给events</li>
+<li>但是在现在的内核中会忽略此参数，因为内核可以动态调用events需要的空间，填上此值只是为了兼容旧内核的程序</li>
+</ul>
+</li>
+</ul>
+<h2 id="epoll-ctl"><a href="#epoll-ctl" class="headerlink" title="epoll_ctl"></a>epoll_ctl</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722011929.png" alt=""></p>
+<ul>
+<li>epfd：是创建实例返回的文件描述符</li>
+<li><p>op：对应三种操作——增，删，改</p>
+<ul>
+<li><code>EPOLL_CTL_ADD</code>：在文件描述符 epfd 引用的 epoll 实例上注册目标文件描述符<code>fd</code>并关联<code>event</code></li>
+<li><code>EPOLL_CTL_MOD</code>：更改与目标文件描述符<code>fd</code>关联的事件<code>event</code></li>
+<li><code>EPOLL_CTL_DEL</code>：从<code>epfd</code>引用的<code>epoll</code>实例中移除（注销）目标文件描述符 fd。 </li>
+</ul>
+</li>
+<li><p>event</p>
+</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722013901.png" alt=""></p>
+<ul>
+<li>events和poll中的events一样，都是位掩码<ul>
+<li><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>但是返回的状态信息也在此events中修改，原来的状态可以在data中找回</li>
+</ul>
+</li>
+<li>data可以指向一个文件描述符指针，也可以等于一个文件描述符，很灵活</li>
+<li>data中存储的是原fd的数据，可以通过data找回</li>
+</ul>
+<p>返回值</p>
+<ul>
+<li>成功，返回0. </li>
+<li>失败，返回-1</li>
+</ul>
+<h2 id="epoll-wait"><a href="#epoll-wait" class="headerlink" title="epoll_wait"></a>epoll_wait</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722014639.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722015226.png" alt=""></p>
+<ul>
+<li><p>返回epfd指向的实例中的所有就绪文件描述符个数</p>
+</li>
+<li><p>events中存放的是<code>ready</code>的文件描述符</p>
+</li>
+</ul>
+<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>思考点</p>
+<ol>
+<li>epoll使用了mmap吗？<ul>
+<li>对于mmap，在早起的Linux内核版本中，需要用户自己使用mmap将自己的文件描述符给内核空间，内核升级之后，这个过程不需要用户自己去做了。</li>
+<li>早起需要用户去做，现在是epoll自己已经实现的，但是需要注意的是，这个只是对fd的映射，也就是在进行ready状态的fd传递的时候做，并不会映射其他的</li>
+<li>网上有很多文章会把这个点误解为：epoll使用了mmap，所以当用户在read和write的时候，可以直接从内核中拷贝。但是实际是，在文件描述符的传递上，做了这个操作，不需要像select，poll一样来回传递，但是对于fd真实的IO操作，不可能做到这一点</li>
+<li>select/poll每次调用时都要传递你所要监控的所有socket给select/poll系统调用，这意味着需要将用户态的socket列表copy到内核态，但是epoll就不用，因为在epoll-ctl时已经在内核态存储了需要监控的sock列表。</li>
+</ul>
+</li>
+<li>关于最大文件描述符，<code>epoll</code>真的可以无限存储吗？<ul>
+<li><code>select</code> 的上限是默认是1024，这个值之所以默认是1024，是因为在早起的Linux中，默认打开最大文件数就是1024，所以FD_SETSIZE设置为1024,那么打开的文件数就不会超过1024。修改 FD_SETSIZE 重新编译内核可增大并发数，但因为 O(n) 轮询时间复杂度高治标不治本所以不采纳 </li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>网络编程</tag>
+      </tags>
   </entry>
   <entry>
     <title>shell</title>
@@ -715,273 +791,6 @@ echo ${sum}
       </tags>
   </entry>
   <entry>
-    <title>关于MySQL那点事儿</title>
-    <url>/posts/d4d4.html</url>
-    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><p><a href="https://srymaker0.com/posts/54a3">1.关于MySQL架构</a></p>
-<p><a href="https://srymaker0.com/posts/5a4f">2.InnoDB的RC和RR隔离级别的实现</a></p>
-]]></content>
-      <tags>
-        <tag>Innodb</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IO多路复用</title>
-    <url>/posts/0.html</url>
-    <content><![CDATA[<h1 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h1><p><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>为什么会出现IO多路复用</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721145201.png" alt=""></p>
-<ul>
-<li><p>系统调用会带来额外的开销：</p>
-<ul>
-<li>操作系统层面(准确)：作为用户程序如何调用系统资源</li>
-<li>更宏观的层面：调用系统函数(system call)</li>
-</ul>
-</li>
-<li><p>内核态：执行特权指令 ｜ 用户态：执行非特权指令</p>
-<ul>
-<li>从用户态到内核态：通过系统调用（主要）、中断、异常</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>  高并发需要考虑系统调用的开销<br>  因为从用户态下沉到内核态往往伴随着数据的拷贝，加上本身切换的时间成本，会影响性能，因此减少数据的拷贝次数是提高高并发性能的关键。</p>
-</blockquote>
-<ul>
-<li>NIO（非阻塞IO）实现并发：在循环中采用轮询机制——同时和100个女朋友聊天，其中一个不理我，那就找下一个聊，过会再来看看(EAGAIN)<ul>
-<li>弊端，需要自己反复的查看，而没有一种通知机制</li>
-</ul>
-</li>
-<li>解决：使用IO多路复用</li>
-</ul>
-<h1 id="select"><a href="#select" class="headerlink" title="select"></a>select</h1><blockquote>
-<p>  船长奇特类比：假设我拥有很多女朋友（文件描述符），每天只关心三件事，女友想跟我说话（可读），女友想听我说话（可写），女友想跟我分手（异常），<code>select</code>会在女朋友的思想里（内核中）监控，告诉你有多少女朋友想跟你说话、你可以跟她说话、或者要跟你分手（这三个都是就绪态），但是不会具体指出哪一个。此时我想知道是哪个女朋友能跟我进行对话（就绪），我只能去问<code>select</code>，并且是一个一个问三种状态（可选择）。</p>
-</blockquote>
-<p>通过这个类比可以得出一些结论：</p>
-<ul>
-<li><p><code>select</code>时间复杂度高：假设有1000个女朋友，只有第999个是就绪态的，那么我需要从第一个轮询到第999个</p>
-<ul>
-<li><p>用户态和内核态都需要轮询</p>
-</li>
-<li><p>三种状态可以选择，若是只需要监听有哪些文件是可读的，只需要问一种状态即可，在较小的客户量下使用select完全可以处理过来</p>
-</li>
-</ul>
-</li>
-<li><p>拷贝次数多：<code>select</code>执行先从用户态拿到需要监听的集合，然后下沉到内核态进行监听，接着返回给用户态有哪些文件描述符是就绪的，这里发生了两次数据拷贝行为</p>
-<ul>
-<li>通过<code>FD_ISSET</code>去轮询</li>
-</ul>
-</li>
-<li><p>并发量有上限</p>
-</li>
-</ul>
-<p>原型</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721150123.png" alt=""></p>
-<ul>
-<li>nfds: 文件描述符集合——底层使用数组维护，数量有一个上限，一般为1024</li>
-<li>fd_set: 定义文件描述符的集合状态——可读，可写，异常</li>
-<li>timeout: 时间间隔——一直等（NULL），等多久（&gt;0），立即返回（0）</li>
-<li>四个宏操作集合<ul>
-<li>FD_CLR——从集合中删除一个文件描述符</li>
-<li>FD_ISSET——查看一个文件描述符是否在集合中</li>
-<li>FD_SET——添加一个文件描述符到集合中</li>
-<li>FD_ZERO——清空集合</li>
-</ul>
-</li>
-</ul>
-<p>描述</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721151433.png"></p>
-<p><code>select</code>和 <code>pselect</code> 允许程序监视多个文件描述符，等待一个或多个文件描述符变成“ready”进行某类 I/O 操作</p>
-<ul>
-<li>ready：就绪态，无阻塞的读或足够小的写</li>
-</ul>
-<p><code>select</code>和<code>pselect</code>的区别：</p>
-<ol>
-<li><p>精度不一样：前者的timeval结构体使用秒和微秒，后者的timespec使用秒和纳秒</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721153619.png" style="zoom: 33%;"></p>
-</li>
-<li><p><code>select</code> 可能会更新超时参数以指示还剩多少时间。  <code>pselect</code>不会改变这个参数。</p>
-</li>
-<li><p><code>select</code>没有 <code>sigmask</code> 参数，其行为与使用<code>NULL sigmask</code>调用的<code>pselect</code> 一样。</p>
-<ul>
-<li><code>pselect</code>可以忽略<code>sigmask</code>设置的信号</li>
-</ul>
-</li>
-</ol>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721152415.png" alt=""></p>
-<p>select监视三组独立的文件描述集合</p>
-<ol>
-<li>可读的——文件描述符是否有内容</li>
-<li>可写的——监视文件描述符中是否有可用空间写入</li>
-<li>异常的——文件描述符是否存在异常</li>
-</ol>
-<p>退出的时候，每个文件描述符集合会被修改，只留下状态发生变化的文件描述符，起指示作用</p>
-<ul>
-<li>所以，如果循环使用select，每次调用select前需要重新初始化每个集合</li>
-</ul>
-<p><code>nfds</code>的值应该是最大文件描述符+1，因为文件描述符从0开始</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721175220.png" alt=""></p>
-<ul>
-<li>使用<code>select</code>可以制作更加精确的计时器，并且可移植</li>
-<li>nfds设置为0，三个集合设置为NULL，timeout非NUL</li>
-</ul>
-<p>返回值</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721153718.png" alt=""></p>
-<ul>
-<li>成功时，select() 和 pselect() 返回三个返回的描述符集中包含的文件描述符的数量（readfds、writefds、exceptfds）</li>
-<li><p>如果超时，可能返回0</p>
-</li>
-<li><p>出错，返回-1</p>
-</li>
-</ul>
-<h1 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h1><blockquote>
-<p>本质上和select是一样的，只是底层数据结构不一样</p>
-<p>继承了基本上select的所有缺点，除了最大文件描述符的限制</p>
-</blockquote>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721212821.png" alt=""></p>
-<ul>
-<li>fds：一个结构体数组</li>
-<li>nfds：数组大小</li>
-<li>timeout：时间间隔</li>
-</ul>
-<p><code>struct pollfd</code>结构体成员</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721213301.png" alt=""></p>
-<ul>
-<li>fd：打开文件的文件描述符<ul>
-<li>若为负数，events字段被忽略，revents返回0</li>
-</ul>
-</li>
-<li>events：输入参数，下沉到内核<ul>
-<li>16位的位掩码，每一位可表示一个状态</li>
-<li>指定感兴趣的事件文件描述符fd</li>
-</ul>
-</li>
-<li>revents：输出参数，返回给用户态<ul>
-<li>由内核填充实际发生的事件</li>
-<li>返回包括事件中指定的任何值</li>
-<li>还可以返回<code>POLLERR</code>,<code>POLLHUP</code>,<code>POLLNVAL</code>，这三个值在events中没有意义</li>
-</ul>
-</li>
-</ul>
-<p><code>标志位</code></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721214246.png" alt=""></p>
-<ul>
-<li>POLLIN：可读标志位</li>
-<li>POLLOUT：可写标志位</li>
-</ul>
-<p>返回值</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721220024.png" alt=""></p>
-<ul>
-<li>&gt;0: 返回一个revents字段不是0的结构体个数<ul>
-<li>可能包含events或者出错</li>
-</ul>
-</li>
-<li>=0: 超时或者没有文件描述符就绪</li>
-<li>-1：出错，设置errno值</li>
-</ul>
-<h1 id="star-epoll"><a href="#star-epoll" class="headerlink" title=":star:epoll"></a><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>epoll</h1><p>描述</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722003304.png" alt=""></p>
-<ul>
-<li><code>epoll</code>——IO事件驱动设备</li>
-<li>三个系统调用<ul>
-<li><code>epoll_create</code>：创建一个实例，返回一个指向该实例的文件描述符</li>
-<li><code>epoll_ctl</code>：注册感兴趣的文件描述符</li>
-<li><code>epoll_wait</code>：等待IO事件，若当前没有可用事件，则一直阻塞</li>
-</ul>
-</li>
-<li>两种触发模式——水平触发（LT）、边缘触发（ET）</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722004313.png" alt=""></p>
-<p>man手册中举了一种情况解释边缘触发：</p>
-<ol>
-<li>代表管道<code>rfd</code>读取端的文件描述符注册在<code>epoll</code> 实例上。</li>
-<li>管道写入器在管道的写入端写入 2 kB 的数据。</li>
-<li>调用<code>epoll_wait</code>将返回 <code>rfd</code> 作为<code>ready</code>的文件描述符。</li>
-<li>管道读取器从 <code>rfd</code> 读取 1 kB 的数据。</li>
-<li>完成对 <code>epoll_wait</code> 的调用。</li>
-</ol>
-<p>如果此时使用边缘触发，则<code>epoll_wait</code>将一直阻塞在第5步中，原因是边缘触发仅在受监视的文件描述符发生更改时才传递事件。</p>
-<ul>
-<li>在此例中，管道读取了数据，文件描述符发生了改变，并完成第5步。但是其实并没有把全部数据读取出来，并且在完成调用后文件描述符并没有发生改变，因此<code>epoll_wait</code>会一直阻塞</li>
-</ul>
-<p>要避免这种情况发生，必须设置相应的文件描述符为非阻塞</p>
-<h2 id="epoll-creat"><a href="#epoll-creat" class="headerlink" title="epoll_creat"></a>epoll_creat</h2><p>描述</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722010315.png" alt=""></p>
-<ul>
-<li>创建一个epoll实例<ul>
-<li>返回一个文件描述符指向该实例</li>
-<li>当不需要使用文件描述符时，调用close关闭</li>
-<li>当所有的文件描述符都关闭时，才销毁实例</li>
-</ul>
-</li>
-</ul>
-<p>返回值</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722010927.png" alt=""></p>
-<ul>
-<li>返回一个非负的文件描述符</li>
-</ul>
-<p>注意点</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722011130.png" alt=""></p>
-<ul>
-<li>size的值<ul>
-<li>此参数会提示内核分配多少空间给events</li>
-<li>但是在现在的内核中会忽略此参数，因为内核可以动态调用events需要的空间，填上此值只是为了兼容旧内核的程序</li>
-</ul>
-</li>
-</ul>
-<h2 id="epoll-ctl"><a href="#epoll-ctl" class="headerlink" title="epoll_ctl"></a>epoll_ctl</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722011929.png" alt=""></p>
-<ul>
-<li>epfd：是创建实例返回的文件描述符</li>
-<li><p>op：对应三种操作——增，删，改</p>
-<ul>
-<li><code>EPOLL_CTL_ADD</code>：在文件描述符 epfd 引用的 epoll 实例上注册目标文件描述符<code>fd</code>并关联<code>event</code></li>
-<li><code>EPOLL_CTL_MOD</code>：更改与目标文件描述符<code>fd</code>关联的事件<code>event</code></li>
-<li><code>EPOLL_CTL_DEL</code>：从<code>epfd</code>引用的<code>epoll</code>实例中移除（注销）目标文件描述符 fd。 </li>
-</ul>
-</li>
-<li><p>event</p>
-</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722013901.png" alt=""></p>
-<ul>
-<li>events和poll中的events一样，都是位掩码<ul>
-<li><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>但是返回的状态信息也在此events中修改，原来的状态可以在data中找回</li>
-</ul>
-</li>
-<li>data可以指向一个文件描述符指针，也可以等于一个文件描述符，很灵活</li>
-<li>data中存储的是原fd的数据，可以通过data找回</li>
-</ul>
-<p>返回值</p>
-<ul>
-<li>成功，返回0. </li>
-<li>失败，返回-1</li>
-</ul>
-<h2 id="epoll-wait"><a href="#epoll-wait" class="headerlink" title="epoll_wait"></a>epoll_wait</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722014639.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722015226.png" alt=""></p>
-<ul>
-<li><p>返回epfd指向的实例中的所有就绪文件描述符个数</p>
-</li>
-<li><p>events中存放的是<code>ready</code>的文件描述符</p>
-</li>
-</ul>
-<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>思考点</p>
-<ol>
-<li>epoll使用了mmap吗？<ul>
-<li>对于mmap，在早起的Linux内核版本中，需要用户自己使用mmap将自己的文件描述符给内核空间，内核升级之后，这个过程不需要用户自己去做了。</li>
-<li>早起需要用户去做，现在是epoll自己已经实现的，但是需要注意的是，这个只是对fd的映射，也就是在进行ready状态的fd传递的时候做，并不会映射其他的</li>
-<li>网上有很多文章会把这个点误解为：epoll使用了mmap，所以当用户在read和write的时候，可以直接从内核中拷贝。但是实际是，在文件描述符的传递上，做了这个操作，不需要像select，poll一样来回传递，但是对于fd真实的IO操作，不可能做到这一点</li>
-<li>select/poll每次调用时都要传递你所要监控的所有socket给select/poll系统调用，这意味着需要将用户态的socket列表copy到内核态，但是epoll就不用，因为在epoll-ctl时已经在内核态存储了需要监控的sock列表。</li>
-</ul>
-</li>
-<li>关于最大文件描述符，<code>epoll</code>真的可以无限存储吗？<ul>
-<li><code>select</code> 的上限是默认是1024，这个值之所以默认是1024，是因为在早起的Linux中，默认打开最大文件数就是1024，所以FD_SETSIZE设置为1024,那么打开的文件数就不会超过1024。修改 FD_SETSIZE 重新编译内核可增大并发数，但因为 O(n) 轮询时间复杂度高治标不治本所以不采纳 </li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <tags>
-        <tag>网络编程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据结构之Leetcode刷题集</title>
     <url>/posts/1124.html</url>
     <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><ul>
@@ -1002,186 +811,13 @@ echo ${sum}
       </tags>
   </entry>
   <entry>
-    <title>面向面试简答题之查漏补缺</title>
-    <url>/posts/79b0.html</url>
-    <content><![CDATA[<p><code>面试是一个相互引导的过程，面试官会通过相应的问题来考察你的知识广度和深度，而你需要引导面试官你擅长的领域。</code></p>
-<h1 id="——计算机网络——"><a href="#——计算机网络——" class="headerlink" title="——计算机网络——"></a>——计算机网络——</h1><h1 id="简述tcp3次握手"><a href="#简述tcp3次握手" class="headerlink" title="简述tcp3次握手"></a>简述tcp3次握手</h1><p>三次握手 [SYN、ACK]</p>
-<ul>
-<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/C51Xz7NYuU8B5eIK.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/C51Xz7NYuU8B5eIK.png" alt="图片"></a></li>
-<li><strong>第一次握手</strong>：客户端发送SYN包到服务器[客户端进入SYN_SEND状态，等待服务器确认]</li>
-<li><strong>第二次握手</strong>：服务器收到，必须确认客户端，设置一个ACK，同时自己也设置一个SYN，即SYN+ACK包[服务端从LISTEN进入SYN_RECV状态]</li>
-<li><strong>第三次握手</strong>：客户端收到服务器的SYN＋ACK包，向服务器发送ACK确认包，发送完毕后，客户端进入ESTABLISHED状态，服务器收到ACK后也进入ESTABLISHED状态</li>
-<li>注意：每次的ACK序号，在需要确认的包的序号上加一，表示确认</li>
-</ul>
-<h2 id="简述tcp为什么要3次握手，为什么2次不行，4次可以么？"><a href="#简述tcp为什么要3次握手，为什么2次不行，4次可以么？" class="headerlink" title="简述tcp为什么要3次握手，为什么2次不行，4次可以么？"></a>简述tcp为什么要3次握手，为什么2次不行，4次可以么？</h2><p>首先网络是极其复杂且恶劣的环境，以至于设计出了tcp这样的可靠传输协议，全双工的协议，一条连接的建立，有去必有回才算建立</p>
-<ul>
-<li>先来看一次握手为什么不行，这当然是行不通的，假设客户端A传一个包给服务端B，此时建立一条连接，而B没有应答，在这个过程中可能出现了丢包的情况，A就无法确认数据包是否送达，有去无回，此时A自然认为自己无法正确连接B。</li>
-<li><p>为什么2次不行：同样，客户端A想从服务端B请求数据，发了一个数据包，此时A与B建立一条连接（第一次握手），B收到了A的请求并给A一个应答，此时又建立了一条连接（第二次握手），若就这样结束，因为中途数据包可能丢失，或者因为A结束了与B的连接，那么B也无法判断我建立的这条连接是否能正确的发送数据包，也就无法断定是否建立了与A的连接。——B发了但是没收到应答，不算建立成功</p>
-</li>
-<li><p>4次可以么？：是可以的，但是没有必要，对A来讲，若B给了一个响应，那么A认为自己是可以连接到B的，同样的，若B给了A应答后收到了A的应答，那么B认为连接建立成功，这样A与B就可以正常通信了。对于4次握手来说，可能对于B应答的应答（第三次握手）这样的数据包在网络中可能丢失，B会再次传送一个应答，来尝试是否能与A进行连接，但这是网络原因，只要B收到了A的应答，那么就是可以进行正确的连接，4次握手可以，但是没有必要，还是无法保证网络的稳定性</p>
-</li>
-<li><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>扩展：TCP建立连接的过程中还要确认数据包的序号，防止接受不需要或者不想传的包——A与B建立了连接（发送数据包后），此时A直接断开，但是数据包在网络上流离，此时A又与B重新建立连接，由于网络的时延性，B很有可能收到在网络上流离的数据包，那么这样就不是我们想要的数据。<ul>
-<li>所以要确认数据包的序号，这个序号是随着时间的变化而变化的，若是要收到相同序号的包，则需要4个小时，由于存在TTL，那些数据包早就灰飞烟灭了</li>
-</ul>
-</li>
-</ul>
-<h2 id="简述从输入网址到浏览器显示的过程"><a href="#简述从输入网址到浏览器显示的过程" class="headerlink" title="简述从输入网址到浏览器显示的过程"></a>简述从输入网址到浏览器显示的过程</h2><blockquote>
-<p>  这个问题非常经典，但还是会经常问，因为考察你对计算机网络知识的广度，然后面试官再进一步问你更深入的问题</p>
-</blockquote>
-<p>总的来说整个过程如下：</p>
-<p>DNS解析：将域名解析成IP地址</p>
-<ul>
-<li>本地hosts，本地DNS解析器缓存</li>
-<li>本地DNS</li>
-<li>迭代/递归：根DNS服务器，顶级DNS，权威DNS</li>
-<li>直到找到域名对应的IP</li>
-</ul>
-<p>TCP连接：TCP三次握手（可以阐述为什么需要3次握手？）</p>
-<p>发送HTTP请求——请求方法、URL、HTTP版本</p>
-<p>服务器处理请求并返回HTTP报文</p>
-<ul>
-<li>解析用户请求，知道了需要调度哪些资源文件，并调用数据库信息，返回给浏览器客户端</li>
-<li>返回响应结果——一般会有一个HTTP状态码，比如200、301、404等，通过这个状态码我们可以直到服务器端的处理是否正常，并能了解具体的错误</li>
-</ul>
-<p>浏览器解析渲染页面</p>
-<p>断开连接：TCP四次挥手</p>
-<p><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>上述过程如有不熟悉的，应当加以了解，这是计算机基础</p>
-<h2 id="TCP与UDP有哪些区别？"><a href="#TCP与UDP有哪些区别？" class="headerlink" title="TCP与UDP有哪些区别？"></a>TCP与UDP有哪些区别？</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210530151206.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210530151230.png" alt=""></p>
-<ul>
-<li>TCP是面向连接的，实现数据可靠传输，拥有拥塞控制等流量控制算法，会根据网络环境调节传输速度，比较复杂。</li>
-</ul>
-<h2 id="TCP四次挥手的过程是什么样的？"><a href="#TCP四次挥手的过程是什么样的？" class="headerlink" title="TCP四次挥手的过程是什么样的？"></a>TCP四次挥手的过程是什么样的？</h2><ul>
-<li><p>四次挥手 [FIN、ACK]</p>
-<ul>
-<li><p><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/GlWgLx87BeFdH15F.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/GlWgLx87BeFdH15F.png" alt="图片"></a></p>
-</li>
-<li><p><strong>第一次挥手</strong>：假设客户端想要关闭连接，客户端发送一个FIN包，表示自己已经没有数据可以发送了 [此时仍然可以接收数据][客户端进入FIN_WAIT_1状态]</p>
-</li>
-<li><p>第二次挥手：服务端回复一个ACK包，表明自己接收到了客户端关闭连接的请求，但自己还需要做些准备来关闭连接[服务端进入CLOSE_WAIT状态]</p>
-<ul>
-<li>客户端接收到这个ACK后，进入FIN_WAIT_2状态，等待服务端关闭连接</li>
-</ul>
-</li>
-<li><p><strong>第三次挥手</strong>：服务端准备好关闭连接时，向客户端再发送FIN[服务端进入LAST_ACK状态，等待客户端的确认]</p>
-</li>
-<li><p>第四次挥手：客户端接收到来自服务器端的关闭请求，发送一个ACK包[客户端进入 TIME_WAIT状态，为可能出现的超时重传的FIN包，等待2个MSL时间]</p>
-<ul>
-<li>服务端接收到这个ACK之后，关闭连接，进入CLOSED状态</li>
-</ul>
-</li>
-<li>客户端等待了<strong>2个MSL</strong>后，如果没有收到服务端的FIN，则认为服务端已经正常关闭连接，于是自己也关闭连接，进入CLOSED状态；否则，再次发送ACK</li>
-</ul>
-</li>
-<li><p>参考<a href="https://hit-alibaba.github.io/interview/basic/network/TCP.html#三次握手与四次挥手?fileGuid=zdkyBEa86pCYmlA6">三次握手与四次挥手</a>——博客 [注：第四次挥手客户端等待的是超时重传的FIN而不是ACK]</p>
-</li>
-</ul>
-<h3 id="附加：2个MSL的含义"><a href="#附加：2个MSL的含义" class="headerlink" title="附加：2个MSL的含义"></a>附加：2个MSL的含义</h3><p>TIME_WAIT是如何引起的，有什么作用，在编程时有什么弊端，怎么解决？</p>
-<ul>
-<li><p>引起原因：TCP的四次挥手时，已经完成前三次挥手，在第四次挥手时，客户端收到来自服务端的FIN，它在发送一个ACK后，就会进入TIME_WAIT状态</p>
-<ul>
-<li>此时客户端需要等待两个最大<strong>数据段生命周期</strong>（Maximum segment lifetime，MSL）的时间之后，才会进入CLOSED状态</li>
-</ul>
-</li>
-<li><p>存在原因</p>
-<ul>
-<li><p>①阻止延迟数据段</p>
-<ul>
-<li>每一个TCP数据段都包含唯一的序列号，这个序列号能够保证TCP协议的可靠</li>
-<li>为了保证新TCP连接的数据段不会与还在网络中传输的历史连接的数据段重复，TCP连接在分配新的序列号之前需要至少<strong>静默</strong>数据段在网络中能够存活的最长时间，即MSL</li>
-<li>从而防止延迟的数据段被其他使用相同源地址、源端口、目的地址以及目的端口的TCP连接收到</li>
-</ul>
-</li>
-<li><p>②保证连接关闭</p>
-<ul>
-<li>如果客户端等待的时间不够长，当服务端还没有收到ACK消息，而客户端重新与服务端建立TCP连接时，会发生：<ul>
-<li>服务端因为没有收到ACK消息，所以仍然认为当前连接是合法的</li>
-<li>客户端重新发送SYN消息请求握手时，会收到服务端的RST消息，连接建立的过程被终止</li>
-</ul>
-</li>
-<li>所以要保证TCP连接的远程被正确关闭，即等待被动关闭连接的一方收到FIN对应的ACK消息</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>编程影响</p>
-<ul>
-<li>对于高并发的场景容易出现过多的TIME_WAIT</li>
-<li>而MSL的时长一般是60s，这是难以接受的，可能一个TCP连接只为了通信几秒钟，但TIME_WAIT就需要等待2分钟</li>
-</ul>
-</li>
-<li><p>解决方式</p>
-<ul>
-<li>基于一个<strong>时间戳变量</strong>，记录发送数据包、最近一次接收数据包的时间</li>
-<li>然后配合两个参数<ul>
-<li><strong>reuse</strong>：允许主动关闭连接的一方，再次向对方发起连接的时候，复用处于TIME_WAIT状态的连接</li>
-<li><strong>recycle</strong>：内核会快速回收处于TIME_WAIT的连接，只需等待RTO时间 [数据包重传的超时时间]</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>参考</p>
-<ul>
-<li><a href="https://draveness.me/whys-the-design-tcp-time-wait/?fileGuid=zdkyBEa86pCYmlA6">为什么 TCP 协议有 TIME_WAIT 状态</a>——博客</li>
-<li><a href="https://zhuanlan.zhihu.com/p/40013724?fileGuid=zdkyBEa86pCYmlA6">系统调优你所不知道的TIME_WAIT和CLOSE_WAIT</a>——知乎</li>
-<li><a href="https://www.yisu.com/zixun/63792.html?fileGuid=zdkyBEa86pCYmlA6">理解TIME_WAIT，彻底弄清解决TCP: time wait bucket table overflow</a>——亿速云</li>
-</ul>
-</li>
-</ul>
-<h2 id="什么是HTTPS的SSL认证？"><a href="#什么是HTTPS的SSL认证？" class="headerlink" title="什么是HTTPS的SSL认证？"></a>什么是HTTPS的SSL认证？</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210622002619.png" style="zoom:50%;"></p>
-<p>参考——<a href="https://www.runoob.com/w3cnote/https-ssl-intro.html">HTTPS 与 SSL 证书概要</a></p>
-<h1 id="——C-C-相关——"><a href="#——C-C-相关——" class="headerlink" title="——C/C++相关——"></a>——C/C++相关——</h1><h2 id="C-为什么不像JAVA一样有垃圾回收机制"><a href="#C-为什么不像JAVA一样有垃圾回收机制" class="headerlink" title="C++为什么不像JAVA一样有垃圾回收机制"></a>C++为什么不像JAVA一样有垃圾回收机制</h2><p>垃圾回收机制——在JAVA中，我们对资源的申请不需要人为的手动释放，JVM会自动释放这些资源</p>
-<p>C++中有RAII（Resource Acquisition is Initialization——资源获取即初始化）技术管理资源</p>
-<ul>
-<li>在构造函数中申请分配资源，在析构函数中释放资源——这是C++语言机制保证的，当一个对象创建的时候，自动调用构造函数，当对象超出作用域的时候会自动调用析构函数，所以，在RAII的指导下，我们应该使用类来管理资源，将资源和对象的生命周期绑定。</li>
-<li>C++中智能指针就利用这样的思想，实现自动的内存管理</li>
-<li>可参考<a href="https://www.cnblogs.com/jiangbin/p/6986511.html">C++RAII介绍</a></li>
-</ul>
-<h2 id="map和unordered-map的区别"><a href="#map和unordered-map的区别" class="headerlink" title="map和unordered_map的区别"></a>map和unordered_map的区别</h2><p>两者底层实现不同：map——红黑树，unordered_map——哈希表</p>
-<p>map：为什么要使用红黑树实现，用其它的呢？</p>
-<ul>
-<li>因为对于单次增删改查操作的时间复杂度都为$O(logn)$</li>
-<li>红黑树是二叉查找树，中序遍历可以有序输出</li>
-<li>对比BST（binary_search_tree）和AVL——BST会退化为链表，排除；而AVL由于其有严格的平衡条件，每次操作可能花费的时间都在平衡上了，影响效率，不适合</li>
-</ul>
-<p>Unordered_map</p>
-<ul>
-<li>哈希表使用拉链法解决哈希冲突，拉链的数据量超过8会使用拉链法，否则自动退化使用红黑树</li>
-<li>Unordered_map查询时间复杂度可能做不到$O(1)$，因为其存在退化</li>
-<li>做不到数据有序</li>
-</ul>
-<h2 id="C-STL-sort的实现"><a href="#C-STL-sort的实现" class="headerlink" title="C++ STL sort的实现"></a>C++ STL sort的实现</h2><p>可参考</p>
-<p><a href="https://srymaker0.com/posts/9271">数据结构力扣刷题集——7.快速排序+优化</a></p>
-<h2 id="const关键字的作用"><a href="#const关键字的作用" class="headerlink" title="const关键字的作用"></a>const关键字的作用</h2><p>修饰变量——该变量不能被改变</p>
-<p>修饰指针——指针常量和常量指针</p>
-<p>修饰引用</p>
-<ul>
-<li>形参引用使用const修饰：<code>foo(const int &amp;a)</code>，这样修饰表示传递过程中不会对值进行修改？</li>
-</ul>
-<p>修饰成员函数</p>
-<ul>
-<li>成员函数不会对成员变量进行修改</li>
-</ul>
-<h2 id="static关键字的作用"><a href="#static关键字的作用" class="headerlink" title="static关键字的作用"></a>static关键字的作用</h2><p>修饰普通变量</p>
-<ul>
-<li>修改变量的存储区域（变为静态区）和生命周期</li>
-</ul>
-<p>修饰普通函数</p>
-<ul>
-<li>仅在该函数的文件内可使用——多人开发中常见，两个人在A文件与B文件写了同名函数的情况，比如用static修饰A文件的同名函数可以别人使用你在A文件内的这个函数</li>
-</ul>
-<p>修饰成员变量</p>
-<ul>
-<li>对很多实例来说，被static修饰的成员变量只有一个，这么多的实例其实共享一个static成员变量（跟着类走的）</li>
-</ul>
-<p>修饰成员函数</p>
-<ul>
-<li>不需要生成对象就可以访问该函数（跟着类走的）</li>
-<li>函数内部不能访问非static的成员属性</li>
-</ul>
-<h1 id="——操作系统相关——"><a href="#——操作系统相关——" class="headerlink" title="——操作系统相关——"></a>——操作系统相关——</h1><h2 id="什么是虚拟内存？"><a href="#什么是虚拟内存？" class="headerlink" title="什么是虚拟内存？"></a>什么是虚拟内存？</h2><h2 id="说一下零拷贝技术"><a href="#说一下零拷贝技术" class="headerlink" title="说一下零拷贝技术"></a>说一下零拷贝技术</h2>]]></content>
+    <title>关于MySQL那点事儿</title>
+    <url>/posts/d4d4.html</url>
+    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><p><a href="https://srymaker0.com/posts/54a3">1.关于MySQL架构</a></p>
+<p><a href="https://srymaker0.com/posts/5a4f">2.InnoDB的RC和RR隔离级别的实现</a></p>
+]]></content>
       <tags>
-        <tag>面试</tag>
+        <tag>Innodb</tag>
       </tags>
   </entry>
   <entry>
@@ -1504,6 +1140,189 @@ echo ${sum}
 ]]></content>
       <tags>
         <tag>计算机网络</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面向面试简答题之查漏补缺</title>
+    <url>/posts/79b0.html</url>
+    <content><![CDATA[<p><code>面试是一个相互引导的过程，面试官会通过相应的问题来考察你的知识广度和深度，而你需要引导面试官你擅长的领域。</code></p>
+<h1 id="——计算机网络——"><a href="#——计算机网络——" class="headerlink" title="——计算机网络——"></a>——计算机网络——</h1><h1 id="简述tcp3次握手"><a href="#简述tcp3次握手" class="headerlink" title="简述tcp3次握手"></a>简述tcp3次握手</h1><p>三次握手 [SYN、ACK]</p>
+<ul>
+<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/C51Xz7NYuU8B5eIK.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/C51Xz7NYuU8B5eIK.png" alt="图片"></a></li>
+<li><strong>第一次握手</strong>：客户端发送SYN包到服务器[客户端进入SYN_SEND状态，等待服务器确认]</li>
+<li><strong>第二次握手</strong>：服务器收到，必须确认客户端，设置一个ACK，同时自己也设置一个SYN，即SYN+ACK包[服务端从LISTEN进入SYN_RECV状态]</li>
+<li><strong>第三次握手</strong>：客户端收到服务器的SYN＋ACK包，向服务器发送ACK确认包，发送完毕后，客户端进入ESTABLISHED状态，服务器收到ACK后也进入ESTABLISHED状态</li>
+<li>注意：每次的ACK序号，在需要确认的包的序号上加一，表示确认</li>
+</ul>
+<h2 id="简述tcp为什么要3次握手，为什么2次不行，4次可以么？"><a href="#简述tcp为什么要3次握手，为什么2次不行，4次可以么？" class="headerlink" title="简述tcp为什么要3次握手，为什么2次不行，4次可以么？"></a>简述tcp为什么要3次握手，为什么2次不行，4次可以么？</h2><p>首先网络是极其复杂且恶劣的环境，以至于设计出了tcp这样的可靠传输协议，全双工的协议，一条连接的建立，有去必有回才算建立</p>
+<ul>
+<li>先来看一次握手为什么不行，这当然是行不通的，假设客户端A传一个包给服务端B，此时建立一条连接，而B没有应答，在这个过程中可能出现了丢包的情况，A就无法确认数据包是否送达，有去无回，此时A自然认为自己无法正确连接B。</li>
+<li><p>为什么2次不行：同样，客户端A想从服务端B请求数据，发了一个数据包，此时A与B建立一条连接（第一次握手），B收到了A的请求并给A一个应答，此时又建立了一条连接（第二次握手），若就这样结束，因为中途数据包可能丢失，或者因为A结束了与B的连接，那么B也无法判断我建立的这条连接是否能正确的发送数据包，也就无法断定是否建立了与A的连接。——B发了但是没收到应答，不算建立成功</p>
+</li>
+<li><p>4次可以么？：是可以的，但是没有必要，对A来讲，若B给了一个响应，那么A认为自己是可以连接到B的，同样的，若B给了A应答后收到了A的应答，那么B认为连接建立成功，这样A与B就可以正常通信了。对于4次握手来说，可能对于B应答的应答（第三次握手）这样的数据包在网络中可能丢失，B会再次传送一个应答，来尝试是否能与A进行连接，但这是网络原因，只要B收到了A的应答，那么就是可以进行正确的连接，4次握手可以，但是没有必要，还是无法保证网络的稳定性</p>
+</li>
+<li><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>扩展：TCP建立连接的过程中还要确认数据包的序号，防止接受不需要或者不想传的包——A与B建立了连接（发送数据包后），此时A直接断开，但是数据包在网络上流离，此时A又与B重新建立连接，由于网络的时延性，B很有可能收到在网络上流离的数据包，那么这样就不是我们想要的数据。<ul>
+<li>所以要确认数据包的序号，这个序号是随着时间的变化而变化的，若是要收到相同序号的包，则需要4个小时，由于存在TTL，那些数据包早就灰飞烟灭了</li>
+</ul>
+</li>
+</ul>
+<h2 id="简述从输入网址到浏览器显示的过程"><a href="#简述从输入网址到浏览器显示的过程" class="headerlink" title="简述从输入网址到浏览器显示的过程"></a>简述从输入网址到浏览器显示的过程</h2><blockquote>
+<p>  这个问题非常经典，但还是会经常问，因为考察你对计算机网络知识的广度，然后面试官再进一步问你更深入的问题</p>
+</blockquote>
+<p>总的来说整个过程如下：</p>
+<p>DNS解析：将域名解析成IP地址</p>
+<ul>
+<li>本地hosts，本地DNS解析器缓存</li>
+<li>本地DNS</li>
+<li>迭代/递归：根DNS服务器，顶级DNS，权威DNS</li>
+<li>直到找到域名对应的IP</li>
+</ul>
+<p>TCP连接：TCP三次握手（可以阐述为什么需要3次握手？）</p>
+<p>发送HTTP请求——请求方法、URL、HTTP版本</p>
+<p>服务器处理请求并返回HTTP报文</p>
+<ul>
+<li>解析用户请求，知道了需要调度哪些资源文件，并调用数据库信息，返回给浏览器客户端</li>
+<li>返回响应结果——一般会有一个HTTP状态码，比如200、301、404等，通过这个状态码我们可以直到服务器端的处理是否正常，并能了解具体的错误</li>
+</ul>
+<p>浏览器解析渲染页面</p>
+<p>断开连接：TCP四次挥手</p>
+<p><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>上述过程如有不熟悉的，应当加以了解，这是计算机基础</p>
+<h2 id="TCP与UDP有哪些区别？"><a href="#TCP与UDP有哪些区别？" class="headerlink" title="TCP与UDP有哪些区别？"></a>TCP与UDP有哪些区别？</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210530151206.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210530151230.png" alt=""></p>
+<ul>
+<li>TCP是面向连接的，实现数据可靠传输，拥有拥塞控制等流量控制算法，会根据网络环境调节传输速度，比较复杂。</li>
+</ul>
+<h2 id="TCP四次挥手的过程是什么样的？"><a href="#TCP四次挥手的过程是什么样的？" class="headerlink" title="TCP四次挥手的过程是什么样的？"></a>TCP四次挥手的过程是什么样的？</h2><ul>
+<li><p>四次挥手 [FIN、ACK]</p>
+<ul>
+<li><p><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/GlWgLx87BeFdH15F.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/GlWgLx87BeFdH15F.png" alt="图片"></a></p>
+</li>
+<li><p><strong>第一次挥手</strong>：假设客户端想要关闭连接，客户端发送一个FIN包，表示自己已经没有数据可以发送了 [此时仍然可以接收数据][客户端进入FIN_WAIT_1状态]</p>
+</li>
+<li><p>第二次挥手：服务端回复一个ACK包，表明自己接收到了客户端关闭连接的请求，但自己还需要做些准备来关闭连接[服务端进入CLOSE_WAIT状态]</p>
+<ul>
+<li>客户端接收到这个ACK后，进入FIN_WAIT_2状态，等待服务端关闭连接</li>
+</ul>
+</li>
+<li><p><strong>第三次挥手</strong>：服务端准备好关闭连接时，向客户端再发送FIN[服务端进入LAST_ACK状态，等待客户端的确认]</p>
+</li>
+<li><p>第四次挥手：客户端接收到来自服务器端的关闭请求，发送一个ACK包[客户端进入 TIME_WAIT状态，为可能出现的超时重传的FIN包，等待2个MSL时间]</p>
+<ul>
+<li>服务端接收到这个ACK之后，关闭连接，进入CLOSED状态</li>
+</ul>
+</li>
+<li>客户端等待了<strong>2个MSL</strong>后，如果没有收到服务端的FIN，则认为服务端已经正常关闭连接，于是自己也关闭连接，进入CLOSED状态；否则，再次发送ACK</li>
+</ul>
+</li>
+<li><p>参考<a href="https://hit-alibaba.github.io/interview/basic/network/TCP.html#三次握手与四次挥手?fileGuid=zdkyBEa86pCYmlA6">三次握手与四次挥手</a>——博客 [注：第四次挥手客户端等待的是超时重传的FIN而不是ACK]</p>
+</li>
+</ul>
+<h3 id="附加：2个MSL的含义"><a href="#附加：2个MSL的含义" class="headerlink" title="附加：2个MSL的含义"></a>附加：2个MSL的含义</h3><p>TIME_WAIT是如何引起的，有什么作用，在编程时有什么弊端，怎么解决？</p>
+<ul>
+<li><p>引起原因：TCP的四次挥手时，已经完成前三次挥手，在第四次挥手时，客户端收到来自服务端的FIN，它在发送一个ACK后，就会进入TIME_WAIT状态</p>
+<ul>
+<li>此时客户端需要等待两个最大<strong>数据段生命周期</strong>（Maximum segment lifetime，MSL）的时间之后，才会进入CLOSED状态</li>
+</ul>
+</li>
+<li><p>存在原因</p>
+<ul>
+<li><p>①阻止延迟数据段</p>
+<ul>
+<li>每一个TCP数据段都包含唯一的序列号，这个序列号能够保证TCP协议的可靠</li>
+<li>为了保证新TCP连接的数据段不会与还在网络中传输的历史连接的数据段重复，TCP连接在分配新的序列号之前需要至少<strong>静默</strong>数据段在网络中能够存活的最长时间，即MSL</li>
+<li>从而防止延迟的数据段被其他使用相同源地址、源端口、目的地址以及目的端口的TCP连接收到</li>
+</ul>
+</li>
+<li><p>②保证连接关闭</p>
+<ul>
+<li>如果客户端等待的时间不够长，当服务端还没有收到ACK消息，而客户端重新与服务端建立TCP连接时，会发生：<ul>
+<li>服务端因为没有收到ACK消息，所以仍然认为当前连接是合法的</li>
+<li>客户端重新发送SYN消息请求握手时，会收到服务端的RST消息，连接建立的过程被终止</li>
+</ul>
+</li>
+<li>所以要保证TCP连接的远程被正确关闭，即等待被动关闭连接的一方收到FIN对应的ACK消息</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>编程影响</p>
+<ul>
+<li>对于高并发的场景容易出现过多的TIME_WAIT</li>
+<li>而MSL的时长一般是60s，这是难以接受的，可能一个TCP连接只为了通信几秒钟，但TIME_WAIT就需要等待2分钟</li>
+</ul>
+</li>
+<li><p>解决方式</p>
+<ul>
+<li>基于一个<strong>时间戳变量</strong>，记录发送数据包、最近一次接收数据包的时间</li>
+<li>然后配合两个参数<ul>
+<li><strong>reuse</strong>：允许主动关闭连接的一方，再次向对方发起连接的时候，复用处于TIME_WAIT状态的连接</li>
+<li><strong>recycle</strong>：内核会快速回收处于TIME_WAIT的连接，只需等待RTO时间 [数据包重传的超时时间]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>参考</p>
+<ul>
+<li><a href="https://draveness.me/whys-the-design-tcp-time-wait/?fileGuid=zdkyBEa86pCYmlA6">为什么 TCP 协议有 TIME_WAIT 状态</a>——博客</li>
+<li><a href="https://zhuanlan.zhihu.com/p/40013724?fileGuid=zdkyBEa86pCYmlA6">系统调优你所不知道的TIME_WAIT和CLOSE_WAIT</a>——知乎</li>
+<li><a href="https://www.yisu.com/zixun/63792.html?fileGuid=zdkyBEa86pCYmlA6">理解TIME_WAIT，彻底弄清解决TCP: time wait bucket table overflow</a>——亿速云</li>
+</ul>
+</li>
+</ul>
+<h2 id="什么是HTTPS的SSL认证？"><a href="#什么是HTTPS的SSL认证？" class="headerlink" title="什么是HTTPS的SSL认证？"></a>什么是HTTPS的SSL认证？</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210622002619.png" style="zoom:50%;"></p>
+<p>参考——<a href="https://www.runoob.com/w3cnote/https-ssl-intro.html">HTTPS 与 SSL 证书概要</a></p>
+<h1 id="——C-C-相关——"><a href="#——C-C-相关——" class="headerlink" title="——C/C++相关——"></a>——C/C++相关——</h1><h2 id="C-为什么不像JAVA一样有垃圾回收机制"><a href="#C-为什么不像JAVA一样有垃圾回收机制" class="headerlink" title="C++为什么不像JAVA一样有垃圾回收机制"></a>C++为什么不像JAVA一样有垃圾回收机制</h2><p>垃圾回收机制——在JAVA中，我们对资源的申请不需要人为的手动释放，JVM会自动释放这些资源</p>
+<p>C++中有RAII（Resource Acquisition is Initialization——资源获取即初始化）技术管理资源</p>
+<ul>
+<li>在构造函数中申请分配资源，在析构函数中释放资源——这是C++语言机制保证的，当一个对象创建的时候，自动调用构造函数，当对象超出作用域的时候会自动调用析构函数，所以，在RAII的指导下，我们应该使用类来管理资源，将资源和对象的生命周期绑定。</li>
+<li>C++中智能指针就利用这样的思想，实现自动的内存管理</li>
+<li>可参考<a href="https://www.cnblogs.com/jiangbin/p/6986511.html">C++RAII介绍</a></li>
+</ul>
+<h2 id="map和unordered-map的区别"><a href="#map和unordered-map的区别" class="headerlink" title="map和unordered_map的区别"></a>map和unordered_map的区别</h2><p>两者底层实现不同：map——红黑树，unordered_map——哈希表</p>
+<p>map：为什么要使用红黑树实现，用其它的呢？</p>
+<ul>
+<li>因为对于单次增删改查操作的时间复杂度都为$O(logn)$</li>
+<li>红黑树是二叉查找树，中序遍历可以有序输出</li>
+<li>对比BST（binary_search_tree）和AVL——BST会退化为链表，排除；而AVL由于其有严格的平衡条件，每次操作可能花费的时间都在平衡上了，影响效率，不适合</li>
+</ul>
+<p>Unordered_map</p>
+<ul>
+<li>哈希表使用拉链法解决哈希冲突，拉链的数据量超过8会使用拉链法，否则自动退化使用红黑树</li>
+<li>Unordered_map查询时间复杂度可能做不到$O(1)$，因为其存在退化</li>
+<li>做不到数据有序</li>
+</ul>
+<h2 id="C-STL-sort的实现"><a href="#C-STL-sort的实现" class="headerlink" title="C++ STL sort的实现"></a>C++ STL sort的实现</h2><p>可参考</p>
+<p><a href="https://srymaker0.com/posts/9271">数据结构力扣刷题集——7.快速排序+优化</a></p>
+<h2 id="const关键字的作用"><a href="#const关键字的作用" class="headerlink" title="const关键字的作用"></a>const关键字的作用</h2><p>修饰变量——该变量不能被改变</p>
+<p>修饰指针——指针常量和常量指针</p>
+<p>修饰引用</p>
+<ul>
+<li>形参引用使用const修饰：<code>foo(const int &amp;a)</code>，这样修饰表示传递过程中不会对值进行修改？</li>
+</ul>
+<p>修饰成员函数</p>
+<ul>
+<li>成员函数不会对成员变量进行修改</li>
+</ul>
+<h2 id="static关键字的作用"><a href="#static关键字的作用" class="headerlink" title="static关键字的作用"></a>static关键字的作用</h2><p>修饰普通变量</p>
+<ul>
+<li>修改变量的存储区域（变为静态区）和生命周期</li>
+</ul>
+<p>修饰普通函数</p>
+<ul>
+<li>仅在该函数的文件内可使用——多人开发中常见，两个人在A文件与B文件写了同名函数的情况，比如用static修饰A文件的同名函数可以别人使用你在A文件内的这个函数</li>
+</ul>
+<p>修饰成员变量</p>
+<ul>
+<li>对很多实例来说，被static修饰的成员变量只有一个，这么多的实例其实共享一个static成员变量（跟着类走的）</li>
+</ul>
+<p>修饰成员函数</p>
+<ul>
+<li>不需要生成对象就可以访问该函数（跟着类走的）</li>
+<li>函数内部不能访问非static的成员属性</li>
+</ul>
+<h1 id="——操作系统相关——"><a href="#——操作系统相关——" class="headerlink" title="——操作系统相关——"></a>——操作系统相关——</h1><h2 id="什么是虚拟内存？"><a href="#什么是虚拟内存？" class="headerlink" title="什么是虚拟内存？"></a>什么是虚拟内存？</h2><h2 id="说一下零拷贝技术"><a href="#说一下零拷贝技术" class="headerlink" title="说一下零拷贝技术"></a>说一下零拷贝技术</h2>]]></content>
+      <tags>
+        <tag>面试</tag>
       </tags>
   </entry>
   <entry>
