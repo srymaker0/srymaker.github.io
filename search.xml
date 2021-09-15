@@ -888,6 +888,97 @@ init_prime <span class="token variable">${End}</span>
       </tags>
   </entry>
   <entry>
+    <title>InnoDB与事务持久性</title>
+    <url>/posts/7c75.html</url>
+    <content><![CDATA[<h1 id="InnoDB那点事儿"><a href="#InnoDB那点事儿" class="headerlink" title="InnoDB那点事儿"></a>InnoDB那点事儿</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/InnoDB.png" alt=""></p>
+<p>这是我学习InnoDB时画的脑图，在此记录一些我认为比较重要的。</p>
+<p><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>先抛出几个问题：事务的持久性是如何确保的</p>
+<ul>
+<li>当插入一条语句时，或者更新一条数据时，发生意外（断电），数据会丢失吗？</li>
+<li>如果数据丢失了以后，难道真的没办法找回来了吗？</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210915212227.png" alt=""></p>
+<p>这张图向我们展现的是内存数据落盘的过程。</p>
+<h2 id="几个关键的知识："><a href="#几个关键的知识：" class="headerlink" title="几个关键的知识："></a>几个关键的知识：</h2><ul>
+<li><p>InnoDB存储引擎工作时， 需要以Page页为最小单位去将磁盘中的数据加载到内存中，与数据库相关的所有内容都存储在Page结构里。</p>
+</li>
+<li><p>一个区——64个Page（页【16K】），一个Page——4个Row（行【4K】） </p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210915214509.png" style="zoom:33%;"></p>
+</li>
+<li><p>insert\update\delete等写操作产生的新数据要写入磁盘。</p>
+<ul>
+<li><p>写操作的发生， 首先要先将磁盘数据【读入内存】中， 在内存中进行修改等操作， 需要等着操作完成， 再次将修改的数据写入到磁盘中</p>
+</li>
+<li><p>操作系统的文件系统是带有缓存的，当InnoDB 向磁盘写入数据时，有可能只是写入到了文件系统的缓存中，没有真正的“落袋为安”。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="几个关键的原则："><a href="#几个关键的原则：" class="headerlink" title="几个关键的原则："></a>几个关键的原则：</h2><ul>
+<li><p>WAL（预写日志）：保证的是数据在修改之前， 先要写入redo log buffer里面（顺序写效率高于随机写）</p>
+<ul>
+<li>Buffer pool中的数据在脏页落盘前，会将要修改的数据写入到redo log buffer中</li>
+</ul>
+</li>
+<li><p>redo log file：可以在出现意外的时候，根据它找回数据</p>
+<ul>
+<li>顺序IO</li>
+<li>WAL原则确保</li>
+</ul>
+</li>
+<li><p><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>Force-log-at-commit：要求当一个事务提交时，所有产生的日志都必须刷新到磁盘上。</p>
+<ul>
+<li><p>将redo log buffer中的数据写入到redo log file中</p>
+</li>
+<li><p>如果日志刷新成功后，缓冲池中的数据刷新到磁盘前数据库发生了宕机，那么重启时，数据库可以从日志中恢复数据。</p>
+</li>
+<li><p>可以通过innodb_flush_log_at_trx_commit来控制重做日志刷新到磁盘的策略。</p>
+<ul>
+<li>为了确保每次日志都写入到重做日志文件，在每次将重做日志缓冲写入重做日志后， 必须调用一次<code>fsync</code>操作，将缓冲文件从文件系统缓存中真正写入磁盘。</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210915224837.png" alt=""></p>
+<ul>
+<li><a href="https://www.cnblogs.com/dee0912/p/6244732.html">持久性设置</a></li>
+<li>一般建议将该属性值设置为1，以获得较高的数据安全性，而且也只有设置为1，才能保证数据的持久化</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Buffer-Pool中的脏页是如何写入磁盘的-point-down"><a href="#Buffer-Pool中的脏页是如何写入磁盘的-point-down" class="headerlink" title="Buffer Pool中的脏页是如何写入磁盘的:point_down:"></a>Buffer Pool中的脏页是如何写入磁盘的<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></h2><ul>
+<li>通过checkpoint检查点机制：</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210915225423.png" style="zoom:50%;"></p>
+<p>在InnoDB存储引擎内部，有两种Checkpoint，分别为：</p>
+<ul>
+<li>Sharp Checkpoint（清晰检查点）：在正常关闭数据库的时候，将buffer pool中的脏页 全部刷新到磁盘中。 </li>
+<li>Fuzzy Checkpoint（模糊检查点）：数据库正常运行时，在不同的时机，将部分脏页写 入磁盘。仅刷新部分脏页到磁盘，也是为了避免一次刷新全部的脏页造成的性能问题。<ul>
+<li>Master Thread Checkpoint  (定时flush) </li>
+<li>FLUSH_LRU_LIST Checkpoint  (buffer pool中空闲页不够) </li>
+<li>Async/Sync Flush Checkpoint（redo log） </li>
+<li>Dirty Page too much Checkpoint (buffer pool中脏页太多)</li>
+</ul>
+</li>
+</ul>
+<p><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>注意操作系统也有缓存</p>
+<ul>
+<li>Double Write（双写机制）</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210915231916.png" style="zoom: 67%;"></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210915225704.png" style="zoom:50%;"></p>
+<p>为什么说双写机制确保了InnoDB存储引擎的数据页的可靠性<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>InnoDB和磁盘交互的最小数据单位是page，大小是16k，而操作系统和磁盘交互的最小数据单位也是page，但大小是4k</p>
+<ul>
+<li>1次InnoDB写入操作会伴随着4次操作系统写入操作，在这个过程中很有可能出现”部分页丢失”</li>
+<li>所以才加入了double write机制。</li>
+</ul>
+<h2 id="事务的流程"><a href="#事务的流程" class="headerlink" title="事务的流程"></a>事务的流程</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210915234140.png" alt=""></p>
+<ul>
+<li><a href="https://srymaker0.com/posts/5a4f">Undo log</a>版本链</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>关于MySQL那点事儿</title>
     <url>/posts/d4d4.html</url>
     <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><p><a href="https://srymaker0.com/posts/54a3">1.关于MySQL架构</a></p>
