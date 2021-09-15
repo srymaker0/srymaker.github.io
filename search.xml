@@ -983,6 +983,7 @@ init_prime <span class="token variable">${End}</span>
     <url>/posts/d4d4.html</url>
     <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><p><a href="https://srymaker0.com/posts/54a3">1.关于MySQL架构</a></p>
 <p><a href="https://srymaker0.com/posts/5a4f">2.InnoDB的RC和RR隔离级别的实现</a></p>
+<p><a href="https://srymaker0.com/posts/7c75">3.InnoDB与事务持久性</a></p>
 ]]></content>
       <tags>
         <tag>Innodb</tag>
