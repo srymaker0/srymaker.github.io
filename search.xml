@@ -20,443 +20,34 @@
       </tags>
   </entry>
   <entry>
-    <title>Script</title>
-    <url>/posts/e826.html</url>
-    <content><![CDATA[<h1 id="脚本获取系统信息"><a href="#脚本获取系统信息" class="headerlink" title="脚本获取系统信息"></a>脚本获取系统信息</h1><h2 id="MemLog"><a href="#MemLog" class="headerlink" title="MemLog"></a>MemLog</h2><p>最终效果：</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913150405.png" alt=""></p>
-<p>显示：时间 总量 剩余量  当前占用  占用百分比动态平均值</p>
-<p>使用free命令查看当前内存使用情况</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913145254.png" alt=""></p>
-<ul>
-<li><p>-m表示单位为兆M</p>
-</li>
-<li><p>红框为我们需要的数据</p>
-</li>
+    <title>数据结构之Leetcode刷题集</title>
+    <url>/posts/1124.html</url>
+    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><ul>
+<li><a href="https://srymaker0.com/posts/d64e">1.链表</a></li>
+<li><a href="https://srymaker0.com/posts/9199">2.栈</a></li>
+<li><a href="https://srymaker0.com/posts/682f">3.队列</a></li>
+<li><a href="https://srymaker0.com/posts/2a0c">4.二叉树</a></li>
+<li><a href="https://srymaker0.com/posts/3c7d">5.堆与优先队列</a></li>
+<li><a href="https://srymaker0.com/posts/20cf">6.并查集</a></li>
+<li><a href="https://srymaker0.com/posts/9271">7.快速排序+优化</a></li>
+<li><a href="https://srymaker0.com/posts/27bc">8.归并排序</a></li>
+<li><a href="https://srymaker0.com/posts/5930">9.有趣的排序</a></li>
+<li><a href="https://srymaker0.com/posts/96d5">10.二分查找</a></li>
 </ul>
-<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913150944.png" alt=""></p>
-<ul>
-<li><p>MemValue是一个数组，使用awk命令去获取total，used这两个值</p>
-</li>
-<li><p>MemPrec为当前占用率，NowDyAver为占用百分比动态平均值</p>
-<ul>
-<li><p>利用bc命令去计算，<code>scale=2</code>表示保留2位小数</p>
-</li>
-<li><p>$ 动态平均值 =  0.8*加权平均值（上一次)+0.2当前占用比$​</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="Disk"><a href="#Disk" class="headerlink" title="Disk"></a>Disk</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171937.png" alt=""></p>
-<p>最终效果：</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171921.png" alt=""></p>
-<p>使用df命令查看磁盘使用情况，-T表示类型</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913165756.png" alt=""></p>
-<ul>
-<li>红框内是我们需要的，<code>devtmpfs</code>和<code>tmpfs</code>是虚拟内存文件系统<ul>
-<li>tmpfs是一种基于内存的文件系统，不像其他的文件系统需要格式化后才可以挂载，而是直接使用，由于是在内存中存储数据，那么在断电后会导致数据丢失。在使用到tmpfs文件系统存储数据效率会得到一定的提升。</li>
-<li>devtmpfs 的功用是在 Linux 核心 启动早期建立一个初步的 /dev，令一般启动程序不用等待 udev，缩短 GNU/Linux 的开机时间</li>
-</ul>
-</li>
-</ul>
-<p>取得数据</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171709.png" alt=""></p>
-<ul>
-<li>tail -n +2——显示的第二条以后的数据</li>
-<li>-x——表示过滤</li>
-</ul>
-<h3 id="代码演示-1"><a href="#代码演示-1" class="headerlink" title="代码演示"></a>代码演示</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913174139.png" alt=""></p>
-<ul>
-<li>awk -v 表示定义一个变量<ul>
-<li>NR是awk内置变量——已经读出的记录数: 注意是从0开始</li>
-</ul>
-</li>
-<li>eval——<a href="https://blog.51cto.com/u_10706198/1788573">eval的使用</a></li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913181125.png" alt=""></p>
-<ul>
-<li>先输出总的磁盘情况，再输出分区的磁盘情况<ul>
-<li>parnum里面存的是读到的记录数</li>
-</ul>
-</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>Taekwondo之540</title>
-    <url>/posts/e584.html</url>
-    <content><![CDATA[<h1 id="跆拳道540个人练习"><a href="#跆拳道540个人练习" class="headerlink" title="跆拳道540个人练习"></a>跆拳道540个人练习</h1><p>因为是一位码农，所以才会想要挑战自我！</p>
-<ul>
-<li>跆拳道业业业余爱好者！</li>
-<li>逐帧剖析540错误练习</li>
-</ul>
-<p><span class="github-emoji"><span>📹</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f4f9.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<video width="320" height="240" controls="">
-    <source src="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/1624548607220213.mp4" type="video/mp4">
-</video>
-
-
-
-
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210624221317.png" alt=""></p>
-<ul>
-<li>准备姿势我觉得还可以</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210624221600.png" alt=""></p>
-<ul>
-<li>迈步ok，感觉手还是没摆起来</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210624222120.png" style="zoom: 33%;"></p>
-<p><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>我靠，我不知道我在干嘛，这一步其实也很关键，起跳脚不对会影响你的起跳高度，手不对会影响你的重心</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210624222408.png" alt=""></p>
-<ul>
-<li>准备起飞</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210624230443.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210624230518.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210624222606.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210624223726.png" alt=""></p>
-<p>飞了飞了！！！</p>
-<p>上图这时右手明显不对，这是整空中右手冲拳呢<span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p>——右手需要往左摆，带动腰转起来</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210624224251.png" alt=""></p>
-<p>啊这，这里是整个540的关键地方，右脚大腿</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210624224505.png" alt=""></p>
-<p>坠机ing</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210624224838.png" alt=""></p>
-<p><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>左脚想踢后旋，空中一定要转体——通过手的配合</p>
-<p>——可以看到我的左手下垂，会加速落地，原因也是在空中没有转体</p>
-<p>——这样才能在落地之前踢出来</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210624224943.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210624225411.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210624225523.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210624225706.png" alt=""></p>
-<p>可以看到我是落地之后继续踢了后摆（自欺欺人）</p>
-<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><p>看到身体素质有待提高，腰腹力量需要加强！</p>
-<p>特技一方面靠的是基础（后旋+360），一方面也需要靠技巧（预备式），还有一方面就是多练吧！</p>
 ]]></content>
       <tags>
-        <tag>Taekwondo</tag>
+        <tag>Leetcode</tag>
       </tags>
   </entry>
   <entry>
-    <title>哈希表与布隆过滤器</title>
-    <url>/posts/69d8.html</url>
-    <content><![CDATA[<h1 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h1><blockquote>
-<p>哈希表是利用数组的快速存取的特性<span class="github-emoji"><span>👉</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>关键是利用哈希函数——设计感极强</p>
-<p>哈希函数：将任意数据类型映射成数组下标，数据类型不同，映射过程也不相同</p>
-<p><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>哈希的过程本质是 高维-&gt;低维的转换，哈希冲突一定会发生，但是可以通过很多方式预防这种冲突，但是这种冲突是无法避免的</p>
-<p>冲突处理方法：开放定址法，再哈希法，建立公共溢出区，链式地址法（拉链法）</p>
-</blockquote>
-<p>可查看中<a href="https://srymaker0.com/posts/73f4">数据结构基础——C语言实验</a>哈希过程</p>
-<h2 id="开放定址法"><a href="#开放定址法" class="headerlink" title="开放定址法"></a>开放定址法</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710205559.png" style="zoom:50%;"></p>
-<p>注意扩容操作——装填因子：$\frac{存储元素个数}{哈希总容量}=0.75$ ，假设有100个容量存储数据，当容量为75个时就应该进行扩容操作</p>
-<p>扩容的时间复杂度——算的是均摊时间复杂度$O(1)$, $\frac{n}{2}+\frac{n}{4}+\frac{n}{8}+…\approx n$ </p>
-<p>估算：假设有n个元素，并且第一次发生扩容操作在$\frac{n}{2}$处，那么第一次的时间复杂度为$\frac{n}{2}$，依次类推所有元素进行的扩容操作为$O(n)$,但是算均摊，每一个元素进行的扩容操作为$O(1)$</p>
-<h2 id="建立公共溢出缓冲区"><a href="#建立公共溢出缓冲区" class="headerlink" title="建立公共溢出缓冲区"></a>建立公共溢出缓冲区</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710222603.png" style="zoom:50%;"></p>
-<p>当发生冲突，直接将元素放入set容器中（公共溢出缓冲区）</p>
-<p>set底层是红黑树，单次查找，插入时间复杂度都是$O(logn)$</p>
-<p>注意扩容的时候 缓冲区的值也要拷贝给新的哈希表</p>
-<h2 id="拉链法"><a href="#拉链法" class="headerlink" title="拉链法"></a>拉链法</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710223124.png" style="zoom:50%;"></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710223208.png" style="zoom:50%;"></p>
-<h2 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h2><p>传统哈希表——存储空间与元素数量有关</p>
-<p>布隆过滤器——存储空间与元素数量无关</p>
-<p>关于爬虫：爬网站可以将这些存储在哈希表中，一样的url会被去重，但是动态网络的url可能非常庞大，使用传统哈希表存储可能占用几TB的存储空间</p>
-<p>布隆过滤器的应用：大数据量；有信息安全要求</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710224832.png" style="zoom: 33%;"></p>
-<p>设计巧妙之处：一个数据经过3个哈希函数，得到3个数组下标，查找数组若这3个下标对应的值都为1，则说明这个数据大概率存在，若有一个是0，则一定不存在</p>
-<p>缺点：存在误判，只能准确判断一个数据不存在</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>reactor反应堆</title>
-    <url>/posts/1fd0.html</url>
-    <content><![CDATA[<h1 id="reactor"><a href="#reactor" class="headerlink" title="reactor"></a>reactor</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912184500.png" style="zoom: 25%;"></p>
-<p>Reactor thread : 反应堆线程——epoll实例，感知业务发生，直接给<code>Thread Pool</code>的线程做对应的工作</p>
-<p>这里会引发几个问题：</p>
-<p>1⃣️线程池中的线程量设计多少才合理？是越多越好吗？</p>
-<ul>
-<li>结论：不超过cpu核心数，要想性能最高，就让线程数等于cpu核心数</li>
-<li>原因：若是超过了cpu核心数，那么线程池中的线程之间也会发生调度，尽管线程间调度消耗的时间很少，但还是付出了损失性能的代价</li>
-</ul>
-<p>2⃣️既然不能超过cpu核心数，那主线程或者辅助的心跳线程放哪里呢？假设有8个cpu，是不是应该在线程池中设计6个呢？</p>
-<ul>
-<li>在我们设计这个反应堆模式时，线程池中处理的应该是繁忙的业务(由reactor分发过来的，ready状态的，无需等待)，应该要一直运行在cpu上的（cpu密集型）</li>
-<li>主线程和心跳线程——IO约束型的，更多时候在<code>sleep</code>，可以插空执行，</li>
-</ul>
-<p>3⃣️那既然这样，是不是意味着cpu越多，我处理并发的性能就越高呢？</p>
-<ul>
-<li>并不是，cpu越多，则任务在cpu中协调更困难（可靠性）</li>
-</ul>
-<h1 id="主从反应堆"><a href="#主从反应堆" class="headerlink" title="主从反应堆"></a>主从反应堆</h1><blockquote>
-<p>类比：理发店问题</p>
-<p>假设<code>reactor dispatch</code>为理发店老板，<code>sub-reactor dispatch</code>为合伙人，<code>client</code>为客户，<code>Thread Pool</code>为理发师。</p>
-<p>现在老板拉来了3个客人，老板只负责分配任务交给两个合伙人（从反应堆），两个合伙人一个给男孩剪头，一个给女孩剪头（也就是说现在客户跟合伙人有关联），并且合伙人只负责维护这些客户，这些客户之后和老板没有直接关系，如果客户要剪头发了（任务，可放在任务队列中），那么通知合伙人，由合伙人再去通知理发师线程去抢生意（抢占任务）</p>
-<p>假设客人要离开了，只需要通知合伙人就行，在合伙人这里进行删除，注销操作。</p>
-</blockquote>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912190559.png" style="zoom:25%;"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912191314.png" style="zoom:25%;"></p>
-<p>为什么需要从反应堆？</p>
-<ul>
-<li>因为主反应堆不够用，处理的能力不行，需要从反应堆分担压力</li>
-</ul>
-<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>什么是IO多路复用</p>
-<p>什么是线程池，原理是什么，线程池设计多少的并发量比较适合，最大化使用应该设置为多少——线程池中的线程不能超过cpu核心数</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>IO多路复用</title>
-    <url>/posts/0.html</url>
-    <content><![CDATA[<h1 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h1><p><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>为什么会出现IO多路复用</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721145201.png" alt=""></p>
-<ul>
-<li><p>系统调用会带来额外的开销：</p>
-<ul>
-<li>操作系统层面(准确)：作为用户程序如何调用系统资源</li>
-<li>更宏观的层面：调用系统函数(system call)</li>
-</ul>
-</li>
-<li><p>内核态：执行特权指令 ｜ 用户态：执行非特权指令</p>
-<ul>
-<li>从用户态到内核态：通过系统调用（主要）、中断、异常</li>
-</ul>
-</li>
-</ul>
-<blockquote>
-<p>  高并发需要考虑系统调用的开销<br>  因为从用户态下沉到内核态往往伴随着数据的拷贝，加上本身切换的时间成本，会影响性能，因此减少数据的拷贝次数是提高高并发性能的关键。</p>
-</blockquote>
-<ul>
-<li>NIO（非阻塞IO）实现并发：在循环中采用轮询机制——同时和100个女朋友聊天，其中一个不理我，那就找下一个聊，过会再来看看(EAGAIN)<ul>
-<li>弊端，需要自己反复的查看，而没有一种通知机制</li>
-</ul>
-</li>
-<li>解决：使用IO多路复用</li>
-</ul>
-<h1 id="select"><a href="#select" class="headerlink" title="select"></a>select</h1><blockquote>
-<p>  船长奇特类比：假设我拥有很多女朋友（文件描述符），每天只关心三件事，女友想跟我说话（可读），女友想听我说话（可写），女友想跟我分手（异常），<code>select</code>会在女朋友的思想里（内核中）监控，告诉你有多少女朋友想跟你说话、你可以跟她说话、或者要跟你分手（这三个都是就绪态），但是不会具体指出哪一个。此时我想知道是哪个女朋友能跟我进行对话（就绪），我只能去问<code>select</code>，并且是一个一个问三种状态（可选择）。</p>
-</blockquote>
-<p>通过这个类比可以得出一些结论：</p>
-<ul>
-<li><p><code>select</code>时间复杂度高：假设有1000个女朋友，只有第999个是就绪态的，那么我需要从第一个轮询到第999个</p>
-<ul>
-<li><p>用户态和内核态都需要轮询</p>
-</li>
-<li><p>三种状态可以选择，若是只需要监听有哪些文件是可读的，只需要问一种状态即可，在较小的客户量下使用select完全可以处理过来</p>
-</li>
-</ul>
-</li>
-<li><p>拷贝次数多：<code>select</code>执行先从用户态拿到需要监听的集合，然后下沉到内核态进行监听，接着返回给用户态有哪些文件描述符是就绪的，这里发生了两次数据拷贝行为</p>
-<ul>
-<li>通过<code>FD_ISSET</code>去轮询</li>
-</ul>
-</li>
-<li><p>并发量有上限</p>
-</li>
-</ul>
-<p>原型</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721150123.png" alt=""></p>
-<ul>
-<li>nfds: 文件描述符集合——底层使用数组维护，数量有一个上限，一般为1024</li>
-<li>fd_set: 定义文件描述符的集合状态——可读，可写，异常</li>
-<li>timeout: 时间间隔——一直等（NULL），等多久（&gt;0），立即返回（0）</li>
-<li>四个宏操作集合<ul>
-<li>FD_CLR——从集合中删除一个文件描述符</li>
-<li>FD_ISSET——查看一个文件描述符是否在集合中</li>
-<li>FD_SET——添加一个文件描述符到集合中</li>
-<li>FD_ZERO——清空集合</li>
-</ul>
-</li>
-</ul>
-<p>描述</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721151433.png"></p>
-<p><code>select</code>和 <code>pselect</code> 允许程序监视多个文件描述符，等待一个或多个文件描述符变成“ready”进行某类 I/O 操作</p>
-<ul>
-<li>ready：就绪态，无阻塞的读或足够小的写</li>
-</ul>
-<p><code>select</code>和<code>pselect</code>的区别：</p>
-<ol>
-<li><p>精度不一样：前者的timeval结构体使用秒和微秒，后者的timespec使用秒和纳秒</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721153619.png" style="zoom: 33%;"></p>
-</li>
-<li><p><code>select</code> 可能会更新超时参数以指示还剩多少时间。  <code>pselect</code>不会改变这个参数。</p>
-</li>
-<li><p><code>select</code>没有 <code>sigmask</code> 参数，其行为与使用<code>NULL sigmask</code>调用的<code>pselect</code> 一样。</p>
-<ul>
-<li><code>pselect</code>可以忽略<code>sigmask</code>设置的信号</li>
-</ul>
-</li>
-</ol>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721152415.png" alt=""></p>
-<p>select监视三组独立的文件描述集合</p>
-<ol>
-<li>可读的——文件描述符是否有内容</li>
-<li>可写的——监视文件描述符中是否有可用空间写入</li>
-<li>异常的——文件描述符是否存在异常</li>
-</ol>
-<p>退出的时候，每个文件描述符集合会被修改，只留下状态发生变化的文件描述符，起指示作用</p>
-<ul>
-<li>所以，如果循环使用select，每次调用select前需要重新初始化每个集合</li>
-</ul>
-<p><code>nfds</code>的值应该是最大文件描述符+1，因为文件描述符从0开始</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721175220.png" alt=""></p>
-<ul>
-<li>使用<code>select</code>可以制作更加精确的计时器，并且可移植</li>
-<li>nfds设置为0，三个集合设置为NULL，timeout非NUL</li>
-</ul>
-<p>返回值</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721153718.png" alt=""></p>
-<ul>
-<li>成功时，select() 和 pselect() 返回三个返回的描述符集中包含的文件描述符的数量（readfds、writefds、exceptfds）</li>
-<li><p>如果超时，可能返回0</p>
-</li>
-<li><p>出错，返回-1</p>
-</li>
-</ul>
-<h1 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h1><blockquote>
-<p>本质上和select是一样的，只是底层数据结构不一样</p>
-<p>继承了基本上select的所有缺点，除了最大文件描述符的限制</p>
-</blockquote>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721212821.png" alt=""></p>
-<ul>
-<li>fds：一个结构体数组</li>
-<li>nfds：数组大小</li>
-<li>timeout：时间间隔</li>
-</ul>
-<p><code>struct pollfd</code>结构体成员</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721213301.png" alt=""></p>
-<ul>
-<li>fd：打开文件的文件描述符<ul>
-<li>若为负数，events字段被忽略，revents返回0</li>
-</ul>
-</li>
-<li>events：输入参数，下沉到内核<ul>
-<li>16位的位掩码，每一位可表示一个状态</li>
-<li>指定感兴趣的事件文件描述符fd</li>
-</ul>
-</li>
-<li>revents：输出参数，返回给用户态<ul>
-<li>由内核填充实际发生的事件</li>
-<li>返回包括事件中指定的任何值</li>
-<li>还可以返回<code>POLLERR</code>,<code>POLLHUP</code>,<code>POLLNVAL</code>，这三个值在events中没有意义</li>
-</ul>
-</li>
-</ul>
-<p><code>标志位</code></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721214246.png" alt=""></p>
-<ul>
-<li>POLLIN：可读标志位</li>
-<li>POLLOUT：可写标志位</li>
-</ul>
-<p>返回值</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721220024.png" alt=""></p>
-<ul>
-<li>&gt;0: 返回一个revents字段不是0的结构体个数<ul>
-<li>可能包含events或者出错</li>
-</ul>
-</li>
-<li>=0: 超时或者没有文件描述符就绪</li>
-<li>-1：出错，设置errno值</li>
-</ul>
-<h1 id="star-epoll"><a href="#star-epoll" class="headerlink" title=":star:epoll"></a><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>epoll</h1><p>描述</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722003304.png" alt=""></p>
-<ul>
-<li><code>epoll</code>——IO事件驱动设备</li>
-<li>三个系统调用<ul>
-<li><code>epoll_create</code>：创建一个实例，返回一个指向该实例的文件描述符</li>
-<li><code>epoll_ctl</code>：注册感兴趣的文件描述符</li>
-<li><code>epoll_wait</code>：等待IO事件，若当前没有可用事件，则一直阻塞</li>
-</ul>
-</li>
-<li>两种触发模式——水平触发（LT）、边缘触发（ET）</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722004313.png" alt=""></p>
-<p>man手册中举了一种情况解释边缘触发：</p>
-<ol>
-<li>代表管道<code>rfd</code>读取端的文件描述符注册在<code>epoll</code> 实例上。</li>
-<li>管道写入器在管道的写入端写入 2 kB 的数据。</li>
-<li>调用<code>epoll_wait</code>将返回 <code>rfd</code> 作为<code>ready</code>的文件描述符。</li>
-<li>管道读取器从 <code>rfd</code> 读取 1 kB 的数据。</li>
-<li>完成对 <code>epoll_wait</code> 的调用。</li>
-</ol>
-<p>如果此时使用边缘触发，则<code>epoll_wait</code>将一直阻塞在第5步中，原因是边缘触发仅在受监视的文件描述符发生更改时才传递事件。</p>
-<ul>
-<li>在此例中，管道读取了数据，文件描述符发生了改变，并完成第5步。但是其实并没有把全部数据读取出来，并且在完成调用后文件描述符并没有发生改变，因此<code>epoll_wait</code>会一直阻塞</li>
-</ul>
-<p>要避免这种情况发生，必须设置相应的文件描述符为非阻塞</p>
-<h2 id="epoll-creat"><a href="#epoll-creat" class="headerlink" title="epoll_creat"></a>epoll_creat</h2><p>描述</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722010315.png" alt=""></p>
-<ul>
-<li>创建一个epoll实例<ul>
-<li>返回一个文件描述符指向该实例</li>
-<li>当不需要使用文件描述符时，调用close关闭</li>
-<li>当所有的文件描述符都关闭时，才销毁实例</li>
-</ul>
-</li>
-</ul>
-<p>返回值</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722010927.png" alt=""></p>
-<ul>
-<li>返回一个非负的文件描述符</li>
-</ul>
-<p>注意点</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722011130.png" alt=""></p>
-<ul>
-<li>size的值<ul>
-<li>此参数会提示内核分配多少空间给events</li>
-<li>但是在现在的内核中会忽略此参数，因为内核可以动态调用events需要的空间，填上此值只是为了兼容旧内核的程序</li>
-</ul>
-</li>
-</ul>
-<h2 id="epoll-ctl"><a href="#epoll-ctl" class="headerlink" title="epoll_ctl"></a>epoll_ctl</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722011929.png" alt=""></p>
-<ul>
-<li>epfd：是创建实例返回的文件描述符</li>
-<li><p>op：对应三种操作——增，删，改</p>
-<ul>
-<li><code>EPOLL_CTL_ADD</code>：在文件描述符 epfd 引用的 epoll 实例上注册目标文件描述符<code>fd</code>并关联<code>event</code></li>
-<li><code>EPOLL_CTL_MOD</code>：更改与目标文件描述符<code>fd</code>关联的事件<code>event</code></li>
-<li><code>EPOLL_CTL_DEL</code>：从<code>epfd</code>引用的<code>epoll</code>实例中移除（注销）目标文件描述符 fd。 </li>
-</ul>
-</li>
-<li><p>event</p>
-</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722013901.png" alt=""></p>
-<ul>
-<li>events和poll中的events一样，都是位掩码<ul>
-<li><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>但是返回的状态信息也在此events中修改，原来的状态可以在data中找回</li>
-</ul>
-</li>
-<li>data可以指向一个文件描述符指针，也可以等于一个文件描述符，很灵活</li>
-<li>data中存储的是原fd的数据，可以通过data找回</li>
-</ul>
-<p>返回值</p>
-<ul>
-<li>成功，返回0. </li>
-<li>失败，返回-1</li>
-</ul>
-<h2 id="epoll-wait"><a href="#epoll-wait" class="headerlink" title="epoll_wait"></a>epoll_wait</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722014639.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722015226.png" alt=""></p>
-<ul>
-<li><p>返回epfd指向的实例中的所有就绪文件描述符个数</p>
-</li>
-<li><p>events中存放的是<code>ready</code>的文件描述符</p>
-</li>
-</ul>
-<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>思考点</p>
-<ol>
-<li>epoll使用了mmap吗？<ul>
-<li>对于mmap，在早起的Linux内核版本中，需要用户自己使用mmap将自己的文件描述符给内核空间，内核升级之后，这个过程不需要用户自己去做了。</li>
-<li>早起需要用户去做，现在是epoll自己已经实现的，但是需要注意的是，这个只是对fd的映射，也就是在进行ready状态的fd传递的时候做，并不会映射其他的</li>
-<li>网上有很多文章会把这个点误解为：epoll使用了mmap，所以当用户在read和write的时候，可以直接从内核中拷贝。但是实际是，在文件描述符的传递上，做了这个操作，不需要像select，poll一样来回传递，但是对于fd真实的IO操作，不可能做到这一点</li>
-<li>select/poll每次调用时都要传递你所要监控的所有socket给select/poll系统调用，这意味着需要将用户态的socket列表copy到内核态，但是epoll就不用，因为在epoll-ctl时已经在内核态存储了需要监控的sock列表。</li>
-</ul>
-</li>
-<li>关于最大文件描述符，<code>epoll</code>真的可以无限存储吗？<ul>
-<li><code>select</code> 的上限是默认是1024，这个值之所以默认是1024，是因为在早起的Linux中，默认打开最大文件数就是1024，所以FD_SETSIZE设置为1024,那么打开的文件数就不会超过1024。修改 FD_SETSIZE 重新编译内核可增大并发数，但因为 O(n) 轮询时间复杂度高治标不治本所以不采纳 </li>
-</ul>
-</li>
-</ol>
+    <title>关于MySQL那点事儿</title>
+    <url>/posts/d4d4.html</url>
+    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><p><a href="https://srymaker0.com/posts/54a3">1.关于MySQL架构</a></p>
+<p><a href="https://srymaker0.com/posts/5a4f">2.InnoDB的RC和RR隔离级别的实现</a></p>
+<p><a href="https://srymaker0.com/posts/7c75">3.InnoDB与事务持久性</a></p>
 ]]></content>
       <tags>
-        <tag>网络编程</tag>
+        <tag>Innodb</tag>
       </tags>
   </entry>
   <entry>
@@ -888,10 +479,396 @@ init_prime <span class="token variable">${End}</span>
       </tags>
   </entry>
   <entry>
+    <title>IO多路复用</title>
+    <url>/posts/0.html</url>
+    <content><![CDATA[<h1 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h1><p><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>为什么会出现IO多路复用</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721145201.png" alt=""></p>
+<ul>
+<li><p>系统调用会带来额外的开销：</p>
+<ul>
+<li>操作系统层面(准确)：作为用户程序如何调用系统资源</li>
+<li>更宏观的层面：调用系统函数(system call)</li>
+</ul>
+</li>
+<li><p>内核态：执行特权指令 ｜ 用户态：执行非特权指令</p>
+<ul>
+<li>从用户态到内核态：通过系统调用（主要）、中断、异常</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>  高并发需要考虑系统调用的开销<br>  因为从用户态下沉到内核态往往伴随着数据的拷贝，加上本身切换的时间成本，会影响性能，因此减少数据的拷贝次数是提高高并发性能的关键。</p>
+</blockquote>
+<ul>
+<li>NIO（非阻塞IO）实现并发：在循环中采用轮询机制——同时和100个女朋友聊天，其中一个不理我，那就找下一个聊，过会再来看看(EAGAIN)<ul>
+<li>弊端，需要自己反复的查看，而没有一种通知机制</li>
+</ul>
+</li>
+<li>解决：使用IO多路复用</li>
+</ul>
+<h1 id="select"><a href="#select" class="headerlink" title="select"></a>select</h1><blockquote>
+<p>  船长奇特类比：假设我拥有很多女朋友（文件描述符），每天只关心三件事，女友想跟我说话（可读），女友想听我说话（可写），女友想跟我分手（异常），<code>select</code>会在女朋友的思想里（内核中）监控，告诉你有多少女朋友想跟你说话、你可以跟她说话、或者要跟你分手（这三个都是就绪态），但是不会具体指出哪一个。此时我想知道是哪个女朋友能跟我进行对话（就绪），我只能去问<code>select</code>，并且是一个一个问三种状态（可选择）。</p>
+</blockquote>
+<p>通过这个类比可以得出一些结论：</p>
+<ul>
+<li><p><code>select</code>时间复杂度高：假设有1000个女朋友，只有第999个是就绪态的，那么我需要从第一个轮询到第999个</p>
+<ul>
+<li><p>用户态和内核态都需要轮询</p>
+</li>
+<li><p>三种状态可以选择，若是只需要监听有哪些文件是可读的，只需要问一种状态即可，在较小的客户量下使用select完全可以处理过来</p>
+</li>
+</ul>
+</li>
+<li><p>拷贝次数多：<code>select</code>执行先从用户态拿到需要监听的集合，然后下沉到内核态进行监听，接着返回给用户态有哪些文件描述符是就绪的，这里发生了两次数据拷贝行为</p>
+<ul>
+<li>通过<code>FD_ISSET</code>去轮询</li>
+</ul>
+</li>
+<li><p>并发量有上限</p>
+</li>
+</ul>
+<p>原型</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721150123.png" alt=""></p>
+<ul>
+<li>nfds: 文件描述符集合——底层使用数组维护，数量有一个上限，一般为1024</li>
+<li>fd_set: 定义文件描述符的集合状态——可读，可写，异常</li>
+<li>timeout: 时间间隔——一直等（NULL），等多久（&gt;0），立即返回（0）</li>
+<li>四个宏操作集合<ul>
+<li>FD_CLR——从集合中删除一个文件描述符</li>
+<li>FD_ISSET——查看一个文件描述符是否在集合中</li>
+<li>FD_SET——添加一个文件描述符到集合中</li>
+<li>FD_ZERO——清空集合</li>
+</ul>
+</li>
+</ul>
+<p>描述</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721151433.png"></p>
+<p><code>select</code>和 <code>pselect</code> 允许程序监视多个文件描述符，等待一个或多个文件描述符变成“ready”进行某类 I/O 操作</p>
+<ul>
+<li>ready：就绪态，无阻塞的读或足够小的写</li>
+</ul>
+<p><code>select</code>和<code>pselect</code>的区别：</p>
+<ol>
+<li><p>精度不一样：前者的timeval结构体使用秒和微秒，后者的timespec使用秒和纳秒</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721153619.png" style="zoom: 33%;"></p>
+</li>
+<li><p><code>select</code> 可能会更新超时参数以指示还剩多少时间。  <code>pselect</code>不会改变这个参数。</p>
+</li>
+<li><p><code>select</code>没有 <code>sigmask</code> 参数，其行为与使用<code>NULL sigmask</code>调用的<code>pselect</code> 一样。</p>
+<ul>
+<li><code>pselect</code>可以忽略<code>sigmask</code>设置的信号</li>
+</ul>
+</li>
+</ol>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721152415.png" alt=""></p>
+<p>select监视三组独立的文件描述集合</p>
+<ol>
+<li>可读的——文件描述符是否有内容</li>
+<li>可写的——监视文件描述符中是否有可用空间写入</li>
+<li>异常的——文件描述符是否存在异常</li>
+</ol>
+<p>退出的时候，每个文件描述符集合会被修改，只留下状态发生变化的文件描述符，起指示作用</p>
+<ul>
+<li>所以，如果循环使用select，每次调用select前需要重新初始化每个集合</li>
+</ul>
+<p><code>nfds</code>的值应该是最大文件描述符+1，因为文件描述符从0开始</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721175220.png" alt=""></p>
+<ul>
+<li>使用<code>select</code>可以制作更加精确的计时器，并且可移植</li>
+<li>nfds设置为0，三个集合设置为NULL，timeout非NUL</li>
+</ul>
+<p>返回值</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721153718.png" alt=""></p>
+<ul>
+<li>成功时，select() 和 pselect() 返回三个返回的描述符集中包含的文件描述符的数量（readfds、writefds、exceptfds）</li>
+<li><p>如果超时，可能返回0</p>
+</li>
+<li><p>出错，返回-1</p>
+</li>
+</ul>
+<h1 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h1><blockquote>
+<p>本质上和select是一样的，只是底层数据结构不一样</p>
+<p>继承了基本上select的所有缺点，除了最大文件描述符的限制</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721212821.png" alt=""></p>
+<ul>
+<li>fds：一个结构体数组</li>
+<li>nfds：数组大小</li>
+<li>timeout：时间间隔</li>
+</ul>
+<p><code>struct pollfd</code>结构体成员</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721213301.png" alt=""></p>
+<ul>
+<li>fd：打开文件的文件描述符<ul>
+<li>若为负数，events字段被忽略，revents返回0</li>
+</ul>
+</li>
+<li>events：输入参数，下沉到内核<ul>
+<li>16位的位掩码，每一位可表示一个状态</li>
+<li>指定感兴趣的事件文件描述符fd</li>
+</ul>
+</li>
+<li>revents：输出参数，返回给用户态<ul>
+<li>由内核填充实际发生的事件</li>
+<li>返回包括事件中指定的任何值</li>
+<li>还可以返回<code>POLLERR</code>,<code>POLLHUP</code>,<code>POLLNVAL</code>，这三个值在events中没有意义</li>
+</ul>
+</li>
+</ul>
+<p><code>标志位</code></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721214246.png" alt=""></p>
+<ul>
+<li>POLLIN：可读标志位</li>
+<li>POLLOUT：可写标志位</li>
+</ul>
+<p>返回值</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721220024.png" alt=""></p>
+<ul>
+<li>&gt;0: 返回一个revents字段不是0的结构体个数<ul>
+<li>可能包含events或者出错</li>
+</ul>
+</li>
+<li>=0: 超时或者没有文件描述符就绪</li>
+<li>-1：出错，设置errno值</li>
+</ul>
+<h1 id="star-epoll"><a href="#star-epoll" class="headerlink" title=":star:epoll"></a><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>epoll</h1><p>描述</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722003304.png" alt=""></p>
+<ul>
+<li><code>epoll</code>——IO事件驱动设备</li>
+<li>三个系统调用<ul>
+<li><code>epoll_create</code>：创建一个实例，返回一个指向该实例的文件描述符</li>
+<li><code>epoll_ctl</code>：注册感兴趣的文件描述符</li>
+<li><code>epoll_wait</code>：等待IO事件，若当前没有可用事件，则一直阻塞</li>
+</ul>
+</li>
+<li>两种触发模式——水平触发（LT）、边缘触发（ET）</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722004313.png" alt=""></p>
+<p>man手册中举了一种情况解释边缘触发：</p>
+<ol>
+<li>代表管道<code>rfd</code>读取端的文件描述符注册在<code>epoll</code> 实例上。</li>
+<li>管道写入器在管道的写入端写入 2 kB 的数据。</li>
+<li>调用<code>epoll_wait</code>将返回 <code>rfd</code> 作为<code>ready</code>的文件描述符。</li>
+<li>管道读取器从 <code>rfd</code> 读取 1 kB 的数据。</li>
+<li>完成对 <code>epoll_wait</code> 的调用。</li>
+</ol>
+<p>如果此时使用边缘触发，则<code>epoll_wait</code>将一直阻塞在第5步中，原因是边缘触发仅在受监视的文件描述符发生更改时才传递事件。</p>
+<ul>
+<li>在此例中，管道读取了数据，文件描述符发生了改变，并完成第5步。但是其实并没有把全部数据读取出来，并且在完成调用后文件描述符并没有发生改变，因此<code>epoll_wait</code>会一直阻塞</li>
+</ul>
+<p>要避免这种情况发生，必须设置相应的文件描述符为非阻塞</p>
+<h2 id="epoll-creat"><a href="#epoll-creat" class="headerlink" title="epoll_creat"></a>epoll_creat</h2><p>描述</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722010315.png" alt=""></p>
+<ul>
+<li>创建一个epoll实例<ul>
+<li>返回一个文件描述符指向该实例</li>
+<li>当不需要使用文件描述符时，调用close关闭</li>
+<li>当所有的文件描述符都关闭时，才销毁实例</li>
+</ul>
+</li>
+</ul>
+<p>返回值</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722010927.png" alt=""></p>
+<ul>
+<li>返回一个非负的文件描述符</li>
+</ul>
+<p>注意点</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722011130.png" alt=""></p>
+<ul>
+<li>size的值<ul>
+<li>此参数会提示内核分配多少空间给events</li>
+<li>但是在现在的内核中会忽略此参数，因为内核可以动态调用events需要的空间，填上此值只是为了兼容旧内核的程序</li>
+</ul>
+</li>
+</ul>
+<h2 id="epoll-ctl"><a href="#epoll-ctl" class="headerlink" title="epoll_ctl"></a>epoll_ctl</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722011929.png" alt=""></p>
+<ul>
+<li>epfd：是创建实例返回的文件描述符</li>
+<li><p>op：对应三种操作——增，删，改</p>
+<ul>
+<li><code>EPOLL_CTL_ADD</code>：在文件描述符 epfd 引用的 epoll 实例上注册目标文件描述符<code>fd</code>并关联<code>event</code></li>
+<li><code>EPOLL_CTL_MOD</code>：更改与目标文件描述符<code>fd</code>关联的事件<code>event</code></li>
+<li><code>EPOLL_CTL_DEL</code>：从<code>epfd</code>引用的<code>epoll</code>实例中移除（注销）目标文件描述符 fd。 </li>
+</ul>
+</li>
+<li><p>event</p>
+</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722013901.png" alt=""></p>
+<ul>
+<li>events和poll中的events一样，都是位掩码<ul>
+<li><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>但是返回的状态信息也在此events中修改，原来的状态可以在data中找回</li>
+</ul>
+</li>
+<li>data可以指向一个文件描述符指针，也可以等于一个文件描述符，很灵活</li>
+<li>data中存储的是原fd的数据，可以通过data找回</li>
+</ul>
+<p>返回值</p>
+<ul>
+<li>成功，返回0. </li>
+<li>失败，返回-1</li>
+</ul>
+<h2 id="epoll-wait"><a href="#epoll-wait" class="headerlink" title="epoll_wait"></a>epoll_wait</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722014639.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722015226.png" alt=""></p>
+<ul>
+<li><p>返回epfd指向的实例中的所有就绪文件描述符个数</p>
+</li>
+<li><p>events中存放的是<code>ready</code>的文件描述符</p>
+</li>
+</ul>
+<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>思考点</p>
+<ol>
+<li>epoll使用了mmap吗？<ul>
+<li>对于mmap，在早起的Linux内核版本中，需要用户自己使用mmap将自己的文件描述符给内核空间，内核升级之后，这个过程不需要用户自己去做了。</li>
+<li>早起需要用户去做，现在是epoll自己已经实现的，但是需要注意的是，这个只是对fd的映射，也就是在进行ready状态的fd传递的时候做，并不会映射其他的</li>
+<li>网上有很多文章会把这个点误解为：epoll使用了mmap，所以当用户在read和write的时候，可以直接从内核中拷贝。但是实际是，在文件描述符的传递上，做了这个操作，不需要像select，poll一样来回传递，但是对于fd真实的IO操作，不可能做到这一点</li>
+<li>select/poll每次调用时都要传递你所要监控的所有socket给select/poll系统调用，这意味着需要将用户态的socket列表copy到内核态，但是epoll就不用，因为在epoll-ctl时已经在内核态存储了需要监控的sock列表。</li>
+</ul>
+</li>
+<li>关于最大文件描述符，<code>epoll</code>真的可以无限存储吗？<ul>
+<li><code>select</code> 的上限是默认是1024，这个值之所以默认是1024，是因为在早起的Linux中，默认打开最大文件数就是1024，所以FD_SETSIZE设置为1024,那么打开的文件数就不会超过1024。修改 FD_SETSIZE 重新编译内核可增大并发数，但因为 O(n) 轮询时间复杂度高治标不治本所以不采纳 </li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <tags>
+        <tag>网络编程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>reactor反应堆</title>
+    <url>/posts/1fd0.html</url>
+    <content><![CDATA[<h1 id="reactor"><a href="#reactor" class="headerlink" title="reactor"></a>reactor</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912184500.png" style="zoom: 25%;"></p>
+<p>Reactor thread : 反应堆线程——epoll实例，感知业务发生，直接给<code>Thread Pool</code>的线程做对应的工作</p>
+<p>这里会引发几个问题：</p>
+<p>1⃣️线程池中的线程量设计多少才合理？是越多越好吗？</p>
+<ul>
+<li>结论：不超过cpu核心数，要想性能最高，就让线程数等于cpu核心数</li>
+<li>原因：若是超过了cpu核心数，那么线程池中的线程之间也会发生调度，尽管线程间调度消耗的时间很少，但还是付出了损失性能的代价</li>
+</ul>
+<p>2⃣️既然不能超过cpu核心数，那主线程或者辅助的心跳线程放哪里呢？假设有8个cpu，是不是应该在线程池中设计6个呢？</p>
+<ul>
+<li>在我们设计这个反应堆模式时，线程池中处理的应该是繁忙的业务(由reactor分发过来的，ready状态的，无需等待)，应该要一直运行在cpu上的（cpu密集型）</li>
+<li>主线程和心跳线程——IO约束型的，更多时候在<code>sleep</code>，可以插空执行，</li>
+</ul>
+<p>3⃣️那既然这样，是不是意味着cpu越多，我处理并发的性能就越高呢？</p>
+<ul>
+<li>并不是，cpu越多，则任务在cpu中协调更困难（可靠性）</li>
+</ul>
+<h1 id="主从反应堆"><a href="#主从反应堆" class="headerlink" title="主从反应堆"></a>主从反应堆</h1><blockquote>
+<p>类比：理发店问题</p>
+<p>假设<code>reactor dispatch</code>为理发店老板，<code>sub-reactor dispatch</code>为合伙人，<code>client</code>为客户，<code>Thread Pool</code>为理发师。</p>
+<p>现在老板拉来了3个客人，老板只负责分配任务交给两个合伙人（从反应堆），两个合伙人一个给男孩剪头，一个给女孩剪头（也就是说现在客户跟合伙人有关联），并且合伙人只负责维护这些客户，这些客户之后和老板没有直接关系，如果客户要剪头发了（任务，可放在任务队列中），那么通知合伙人，由合伙人再去通知理发师线程去抢生意（抢占任务）</p>
+<p>假设客人要离开了，只需要通知合伙人就行，在合伙人这里进行删除，注销操作。</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912190559.png" style="zoom:25%;"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912191314.png" style="zoom:25%;"></p>
+<p>为什么需要从反应堆？</p>
+<ul>
+<li>因为主反应堆不够用，处理的能力不行，需要从反应堆分担压力</li>
+</ul>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>什么是IO多路复用</p>
+<p>什么是线程池，原理是什么，线程池设计多少的并发量比较适合，最大化使用应该设置为多少——线程池中的线程不能超过cpu核心数</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>哈希表与布隆过滤器</title>
+    <url>/posts/69d8.html</url>
+    <content><![CDATA[<h1 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h1><blockquote>
+<p>哈希表是利用数组的快速存取的特性<span class="github-emoji"><span>👉</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>关键是利用哈希函数——设计感极强</p>
+<p>哈希函数：将任意数据类型映射成数组下标，数据类型不同，映射过程也不相同</p>
+<p><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>哈希的过程本质是 高维-&gt;低维的转换，哈希冲突一定会发生，但是可以通过很多方式预防这种冲突，但是这种冲突是无法避免的</p>
+<p>冲突处理方法：开放定址法，再哈希法，建立公共溢出区，链式地址法（拉链法）</p>
+</blockquote>
+<p>可查看中<a href="https://srymaker0.com/posts/73f4">数据结构基础——C语言实验</a>哈希过程</p>
+<h2 id="开放定址法"><a href="#开放定址法" class="headerlink" title="开放定址法"></a>开放定址法</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710205559.png" style="zoom:50%;"></p>
+<p>注意扩容操作——装填因子：$\frac{存储元素个数}{哈希总容量}=0.75$ ，假设有100个容量存储数据，当容量为75个时就应该进行扩容操作</p>
+<p>扩容的时间复杂度——算的是均摊时间复杂度$O(1)$, $\frac{n}{2}+\frac{n}{4}+\frac{n}{8}+…\approx n$ </p>
+<p>估算：假设有n个元素，并且第一次发生扩容操作在$\frac{n}{2}$处，那么第一次的时间复杂度为$\frac{n}{2}$，依次类推所有元素进行的扩容操作为$O(n)$,但是算均摊，每一个元素进行的扩容操作为$O(1)$</p>
+<h2 id="建立公共溢出缓冲区"><a href="#建立公共溢出缓冲区" class="headerlink" title="建立公共溢出缓冲区"></a>建立公共溢出缓冲区</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710222603.png" style="zoom:50%;"></p>
+<p>当发生冲突，直接将元素放入set容器中（公共溢出缓冲区）</p>
+<p>set底层是红黑树，单次查找，插入时间复杂度都是$O(logn)$</p>
+<p>注意扩容的时候 缓冲区的值也要拷贝给新的哈希表</p>
+<h2 id="拉链法"><a href="#拉链法" class="headerlink" title="拉链法"></a>拉链法</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710223124.png" style="zoom:50%;"></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710223208.png" style="zoom:50%;"></p>
+<h2 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h2><p>传统哈希表——存储空间与元素数量有关</p>
+<p>布隆过滤器——存储空间与元素数量无关</p>
+<p>关于爬虫：爬网站可以将这些存储在哈希表中，一样的url会被去重，但是动态网络的url可能非常庞大，使用传统哈希表存储可能占用几TB的存储空间</p>
+<p>布隆过滤器的应用：大数据量；有信息安全要求</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710224832.png" style="zoom: 33%;"></p>
+<p>设计巧妙之处：一个数据经过3个哈希函数，得到3个数组下标，查找数组若这3个下标对应的值都为1，则说明这个数据大概率存在，若有一个是0，则一定不存在</p>
+<p>缺点：存在误判，只能准确判断一个数据不存在</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Script</title>
+    <url>/posts/e826.html</url>
+    <content><![CDATA[<h1 id="脚本获取系统信息"><a href="#脚本获取系统信息" class="headerlink" title="脚本获取系统信息"></a>脚本获取系统信息</h1><h2 id="MemLog"><a href="#MemLog" class="headerlink" title="MemLog"></a>MemLog</h2><p>最终效果：</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913150405.png" alt=""></p>
+<p>显示：时间 总量 剩余量  当前占用  占用百分比动态平均值</p>
+<p>使用free命令查看当前内存使用情况</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913145254.png" alt=""></p>
+<ul>
+<li><p>-m表示单位为兆M</p>
+</li>
+<li><p>红框为我们需要的数据</p>
+</li>
+</ul>
+<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913150944.png" alt=""></p>
+<ul>
+<li><p>MemValue是一个数组，使用awk命令去获取total，used这两个值</p>
+</li>
+<li><p>MemPrec为当前占用率，NowDyAver为占用百分比动态平均值</p>
+<ul>
+<li><p>利用bc命令去计算，<code>scale=2</code>表示保留2位小数</p>
+</li>
+<li><p>$ 动态平均值 =  0.8*加权平均值（上一次)+0.2当前占用比$​</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Disk"><a href="#Disk" class="headerlink" title="Disk"></a>Disk</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171937.png" alt=""></p>
+<p>最终效果：</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171921.png" alt=""></p>
+<p>使用df命令查看磁盘使用情况，-T表示类型</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913165756.png" alt=""></p>
+<ul>
+<li>红框内是我们需要的，<code>devtmpfs</code>和<code>tmpfs</code>是虚拟内存文件系统<ul>
+<li>tmpfs是一种基于内存的文件系统，不像其他的文件系统需要格式化后才可以挂载，而是直接使用，由于是在内存中存储数据，那么在断电后会导致数据丢失。在使用到tmpfs文件系统存储数据效率会得到一定的提升。</li>
+<li>devtmpfs 的功用是在 Linux 核心 启动早期建立一个初步的 /dev，令一般启动程序不用等待 udev，缩短 GNU/Linux 的开机时间</li>
+</ul>
+</li>
+</ul>
+<p>取得数据</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171709.png" alt=""></p>
+<ul>
+<li>tail -n +2——显示的第二条以后的数据</li>
+<li>-x——表示过滤</li>
+</ul>
+<h3 id="代码演示-1"><a href="#代码演示-1" class="headerlink" title="代码演示"></a>代码演示</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913174139.png" alt=""></p>
+<ul>
+<li>awk -v 表示定义一个变量<ul>
+<li>NR是awk内置变量——已经读出的记录数: 注意是从0开始</li>
+</ul>
+</li>
+<li>eval——<a href="https://blog.51cto.com/u_10706198/1788573">eval的使用</a></li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913181125.png" alt=""></p>
+<ul>
+<li>先输出总的磁盘情况，再输出分区的磁盘情况<ul>
+<li>parnum里面存的是读到的记录数</li>
+</ul>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>InnoDB与事务持久性</title>
     <url>/posts/7c75.html</url>
     <content><![CDATA[<h1 id="InnoDB那点事儿"><a href="#InnoDB那点事儿" class="headerlink" title="InnoDB那点事儿"></a>InnoDB那点事儿</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/InnoDB.png" alt=""></p>
 <p>这是我学习InnoDB时画的脑图，在此记录一些我认为比较重要的。</p>
+<ul>
+<li><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>抓住一条insert语句的生与死</li>
+</ul>
 <p><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>先抛出几个问题：事务的持久性是如何确保的</p>
 <ul>
 <li>当插入一条语句时，或者更新一条数据时，发生意外（断电），数据会丢失吗？</li>
@@ -979,35 +956,10 @@ init_prime <span class="token variable">${End}</span>
 ]]></content>
   </entry>
   <entry>
-    <title>关于MySQL那点事儿</title>
-    <url>/posts/d4d4.html</url>
-    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><p><a href="https://srymaker0.com/posts/54a3">1.关于MySQL架构</a></p>
-<p><a href="https://srymaker0.com/posts/5a4f">2.InnoDB的RC和RR隔离级别的实现</a></p>
-<p><a href="https://srymaker0.com/posts/7c75">3.InnoDB与事务持久性</a></p>
+    <title>sql_04_索引</title>
+    <url>/posts/a128.html</url>
+    <content><![CDATA[<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/%E7%B4%A2%E5%BC%95.png" alt=""></p>
 ]]></content>
-      <tags>
-        <tag>Innodb</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据结构之Leetcode刷题集</title>
-    <url>/posts/1124.html</url>
-    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><ul>
-<li><a href="https://srymaker0.com/posts/d64e">1.链表</a></li>
-<li><a href="https://srymaker0.com/posts/9199">2.栈</a></li>
-<li><a href="https://srymaker0.com/posts/682f">3.队列</a></li>
-<li><a href="https://srymaker0.com/posts/2a0c">4.二叉树</a></li>
-<li><a href="https://srymaker0.com/posts/3c7d">5.堆与优先队列</a></li>
-<li><a href="https://srymaker0.com/posts/20cf">6.并查集</a></li>
-<li><a href="https://srymaker0.com/posts/9271">7.快速排序+优化</a></li>
-<li><a href="https://srymaker0.com/posts/27bc">8.归并排序</a></li>
-<li><a href="https://srymaker0.com/posts/5930">9.有趣的排序</a></li>
-<li><a href="https://srymaker0.com/posts/96d5">10.二分查找</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Leetcode</tag>
-      </tags>
   </entry>
   <entry>
     <title>计算机网络概述</title>
