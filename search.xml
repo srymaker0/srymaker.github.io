@@ -51,6 +51,30 @@
       </tags>
   </entry>
   <entry>
+    <title>Effective C++</title>
+    <url>/posts/ec29.html</url>
+    <content><![CDATA[<h1 id="Effective-C"><a href="#Effective-C" class="headerlink" title="Effective C++"></a>Effective C++</h1><p>刚开始看第一遍， 记录一些关键、有趣、不是很懂的地方</p>
+<h2 id="static-amp-const-amp-inline"><a href="#static-amp-const-amp-inline" class="headerlink" title="static&amp;const&amp;inline"></a>static&amp;const&amp;inline</h2><h2 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h2><p>看到条款15懵b了 </p>
+<pre class="line-numbers language-CPP" data-language="CPP"><code class="language-CPP">class Font {
+public:
+    ...
+    operator FontHandle() const
+    { return f;}
+    ...
+};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>看到这个我开始怀疑自己有没有学过C++了<span class="github-emoji"><span>😢</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，我在想运算符重载还能这样写？后面查了资料才知道这并不是运算符重载</p>
+<p>关于隐式类型转换的规则<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<ul>
+<li>接受单个实参的构造函数，定义了从形参类型到该类类型的一个隐式转换。</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210919212342.png" alt=""></p>
+<p>explicit关键字</p>
+<ul>
+<li>类的构造函数被声明为<code>explicit</code>方式，可以用来<strong>阻止隐式类型转换</strong>，但被声明为explicit的构造函数依然可被用来执行<strong>显示类型转换</strong>。即，explicit构造函数必须显示调用。</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>shell</title>
     <url>/posts/9924.html</url>
     <content><![CDATA[<h1 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h1><p><strong>我们用的是bash解释器 写的脚本</strong></p>
@@ -479,30 +503,6 @@ init_prime <span class="token variable">${End}</span>
       </tags>
   </entry>
   <entry>
-    <title>Effective C++</title>
-    <url>/posts/ec29.html</url>
-    <content><![CDATA[<h1 id="Effective-C"><a href="#Effective-C" class="headerlink" title="Effective C++"></a>Effective C++</h1><p>刚开始看第一遍， 记录一些关键、有趣、不是很懂的地方</p>
-<h2 id="static-amp-const-amp-inline"><a href="#static-amp-const-amp-inline" class="headerlink" title="static&amp;const&amp;inline"></a>static&amp;const&amp;inline</h2><h2 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h2><p>看到条款15懵b了 </p>
-<pre class="line-numbers language-CPP" data-language="CPP"><code class="language-CPP">class Font {
-public:
-    ...
-    operator FontHandle() const
-    { return f;}
-    ...
-};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>看到这个我开始怀疑自己有没有学过C++了<span class="github-emoji"><span>😢</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，我在想运算符重载还能这样写？后面查了资料才知道这并不是运算符重载</p>
-<p>关于隐式类型转换的规则<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<ul>
-<li>接受单个实参的构造函数，定义了从形参类型到该类类型的一个隐式转换。</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210919212342.png" alt=""></p>
-<p>explicit关键字</p>
-<ul>
-<li>类的构造函数被声明为<code>explicit</code>方式，可以用来<strong>阻止隐式类型转换</strong>，但被声明为explicit的构造函数依然可被用来执行<strong>显示类型转换</strong>。即，explicit构造函数必须显示调用。</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>IO多路复用</title>
     <url>/posts/0.html</url>
     <content><![CDATA[<h1 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h1><p><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>为什么会出现IO多路复用</p>
@@ -795,35 +795,6 @@ public:
 ]]></content>
   </entry>
   <entry>
-    <title>哈希表与布隆过滤器</title>
-    <url>/posts/69d8.html</url>
-    <content><![CDATA[<h1 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h1><blockquote>
-<p>哈希表是利用数组的快速存取的特性<span class="github-emoji"><span>👉</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>关键是利用哈希函数——设计感极强</p>
-<p>哈希函数：将任意数据类型映射成数组下标，数据类型不同，映射过程也不相同</p>
-<p><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>哈希的过程本质是 高维-&gt;低维的转换，哈希冲突一定会发生，但是可以通过很多方式预防这种冲突，但是这种冲突是无法避免的</p>
-<p>冲突处理方法：开放定址法，再哈希法，建立公共溢出区，链式地址法（拉链法）</p>
-</blockquote>
-<p>可查看中<a href="https://srymaker0.com/posts/73f4">数据结构基础——C语言实验</a>哈希过程</p>
-<h2 id="开放定址法"><a href="#开放定址法" class="headerlink" title="开放定址法"></a>开放定址法</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710205559.png" style="zoom:50%;"></p>
-<p>注意扩容操作——装填因子：$\frac{存储元素个数}{哈希总容量}=0.75$ ，假设有100个容量存储数据，当容量为75个时就应该进行扩容操作</p>
-<p>扩容的时间复杂度——算的是均摊时间复杂度$O(1)$, $\frac{n}{2}+\frac{n}{4}+\frac{n}{8}+…\approx n$ </p>
-<p>估算：假设有n个元素，并且第一次发生扩容操作在$\frac{n}{2}$处，那么第一次的时间复杂度为$\frac{n}{2}$，依次类推所有元素进行的扩容操作为$O(n)$,但是算均摊，每一个元素进行的扩容操作为$O(1)$</p>
-<h2 id="建立公共溢出缓冲区"><a href="#建立公共溢出缓冲区" class="headerlink" title="建立公共溢出缓冲区"></a>建立公共溢出缓冲区</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710222603.png" style="zoom:50%;"></p>
-<p>当发生冲突，直接将元素放入set容器中（公共溢出缓冲区）</p>
-<p>set底层是红黑树，单次查找，插入时间复杂度都是$O(logn)$</p>
-<p>注意扩容的时候 缓冲区的值也要拷贝给新的哈希表</p>
-<h2 id="拉链法"><a href="#拉链法" class="headerlink" title="拉链法"></a>拉链法</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710223124.png" style="zoom:50%;"></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710223208.png" style="zoom:50%;"></p>
-<h2 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h2><p>传统哈希表——存储空间与元素数量有关</p>
-<p>布隆过滤器——存储空间与元素数量无关</p>
-<p>关于爬虫：爬网站可以将这些存储在哈希表中，一样的url会被去重，但是动态网络的url可能非常庞大，使用传统哈希表存储可能占用几TB的存储空间</p>
-<p>布隆过滤器的应用：大数据量；有信息安全要求</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710224832.png" style="zoom: 33%;"></p>
-<p>设计巧妙之处：一个数据经过3个哈希函数，得到3个数组下标，查找数组若这3个下标对应的值都为1，则说明这个数据大概率存在，若有一个是0，则一定不存在</p>
-<p>缺点：存在误判，只能准确判断一个数据不存在</p>
-]]></content>
-  </entry>
-  <entry>
     <title>Script</title>
     <url>/posts/e826.html</url>
     <content><![CDATA[<h1 id="脚本获取系统信息"><a href="#脚本获取系统信息" class="headerlink" title="脚本获取系统信息"></a>脚本获取系统信息</h1><h2 id="MemLog"><a href="#MemLog" class="headerlink" title="MemLog"></a>MemLog</h2><p>最终效果：</p>
@@ -883,6 +854,35 @@ public:
 </ul>
 </li>
 </ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>哈希表与布隆过滤器</title>
+    <url>/posts/69d8.html</url>
+    <content><![CDATA[<h1 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h1><blockquote>
+<p>哈希表是利用数组的快速存取的特性<span class="github-emoji"><span>👉</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>关键是利用哈希函数——设计感极强</p>
+<p>哈希函数：将任意数据类型映射成数组下标，数据类型不同，映射过程也不相同</p>
+<p><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>哈希的过程本质是 高维-&gt;低维的转换，哈希冲突一定会发生，但是可以通过很多方式预防这种冲突，但是这种冲突是无法避免的</p>
+<p>冲突处理方法：开放定址法，再哈希法，建立公共溢出区，链式地址法（拉链法）</p>
+</blockquote>
+<p>可查看中<a href="https://srymaker0.com/posts/73f4">数据结构基础——C语言实验</a>哈希过程</p>
+<h2 id="开放定址法"><a href="#开放定址法" class="headerlink" title="开放定址法"></a>开放定址法</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710205559.png" style="zoom:50%;"></p>
+<p>注意扩容操作——装填因子：$\frac{存储元素个数}{哈希总容量}=0.75$ ，假设有100个容量存储数据，当容量为75个时就应该进行扩容操作</p>
+<p>扩容的时间复杂度——算的是均摊时间复杂度$O(1)$, $\frac{n}{2}+\frac{n}{4}+\frac{n}{8}+…\approx n$ </p>
+<p>估算：假设有n个元素，并且第一次发生扩容操作在$\frac{n}{2}$处，那么第一次的时间复杂度为$\frac{n}{2}$，依次类推所有元素进行的扩容操作为$O(n)$,但是算均摊，每一个元素进行的扩容操作为$O(1)$</p>
+<h2 id="建立公共溢出缓冲区"><a href="#建立公共溢出缓冲区" class="headerlink" title="建立公共溢出缓冲区"></a>建立公共溢出缓冲区</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710222603.png" style="zoom:50%;"></p>
+<p>当发生冲突，直接将元素放入set容器中（公共溢出缓冲区）</p>
+<p>set底层是红黑树，单次查找，插入时间复杂度都是$O(logn)$</p>
+<p>注意扩容的时候 缓冲区的值也要拷贝给新的哈希表</p>
+<h2 id="拉链法"><a href="#拉链法" class="headerlink" title="拉链法"></a>拉链法</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710223124.png" style="zoom:50%;"></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710223208.png" style="zoom:50%;"></p>
+<h2 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h2><p>传统哈希表——存储空间与元素数量有关</p>
+<p>布隆过滤器——存储空间与元素数量无关</p>
+<p>关于爬虫：爬网站可以将这些存储在哈希表中，一样的url会被去重，但是动态网络的url可能非常庞大，使用传统哈希表存储可能占用几TB的存储空间</p>
+<p>布隆过滤器的应用：大数据量；有信息安全要求</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710224832.png" style="zoom: 33%;"></p>
+<p>设计巧妙之处：一个数据经过3个哈希函数，得到3个数组下标，查找数组若这3个下标对应的值都为1，则说明这个数据大概率存在，若有一个是0，则一定不存在</p>
+<p>缺点：存在误判，只能准确判断一个数据不存在</p>
 ]]></content>
   </entry>
   <entry>
