@@ -1,15 +1,15 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>The Srymaker0 | The Srymaker0</title><meta name="keywords" content="C/C++, Linux, Datastruct, algorithm"><meta name="author" content="srymaker0"><meta name="copyright" content="srymaker0"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="C&#x2F;S文件传输软件的设计与实现理解整包，拆包，粘包 理解拆包和粘包的产生原因，掌握处理方法 进一步了解底层协议乃至所有网络编程中对数据流的处理方法 理解三个包需要明白这是出现在哪一层的设计  这应该是应用层的逻辑，tcp不会管这些数据是否是按协议规定的，tcp只需要达到发送条件(&#x3D;size)发送即可 “TCP粘包”这个说法——在TCP传输协议下，应用层数据拼装发送和接收解析问题   Nagle算法">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IO多路复用 | The Srymaker0</title><meta name="keywords" content="网络编程"><meta name="author" content="srymaker0"><meta name="copyright" content="srymaker0"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="IO多路复用❓为什么会出现IO多路复用   系统调用会带来额外的开销：  操作系统层面(准确)：作为用户程序如何调用系统资源 更宏观的层面：调用系统函数(system call)   内核态：执行特权指令 ｜ 用户态：执行非特权指令  从用户态到内核态：通过系统调用（主要）、中断、异常       高并发需要考虑系统调用的开销  因为从用户态下沉到内核态往往伴随着数据的拷贝，加上本身切换的时间成本">
 <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta property="og:type" content="article">
-<meta property="og:title" content="The Srymaker0">
+<meta property="og:title" content="IO多路复用">
 <meta property="og:url" content="http://srymaker0.com/posts/0">
 <meta property="og:site_name" content="The Srymaker0">
-<meta property="og:description" content="C&#x2F;S文件传输软件的设计与实现理解整包，拆包，粘包 理解拆包和粘包的产生原因，掌握处理方法 进一步了解底层协议乃至所有网络编程中对数据流的处理方法 理解三个包需要明白这是出现在哪一层的设计  这应该是应用层的逻辑，tcp不会管这些数据是否是按协议规定的，tcp只需要达到发送条件(&#x3D;size)发送即可 “TCP粘包”这个说法——在TCP传输协议下，应用层数据拼装发送和接收解析问题   Nagle算法">
+<meta property="og:description" content="IO多路复用❓为什么会出现IO多路复用   系统调用会带来额外的开销：  操作系统层面(准确)：作为用户程序如何调用系统资源 更宏观的层面：调用系统函数(system call)   内核态：执行特权指令 ｜ 用户态：执行非特权指令  从用户态到内核态：通过系统调用（主要）、中断、异常       高并发需要考虑系统调用的开销  因为从用户态下沉到内核态往往伴随着数据的拷贝，加上本身切换的时间成本">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
-<meta property="article:published_time" content="2021-07-17T09:41:44.448Z">
-<meta property="article:modified_time" content="2021-10-02T15:56:06.190Z">
+<meta property="article:published_time" content="2021-07-25T11:24:00.000Z">
+<meta property="article:modified_time" content="2021-09-16T12:40:30.798Z">
 <meta property="article:author" content="srymaker0">
-<meta property="article:tag" content="C&#x2F;C++, Linux, Datastruct, algorithm">
+<meta property="article:tag" content="网络编程">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210504142319.png"><link rel="canonical" href="http://srymaker0.com/posts/0"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
   root: '/',
@@ -57,7 +57,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2021-10-02 23:56:06'
+  postUpdate: '2021-09-16 20:40:30'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -165,50 +165,256 @@
     }
     })(window)</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/iconfont.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/CCKNBC/ccknbc.github.io@latest/css/ccknbc.css"><link rel="stylesheet" href="/css/mycss.css"><meta name="generator" content="Hexo 5.4.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210503135612.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">The Srymaker0</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">无题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-07-17T09:41:44.448Z" title="发表于 2021-07-17 17:41:44">2021-07-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-10-02T15:56:06.190Z" title="更新于 2021-10-02 23:56:06">2021-10-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">522</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="C-S文件传输软件的设计与实现"><a href="#C-S文件传输软件的设计与实现" class="headerlink" title="C/S文件传输软件的设计与实现"></a>C/S文件传输软件的设计与实现</h1><p>理解整包，拆包，粘包</p>
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><p>理解拆包和粘包的产生原因，掌握处理方法</p>
-<p>进一步了解底层协议乃至所有网络编程中对数据流的处理方法</p>
-<h2 id="理解三个包"><a href="#理解三个包" class="headerlink" title="理解三个包"></a>理解三个包</h2><p>需要明白这是出现在哪一层的设计</p>
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210503135612.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">16</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">The Srymaker0</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard"><i class="fa-fw fa fa-paper-plane"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于作者</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">IO多路复用</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-07-25T11:24:00.000Z" title="发表于 2021-07-25 19:24:00">2021-07-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-09-16T12:40:30.798Z" title="更新于 2021-09-16 20:40:30">2021-09-16</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="IO多路复用"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h1><p><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>为什么会出现IO多路复用</p>
+<!-- hexo-inject:begin --><!-- hexo-inject:end --><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721145201.png" alt=""></p>
 <ul>
-<li>这应该是应用层的逻辑，tcp不会管这些数据是否是按协议规定的，tcp只需要达到发送条件(=size)发送即可</li>
-<li>“TCP粘包”这个说法——在TCP传输协议下，应用层数据拼装发送和接收解析问题</li>
+<li><p>系统调用会带来额外的开销：</p>
+<ul>
+<li>操作系统层面(准确)：作为用户程序如何调用系统资源</li>
+<li>更宏观的层面：调用系统函数(system call)</li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002232711.png" style="zoom:50%;"></p>
-<p>Nagle算法存在的原因</p>
+</li>
+<li><p>内核态：执行特权指令 ｜ 用户态：执行非特权指令</p>
+<ul>
+<li>从用户态到内核态：通过系统调用（主要）、中断、异常</li>
+</ul>
+</li>
+</ul>
 <blockquote>
-<p>  Small Packet Problem<br>  在使用一些协议通讯的时候，比如Telnet，会有一个字节字节的发送的情景，每次发送一个字节的有用数据，就会产生41个字节长的分组，20个字节的IP Header 和 20个字节的TCP Header，这就导致了1个字节的有用信息要浪费掉40个字节的头部信息，这是一笔巨大的字节开销，而且这种Small packet在广域网上会增加拥塞的出现。<br>  如果解决这种问题？ Nagle就提出了一种通过减少需要通过网络发送包的数量来提高TCP/IP传输的效率，这就是Nagle算法</p>
+<p>  高并发需要考虑系统调用的开销<br>  因为从用户态下沉到内核态往往伴随着数据的拷贝，加上本身切换的时间成本，会影响性能，因此减少数据的拷贝次数是提高高并发性能的关键。</p>
 </blockquote>
-<p>参考：</p>
-<p>——<a target="_blank" rel="noopener" href="https://blog.csdn.net/wdscq1234/article/details/52432095">CSDN: Nagle算法</a></p>
-<p>——<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20210025">知乎：怎么解决TCP网络传输「粘包」问题？</a></p>
-<p>我们这里其实设计的第一种“粘“<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002225044.png" alt=""></p>
-<p>三个都可以看成是结构体，可以理解为某种约定好的协议</p>
 <ul>
-<li><p><code>packet_pre</code>——存放临时的数据包，其实可以和packet合二为一</p>
+<li>NIO（非阻塞IO）实现并发：在循环中采用轮询机制——同时和100个女朋友聊天，其中一个不理我，那就找下一个聊，过会再来看看(EAGAIN)<ul>
+<li>弊端，需要自己反复的查看，而没有一种通知机制</li>
+</ul>
 </li>
-<li><p><code>packet_t</code>——存放临时的数据包</p>
+<li>解决：使用IO多路复用</li>
+</ul>
+<h1 id="select"><a href="#select" class="headerlink" title="select"></a>select</h1><blockquote>
+<p>  船长奇特类比：假设我拥有很多女朋友（文件描述符），每天只关心三件事，女友想跟我说话（可读），女友想听我说话（可写），女友想跟我分手（异常），<code>select</code>会在女朋友的思想里（内核中）监控，告诉你有多少女朋友想跟你说话、你可以跟她说话、或者要跟你分手（这三个都是就绪态），但是不会具体指出哪一个。此时我想知道是哪个女朋友能跟我进行对话（就绪），我只能去问<code>select</code>，并且是一个一个问三种状态（可选择）。</p>
+</blockquote>
+<p>通过这个类比可以得出一些结论：</p>
+<ul>
+<li><p><code>select</code>时间复杂度高：假设有1000个女朋友，只有第999个是就绪态的，那么我需要从第一个轮询到第999个</p>
+<ul>
+<li><p>用户态和内核态都需要轮询</p>
 </li>
-<li><p><code>packet</code>——真正的数据包的大小</p>
-</li>
-<li><p><code>offset</code>——偏移量</p>
-</li>
-<li><p><code>recv_size</code>——接收大小——其实就是设计好的缓存大小</p>
+<li><p>三种状态可以选择，若是只需要监听有哪些文件是可读的，只需要问一种状态即可，在较小的客户量下使用select完全可以处理过来</p>
 </li>
 </ul>
-<p>整包：$offset + recv_size = packet_size$  收到的等于发送的</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002230802.png" alt=""></p>
-<p>拆包：</p>
-<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>关于视频流tcp与udp的问题——<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/6187456/tcp-vs-udp-on-video-stream">TCP vs UDP on video stream</a></p>
-<p><code>stream oriented</code> VS <code>message oriented</code>—— <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/17446491/tcp-stream-vs-udp-message">TCP stream vs UDP message</a></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002224652.png" alt=""></p>
-<ul>
-<li><p>udp——发一个收一个</p>
 </li>
-<li><p>tcp——可以制定规则，可以发很多次，只接收一次。</p>
+<li><p>拷贝次数多：<code>select</code>执行先从用户态拿到需要监听的集合，然后下沉到内核态进行监听，接着返回给用户态有哪些文件描述符是就绪的，这里发生了两次数据拷贝行为</p>
+<ul>
+<li>通过<code>FD_ISSET</code>去轮询</li>
+</ul>
+</li>
+<li><p>并发量有上限</p>
 </li>
 </ul>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">srymaker0</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://srymaker0.com/posts/0">http://srymaker0.com/posts/0</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://srymaker0.com" target="_blank">The Srymaker0</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210505162738.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210505162738.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210505162714.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210505162714.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-S%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93%E8%BD%AF%E4%BB%B6%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0"><span class="toc-number">1.</span> <span class="toc-text">C&#x2F;S文件传输软件的设计与实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E8%A7%A3%E4%B8%89%E4%B8%AA%E5%8C%85"><span class="toc-number">1.1.</span> <span class="toc-text">理解三个包</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tips"><span class="toc-number">2.</span> <span class="toc-text">tips</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By srymaker0</div><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为 Hexo" alt="HEXO"></a><a style="margin-inline:5px"target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用 Butterfly" alt="Butterfly"></a><a style="margin-inline:5px"target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用 Jsdelivr 为静态资源提供CDN加速" alt="Jsdelivr"></a><a style="margin-inline:5px"target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由 GitHub 托管" alt="GitHub"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" alt="img" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+<p>原型</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721150123.png" alt=""></p>
+<ul>
+<li>nfds: 文件描述符集合——底层使用数组维护，数量有一个上限，一般为1024</li>
+<li>fd_set: 定义文件描述符的集合状态——可读，可写，异常</li>
+<li>timeout: 时间间隔——一直等（NULL），等多久（&gt;0），立即返回（0）</li>
+<li>四个宏操作集合<ul>
+<li>FD_CLR——从集合中删除一个文件描述符</li>
+<li>FD_ISSET——查看一个文件描述符是否在集合中</li>
+<li>FD_SET——添加一个文件描述符到集合中</li>
+<li>FD_ZERO——清空集合</li>
+</ul>
+</li>
+</ul>
+<p>描述</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721151433.png"></p>
+<p><code>select</code>和 <code>pselect</code> 允许程序监视多个文件描述符，等待一个或多个文件描述符变成“ready”进行某类 I/O 操作</p>
+<ul>
+<li>ready：就绪态，无阻塞的读或足够小的写</li>
+</ul>
+<p><code>select</code>和<code>pselect</code>的区别：</p>
+<ol>
+<li><p>精度不一样：前者的timeval结构体使用秒和微秒，后者的timespec使用秒和纳秒</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721153619.png" style="zoom: 33%;"></p>
+</li>
+<li><p><code>select</code> 可能会更新超时参数以指示还剩多少时间。  <code>pselect</code>不会改变这个参数。</p>
+</li>
+<li><p><code>select</code>没有 <code>sigmask</code> 参数，其行为与使用<code>NULL sigmask</code>调用的<code>pselect</code> 一样。</p>
+<ul>
+<li><code>pselect</code>可以忽略<code>sigmask</code>设置的信号</li>
+</ul>
+</li>
+</ol>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721152415.png" alt=""></p>
+<p>select监视三组独立的文件描述集合</p>
+<ol>
+<li>可读的——文件描述符是否有内容</li>
+<li>可写的——监视文件描述符中是否有可用空间写入</li>
+<li>异常的——文件描述符是否存在异常</li>
+</ol>
+<p>退出的时候，每个文件描述符集合会被修改，只留下状态发生变化的文件描述符，起指示作用</p>
+<ul>
+<li>所以，如果循环使用select，每次调用select前需要重新初始化每个集合</li>
+</ul>
+<p><code>nfds</code>的值应该是最大文件描述符+1，因为文件描述符从0开始</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721175220.png" alt=""></p>
+<ul>
+<li>使用<code>select</code>可以制作更加精确的计时器，并且可移植</li>
+<li>nfds设置为0，三个集合设置为NULL，timeout非NUL</li>
+</ul>
+<p>返回值</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721153718.png" alt=""></p>
+<ul>
+<li>成功时，select() 和 pselect() 返回三个返回的描述符集中包含的文件描述符的数量（readfds、writefds、exceptfds）</li>
+<li><p>如果超时，可能返回0</p>
+</li>
+<li><p>出错，返回-1</p>
+</li>
+</ul>
+<h1 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h1><blockquote>
+<p>本质上和select是一样的，只是底层数据结构不一样</p>
+<p>继承了基本上select的所有缺点，除了最大文件描述符的限制</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721212821.png" alt=""></p>
+<ul>
+<li>fds：一个结构体数组</li>
+<li>nfds：数组大小</li>
+<li>timeout：时间间隔</li>
+</ul>
+<p><code>struct pollfd</code>结构体成员</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721213301.png" alt=""></p>
+<ul>
+<li>fd：打开文件的文件描述符<ul>
+<li>若为负数，events字段被忽略，revents返回0</li>
+</ul>
+</li>
+<li>events：输入参数，下沉到内核<ul>
+<li>16位的位掩码，每一位可表示一个状态</li>
+<li>指定感兴趣的事件文件描述符fd</li>
+</ul>
+</li>
+<li>revents：输出参数，返回给用户态<ul>
+<li>由内核填充实际发生的事件</li>
+<li>返回包括事件中指定的任何值</li>
+<li>还可以返回<code>POLLERR</code>,<code>POLLHUP</code>,<code>POLLNVAL</code>，这三个值在events中没有意义</li>
+</ul>
+</li>
+</ul>
+<p><code>标志位</code></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721214246.png" alt=""></p>
+<ul>
+<li>POLLIN：可读标志位</li>
+<li>POLLOUT：可写标志位</li>
+</ul>
+<p>返回值</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210721220024.png" alt=""></p>
+<ul>
+<li>&gt;0: 返回一个revents字段不是0的结构体个数<ul>
+<li>可能包含events或者出错</li>
+</ul>
+</li>
+<li>=0: 超时或者没有文件描述符就绪</li>
+<li>-1：出错，设置errno值</li>
+</ul>
+<h1 id="star-epoll"><a href="#star-epoll" class="headerlink" title=":star:epoll"></a><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>epoll</h1><p>描述</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722003304.png" alt=""></p>
+<ul>
+<li><code>epoll</code>——IO事件驱动设备</li>
+<li>三个系统调用<ul>
+<li><code>epoll_create</code>：创建一个实例，返回一个指向该实例的文件描述符</li>
+<li><code>epoll_ctl</code>：注册感兴趣的文件描述符</li>
+<li><code>epoll_wait</code>：等待IO事件，若当前没有可用事件，则一直阻塞</li>
+</ul>
+</li>
+<li>两种触发模式——水平触发（LT）、边缘触发（ET）</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722004313.png" alt=""></p>
+<p>man手册中举了一种情况解释边缘触发：</p>
+<ol>
+<li>代表管道<code>rfd</code>读取端的文件描述符注册在<code>epoll</code> 实例上。</li>
+<li>管道写入器在管道的写入端写入 2 kB 的数据。</li>
+<li>调用<code>epoll_wait</code>将返回 <code>rfd</code> 作为<code>ready</code>的文件描述符。</li>
+<li>管道读取器从 <code>rfd</code> 读取 1 kB 的数据。</li>
+<li>完成对 <code>epoll_wait</code> 的调用。</li>
+</ol>
+<p>如果此时使用边缘触发，则<code>epoll_wait</code>将一直阻塞在第5步中，原因是边缘触发仅在受监视的文件描述符发生更改时才传递事件。</p>
+<ul>
+<li>在此例中，管道读取了数据，文件描述符发生了改变，并完成第5步。但是其实并没有把全部数据读取出来，并且在完成调用后文件描述符并没有发生改变，因此<code>epoll_wait</code>会一直阻塞</li>
+</ul>
+<p>要避免这种情况发生，必须设置相应的文件描述符为非阻塞</p>
+<h2 id="epoll-creat"><a href="#epoll-creat" class="headerlink" title="epoll_creat"></a>epoll_creat</h2><p>描述</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722010315.png" alt=""></p>
+<ul>
+<li>创建一个epoll实例<ul>
+<li>返回一个文件描述符指向该实例</li>
+<li>当不需要使用文件描述符时，调用close关闭</li>
+<li>当所有的文件描述符都关闭时，才销毁实例</li>
+</ul>
+</li>
+</ul>
+<p>返回值</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722010927.png" alt=""></p>
+<ul>
+<li>返回一个非负的文件描述符</li>
+</ul>
+<p>注意点</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722011130.png" alt=""></p>
+<ul>
+<li>size的值<ul>
+<li>此参数会提示内核分配多少空间给events</li>
+<li>但是在现在的内核中会忽略此参数，因为内核可以动态调用events需要的空间，填上此值只是为了兼容旧内核的程序</li>
+</ul>
+</li>
+</ul>
+<h2 id="epoll-ctl"><a href="#epoll-ctl" class="headerlink" title="epoll_ctl"></a>epoll_ctl</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722011929.png" alt=""></p>
+<ul>
+<li>epfd：是创建实例返回的文件描述符</li>
+<li><p>op：对应三种操作——增，删，改</p>
+<ul>
+<li><code>EPOLL_CTL_ADD</code>：在文件描述符 epfd 引用的 epoll 实例上注册目标文件描述符<code>fd</code>并关联<code>event</code></li>
+<li><code>EPOLL_CTL_MOD</code>：更改与目标文件描述符<code>fd</code>关联的事件<code>event</code></li>
+<li><code>EPOLL_CTL_DEL</code>：从<code>epfd</code>引用的<code>epoll</code>实例中移除（注销）目标文件描述符 fd。 </li>
+</ul>
+</li>
+<li><p>event</p>
+</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722013901.png" alt=""></p>
+<ul>
+<li>events和poll中的events一样，都是位掩码<ul>
+<li><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>但是返回的状态信息也在此events中修改，原来的状态可以在data中找回</li>
+</ul>
+</li>
+<li>data可以指向一个文件描述符指针，也可以等于一个文件描述符，很灵活</li>
+<li>data中存储的是原fd的数据，可以通过data找回</li>
+</ul>
+<p>返回值</p>
+<ul>
+<li>成功，返回0. </li>
+<li>失败，返回-1</li>
+</ul>
+<h2 id="epoll-wait"><a href="#epoll-wait" class="headerlink" title="epoll_wait"></a>epoll_wait</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722014639.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210722015226.png" alt=""></p>
+<ul>
+<li><p>返回epfd指向的实例中的所有就绪文件描述符个数</p>
+</li>
+<li><p>events中存放的是<code>ready</code>的文件描述符</p>
+</li>
+</ul>
+<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>思考点</p>
+<ol>
+<li>epoll使用了mmap吗？<ul>
+<li>对于mmap，在早起的Linux内核版本中，需要用户自己使用mmap将自己的文件描述符给内核空间，内核升级之后，这个过程不需要用户自己去做了。</li>
+<li>早起需要用户去做，现在是epoll自己已经实现的，但是需要注意的是，这个只是对fd的映射，也就是在进行ready状态的fd传递的时候做，并不会映射其他的</li>
+<li>网上有很多文章会把这个点误解为：epoll使用了mmap，所以当用户在read和write的时候，可以直接从内核中拷贝。但是实际是，在文件描述符的传递上，做了这个操作，不需要像select，poll一样来回传递，但是对于fd真实的IO操作，不可能做到这一点</li>
+<li>select/poll每次调用时都要传递你所要监控的所有socket给select/poll系统调用，这意味着需要将用户态的socket列表copy到内核态，但是epoll就不用，因为在epoll-ctl时已经在内核态存储了需要监控的sock列表。</li>
+</ul>
+</li>
+<li>关于最大文件描述符，<code>epoll</code>真的可以无限存储吗？<ul>
+<li><code>select</code> 的上限是默认是1024，这个值之所以默认是1024，是因为在早起的Linux中，默认打开最大文件数就是1024，所以FD_SETSIZE设置为1024,那么打开的文件数就不会超过1024。修改 FD_SETSIZE 重新编译内核可增大并发数，但因为 O(n) 轮询时间复杂度高治标不治本所以不采纳 </li>
+</ul>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">srymaker0</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://srymaker0.com/posts/0">http://srymaker0.com/posts/0</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://srymaker0.com" target="_blank">The Srymaker0</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210505162738.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210505162738.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210505162714.png" target="_blank"><img class="post-qr-code-img" src="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210505162714.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">IO多路复用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#select"><span class="toc-number">2.</span> <span class="toc-text">select</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#poll"><span class="toc-number">3.</span> <span class="toc-text">poll</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#star-epoll"><span class="toc-number">4.</span> <span class="toc-text">⭐epoll</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#epoll-creat"><span class="toc-number">4.1.</span> <span class="toc-text">epoll_creat</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#epoll-ctl"><span class="toc-number">4.2.</span> <span class="toc-text">epoll_ctl</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#epoll-wait"><span class="toc-number">4.3.</span> <span class="toc-text">epoll_wait</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tips"><span class="toc-number">5.</span> <span class="toc-text">tips</span></a></li></ol></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By srymaker0</div><div class="footer_custom_text"><p><a style="margin-inline:5px"target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为 Hexo" alt="HEXO"></a><a style="margin-inline:5px"target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用 Butterfly" alt="Butterfly"></a><a style="margin-inline:5px"target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用 Jsdelivr 为静态资源提供CDN加速" alt="Jsdelivr"></a><a style="margin-inline:5px"target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由 GitHub 托管" alt="GitHub"></a><a style="margin-inline:5px"target="_blank"href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" alt="img" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font-plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font-minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
   endLoading: () => {
     document.body.style.overflow = 'auto';
     document.getElementById('loading-box').classList.add("loaded")
