@@ -510,8 +510,11 @@ public:
 <p>进一步了解底层协议乃至所有网络编程中对数据流的处理方法</p>
 <h2 id="理解三个包"><a href="#理解三个包" class="headerlink" title="理解三个包"></a>理解三个包</h2><p>需要明白这是出现在哪一层的设计</p>
 <ul>
-<li>这应该是应用层的逻辑，tcp不会管这些数据是否是按协议规定的，tcp只需要达到发送条件(=size)发送即可</li>
+<li>1⃣️这应该是应用层的逻辑，tcp不会管这些数据是否是按协议规定的，tcp只需要达到发送条件(=size)发送即可<ul>
 <li>“TCP粘包”这个说法——在TCP传输协议下，应用层数据拼装发送和接收解析问题</li>
+</ul>
+</li>
+<li>2⃣️Nagle算法解决的Small Packet Problem</li>
 </ul>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002232711.png" style="zoom:50%;"></p>
 <p>Nagle算法存在的原因</p>
@@ -538,7 +541,30 @@ public:
 </ul>
 <p>整包：$offset + recv_size = packet_size$  收到的等于发送的</p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002230802.png" alt=""></p>
-<p>拆包：</p>
+<ul>
+<li>若收到一个整包，则直接交付给packet</li>
+</ul>
+<p>拆包：$offset + recv_size &lt; packet_size$  </p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143256.png" alt=""></p>
+<ul>
+<li>若收到这样的数据，则先将这部分数据交给packet，移动offset位置，然后接收到如下图的数据</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143329.png" style="zoom:25%;"></p>
+<ul>
+<li>此时由于数据过大，超出了packet的大小，需要将packet_t的数据做拆分处理（这就是所谓的“拆包”），大小为$packet_size - offset$</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143551.png" style="zoom:25%;"></p>
+<ul>
+<li>将$packet_size - offset$大小的数据交给packet后，packet又满了，那么可以交给调用<code>send()</code>了，可剩下的数据咋办<span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+</ul>
+<p><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003145154.png" style="zoom:25%;"></p>
+<ul>
+<li>将$recv_size - packet_size + offset$大小的数据先暂存在packet_pre中，之后再移交给packet<ul>
+<li>其实可以将packet_pre和packet合二为一，即等packet的数据全部交付完后，再把packet_t中剩下的数据一刀packet中，但使用packet_pre方便理解</li>
+</ul>
+</li>
+</ul>
 <h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>关于视频流tcp与udp的问题——<a href="https://stackoverflow.com/questions/6187456/tcp-vs-udp-on-video-stream">TCP vs UDP on video stream</a></p>
 <p><code>stream oriented</code> VS <code>message oriented</code>—— <a href="https://stackoverflow.com/questions/17446491/tcp-stream-vs-udp-message">TCP stream vs UDP message</a></p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002224652.png" alt=""></p>
