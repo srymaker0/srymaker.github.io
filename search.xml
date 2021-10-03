@@ -503,6 +503,54 @@ public:
 ]]></content>
   </entry>
   <entry>
+    <title>C/S文件传输软件的设计与实现</title>
+    <url>/posts/b12c.html</url>
+    <content><![CDATA[<h1 id="C-S文件传输软件的设计与实现"><a href="#C-S文件传输软件的设计与实现" class="headerlink" title="C/S文件传输软件的设计与实现"></a>C/S文件传输软件的设计与实现</h1><p>理解整包，拆包，粘包</p>
+<p>理解拆包和粘包的产生原因，掌握处理方法</p>
+<p>进一步了解底层协议乃至所有网络编程中对数据流的处理方法</p>
+<h2 id="理解三个包"><a href="#理解三个包" class="headerlink" title="理解三个包"></a>理解三个包</h2><p>需要明白这是出现在哪一层的设计</p>
+<ul>
+<li>这应该是应用层的逻辑，tcp不会管这些数据是否是按协议规定的，tcp只需要达到发送条件(=size)发送即可</li>
+<li>“TCP粘包”这个说法——在TCP传输协议下，应用层数据拼装发送和接收解析问题</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002232711.png" style="zoom:50%;"></p>
+<p>Nagle算法存在的原因</p>
+<blockquote>
+<p>  Small Packet Problem<br>  在使用一些协议通讯的时候，比如Telnet，会有一个字节字节的发送的情景，每次发送一个字节的有用数据，就会产生41个字节长的分组，20个字节的IP Header 和 20个字节的TCP Header，这就导致了1个字节的有用信息要浪费掉40个字节的头部信息，这是一笔巨大的字节开销，而且这种Small packet在广域网上会增加拥塞的出现。<br>  如果解决这种问题？ Nagle就提出了一种通过减少需要通过网络发送包的数量来提高TCP/IP传输的效率，这就是Nagle算法</p>
+</blockquote>
+<p>参考：</p>
+<p>——<a href="https://blog.csdn.net/wdscq1234/article/details/52432095">CSDN: Nagle算法</a></p>
+<p>——<a href="https://www.zhihu.com/question/20210025">知乎：怎么解决TCP网络传输「粘包」问题？</a></p>
+<p>我们这里其实设计的第一种“粘“<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002225044.png" alt=""></p>
+<p>三个都可以看成是结构体，可以理解为某种约定好的协议</p>
+<ul>
+<li><p><code>packet_pre</code>——存放临时的数据包，其实可以和packet合二为一</p>
+</li>
+<li><p><code>packet_t</code>——存放临时的数据包</p>
+</li>
+<li><p><code>packet</code>——真正的数据包的大小</p>
+</li>
+<li><p><code>offset</code>——偏移量</p>
+</li>
+<li><p><code>recv_size</code>——接收大小——其实就是设计好的缓存大小</p>
+</li>
+</ul>
+<p>整包：$offset + recv_size = packet_size$  收到的等于发送的</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002230802.png" alt=""></p>
+<p>拆包：</p>
+<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>关于视频流tcp与udp的问题——<a href="https://stackoverflow.com/questions/6187456/tcp-vs-udp-on-video-stream">TCP vs UDP on video stream</a></p>
+<p><code>stream oriented</code> VS <code>message oriented</code>—— <a href="https://stackoverflow.com/questions/17446491/tcp-stream-vs-udp-message">TCP stream vs UDP message</a></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002224652.png" alt=""></p>
+<ul>
+<li><p>udp——发一个收一个</p>
+</li>
+<li><p>tcp——可以制定规则，可以发很多次，只接收一次。</p>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>IO多路复用</title>
     <url>/posts/0.html</url>
     <content><![CDATA[<h1 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h1><p><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>为什么会出现IO多路复用</p>
@@ -792,54 +840,6 @@ public:
 </ul>
 <h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>什么是IO多路复用</p>
 <p>什么是线程池，原理是什么，线程池设计多少的并发量比较适合，最大化使用应该设置为多少——线程池中的线程不能超过cpu核心数</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>apage_08_packetsProblem</title>
-    <url>/posts/b12c.html</url>
-    <content><![CDATA[<h1 id="C-S文件传输软件的设计与实现"><a href="#C-S文件传输软件的设计与实现" class="headerlink" title="C/S文件传输软件的设计与实现"></a>C/S文件传输软件的设计与实现</h1><p>理解整包，拆包，粘包</p>
-<p>理解拆包和粘包的产生原因，掌握处理方法</p>
-<p>进一步了解底层协议乃至所有网络编程中对数据流的处理方法</p>
-<h2 id="理解三个包"><a href="#理解三个包" class="headerlink" title="理解三个包"></a>理解三个包</h2><p>需要明白这是出现在哪一层的设计</p>
-<ul>
-<li>这应该是应用层的逻辑，tcp不会管这些数据是否是按协议规定的，tcp只需要达到发送条件(=size)发送即可</li>
-<li>“TCP粘包”这个说法——在TCP传输协议下，应用层数据拼装发送和接收解析问题</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002232711.png" style="zoom:50%;"></p>
-<p>Nagle算法存在的原因</p>
-<blockquote>
-<p>  Small Packet Problem<br>  在使用一些协议通讯的时候，比如Telnet，会有一个字节字节的发送的情景，每次发送一个字节的有用数据，就会产生41个字节长的分组，20个字节的IP Header 和 20个字节的TCP Header，这就导致了1个字节的有用信息要浪费掉40个字节的头部信息，这是一笔巨大的字节开销，而且这种Small packet在广域网上会增加拥塞的出现。<br>  如果解决这种问题？ Nagle就提出了一种通过减少需要通过网络发送包的数量来提高TCP/IP传输的效率，这就是Nagle算法</p>
-</blockquote>
-<p>参考：</p>
-<p>——<a href="https://blog.csdn.net/wdscq1234/article/details/52432095">CSDN: Nagle算法</a></p>
-<p>——<a href="https://www.zhihu.com/question/20210025">知乎：怎么解决TCP网络传输「粘包」问题？</a></p>
-<p>我们这里其实设计的第一种“粘“<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002225044.png" alt=""></p>
-<p>三个都可以看成是结构体，可以理解为某种约定好的协议</p>
-<ul>
-<li><p><code>packet_pre</code>——存放临时的数据包，其实可以和packet合二为一</p>
-</li>
-<li><p><code>packet_t</code>——存放临时的数据包</p>
-</li>
-<li><p><code>packet</code>——真正的数据包的大小</p>
-</li>
-<li><p><code>offset</code>——偏移量</p>
-</li>
-<li><p><code>recv_size</code>——接收大小——其实就是设计好的缓存大小</p>
-</li>
-</ul>
-<p>整包：$offset + recv_size = packet_size$  收到的等于发送的</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002230802.png" alt=""></p>
-<p>拆包：</p>
-<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>关于视频流tcp与udp的问题——<a href="https://stackoverflow.com/questions/6187456/tcp-vs-udp-on-video-stream">TCP vs UDP on video stream</a></p>
-<p><code>stream oriented</code> VS <code>message oriented</code>—— <a href="https://stackoverflow.com/questions/17446491/tcp-stream-vs-udp-message">TCP stream vs UDP message</a></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002224652.png" alt=""></p>
-<ul>
-<li><p>udp——发一个收一个</p>
-</li>
-<li><p>tcp——可以制定规则，可以发很多次，只接收一次。</p>
-</li>
-</ul>
 ]]></content>
   </entry>
   <entry>
