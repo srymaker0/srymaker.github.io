@@ -20,17 +20,6 @@
       </tags>
   </entry>
   <entry>
-    <title>关于MySQL那点事儿</title>
-    <url>/posts/d4d4.html</url>
-    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><p><a href="https://srymaker0.com/posts/54a3">1.关于MySQL架构</a></p>
-<p><a href="https://srymaker0.com/posts/5a4f">2.InnoDB的RC和RR隔离级别的实现</a></p>
-<p><a href="https://srymaker0.com/posts/7c75">3.InnoDB与事务持久性</a></p>
-]]></content>
-      <tags>
-        <tag>Innodb</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据结构之Leetcode刷题集</title>
     <url>/posts/1124.html</url>
     <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><ul>
@@ -48,6 +37,17 @@
 ]]></content>
       <tags>
         <tag>Leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于MySQL那点事儿</title>
+    <url>/posts/d4d4.html</url>
+    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><p><a href="https://srymaker0.com/posts/54a3">1.关于MySQL架构</a></p>
+<p><a href="https://srymaker0.com/posts/5a4f">2.InnoDB的RC和RR隔离级别的实现</a></p>
+<p><a href="https://srymaker0.com/posts/7c75">3.InnoDB与事务持久性</a></p>
+]]></content>
+      <tags>
+        <tag>Innodb</tag>
       </tags>
   </entry>
   <entry>
@@ -479,6 +479,30 @@ init_prime <span class="token variable">${End}</span>
       </tags>
   </entry>
   <entry>
+    <title>Effective C++</title>
+    <url>/posts/ec29.html</url>
+    <content><![CDATA[<h1 id="Effective-C"><a href="#Effective-C" class="headerlink" title="Effective C++"></a>Effective C++</h1><p>刚开始看第一遍， 记录一些关键、有趣、不是很懂的地方</p>
+<h2 id="static-amp-const-amp-inline"><a href="#static-amp-const-amp-inline" class="headerlink" title="static&amp;const&amp;inline"></a>static&amp;const&amp;inline</h2><h2 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h2><p>看到条款15懵b了 </p>
+<pre class="line-numbers language-CPP" data-language="CPP"><code class="language-CPP">class Font {
+public:
+    ...
+    operator FontHandle() const
+    { return f;}
+    ...
+};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>看到这个我开始怀疑自己有没有学过C++了<span class="github-emoji"><span>😢</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，我在想运算符重载还能这样写？后面查了资料才知道这并不是运算符重载</p>
+<p>关于隐式类型转换的规则<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<ul>
+<li>接受单个实参的构造函数，定义了从形参类型到该类类型的一个隐式转换。</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210919212342.png" alt=""></p>
+<p>explicit关键字</p>
+<ul>
+<li>类的构造函数被声明为<code>explicit</code>方式，可以用来<strong>阻止隐式类型转换</strong>，但被声明为explicit的构造函数依然可被用来执行<strong>显示类型转换</strong>。即，explicit构造函数必须显示调用。</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>C/S文件传输软件的设计与实现</title>
     <url>/posts/b12c.html</url>
     <content><![CDATA[<h1 id="C-S文件传输软件的设计与实现"><a href="#C-S文件传输软件的设计与实现" class="headerlink" title="C/S文件传输软件的设计与实现"></a>C/S文件传输软件的设计与实现</h1><h2 id="理解三个包"><a href="#理解三个包" class="headerlink" title="理解三个包"></a>理解三个包</h2><p>需要明白这是出现在哪一层的设计</p>
@@ -583,65 +607,6 @@ init_prime <span class="token variable">${End}</span>
 <ul>
 <li>参考<a href="http://cnblogs.com/caihuafeng/p/5438753.html">对于多线程程序，单核cpu与多核cpu是怎么工作的</a>——cnblogs</li>
 </ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>Effective C++</title>
-    <url>/posts/ec29.html</url>
-    <content><![CDATA[<h1 id="Effective-C"><a href="#Effective-C" class="headerlink" title="Effective C++"></a>Effective C++</h1><p>刚开始看第一遍， 记录一些关键、有趣、不是很懂的地方</p>
-<h2 id="static-amp-const-amp-inline"><a href="#static-amp-const-amp-inline" class="headerlink" title="static&amp;const&amp;inline"></a>static&amp;const&amp;inline</h2><h2 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h2><p>看到条款15懵b了 </p>
-<pre class="line-numbers language-CPP" data-language="CPP"><code class="language-CPP">class Font {
-public:
-    ...
-    operator FontHandle() const
-    { return f;}
-    ...
-};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>看到这个我开始怀疑自己有没有学过C++了<span class="github-emoji"><span>😢</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，我在想运算符重载还能这样写？后面查了资料才知道这并不是运算符重载</p>
-<p>关于隐式类型转换的规则<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<ul>
-<li>接受单个实参的构造函数，定义了从形参类型到该类类型的一个隐式转换。</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210919212342.png" alt=""></p>
-<p>explicit关键字</p>
-<ul>
-<li>类的构造函数被声明为<code>explicit</code>方式，可以用来<strong>阻止隐式类型转换</strong>，但被声明为explicit的构造函数依然可被用来执行<strong>显示类型转换</strong>。即，explicit构造函数必须显示调用。</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>reactor反应堆</title>
-    <url>/posts/1fd0.html</url>
-    <content><![CDATA[<h1 id="reactor"><a href="#reactor" class="headerlink" title="reactor"></a>reactor</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912184500.png" style="zoom: 25%;"></p>
-<p>Reactor thread : 反应堆线程——epoll实例，感知业务发生，直接给<code>Thread Pool</code>的线程做对应的工作</p>
-<p>这里会引发几个问题：</p>
-<p>1⃣️线程池中的线程量设计多少才合理？是越多越好吗？</p>
-<ul>
-<li>结论：不超过cpu核心数，要想性能最高，就让线程数等于cpu核心数</li>
-<li>原因：若是超过了cpu核心数，那么线程池中的线程之间也会发生调度，尽管线程间调度消耗的时间很少，但还是付出了损失性能的代价</li>
-</ul>
-<p>2⃣️既然不能超过cpu核心数，那主线程或者辅助的心跳线程放哪里呢？假设有8个cpu，是不是应该在线程池中设计6个呢？</p>
-<ul>
-<li>在我们设计这个反应堆模式时，线程池中处理的应该是繁忙的业务(由reactor分发过来的，ready状态的，无需等待)，应该要一直运行在cpu上的（cpu密集型）</li>
-<li>主线程和心跳线程——IO约束型的，更多时候在<code>sleep</code>，可以插空执行，</li>
-</ul>
-<p>3⃣️那既然这样，是不是意味着cpu越多，我处理并发的性能就越高呢？</p>
-<ul>
-<li>并不是，cpu越多，则任务在cpu中协调更困难（可靠性）</li>
-</ul>
-<h1 id="主从反应堆"><a href="#主从反应堆" class="headerlink" title="主从反应堆"></a>主从反应堆</h1><blockquote>
-<p>类比：理发店问题</p>
-<p>假设<code>reactor dispatch</code>为理发店老板，<code>sub-reactor dispatch</code>为合伙人，<code>client</code>为客户，<code>Thread Pool</code>为理发师。</p>
-<p>现在老板拉来了3个客人，老板只负责分配任务交给两个合伙人（从反应堆），两个合伙人一个给男孩剪头，一个给女孩剪头（也就是说现在客户跟合伙人有关联），并且合伙人只负责维护这些客户，这些客户之后和老板没有直接关系，如果客户要剪头发了（任务，可放在任务队列中），那么通知合伙人，由合伙人再去通知理发师线程去抢生意（抢占任务）</p>
-<p>假设客人要离开了，只需要通知合伙人就行，在合伙人这里进行删除，注销操作。</p>
-</blockquote>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912190559.png" style="zoom:25%;"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912191314.png" style="zoom:25%;"></p>
-<p>为什么需要从反应堆？</p>
-<ul>
-<li>因为主反应堆不够用，处理的能力不行，需要从反应堆分担压力</li>
-</ul>
-<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>什么是IO多路复用</p>
-<p>什么是线程池，原理是什么，线程池设计多少的并发量比较适合，最大化使用应该设置为多少——线程池中的线程不能超过cpu核心数</p>
 ]]></content>
   </entry>
   <entry>
@@ -905,6 +870,41 @@ public:
       </tags>
   </entry>
   <entry>
+    <title>reactor反应堆</title>
+    <url>/posts/1fd0.html</url>
+    <content><![CDATA[<h1 id="reactor"><a href="#reactor" class="headerlink" title="reactor"></a>reactor</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912184500.png" style="zoom: 25%;"></p>
+<p>Reactor thread : 反应堆线程——epoll实例，感知业务发生，直接给<code>Thread Pool</code>的线程做对应的工作</p>
+<p>这里会引发几个问题：</p>
+<p>1⃣️线程池中的线程量设计多少才合理？是越多越好吗？</p>
+<ul>
+<li>结论：不超过cpu核心数，要想性能最高，就让线程数等于cpu核心数</li>
+<li>原因：若是超过了cpu核心数，那么线程池中的线程之间也会发生调度，尽管线程间调度消耗的时间很少，但还是付出了损失性能的代价</li>
+</ul>
+<p>2⃣️既然不能超过cpu核心数，那主线程或者辅助的心跳线程放哪里呢？假设有8个cpu，是不是应该在线程池中设计6个呢？</p>
+<ul>
+<li>在我们设计这个反应堆模式时，线程池中处理的应该是繁忙的业务(由reactor分发过来的，ready状态的，无需等待)，应该要一直运行在cpu上的（cpu密集型）</li>
+<li>主线程和心跳线程——IO约束型的，更多时候在<code>sleep</code>，可以插空执行，</li>
+</ul>
+<p>3⃣️那既然这样，是不是意味着cpu越多，我处理并发的性能就越高呢？</p>
+<ul>
+<li>并不是，cpu越多，则任务在cpu中协调更困难（可靠性）</li>
+</ul>
+<h1 id="主从反应堆"><a href="#主从反应堆" class="headerlink" title="主从反应堆"></a>主从反应堆</h1><blockquote>
+<p>类比：理发店问题</p>
+<p>假设<code>reactor dispatch</code>为理发店老板，<code>sub-reactor dispatch</code>为合伙人，<code>client</code>为客户，<code>Thread Pool</code>为理发师。</p>
+<p>现在老板拉来了3个客人，老板只负责分配任务交给两个合伙人（从反应堆），两个合伙人一个给男孩剪头，一个给女孩剪头（也就是说现在客户跟合伙人有关联），并且合伙人只负责维护这些客户，这些客户之后和老板没有直接关系，如果客户要剪头发了（任务，可放在任务队列中），那么通知合伙人，由合伙人再去通知理发师线程去抢生意（抢占任务）</p>
+<p>假设客人要离开了，只需要通知合伙人就行，在合伙人这里进行删除，注销操作。</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912190559.png" style="zoom:25%;"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912191314.png" style="zoom:25%;"></p>
+<p>为什么需要从反应堆？</p>
+<ul>
+<li>因为主反应堆不够用，处理的能力不行，需要从反应堆分担压力</li>
+</ul>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>什么是IO多路复用</p>
+<p>什么是线程池，原理是什么，线程池设计多少的并发量比较适合，最大化使用应该设置为多少——线程池中的线程不能超过cpu核心数</p>
+]]></content>
+  </entry>
+  <entry>
     <title>哈希表与布隆过滤器</title>
     <url>/posts/69d8.html</url>
     <content><![CDATA[<h1 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h1><blockquote>
@@ -1067,6 +1067,13 @@ public:
 </li>
 <li><p>通过随机生成的x值去生产字符</p>
 </li>
+</ul>
+<h2 id="187-重复的DNA序列"><a href="#187-重复的DNA序列" class="headerlink" title="187. 重复的DNA序列"></a><a href="https://leetcode-cn.com/problems/repeated-dna-sequences/">187. 重复的DNA序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103003712.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103004021.png" alt=""></p>
+<h2 id="318-最大单词长度乘积"><a href="#318-最大单词长度乘积" class="headerlink" title="318. 最大单词长度乘积"></a><a href="https://leetcode-cn.com/problems/maximum-product-of-word-lengths/">318. 最大单词长度乘积</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103005819.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103005836.png" alt=""></p>
+<ul>
+<li>巧妙的使用了位掩码</li>
 </ul>
 ]]></content>
   </entry>
