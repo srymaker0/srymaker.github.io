@@ -1230,6 +1230,11 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 </ul>
 <h2 id="剑指-Offer-13-机器人的运动范围"><a href="#剑指-Offer-13-机器人的运动范围" class="headerlink" title="剑指 Offer 13. 机器人的运动范围"></a><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/">剑指 Offer 13. 机器人的运动范围</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014444.png" alt=""></p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014506.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014528.png" alt=""></p>
+<h2 id="130-被围绕的区域"><a href="#130-被围绕的区域" class="headerlink" title="130. 被围绕的区域"></a><a href="https://leetcode-cn.com/problems/surrounded-regions/">130. 被围绕的区域</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104021658.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104021715.png" alt=""></p>
+<ul>
+<li>采用逆思维，扫描边界O，搜索与其相邻的O，最后剩下的大O即为被X包围的</li>
+</ul>
 ]]></content>
   </entry>
   <entry>
