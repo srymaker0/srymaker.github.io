@@ -20,6 +20,17 @@
       </tags>
   </entry>
   <entry>
+    <title>关于MySQL那点事儿</title>
+    <url>/posts/d4d4.html</url>
+    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><p><a href="https://srymaker0.com/posts/54a3">1.关于MySQL架构</a></p>
+<p><a href="https://srymaker0.com/posts/5a4f">2.InnoDB的RC和RR隔离级别的实现</a></p>
+<p><a href="https://srymaker0.com/posts/7c75">3.InnoDB与事务持久性</a></p>
+]]></content>
+      <tags>
+        <tag>Innodb</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数据结构之Leetcode刷题集</title>
     <url>/posts/1124.html</url>
     <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><ul>
@@ -38,235 +49,6 @@
       <tags>
         <tag>Leetcode</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>关于MySQL那点事儿</title>
-    <url>/posts/d4d4.html</url>
-    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><p><a href="https://srymaker0.com/posts/54a3">1.关于MySQL架构</a></p>
-<p><a href="https://srymaker0.com/posts/5a4f">2.InnoDB的RC和RR隔离级别的实现</a></p>
-<p><a href="https://srymaker0.com/posts/7c75">3.InnoDB与事务持久性</a></p>
-]]></content>
-      <tags>
-        <tag>Innodb</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Effective C++</title>
-    <url>/posts/ec29.html</url>
-    <content><![CDATA[<h1 id="Effective-C"><a href="#Effective-C" class="headerlink" title="Effective C++"></a>Effective C++</h1><p>刚开始看第一遍， 记录一些关键、有趣、不是很懂的地方</p>
-<h2 id="static-amp-const-amp-inline"><a href="#static-amp-const-amp-inline" class="headerlink" title="static&amp;const&amp;inline"></a>static&amp;const&amp;inline</h2><p>const多才多艺：</p>
-<ul>
-<li>可修饰global或namespace作用域内的常量</li>
-<li>被声明为static的对象</li>
-<li>可修饰class内的static和non-static成员变量</li>
-<li>修饰指针</li>
-</ul>
-<p>修饰迭代器有讲究</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103105459.png" style="zoom: 25%;"></p>
-<p>修饰成员函数</p>
-<ul>
-<li>可以使class接口容易被理解<ul>
-<li>哪个函数可以改动对象内容哪个不可以</li>
-<li>可以操作const对象</li>
-</ul>
-</li>
-<li>两种概念——bitwise constness 和 logical constness<ul>
-<li>bitwise：指成员函数只有在不更改对象之人和成员变量时才可以说是const</li>
-<li>logical：一个const成员函数可以修改它所处理的对象内的某些bits，但只有在哭护短侦测不出的情况下才可以——<span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>使用mutable关键字修饰你可以修改的变量</li>
-</ul>
-</li>
-</ul>
-<p>Static:</p>
-<ul>
-<li>static对象，寿命从被构造出来知道程序结束为止</li>
-<li>在函数内的static对象称为local static， 其他的static对象称为non-local static对象</li>
-<li>程序结束时static对象会被自动销毁  </li>
-</ul>
-<h1 id="构造-析构-赋值运算"><a href="#构造-析构-赋值运算" class="headerlink" title="构造/析构/赋值运算"></a>构造/析构/赋值运算</h1><p>析构函数：任何class只要带有virtual函数都几乎确定应该也有一个virtual析构函数。</p>
-<ul>
-<li>若有继承关系，确没有vitual析构函数会造成局部销毁的bug，派生类只会销毁基类的对象</li>
-<li>只有当class内含至少一个virtual函数，才为它声明virtual析构函数</li>
-<li>STL容器都不被设计作为base classes使用</li>
-</ul>
-<p>虚函数：virtual关键字修饰</p>
-<ul>
-<li>在构造和析构期间不要调用virtual函数，因为这类调用从不下降至derived class</li>
-</ul>
-<h2 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h2><p>看到条款15懵b了 </p>
-<pre class="line-numbers language-CPP" data-language="CPP"><code class="language-CPP">class Font {
-public:
-    ...
-    operator FontHandle() const
-    { return f;}
-    ...
-};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>看到这个我开始怀疑自己有没有学过C++了<span class="github-emoji"><span>😢</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，我在想运算符重载还能这样写？后面查了资料才知道这并不是运算符重载</p>
-<p>关于隐式类型转换的规则<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<ul>
-<li>接受单个实参的构造函数，定义了从形参类型到该类类型的一个隐式转换。</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210919212342.png" alt=""></p>
-<p>explicit关键字</p>
-<ul>
-<li>类的构造函数被声明为<code>explicit</code>方式，可以用来<strong>阻止隐式类型转换</strong>，但被声明为explicit的构造函数依然可被用来执行<strong>显示类型转换</strong>。即，explicit构造函数必须显示调用。</li>
-</ul>
-<h1 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h1><p>以对象管理资源</p>
-<ul>
-<li>将资源放进对象内，依赖c++析构函数自动调用机制确保资源被释放</li>
-<li>RAII：资源取得时机便是初始化时机</li>
-<li>智能指针</li>
-</ul>
-<h2 id="auto-ptr-amp-shared-ptr"><a href="#auto-ptr-amp-shared-ptr" class="headerlink" title="auto_ptr&amp;shared_ptr"></a>auto_ptr&amp;shared_ptr</h2><p>auto_ptr: </p>
-<ul>
-<li>被销毁时自动删除所指之物，不能让多个auto_ptr指向同一个对象，否则该对象会被删除一次以上——未定义行为</li>
-<li>若通过copy构造函数或copy assignment操作符复制auto_ptr，它们会变成null，而复制所得的指针将取得资源的唯一拥有权<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103164044.png" style="zoom: 33%;"></p>
-<p>shared_ptr:</p>
-<ul>
-<li><p>被称为引用计数型智慧指针（RCSP），解决了auto_ptr的问题，可以用多个shared_ptr对象指向同一个对象</p>
-</li>
-<li><p>RAII class copying行为：有时候我们并不想删除对象，例如mutex这样的资源（当出现copy行为时并不合理），也许只是解除锁定</p>
-<ul>
-<li><p>抑制copying</p>
-</li>
-<li><p>shared_ptr有第二个参数——删除器（deleter）</p>
-</li>
-<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103165647.png" style="zoom:33%;"></li>
-<li>通过get可以访问shared_ptr对象的原始指针</li>
-</ul>
-</li>
-</ul>
-<p>看如下的几个调用</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-<span class="token keyword">void</span> <span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> pw<span class="token punctuation">,</span> <span class="token keyword">int</span> priority<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">// 1、错误，shared_ptr构造函数需要一个原始指针</span>
-<span class="token function">processWidget</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
-
-<span class="token comment">// 2、正确，但还是会造成资源泄露</span>
-<span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">shared_ptr</span><span class="token generic class-name"><span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-
-<span class="token comment">// 3、完美</span>
-std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> <span class="token function">pw</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">processWidget</span><span class="token punctuation">(</span>pw<span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>对于第二种调用的第一个参数有两个步骤</p>
-<ul>
-<li>执行“new Widget”</li>
-<li>调用tr1:shared_ptr构造函数</li>
-</ul>
-<p>而priority()的调用可能发生在这两步之间，若priority()的调用产生异常，则“new Widget”返回的指针将会遗失</p>
-<ul>
-<li>解决办法是第三种调用，分两步执行。</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>C/S文件传输软件的设计与实现</title>
-    <url>/posts/b12c.html</url>
-    <content><![CDATA[<h1 id="C-S文件传输软件的设计与实现"><a href="#C-S文件传输软件的设计与实现" class="headerlink" title="C/S文件传输软件的设计与实现"></a>C/S文件传输软件的设计与实现</h1><h2 id="理解三个包"><a href="#理解三个包" class="headerlink" title="理解三个包"></a>理解三个包</h2><p>需要明白这是出现在哪一层的设计</p>
-<ul>
-<li>1、这应该是应用层的逻辑，tcp不会管这些数据是否是按协议规定的，tcp只需要达到发送条件(=size)发送即可<ul>
-<li>“TCP粘包”这个说法——在TCP传输协议下，应用层数据拼装发送和接收解析问题</li>
-</ul>
-</li>
-<li>2、Nagle算法解决的Small Packet Problem</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002232711.png" style="zoom:50%;"></p>
-<p>Nagle算法存在的原因</p>
-<blockquote>
-<p>  Small Packet Problem<br>  在使用一些协议通讯的时候，比如Telnet，会有一个字节字节的发送的情景，每次发送一个字节的有用数据，就会产生41个字节长的分组，20个字节的IP Header 和 20个字节的TCP Header，这就导致了1个字节的有用信息要浪费掉40个字节的头部信息，这是一笔巨大的字节开销，而且这种Small packet在广域网上会增加拥塞的出现。<br>  如果解决这种问题？ Nagle就提出了一种通过减少需要通过网络发送包的数量来提高TCP/IP传输的效率，这就是Nagle算法</p>
-</blockquote>
-<p>参考：</p>
-<p><a href="https://blog.csdn.net/wdscq1234/article/details/52432095">Nagle算法</a>——CSDN</p>
-<p><a href="https://www.zhihu.com/question/20210025">怎么解决TCP网络传输「粘包」问题？</a>——知乎</p>
-<p>我们这里其实设计的第一种“粘“<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>——应用层数据拼装发送和接收解析问题</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002225044.png" alt=""></p>
-<p>三个都可以看成是结构体，可以理解为某种约定好的协议</p>
-<ul>
-<li><p><code>packet_pre</code>——存放临时的数据包，其实可以和packet合二为一</p>
-</li>
-<li><p><code>packet_t</code>——存放临时的数据包</p>
-</li>
-<li><p><code>packet</code>——真正的数据包的大小</p>
-</li>
-<li><p><code>offset</code>——偏移量</p>
-</li>
-<li><p><code>recv_size</code>——接收大小——其实就是设计好的缓存大小</p>
-</li>
-</ul>
-<p>整包：$offset + recv_size = packet_size$  收到的等于发送的</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002230802.png" alt=""></p>
-<ul>
-<li>若收到一个整包，则直接交付给packet</li>
-</ul>
-<p>拆包：$offset + recv_size &lt; packet_size$  </p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143256.png" alt=""></p>
-<ul>
-<li>若收到这样的数据，则先将这部分数据交给packet，移动offset位置，然后接收到如下图的数据</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143329.png" style="zoom:25%;"></p>
-<ul>
-<li>此时由于数据过大，超出了packet的大小，需要将packet_t的数据做拆分处理（这就是所谓的“拆包”），大小为$packet_size - offset$</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143551.png" style="zoom:25%;"></p>
-<ul>
-<li>将$packet_size - offset$大小的数据交给packet后，packet又满了，那么可以交给调用<code>send()</code>了，可剩下的数据咋办<span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
-</ul>
-<p><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003145154.png" style="zoom:25%;"></p>
-<ul>
-<li>将$recv_size - packet_size + offset$大小的数据先暂存在packet_pre中，之后再移交给packet<ul>
-<li>其实可以将packet_pre和packet合二为一，即等packet的数据全部交付完后，再把packet_t中剩下的数据移到packet中，但使用packet_pre方便理解</li>
-</ul>
-</li>
-</ul>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="server端"><a href="#server端" class="headerlink" title="server端"></a>server端</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153118.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153221.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153250.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153321.png" alt=""></p>
-<h3 id="client端"><a href="#client端" class="headerlink" title="client端"></a>client端</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004155237.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004155304.png" alt=""></p>
-<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>开两个终端，服务端运行<code>./server port</code>接收文件，客户端运行<code>./client ip file</code>传输文件</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004164450.png" alt=""></p>
-<p>我这里把一个较大的图片由本地传到服务器上，可以发现ZYJ目录下的图片大小和本地的图片大小一样</p>
-<h2 id="一些文件IO的知识"><a href="#一些文件IO的知识" class="headerlink" title="一些文件IO的知识"></a>一些文件IO的知识</h2><h3 id="fread"><a href="#fread" class="headerlink" title="fread"></a>fread</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003194812.png" alt=""></p>
-<p>其实这里的这个size困扰了我一会，为什么这个size要写成1，难道一次读很多个不好吗？</p>
-<p><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>即以下两者有啥区别</p>
-<ol>
-<li><code>fread(a, 1, 1000, stdin);</code></li>
-<li><code>fread(a, 1000, 1, stdin);</code></li>
-</ol>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003203953.png" style="zoom:50%;"></p>
-<ul>
-<li><code>fread()</code>返回的是能被读到的data elements的数量，而不是读到的字节，手册里也讲到<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003205335.png" alt=""></p>
-<ul>
-<li>只有当size等于1时，返回的number才是字节数量</li>
-</ul>
-<p>当以 <code>fread(a, 1, 1000, stdin);</code>  这种方式读取，若文件只有900字节，indicator会指向文件末尾，并返回900字节</p>
-<p>若以<code>fread(a, 1000, 1, stdin);</code>读取，则返回值是未定义的，因为读不到一个大小为1000字节的元素</p>
-<p>参考：</p>
-<p><a href="https://stackoverflow.com/questions/8589425/how-does-fread-really-work">How does fread really work?</a>——stackoverflow</p>
-<h3 id="fseek-amp-ftell"><a href="#fseek-amp-ftell" class="headerlink" title="fseek&amp;ftell"></a>fseek&amp;ftell</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193344.png" style="zoom:33%;"></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193456.png" style="zoom:33%;"></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193716.png" alt=""></p>
-<h3 id="关于fclose"><a href="#关于fclose" class="headerlink" title="关于fclose"></a>关于fclose</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003212809.png" alt=""></p>
-<ul>
-<li>这里我想指出一点，其中<code>fopen()</code>返回的是一个文件指针，只不过底层还是会调用<code>open()</code>，打开一个文件描述符</li>
-</ul>
-<p>参考：</p>
-<p><a href="https://blog.csdn.net/qq_43648751/article/details/104057656">文件描述符与文件指针</a>——CSDN</p>
-<p><a href="https://blog.csdn.net/bajianxiaofendui/article/details/84777733">为什么要调用fclose</a>——CSDN</p>
-<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>关于视频流tcp与udp的问题——<a href="https://stackoverflow.com/questions/6187456/tcp-vs-udp-on-video-stream">TCP vs UDP on video stream</a></p>
-<p><code>stream oriented</code> VS <code>message oriented</code>—— <a href="https://stackoverflow.com/questions/17446491/tcp-stream-vs-udp-message">TCP stream vs UDP message</a></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002224652.png" style="zoom: 50%;"></p>
-<ul>
-<li>udp——发一个收一个</li>
-<li>tcp——可以制定规则，可以发很多次，只接收一次。</li>
-</ul>
-<p>多线程在单cpu中还是顺序执行的，所以在单核CPU上，不推荐使用多线程</p>
-<ul>
-<li>参考<a href="http://cnblogs.com/caihuafeng/p/5438753.html">对于多线程程序，单核cpu与多核cpu是怎么工作的</a>——cnblogs</li>
-</ul>
-]]></content>
   </entry>
   <entry>
     <title>shell</title>
@@ -695,6 +477,224 @@ init_prime <span class="token variable">${End}</span>
       <tags>
         <tag>shell</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Effective C++</title>
+    <url>/posts/ec29.html</url>
+    <content><![CDATA[<h1 id="Effective-C"><a href="#Effective-C" class="headerlink" title="Effective C++"></a>Effective C++</h1><p>刚开始看第一遍， 记录一些关键、有趣、不是很懂的地方</p>
+<h2 id="static-amp-const-amp-inline"><a href="#static-amp-const-amp-inline" class="headerlink" title="static&amp;const&amp;inline"></a>static&amp;const&amp;inline</h2><p>const多才多艺：</p>
+<ul>
+<li>可修饰global或namespace作用域内的常量</li>
+<li>被声明为static的对象</li>
+<li>可修饰class内的static和non-static成员变量</li>
+<li>修饰指针</li>
+</ul>
+<p>修饰迭代器有讲究</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103105459.png" style="zoom: 25%;"></p>
+<p>修饰成员函数</p>
+<ul>
+<li>可以使class接口容易被理解<ul>
+<li>哪个函数可以改动对象内容哪个不可以</li>
+<li>可以操作const对象</li>
+</ul>
+</li>
+<li>两种概念——bitwise constness 和 logical constness<ul>
+<li>bitwise：指成员函数只有在不更改对象之人和成员变量时才可以说是const</li>
+<li>logical：一个const成员函数可以修改它所处理的对象内的某些bits，但只有在哭护短侦测不出的情况下才可以——<span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>使用mutable关键字修饰你可以修改的变量</li>
+</ul>
+</li>
+</ul>
+<p>Static:</p>
+<ul>
+<li>static对象，寿命从被构造出来知道程序结束为止</li>
+<li>在函数内的static对象称为local static， 其他的static对象称为non-local static对象</li>
+<li>程序结束时static对象会被自动销毁  </li>
+</ul>
+<h1 id="构造-析构-赋值运算"><a href="#构造-析构-赋值运算" class="headerlink" title="构造/析构/赋值运算"></a>构造/析构/赋值运算</h1><p>析构函数：任何class只要带有virtual函数都几乎确定应该也有一个virtual析构函数。</p>
+<ul>
+<li>若有继承关系，确没有vitual析构函数会造成局部销毁的bug，派生类只会销毁基类的对象</li>
+<li>只有当class内含至少一个virtual函数，才为它声明virtual析构函数</li>
+<li>STL容器都不被设计作为base classes使用</li>
+</ul>
+<p>虚函数：virtual关键字修饰</p>
+<ul>
+<li>在构造和析构期间不要调用virtual函数，因为这类调用从不下降至derived class</li>
+</ul>
+<h2 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h2><p>看到条款15懵b了 </p>
+<pre class="line-numbers language-CPP" data-language="CPP"><code class="language-CPP">class Font {
+public:
+    ...
+    operator FontHandle() const
+    { return f;}
+    ...
+};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>看到这个我开始怀疑自己有没有学过C++了<span class="github-emoji"><span>😢</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，我在想运算符重载还能这样写？后面查了资料才知道这并不是运算符重载</p>
+<p>关于隐式类型转换的规则<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<ul>
+<li>接受单个实参的构造函数，定义了从形参类型到该类类型的一个隐式转换。</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210919212342.png" alt=""></p>
+<p>explicit关键字</p>
+<ul>
+<li>类的构造函数被声明为<code>explicit</code>方式，可以用来<strong>阻止隐式类型转换</strong>，但被声明为explicit的构造函数依然可被用来执行<strong>显示类型转换</strong>。即，explicit构造函数必须显示调用。</li>
+</ul>
+<h1 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h1><p>以对象管理资源</p>
+<ul>
+<li>将资源放进对象内，依赖c++析构函数自动调用机制确保资源被释放</li>
+<li>RAII：资源取得时机便是初始化时机</li>
+<li>智能指针</li>
+</ul>
+<h2 id="auto-ptr-amp-shared-ptr"><a href="#auto-ptr-amp-shared-ptr" class="headerlink" title="auto_ptr&amp;shared_ptr"></a>auto_ptr&amp;shared_ptr</h2><p>auto_ptr: </p>
+<ul>
+<li>被销毁时自动删除所指之物，不能让多个auto_ptr指向同一个对象，否则该对象会被删除一次以上——未定义行为</li>
+<li>若通过copy构造函数或copy assignment操作符复制auto_ptr，它们会变成null，而复制所得的指针将取得资源的唯一拥有权<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103164044.png" style="zoom: 33%;"></p>
+<p>shared_ptr:</p>
+<ul>
+<li><p>被称为引用计数型智慧指针（RCSP），解决了auto_ptr的问题，可以用多个shared_ptr对象指向同一个对象</p>
+</li>
+<li><p>RAII class copying行为：有时候我们并不想删除对象，例如mutex这样的资源（当出现copy行为时并不合理），也许只是解除锁定</p>
+<ul>
+<li><p>抑制copying</p>
+</li>
+<li><p>shared_ptr有第二个参数——删除器（deleter）</p>
+</li>
+<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103165647.png" style="zoom:33%;"></li>
+<li>通过get可以访问shared_ptr对象的原始指针</li>
+</ul>
+</li>
+</ul>
+<p>看如下的几个调用</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token keyword">void</span> <span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> pw<span class="token punctuation">,</span> <span class="token keyword">int</span> priority<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 1、错误，shared_ptr构造函数需要一个原始指针</span>
+<span class="token function">processWidget</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+
+<span class="token comment">// 2、正确，但还是会造成资源泄露</span>
+<span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">shared_ptr</span><span class="token generic class-name"><span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token comment">// 3、完美</span>
+std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> <span class="token function">pw</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">processWidget</span><span class="token punctuation">(</span>pw<span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>对于第二种调用的第一个参数有两个步骤</p>
+<ul>
+<li>执行“new Widget”</li>
+<li>调用tr1:shared_ptr构造函数</li>
+</ul>
+<p>而priority()的调用可能发生在这两步之间，若priority()的调用产生异常，则“new Widget”返回的指针将会遗失</p>
+<ul>
+<li>解决办法是第三种调用，分两步执行。</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>C/S文件传输软件的设计与实现</title>
+    <url>/posts/b12c.html</url>
+    <content><![CDATA[<h1 id="C-S文件传输软件的设计与实现"><a href="#C-S文件传输软件的设计与实现" class="headerlink" title="C/S文件传输软件的设计与实现"></a>C/S文件传输软件的设计与实现</h1><h2 id="理解三个包"><a href="#理解三个包" class="headerlink" title="理解三个包"></a>理解三个包</h2><p>需要明白这是出现在哪一层的设计</p>
+<ul>
+<li>1、这应该是应用层的逻辑，tcp不会管这些数据是否是按协议规定的，tcp只需要达到发送条件(=size)发送即可<ul>
+<li>“TCP粘包”这个说法——在TCP传输协议下，应用层数据拼装发送和接收解析问题</li>
+</ul>
+</li>
+<li>2、Nagle算法解决的Small Packet Problem</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002232711.png" style="zoom:50%;"></p>
+<p>Nagle算法存在的原因</p>
+<blockquote>
+<p>  Small Packet Problem<br>  在使用一些协议通讯的时候，比如Telnet，会有一个字节字节的发送的情景，每次发送一个字节的有用数据，就会产生41个字节长的分组，20个字节的IP Header 和 20个字节的TCP Header，这就导致了1个字节的有用信息要浪费掉40个字节的头部信息，这是一笔巨大的字节开销，而且这种Small packet在广域网上会增加拥塞的出现。<br>  如果解决这种问题？ Nagle就提出了一种通过减少需要通过网络发送包的数量来提高TCP/IP传输的效率，这就是Nagle算法</p>
+</blockquote>
+<p>参考：</p>
+<p><a href="https://blog.csdn.net/wdscq1234/article/details/52432095">Nagle算法</a>——CSDN</p>
+<p><a href="https://www.zhihu.com/question/20210025">怎么解决TCP网络传输「粘包」问题？</a>——知乎</p>
+<p>我们这里其实设计的第一种“粘“<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>——应用层数据拼装发送和接收解析问题</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002225044.png" alt=""></p>
+<p>三个都可以看成是结构体，可以理解为某种约定好的协议</p>
+<ul>
+<li><p><code>packet_pre</code>——存放临时的数据包，其实可以和packet合二为一</p>
+</li>
+<li><p><code>packet_t</code>——存放临时的数据包</p>
+</li>
+<li><p><code>packet</code>——真正的数据包的大小</p>
+</li>
+<li><p><code>offset</code>——偏移量</p>
+</li>
+<li><p><code>recv_size</code>——接收大小——其实就是设计好的缓存大小</p>
+</li>
+</ul>
+<p>整包：$offset + recv_size = packet_size$  收到的等于发送的</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002230802.png" alt=""></p>
+<ul>
+<li>若收到一个整包，则直接交付给packet</li>
+</ul>
+<p>拆包：$offset + recv_size &lt; packet_size$  </p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143256.png" alt=""></p>
+<ul>
+<li>若收到这样的数据，则先将这部分数据交给packet，移动offset位置，然后接收到如下图的数据</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143329.png" style="zoom:25%;"></p>
+<ul>
+<li>此时由于数据过大，超出了packet的大小，需要将packet_t的数据做拆分处理（这就是所谓的“拆包”），大小为$packet_size - offset$</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143551.png" style="zoom:25%;"></p>
+<ul>
+<li>将$packet_size - offset$大小的数据交给packet后，packet又满了，那么可以交给调用<code>send()</code>了，可剩下的数据咋办<span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+</ul>
+<p><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003145154.png" style="zoom:25%;"></p>
+<ul>
+<li>将$recv_size - packet_size + offset$大小的数据先暂存在packet_pre中，之后再移交给packet<ul>
+<li>其实可以将packet_pre和packet合二为一，即等packet的数据全部交付完后，再把packet_t中剩下的数据移到packet中，但使用packet_pre方便理解</li>
+</ul>
+</li>
+</ul>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="server端"><a href="#server端" class="headerlink" title="server端"></a>server端</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153118.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153221.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153250.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153321.png" alt=""></p>
+<h3 id="client端"><a href="#client端" class="headerlink" title="client端"></a>client端</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004155237.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004155304.png" alt=""></p>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>开两个终端，服务端运行<code>./server port</code>接收文件，客户端运行<code>./client ip file</code>传输文件</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004164450.png" alt=""></p>
+<p>我这里把一个较大的图片由本地传到服务器上，可以发现ZYJ目录下的图片大小和本地的图片大小一样</p>
+<h2 id="一些文件IO的知识"><a href="#一些文件IO的知识" class="headerlink" title="一些文件IO的知识"></a>一些文件IO的知识</h2><h3 id="fread"><a href="#fread" class="headerlink" title="fread"></a>fread</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003194812.png" alt=""></p>
+<p>其实这里的这个size困扰了我一会，为什么这个size要写成1，难道一次读很多个不好吗？</p>
+<p><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>即以下两者有啥区别</p>
+<ol>
+<li><code>fread(a, 1, 1000, stdin);</code></li>
+<li><code>fread(a, 1000, 1, stdin);</code></li>
+</ol>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003203953.png" style="zoom:50%;"></p>
+<ul>
+<li><code>fread()</code>返回的是能被读到的data elements的数量，而不是读到的字节，手册里也讲到<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003205335.png" alt=""></p>
+<ul>
+<li>只有当size等于1时，返回的number才是字节数量</li>
+</ul>
+<p>当以 <code>fread(a, 1, 1000, stdin);</code>  这种方式读取，若文件只有900字节，indicator会指向文件末尾，并返回900字节</p>
+<p>若以<code>fread(a, 1000, 1, stdin);</code>读取，则返回值是未定义的，因为读不到一个大小为1000字节的元素</p>
+<p>参考：</p>
+<p><a href="https://stackoverflow.com/questions/8589425/how-does-fread-really-work">How does fread really work?</a>——stackoverflow</p>
+<h3 id="fseek-amp-ftell"><a href="#fseek-amp-ftell" class="headerlink" title="fseek&amp;ftell"></a>fseek&amp;ftell</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193344.png" style="zoom:33%;"></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193456.png" style="zoom:33%;"></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193716.png" alt=""></p>
+<h3 id="关于fclose"><a href="#关于fclose" class="headerlink" title="关于fclose"></a>关于fclose</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003212809.png" alt=""></p>
+<ul>
+<li>这里我想指出一点，其中<code>fopen()</code>返回的是一个文件指针，只不过底层还是会调用<code>open()</code>，打开一个文件描述符</li>
+</ul>
+<p>参考：</p>
+<p><a href="https://blog.csdn.net/qq_43648751/article/details/104057656">文件描述符与文件指针</a>——CSDN</p>
+<p><a href="https://blog.csdn.net/bajianxiaofendui/article/details/84777733">为什么要调用fclose</a>——CSDN</p>
+<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>关于视频流tcp与udp的问题——<a href="https://stackoverflow.com/questions/6187456/tcp-vs-udp-on-video-stream">TCP vs UDP on video stream</a></p>
+<p><code>stream oriented</code> VS <code>message oriented</code>—— <a href="https://stackoverflow.com/questions/17446491/tcp-stream-vs-udp-message">TCP stream vs UDP message</a></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002224652.png" style="zoom: 50%;"></p>
+<ul>
+<li>udp——发一个收一个</li>
+<li>tcp——可以制定规则，可以发很多次，只接收一次。</li>
+</ul>
+<p>多线程在单cpu中还是顺序执行的，所以在单核CPU上，不推荐使用多线程</p>
+<ul>
+<li>参考<a href="http://cnblogs.com/caihuafeng/p/5438753.html">对于多线程程序，单核cpu与多核cpu是怎么工作的</a>——cnblogs</li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>IO多路复用</title>
@@ -1247,6 +1247,68 @@ init_prime <span class="token variable">${End}</span>
 ]]></content>
   </entry>
   <entry>
+    <title>脚本获取系统信息</title>
+    <url>/posts/e826.html</url>
+    <content><![CDATA[<h1 id="脚本获取系统信息"><a href="#脚本获取系统信息" class="headerlink" title="脚本获取系统信息"></a>脚本获取系统信息</h1><h2 id="MemLog"><a href="#MemLog" class="headerlink" title="MemLog"></a>MemLog</h2><p>最终效果：</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913150405.png" alt=""></p>
+<p>显示：时间 总量 剩余量  当前占用  占用百分比动态平均值</p>
+<p>使用free命令查看当前内存使用情况</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913145254.png" alt=""></p>
+<ul>
+<li><p>-m表示单位为兆M</p>
+</li>
+<li><p>红框为我们需要的数据</p>
+</li>
+</ul>
+<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913150944.png" alt=""></p>
+<ul>
+<li><p>MemValue是一个数组，使用awk命令去获取total，used这两个值</p>
+</li>
+<li><p>MemPrec为当前占用率，NowDyAver为占用百分比动态平均值</p>
+<ul>
+<li><p>利用bc命令去计算，<code>scale=2</code>表示保留2位小数</p>
+</li>
+<li><p>$ 动态平均值 =  0.8*加权平均值（上一次)+0.2当前占用比$​</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Disk"><a href="#Disk" class="headerlink" title="Disk"></a>Disk</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171937.png" alt=""></p>
+<p>最终效果：</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171921.png" alt=""></p>
+<p>使用df命令查看磁盘使用情况，-T表示类型</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913165756.png" alt=""></p>
+<ul>
+<li>红框内是我们需要的，<code>devtmpfs</code>和<code>tmpfs</code>是虚拟内存文件系统<ul>
+<li>tmpfs是一种基于内存的文件系统，不像其他的文件系统需要格式化后才可以挂载，而是直接使用，由于是在内存中存储数据，那么在断电后会导致数据丢失。在使用到tmpfs文件系统存储数据效率会得到一定的提升。</li>
+<li>devtmpfs 的功用是在 Linux 核心 启动早期建立一个初步的 /dev，令一般启动程序不用等待 udev，缩短 GNU/Linux 的开机时间</li>
+</ul>
+</li>
+</ul>
+<p>取得数据</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171709.png" alt=""></p>
+<ul>
+<li>tail -n +2——显示的第二条以后的数据</li>
+<li>-x——表示过滤</li>
+</ul>
+<h3 id="代码演示-1"><a href="#代码演示-1" class="headerlink" title="代码演示"></a>代码演示</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913174139.png" alt=""></p>
+<ul>
+<li>awk -v 表示定义一个变量<ul>
+<li>NR是awk内置变量——已经读出的记录数: 注意是从0开始</li>
+</ul>
+</li>
+<li>eval——<a href="https://blog.51cto.com/u_10706198/1788573">eval的使用</a></li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913181125.png" alt=""></p>
+<ul>
+<li>先输出总的磁盘情况，再输出分区的磁盘情况<ul>
+<li>parnum里面存的是读到的记录数</li>
+</ul>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>单调队列</title>
     <url>/posts/2132.html</url>
     <content><![CDATA[<h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h2><ul>
@@ -1350,68 +1412,6 @@ init_prime <span class="token variable">${End}</span>
 </tbody>
 </table>
 </div>
-]]></content>
-  </entry>
-  <entry>
-    <title>脚本获取系统信息</title>
-    <url>/posts/e826.html</url>
-    <content><![CDATA[<h1 id="脚本获取系统信息"><a href="#脚本获取系统信息" class="headerlink" title="脚本获取系统信息"></a>脚本获取系统信息</h1><h2 id="MemLog"><a href="#MemLog" class="headerlink" title="MemLog"></a>MemLog</h2><p>最终效果：</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913150405.png" alt=""></p>
-<p>显示：时间 总量 剩余量  当前占用  占用百分比动态平均值</p>
-<p>使用free命令查看当前内存使用情况</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913145254.png" alt=""></p>
-<ul>
-<li><p>-m表示单位为兆M</p>
-</li>
-<li><p>红框为我们需要的数据</p>
-</li>
-</ul>
-<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913150944.png" alt=""></p>
-<ul>
-<li><p>MemValue是一个数组，使用awk命令去获取total，used这两个值</p>
-</li>
-<li><p>MemPrec为当前占用率，NowDyAver为占用百分比动态平均值</p>
-<ul>
-<li><p>利用bc命令去计算，<code>scale=2</code>表示保留2位小数</p>
-</li>
-<li><p>$ 动态平均值 =  0.8*加权平均值（上一次)+0.2当前占用比$​</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="Disk"><a href="#Disk" class="headerlink" title="Disk"></a>Disk</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171937.png" alt=""></p>
-<p>最终效果：</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171921.png" alt=""></p>
-<p>使用df命令查看磁盘使用情况，-T表示类型</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913165756.png" alt=""></p>
-<ul>
-<li>红框内是我们需要的，<code>devtmpfs</code>和<code>tmpfs</code>是虚拟内存文件系统<ul>
-<li>tmpfs是一种基于内存的文件系统，不像其他的文件系统需要格式化后才可以挂载，而是直接使用，由于是在内存中存储数据，那么在断电后会导致数据丢失。在使用到tmpfs文件系统存储数据效率会得到一定的提升。</li>
-<li>devtmpfs 的功用是在 Linux 核心 启动早期建立一个初步的 /dev，令一般启动程序不用等待 udev，缩短 GNU/Linux 的开机时间</li>
-</ul>
-</li>
-</ul>
-<p>取得数据</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171709.png" alt=""></p>
-<ul>
-<li>tail -n +2——显示的第二条以后的数据</li>
-<li>-x——表示过滤</li>
-</ul>
-<h3 id="代码演示-1"><a href="#代码演示-1" class="headerlink" title="代码演示"></a>代码演示</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913174139.png" alt=""></p>
-<ul>
-<li>awk -v 表示定义一个变量<ul>
-<li>NR是awk内置变量——已经读出的记录数: 注意是从0开始</li>
-</ul>
-</li>
-<li>eval——<a href="https://blog.51cto.com/u_10706198/1788573">eval的使用</a></li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913181125.png" alt=""></p>
-<ul>
-<li>先输出总的磁盘情况，再输出分区的磁盘情况<ul>
-<li>parnum里面存的是读到的记录数</li>
-</ul>
-</li>
-</ul>
 ]]></content>
   </entry>
   <entry>
