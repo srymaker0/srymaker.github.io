@@ -697,6 +697,41 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 ]]></content>
   </entry>
   <entry>
+    <title>reactor反应堆</title>
+    <url>/posts/1fd0.html</url>
+    <content><![CDATA[<h1 id="reactor"><a href="#reactor" class="headerlink" title="reactor"></a>reactor</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912184500.png" style="zoom: 25%;"></p>
+<p>Reactor thread : 反应堆线程——epoll实例，感知业务发生，直接给<code>Thread Pool</code>的线程做对应的工作</p>
+<p>这里会引发几个问题：</p>
+<p>1⃣️线程池中的线程量设计多少才合理？是越多越好吗？</p>
+<ul>
+<li>结论：不超过cpu核心数，要想性能最高，就让线程数等于cpu核心数</li>
+<li>原因：若是超过了cpu核心数，那么线程池中的线程之间也会发生调度，尽管线程间调度消耗的时间很少，但还是付出了损失性能的代价</li>
+</ul>
+<p>2⃣️既然不能超过cpu核心数，那主线程或者辅助的心跳线程放哪里呢？假设有8个cpu，是不是应该在线程池中设计6个呢？</p>
+<ul>
+<li>在我们设计这个反应堆模式时，线程池中处理的应该是繁忙的业务(由reactor分发过来的，ready状态的，无需等待)，应该要一直运行在cpu上的（cpu密集型）</li>
+<li>主线程和心跳线程——IO约束型的，更多时候在<code>sleep</code>，可以插空执行，</li>
+</ul>
+<p>3⃣️那既然这样，是不是意味着cpu越多，我处理并发的性能就越高呢？</p>
+<ul>
+<li>并不是，cpu越多，则任务在cpu中协调更困难（可靠性）</li>
+</ul>
+<h1 id="主从反应堆"><a href="#主从反应堆" class="headerlink" title="主从反应堆"></a>主从反应堆</h1><blockquote>
+<p>类比：理发店问题</p>
+<p>假设<code>reactor dispatch</code>为理发店老板，<code>sub-reactor dispatch</code>为合伙人，<code>client</code>为客户，<code>Thread Pool</code>为理发师。</p>
+<p>现在老板拉来了3个客人，老板只负责分配任务交给两个合伙人（从反应堆），两个合伙人一个给男孩剪头，一个给女孩剪头（也就是说现在客户跟合伙人有关联），并且合伙人只负责维护这些客户，这些客户之后和老板没有直接关系，如果客户要剪头发了（任务，可放在任务队列中），那么通知合伙人，由合伙人再去通知理发师线程去抢生意（抢占任务）</p>
+<p>假设客人要离开了，只需要通知合伙人就行，在合伙人这里进行删除，注销操作。</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912190559.png" style="zoom:25%;"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912191314.png" style="zoom:25%;"></p>
+<p>为什么需要从反应堆？</p>
+<ul>
+<li>因为主反应堆不够用，处理的能力不行，需要从反应堆分担压力</li>
+</ul>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>什么是IO多路复用</p>
+<p>什么是线程池，原理是什么，线程池设计多少的并发量比较适合，最大化使用应该设置为多少——线程池中的线程不能超过cpu核心数</p>
+]]></content>
+  </entry>
+  <entry>
     <title>IO多路复用</title>
     <url>/posts/0.html</url>
     <content><![CDATA[<h1 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h1><p><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>为什么会出现IO多路复用</p>
@@ -957,41 +992,6 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
       </tags>
   </entry>
   <entry>
-    <title>reactor反应堆</title>
-    <url>/posts/1fd0.html</url>
-    <content><![CDATA[<h1 id="reactor"><a href="#reactor" class="headerlink" title="reactor"></a>reactor</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912184500.png" style="zoom: 25%;"></p>
-<p>Reactor thread : 反应堆线程——epoll实例，感知业务发生，直接给<code>Thread Pool</code>的线程做对应的工作</p>
-<p>这里会引发几个问题：</p>
-<p>1⃣️线程池中的线程量设计多少才合理？是越多越好吗？</p>
-<ul>
-<li>结论：不超过cpu核心数，要想性能最高，就让线程数等于cpu核心数</li>
-<li>原因：若是超过了cpu核心数，那么线程池中的线程之间也会发生调度，尽管线程间调度消耗的时间很少，但还是付出了损失性能的代价</li>
-</ul>
-<p>2⃣️既然不能超过cpu核心数，那主线程或者辅助的心跳线程放哪里呢？假设有8个cpu，是不是应该在线程池中设计6个呢？</p>
-<ul>
-<li>在我们设计这个反应堆模式时，线程池中处理的应该是繁忙的业务(由reactor分发过来的，ready状态的，无需等待)，应该要一直运行在cpu上的（cpu密集型）</li>
-<li>主线程和心跳线程——IO约束型的，更多时候在<code>sleep</code>，可以插空执行，</li>
-</ul>
-<p>3⃣️那既然这样，是不是意味着cpu越多，我处理并发的性能就越高呢？</p>
-<ul>
-<li>并不是，cpu越多，则任务在cpu中协调更困难（可靠性）</li>
-</ul>
-<h1 id="主从反应堆"><a href="#主从反应堆" class="headerlink" title="主从反应堆"></a>主从反应堆</h1><blockquote>
-<p>类比：理发店问题</p>
-<p>假设<code>reactor dispatch</code>为理发店老板，<code>sub-reactor dispatch</code>为合伙人，<code>client</code>为客户，<code>Thread Pool</code>为理发师。</p>
-<p>现在老板拉来了3个客人，老板只负责分配任务交给两个合伙人（从反应堆），两个合伙人一个给男孩剪头，一个给女孩剪头（也就是说现在客户跟合伙人有关联），并且合伙人只负责维护这些客户，这些客户之后和老板没有直接关系，如果客户要剪头发了（任务，可放在任务队列中），那么通知合伙人，由合伙人再去通知理发师线程去抢生意（抢占任务）</p>
-<p>假设客人要离开了，只需要通知合伙人就行，在合伙人这里进行删除，注销操作。</p>
-</blockquote>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912190559.png" style="zoom:25%;"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912191314.png" style="zoom:25%;"></p>
-<p>为什么需要从反应堆？</p>
-<ul>
-<li>因为主反应堆不够用，处理的能力不行，需要从反应堆分担压力</li>
-</ul>
-<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>什么是IO多路复用</p>
-<p>什么是线程池，原理是什么，线程池设计多少的并发量比较适合，最大化使用应该设置为多少——线程池中的线程不能超过cpu核心数</p>
-]]></content>
-  </entry>
-  <entry>
     <title>哈希表与布隆过滤器</title>
     <url>/posts/69d8.html</url>
     <content><![CDATA[<h1 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h1><blockquote>
@@ -1247,6 +1247,46 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 ]]></content>
   </entry>
   <entry>
+    <title>MySQL的使用</title>
+    <url>/posts/0.html</url>
+    <content><![CDATA[<h1 id="MySQL的使用"><a href="#MySQL的使用" class="headerlink" title="MySQL的使用"></a>MySQL的使用</h1><p>在云服务器上查看是否有MySQL</p>
+<p>使用<code>ps -ef | grep mysql</code><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004171647.png" style="zoom: 50%;"></p>
+<p><code>grep</code> 其实本身就是一个命令。在执行 <code>ps -ef | grep mysql</code> 时，其实是起了一个 <code>grep</code> 的进程，所以你在这里看到了这个进程，它并不是 <code>mysql</code> 的进程。</p>
+<p>更新系统一些资源【这些资源不更新有可能导致mysql或其他软件运行不了】</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004172101.png" style="zoom:50%;"></p>
+<ul>
+<li>需要在root用户下</li>
+</ul>
+<p>安装MySQL</p>
+<ul>
+<li><code>apt install mysql-server</code></li>
+</ul>
+<p>安装完后可查看是否有mysql进程</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004172441.png" style="zoom:50%;"></p>
+<p>初始化MySQL</p>
+<ul>
+<li><code>mysql_secure_installation</code></li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004200725.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004201020.png" alt=""></p>
+<ul>
+<li>设置密码等级</li>
+<li>移除匿名用户</li>
+<li>禁止root用户远程登录</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004201603.png" style="zoom:50%;"></p>
+<p>创建用户     <img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004202244.png" style="zoom:50%;"></p>
+<p>@前面表示用户名，@后面表示指定ip地址，%表示任意ip。</p>
+<p>设置用户权限        <img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004210049.png" style="zoom:50%;"></p>
+<p>修改配置文件，注释掉绑定地址<code>vim /etc/mysql/mysql.conf.d/mysqld.cnf</code></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004211821.png" alt=""></p>
+<p>使用<code>apt-cache serch mysql | grep dev</code>找到对应的开发库，里面有一些MySQL的接口（C语言）</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004225018.png" alt=""></p>
+<p>下载完后如下图可见<code>mysql.h</code></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004225158.png" style="zoom:50%;"></p>
+]]></content>
+  </entry>
+  <entry>
     <title>单调队列</title>
     <url>/posts/2132.html</url>
     <content><![CDATA[<h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h2><ul>
@@ -1350,6 +1390,87 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 </tbody>
 </table>
 </div>
+<h1 id="经典例题"><a href="#经典例题" class="headerlink" title="经典例题"></a>经典例题</h1><h2 id="HZOJ-271：滑动窗口"><a href="#HZOJ-271：滑动窗口" class="headerlink" title="HZOJ-271：滑动窗口"></a><a href="http://oj.haizeix.com/problem/271">HZOJ-271</a>：滑动窗口</h2><p><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111456.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111456.png" alt="图片"></a></p>
+<p><strong>样例输入</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">8 3
+1 3 -1 -3 5 3 6 7
+复制代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><strong>样例输出</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">-1 -3 -3 -3 3 3
+3 3 5 5 6 7
+复制代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>思路<ul>
+<li>纯单调队列，关注代码实现</li>
+</ul>
+</li>
+<li>代码<ul>
+<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112213429.png" alt=""></li>
+<li>思考：单调队列中是记录值还是记录【下标】<ul>
+<li>记录<strong>下标</strong>🆒，因为有了下标可以索引到值 [顺藤摸瓜]</li>
+<li>记录值，却反向不可查</li>
+</ul>
+</li>
+<li>这是一个常用的单调队列<strong>模板</strong>：维护单调性→入队→出队→根据题意输出</li>
+<li>关注最大/小值、窗口的大小</li>
+<li>[PS] 队尾既可以入队，也可以出 [踢，维护单调性]，所以认为不是单向队列</li>
+</ul>
+</li>
+</ul>
+<h2 id="HZOJ-372：双生序列"><a href="#HZOJ-372：双生序列" class="headerlink" title="HZOJ-372：双生序列"></a><a href="http://oj.haizeix.com/problem/372">HZOJ-372</a>：双生序列</h2><p><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111528.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111528.png" alt="图片"></a></p>
+<p><strong>样例输入</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">5
+3 1 5 2 4
+5 2 4 3 1
+复制代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>样例输出</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">4
+复制代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li><p>思路</p>
+<ul>
+<li><p>思考：什么是两个序列的趋势相同？</p>
+<ul>
+<li>相同区间内部的RMQ值相同，❗ 这里RMQ值→最小值的最大<strong>下标</strong></li>
+</ul>
+</li>
+<li><p>【关键】两个序列的每个区间的RMQ值相等👉两个序列的单调队列长得一样</p>
+<ul>
+<li>换句话说，每时每刻，两个序列对应相同的单调队列</li>
+<li>注意：长得一样，指的不是最小值，而是对应下标 [单调队列里存的是下标]</li>
+</ul>
+</li>
+<li><p>将两个序列的元素，依次插入到单调队列中，每次插入后比较单调队列的大小即可</p>
+<ul>
+<li>① 如果一致，继续入队</li>
+</ul>
+</li>
+<li>② 如果不一致，输出答案</li>
+</ul>
+</li>
+<li><p>代码</p>
+<ul>
+<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111541.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111541.png" alt="图片"></a></li>
+<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111604.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111604.png" alt="图片"></a></li>
+<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112215050.png" alt=""></li>
+<li>用类定义单调队列，便于复用</li>
+<li>单调队列里存的是<strong>下标</strong>：p</li>
+<li>单调队列操作：维护→入队，都不需要出队</li>
+<li>【巧妙】根据队列的<strong>大小</strong>变化把握趋势变化</li>
+</ul>
+</li>
+</ul>
+<h2 id="239-滑动窗口最大值"><a href="#239-滑动窗口最大值" class="headerlink" title="239. 滑动窗口最大值"></a><a href="https://leetcode-cn.com/problems/sliding-window-maximum/">239. 滑动窗口最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112222023.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112222037.png" alt=""></p>
+<h2 id="剑指-Offer-59-II-队列的最大值"><a href="#剑指-Offer-59-II-队列的最大值" class="headerlink" title="剑指 Offer 59 - II. 队列的最大值"></a><a href="https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/">剑指 Offer 59 - II. 队列的最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112225049.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112225214.png" alt=""></p>
+<ul>
+<li>注意入队时的比较<ul>
+<li>&gt;，表示可记录重复元素，并且元素相对位置不会变，对于pop_front()操作，若q.front() 等于mq.front()则可以认为当前在q中删除的值也要在mq中删除</li>
+<li>&gt;=, 表示不记录重复元素，但是在pop操作时要额外记录下标</li>
+</ul>
+</li>
+</ul>
 ]]></content>
   </entry>
   <entry>
@@ -1412,46 +1533,6 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 </ul>
 </li>
 </ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>MySQL的使用</title>
-    <url>/posts/0.html</url>
-    <content><![CDATA[<h1 id="MySQL的使用"><a href="#MySQL的使用" class="headerlink" title="MySQL的使用"></a>MySQL的使用</h1><p>在云服务器上查看是否有MySQL</p>
-<p>使用<code>ps -ef | grep mysql</code><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004171647.png" style="zoom: 50%;"></p>
-<p><code>grep</code> 其实本身就是一个命令。在执行 <code>ps -ef | grep mysql</code> 时，其实是起了一个 <code>grep</code> 的进程，所以你在这里看到了这个进程，它并不是 <code>mysql</code> 的进程。</p>
-<p>更新系统一些资源【这些资源不更新有可能导致mysql或其他软件运行不了】</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004172101.png" style="zoom:50%;"></p>
-<ul>
-<li>需要在root用户下</li>
-</ul>
-<p>安装MySQL</p>
-<ul>
-<li><code>apt install mysql-server</code></li>
-</ul>
-<p>安装完后可查看是否有mysql进程</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004172441.png" style="zoom:50%;"></p>
-<p>初始化MySQL</p>
-<ul>
-<li><code>mysql_secure_installation</code></li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004200725.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004201020.png" alt=""></p>
-<ul>
-<li>设置密码等级</li>
-<li>移除匿名用户</li>
-<li>禁止root用户远程登录</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004201603.png" style="zoom:50%;"></p>
-<p>创建用户     <img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004202244.png" style="zoom:50%;"></p>
-<p>@前面表示用户名，@后面表示指定ip地址，%表示任意ip。</p>
-<p>设置用户权限        <img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004210049.png" style="zoom:50%;"></p>
-<p>修改配置文件，注释掉绑定地址<code>vim /etc/mysql/mysql.conf.d/mysqld.cnf</code></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004211821.png" alt=""></p>
-<p>使用<code>apt-cache serch mysql | grep dev</code>找到对应的开发库，里面有一些MySQL的接口（C语言）</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004225018.png" alt=""></p>
-<p>下载完后如下图可见<code>mysql.h</code></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004225158.png" style="zoom:50%;"></p>
 ]]></content>
   </entry>
   <entry>
