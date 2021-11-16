@@ -479,113 +479,6 @@ init_prime <span class="token variable">${End}</span>
       </tags>
   </entry>
   <entry>
-    <title>C/S文件传输软件的设计与实现</title>
-    <url>/posts/b12c.html</url>
-    <content><![CDATA[<h1 id="C-S文件传输软件的设计与实现"><a href="#C-S文件传输软件的设计与实现" class="headerlink" title="C/S文件传输软件的设计与实现"></a>C/S文件传输软件的设计与实现</h1><h2 id="理解三个包"><a href="#理解三个包" class="headerlink" title="理解三个包"></a>理解三个包</h2><p>需要明白这是出现在哪一层的设计</p>
-<ul>
-<li>1、这应该是应用层的逻辑，tcp不会管这些数据是否是按协议规定的，tcp只需要达到发送条件(=size)发送即可<ul>
-<li>“TCP粘包”这个说法——在TCP传输协议下，应用层数据拼装发送和接收解析问题</li>
-</ul>
-</li>
-<li>2、Nagle算法解决的Small Packet Problem</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002232711.png" style="zoom:50%;"></p>
-<p>Nagle算法存在的原因</p>
-<blockquote>
-<p>  Small Packet Problem<br>  在使用一些协议通讯的时候，比如Telnet，会有一个字节字节的发送的情景，每次发送一个字节的有用数据，就会产生41个字节长的分组，20个字节的IP Header 和 20个字节的TCP Header，这就导致了1个字节的有用信息要浪费掉40个字节的头部信息，这是一笔巨大的字节开销，而且这种Small packet在广域网上会增加拥塞的出现。<br>  如果解决这种问题？ Nagle就提出了一种通过减少需要通过网络发送包的数量来提高TCP/IP传输的效率，这就是Nagle算法</p>
-</blockquote>
-<p>参考：</p>
-<p><a href="https://blog.csdn.net/wdscq1234/article/details/52432095">Nagle算法</a>——CSDN</p>
-<p><a href="https://www.zhihu.com/question/20210025">怎么解决TCP网络传输「粘包」问题？</a>——知乎</p>
-<p>我们这里其实设计的第一种“粘“<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>——应用层数据拼装发送和接收解析问题</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002225044.png" alt=""></p>
-<p>三个都可以看成是结构体，可以理解为某种约定好的协议</p>
-<ul>
-<li><p><code>packet_pre</code>——存放临时的数据包，其实可以和packet合二为一</p>
-</li>
-<li><p><code>packet_t</code>——存放临时的数据包</p>
-</li>
-<li><p><code>packet</code>——真正的数据包的大小</p>
-</li>
-<li><p><code>offset</code>——偏移量</p>
-</li>
-<li><p><code>recv_size</code>——接收大小——其实就是设计好的缓存大小</p>
-</li>
-</ul>
-<p>整包：$offset + recv_size = packet_size$  收到的等于发送的</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002230802.png" alt=""></p>
-<ul>
-<li>若收到一个整包，则直接交付给packet</li>
-</ul>
-<p>拆包：$offset + recv_size &lt; packet_size$  </p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143256.png" alt=""></p>
-<ul>
-<li>若收到这样的数据，则先将这部分数据交给packet，移动offset位置，然后接收到如下图的数据</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143329.png" style="zoom:25%;"></p>
-<ul>
-<li>此时由于数据过大，超出了packet的大小，需要将packet_t的数据做拆分处理（这就是所谓的“拆包”），大小为$packet_size - offset$</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143551.png" style="zoom:25%;"></p>
-<ul>
-<li>将$packet_size - offset$大小的数据交给packet后，packet又满了，那么可以交给调用<code>send()</code>了，可剩下的数据咋办<span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
-</ul>
-<p><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003145154.png" style="zoom:25%;"></p>
-<ul>
-<li>将$recv_size - packet_size + offset$大小的数据先暂存在packet_pre中，之后再移交给packet<ul>
-<li>其实可以将packet_pre和packet合二为一，即等packet的数据全部交付完后，再把packet_t中剩下的数据移到packet中，但使用packet_pre方便理解</li>
-</ul>
-</li>
-</ul>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="server端"><a href="#server端" class="headerlink" title="server端"></a>server端</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153118.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153221.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153250.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153321.png" alt=""></p>
-<h3 id="client端"><a href="#client端" class="headerlink" title="client端"></a>client端</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004155237.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004155304.png" alt=""></p>
-<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>开两个终端，服务端运行<code>./server port</code>接收文件，客户端运行<code>./client ip file</code>传输文件</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004164450.png" alt=""></p>
-<p>我这里把一个较大的图片由本地传到服务器上，可以发现ZYJ目录下的图片大小和本地的图片大小一样</p>
-<h2 id="一些文件IO的知识"><a href="#一些文件IO的知识" class="headerlink" title="一些文件IO的知识"></a>一些文件IO的知识</h2><h3 id="fread"><a href="#fread" class="headerlink" title="fread"></a>fread</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003194812.png" alt=""></p>
-<p>其实这里的这个size困扰了我一会，为什么这个size要写成1，难道一次读很多个不好吗？</p>
-<p><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>即以下两者有啥区别</p>
-<ol>
-<li><code>fread(a, 1, 1000, stdin);</code></li>
-<li><code>fread(a, 1000, 1, stdin);</code></li>
-</ol>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003203953.png" style="zoom:50%;"></p>
-<ul>
-<li><code>fread()</code>返回的是能被读到的data elements的数量，而不是读到的字节，手册里也讲到<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003205335.png" alt=""></p>
-<ul>
-<li>只有当size等于1时，返回的number才是字节数量</li>
-</ul>
-<p>当以 <code>fread(a, 1, 1000, stdin);</code>  这种方式读取，若文件只有900字节，indicator会指向文件末尾，并返回900字节</p>
-<p>若以<code>fread(a, 1000, 1, stdin);</code>读取，则返回值是未定义的，因为读不到一个大小为1000字节的元素</p>
-<p>参考：</p>
-<p><a href="https://stackoverflow.com/questions/8589425/how-does-fread-really-work">How does fread really work?</a>——stackoverflow</p>
-<h3 id="fseek-amp-ftell"><a href="#fseek-amp-ftell" class="headerlink" title="fseek&amp;ftell"></a>fseek&amp;ftell</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193344.png" style="zoom:33%;"></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193456.png" style="zoom:33%;"></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193716.png" alt=""></p>
-<h3 id="关于fclose"><a href="#关于fclose" class="headerlink" title="关于fclose"></a>关于fclose</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003212809.png" alt=""></p>
-<ul>
-<li>这里我想指出一点，其中<code>fopen()</code>返回的是一个文件指针，只不过底层还是会调用<code>open()</code>，打开一个文件描述符</li>
-</ul>
-<p>参考：</p>
-<p><a href="https://blog.csdn.net/qq_43648751/article/details/104057656">文件描述符与文件指针</a>——CSDN</p>
-<p><a href="https://blog.csdn.net/bajianxiaofendui/article/details/84777733">为什么要调用fclose</a>——CSDN</p>
-<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>关于视频流tcp与udp的问题——<a href="https://stackoverflow.com/questions/6187456/tcp-vs-udp-on-video-stream">TCP vs UDP on video stream</a></p>
-<p><code>stream oriented</code> VS <code>message oriented</code>—— <a href="https://stackoverflow.com/questions/17446491/tcp-stream-vs-udp-message">TCP stream vs UDP message</a></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002224652.png" style="zoom: 50%;"></p>
-<ul>
-<li>udp——发一个收一个</li>
-<li>tcp——可以制定规则，可以发很多次，只接收一次。</li>
-</ul>
-<p>多线程在单cpu中还是顺序执行的，所以在单核CPU上，不推荐使用多线程</p>
-<ul>
-<li>参考<a href="http://cnblogs.com/caihuafeng/p/5438753.html">对于多线程程序，单核cpu与多核cpu是怎么工作的</a>——cnblogs</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>Effective C++</title>
     <url>/posts/ec29.html</url>
     <content><![CDATA[<h1 id="Effective-C"><a href="#Effective-C" class="headerlink" title="Effective C++"></a>Effective C++</h1><p>刚开始看第一遍， 记录一些关键、有趣、不是很懂的地方</p>
@@ -693,6 +586,113 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 <p>而priority()的调用可能发生在这两步之间，若priority()的调用产生异常，则“new Widget”返回的指针将会遗失</p>
 <ul>
 <li>解决办法是第三种调用，分两步执行。</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>C/S文件传输软件的设计与实现</title>
+    <url>/posts/b12c.html</url>
+    <content><![CDATA[<h1 id="C-S文件传输软件的设计与实现"><a href="#C-S文件传输软件的设计与实现" class="headerlink" title="C/S文件传输软件的设计与实现"></a>C/S文件传输软件的设计与实现</h1><h2 id="理解三个包"><a href="#理解三个包" class="headerlink" title="理解三个包"></a>理解三个包</h2><p>需要明白这是出现在哪一层的设计</p>
+<ul>
+<li>1、这应该是应用层的逻辑，tcp不会管这些数据是否是按协议规定的，tcp只需要达到发送条件(=size)发送即可<ul>
+<li>“TCP粘包”这个说法——在TCP传输协议下，应用层数据拼装发送和接收解析问题</li>
+</ul>
+</li>
+<li>2、Nagle算法解决的Small Packet Problem</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002232711.png" style="zoom:50%;"></p>
+<p>Nagle算法存在的原因</p>
+<blockquote>
+<p>  Small Packet Problem<br>  在使用一些协议通讯的时候，比如Telnet，会有一个字节字节的发送的情景，每次发送一个字节的有用数据，就会产生41个字节长的分组，20个字节的IP Header 和 20个字节的TCP Header，这就导致了1个字节的有用信息要浪费掉40个字节的头部信息，这是一笔巨大的字节开销，而且这种Small packet在广域网上会增加拥塞的出现。<br>  如果解决这种问题？ Nagle就提出了一种通过减少需要通过网络发送包的数量来提高TCP/IP传输的效率，这就是Nagle算法</p>
+</blockquote>
+<p>参考：</p>
+<p><a href="https://blog.csdn.net/wdscq1234/article/details/52432095">Nagle算法</a>——CSDN</p>
+<p><a href="https://www.zhihu.com/question/20210025">怎么解决TCP网络传输「粘包」问题？</a>——知乎</p>
+<p>我们这里其实设计的第一种“粘“<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>——应用层数据拼装发送和接收解析问题</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002225044.png" alt=""></p>
+<p>三个都可以看成是结构体，可以理解为某种约定好的协议</p>
+<ul>
+<li><p><code>packet_pre</code>——存放临时的数据包，其实可以和packet合二为一</p>
+</li>
+<li><p><code>packet_t</code>——存放临时的数据包</p>
+</li>
+<li><p><code>packet</code>——真正的数据包的大小</p>
+</li>
+<li><p><code>offset</code>——偏移量</p>
+</li>
+<li><p><code>recv_size</code>——接收大小——其实就是设计好的缓存大小</p>
+</li>
+</ul>
+<p>整包：$offset + recv_size = packet_size$  收到的等于发送的</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002230802.png" alt=""></p>
+<ul>
+<li>若收到一个整包，则直接交付给packet</li>
+</ul>
+<p>拆包：$offset + recv_size &lt; packet_size$  </p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143256.png" alt=""></p>
+<ul>
+<li>若收到这样的数据，则先将这部分数据交给packet，移动offset位置，然后接收到如下图的数据</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143329.png" style="zoom:25%;"></p>
+<ul>
+<li>此时由于数据过大，超出了packet的大小，需要将packet_t的数据做拆分处理（这就是所谓的“拆包”），大小为$packet_size - offset$</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143551.png" style="zoom:25%;"></p>
+<ul>
+<li>将$packet_size - offset$大小的数据交给packet后，packet又满了，那么可以交给调用<code>send()</code>了，可剩下的数据咋办<span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+</ul>
+<p><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003145154.png" style="zoom:25%;"></p>
+<ul>
+<li>将$recv_size - packet_size + offset$大小的数据先暂存在packet_pre中，之后再移交给packet<ul>
+<li>其实可以将packet_pre和packet合二为一，即等packet的数据全部交付完后，再把packet_t中剩下的数据移到packet中，但使用packet_pre方便理解</li>
+</ul>
+</li>
+</ul>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="server端"><a href="#server端" class="headerlink" title="server端"></a>server端</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153118.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153221.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153250.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153321.png" alt=""></p>
+<h3 id="client端"><a href="#client端" class="headerlink" title="client端"></a>client端</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004155237.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004155304.png" alt=""></p>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>开两个终端，服务端运行<code>./server port</code>接收文件，客户端运行<code>./client ip file</code>传输文件</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004164450.png" alt=""></p>
+<p>我这里把一个较大的图片由本地传到服务器上，可以发现ZYJ目录下的图片大小和本地的图片大小一样</p>
+<h2 id="一些文件IO的知识"><a href="#一些文件IO的知识" class="headerlink" title="一些文件IO的知识"></a>一些文件IO的知识</h2><h3 id="fread"><a href="#fread" class="headerlink" title="fread"></a>fread</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003194812.png" alt=""></p>
+<p>其实这里的这个size困扰了我一会，为什么这个size要写成1，难道一次读很多个不好吗？</p>
+<p><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>即以下两者有啥区别</p>
+<ol>
+<li><code>fread(a, 1, 1000, stdin);</code></li>
+<li><code>fread(a, 1000, 1, stdin);</code></li>
+</ol>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003203953.png" style="zoom:50%;"></p>
+<ul>
+<li><code>fread()</code>返回的是能被读到的data elements的数量，而不是读到的字节，手册里也讲到<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003205335.png" alt=""></p>
+<ul>
+<li>只有当size等于1时，返回的number才是字节数量</li>
+</ul>
+<p>当以 <code>fread(a, 1, 1000, stdin);</code>  这种方式读取，若文件只有900字节，indicator会指向文件末尾，并返回900字节</p>
+<p>若以<code>fread(a, 1000, 1, stdin);</code>读取，则返回值是未定义的，因为读不到一个大小为1000字节的元素</p>
+<p>参考：</p>
+<p><a href="https://stackoverflow.com/questions/8589425/how-does-fread-really-work">How does fread really work?</a>——stackoverflow</p>
+<h3 id="fseek-amp-ftell"><a href="#fseek-amp-ftell" class="headerlink" title="fseek&amp;ftell"></a>fseek&amp;ftell</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193344.png" style="zoom:33%;"></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193456.png" style="zoom:33%;"></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193716.png" alt=""></p>
+<h3 id="关于fclose"><a href="#关于fclose" class="headerlink" title="关于fclose"></a>关于fclose</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003212809.png" alt=""></p>
+<ul>
+<li>这里我想指出一点，其中<code>fopen()</code>返回的是一个文件指针，只不过底层还是会调用<code>open()</code>，打开一个文件描述符</li>
+</ul>
+<p>参考：</p>
+<p><a href="https://blog.csdn.net/qq_43648751/article/details/104057656">文件描述符与文件指针</a>——CSDN</p>
+<p><a href="https://blog.csdn.net/bajianxiaofendui/article/details/84777733">为什么要调用fclose</a>——CSDN</p>
+<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>关于视频流tcp与udp的问题——<a href="https://stackoverflow.com/questions/6187456/tcp-vs-udp-on-video-stream">TCP vs UDP on video stream</a></p>
+<p><code>stream oriented</code> VS <code>message oriented</code>—— <a href="https://stackoverflow.com/questions/17446491/tcp-stream-vs-udp-message">TCP stream vs UDP message</a></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002224652.png" style="zoom: 50%;"></p>
+<ul>
+<li>udp——发一个收一个</li>
+<li>tcp——可以制定规则，可以发很多次，只接收一次。</li>
+</ul>
+<p>多线程在单cpu中还是顺序执行的，所以在单核CPU上，不推荐使用多线程</p>
+<ul>
+<li>参考<a href="http://cnblogs.com/caihuafeng/p/5438753.html">对于多线程程序，单核cpu与多核cpu是怎么工作的</a>——cnblogs</li>
 </ul>
 ]]></content>
   </entry>
@@ -1449,6 +1449,14 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 <h2 id="365-水壶问题"><a href="#365-水壶问题" class="headerlink" title="365. 水壶问题"></a><a href="https://leetcode-cn.com/problems/water-and-jug-problem/">365. 水壶问题</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115222304.png" alt=""></p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115222325.png" alt=""></p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115222414.png" alt=""></p>
+<h2 id="1760-袋子里最少数目的球"><a href="#1760-袋子里最少数目的球" class="headerlink" title="1760. 袋子里最少数目的球"></a><a href="https://leetcode-cn.com/problems/minimum-limit-of-balls-in-a-bag/">1760. 袋子里最少数目的球</a></h2><h2 id="45-跳跃游戏-II"><a href="#45-跳跃游戏-II" class="headerlink" title="45. 跳跃游戏 II"></a><a href="https://leetcode-cn.com/problems/jump-game-ii/">45. 跳跃游戏 II</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116220506.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116220522.png" alt=""></p>
+<h2 id="93-复原-IP-地址"><a href="#93-复原-IP-地址" class="headerlink" title="93. 复原 IP 地址"></a><a href="https://leetcode-cn.com/problems/restore-ip-addresses/">93. 复原 IP 地址</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223107.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223122.png" alt=""></p>
+<h2 id="46-全排列"><a href="#46-全排列" class="headerlink" title="46. 全排列"></a><a href="https://leetcode-cn.com/problems/permutations/">46. 全排列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223421.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223503.png" alt=""></p>
+<h2 id="43-字符串相乘"><a href="#43-字符串相乘" class="headerlink" title="43. 字符串相乘"></a><a href="https://leetcode-cn.com/problems/multiply-strings/">43. 字符串相乘</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116224625.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116224638.png" alt=""></p>
 ]]></content>
   </entry>
   <entry>
