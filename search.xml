@@ -697,6 +697,41 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 ]]></content>
   </entry>
   <entry>
+    <title>reactor反应堆</title>
+    <url>/posts/1fd0.html</url>
+    <content><![CDATA[<h1 id="reactor"><a href="#reactor" class="headerlink" title="reactor"></a>reactor</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912184500.png" style="zoom: 25%;"></p>
+<p>Reactor thread : 反应堆线程——epoll实例，感知业务发生，直接给<code>Thread Pool</code>的线程做对应的工作</p>
+<p>这里会引发几个问题：</p>
+<p>1⃣️线程池中的线程量设计多少才合理？是越多越好吗？</p>
+<ul>
+<li>结论：不超过cpu核心数，要想性能最高，就让线程数等于cpu核心数</li>
+<li>原因：若是超过了cpu核心数，那么线程池中的线程之间也会发生调度，尽管线程间调度消耗的时间很少，但还是付出了损失性能的代价</li>
+</ul>
+<p>2⃣️既然不能超过cpu核心数，那主线程或者辅助的心跳线程放哪里呢？假设有8个cpu，是不是应该在线程池中设计6个呢？</p>
+<ul>
+<li>在我们设计这个反应堆模式时，线程池中处理的应该是繁忙的业务(由reactor分发过来的，ready状态的，无需等待)，应该要一直运行在cpu上的（cpu密集型）</li>
+<li>主线程和心跳线程——IO约束型的，更多时候在<code>sleep</code>，可以插空执行，</li>
+</ul>
+<p>3⃣️那既然这样，是不是意味着cpu越多，我处理并发的性能就越高呢？</p>
+<ul>
+<li>并不是，cpu越多，则任务在cpu中协调更困难（可靠性）</li>
+</ul>
+<h1 id="主从反应堆"><a href="#主从反应堆" class="headerlink" title="主从反应堆"></a>主从反应堆</h1><blockquote>
+<p>类比：理发店问题</p>
+<p>假设<code>reactor dispatch</code>为理发店老板，<code>sub-reactor dispatch</code>为合伙人，<code>client</code>为客户，<code>Thread Pool</code>为理发师。</p>
+<p>现在老板拉来了3个客人，老板只负责分配任务交给两个合伙人（从反应堆），两个合伙人一个给男孩剪头，一个给女孩剪头（也就是说现在客户跟合伙人有关联），并且合伙人只负责维护这些客户，这些客户之后和老板没有直接关系，如果客户要剪头发了（任务，可放在任务队列中），那么通知合伙人，由合伙人再去通知理发师线程去抢生意（抢占任务）</p>
+<p>假设客人要离开了，只需要通知合伙人就行，在合伙人这里进行删除，注销操作。</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912190559.png" style="zoom:25%;"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912191314.png" style="zoom:25%;"></p>
+<p>为什么需要从反应堆？</p>
+<ul>
+<li>因为主反应堆不够用，处理的能力不行，需要从反应堆分担压力</li>
+</ul>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>什么是IO多路复用</p>
+<p>什么是线程池，原理是什么，线程池设计多少的并发量比较适合，最大化使用应该设置为多少——线程池中的线程不能超过cpu核心数</p>
+]]></content>
+  </entry>
+  <entry>
     <title>IO多路复用</title>
     <url>/posts/0.html</url>
     <content><![CDATA[<h1 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h1><p><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>为什么会出现IO多路复用</p>
@@ -955,41 +990,6 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
       <tags>
         <tag>网络编程</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>reactor反应堆</title>
-    <url>/posts/1fd0.html</url>
-    <content><![CDATA[<h1 id="reactor"><a href="#reactor" class="headerlink" title="reactor"></a>reactor</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912184500.png" style="zoom: 25%;"></p>
-<p>Reactor thread : 反应堆线程——epoll实例，感知业务发生，直接给<code>Thread Pool</code>的线程做对应的工作</p>
-<p>这里会引发几个问题：</p>
-<p>1⃣️线程池中的线程量设计多少才合理？是越多越好吗？</p>
-<ul>
-<li>结论：不超过cpu核心数，要想性能最高，就让线程数等于cpu核心数</li>
-<li>原因：若是超过了cpu核心数，那么线程池中的线程之间也会发生调度，尽管线程间调度消耗的时间很少，但还是付出了损失性能的代价</li>
-</ul>
-<p>2⃣️既然不能超过cpu核心数，那主线程或者辅助的心跳线程放哪里呢？假设有8个cpu，是不是应该在线程池中设计6个呢？</p>
-<ul>
-<li>在我们设计这个反应堆模式时，线程池中处理的应该是繁忙的业务(由reactor分发过来的，ready状态的，无需等待)，应该要一直运行在cpu上的（cpu密集型）</li>
-<li>主线程和心跳线程——IO约束型的，更多时候在<code>sleep</code>，可以插空执行，</li>
-</ul>
-<p>3⃣️那既然这样，是不是意味着cpu越多，我处理并发的性能就越高呢？</p>
-<ul>
-<li>并不是，cpu越多，则任务在cpu中协调更困难（可靠性）</li>
-</ul>
-<h1 id="主从反应堆"><a href="#主从反应堆" class="headerlink" title="主从反应堆"></a>主从反应堆</h1><blockquote>
-<p>类比：理发店问题</p>
-<p>假设<code>reactor dispatch</code>为理发店老板，<code>sub-reactor dispatch</code>为合伙人，<code>client</code>为客户，<code>Thread Pool</code>为理发师。</p>
-<p>现在老板拉来了3个客人，老板只负责分配任务交给两个合伙人（从反应堆），两个合伙人一个给男孩剪头，一个给女孩剪头（也就是说现在客户跟合伙人有关联），并且合伙人只负责维护这些客户，这些客户之后和老板没有直接关系，如果客户要剪头发了（任务，可放在任务队列中），那么通知合伙人，由合伙人再去通知理发师线程去抢生意（抢占任务）</p>
-<p>假设客人要离开了，只需要通知合伙人就行，在合伙人这里进行删除，注销操作。</p>
-</blockquote>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912190559.png" style="zoom:25%;"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912191314.png" style="zoom:25%;"></p>
-<p>为什么需要从反应堆？</p>
-<ul>
-<li>因为主反应堆不够用，处理的能力不行，需要从反应堆分担压力</li>
-</ul>
-<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>什么是IO多路复用</p>
-<p>什么是线程池，原理是什么，线程池设计多少的并发量比较适合，最大化使用应该设置为多少——线程池中的线程不能超过cpu核心数</p>
-]]></content>
   </entry>
   <entry>
     <title>哈希表与布隆过滤器</title>
@@ -1457,6 +1457,43 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223503.png" alt=""></p>
 <h2 id="43-字符串相乘"><a href="#43-字符串相乘" class="headerlink" title="43. 字符串相乘"></a><a href="https://leetcode-cn.com/problems/multiply-strings/">43. 字符串相乘</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116224625.png" alt=""></p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116224638.png" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>单调栈</title>
+    <url>/posts/831c.html</url>
+    <content><![CDATA[<h1 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h1><blockquote>
+<p>砍掉一端的单调队列</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128191947.png" alt=""></p>
+<p>例如：单调递减栈——蓝色是黄色右边第一个比它们大的元素，是绿色右边第一个比它们小的元素</p>
+<p>黄色——被蓝色踢出的元素——比蓝色小</p>
+<p>绿色——比蓝色大</p>
+<p>单调递减栈：维护最近大于关系</p>
+<p>单调递增栈：维护最近小于关系</p>
+<h2 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201107.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201156.png" alt=""></p>
+<p>效果：</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201439.png" alt=""></p>
+<h1 id="Leetcode环节"><a href="#Leetcode环节" class="headerlink" title="Leetcode环节"></a>Leetcode环节</h1><h2 id="155-最小栈"><a href="#155-最小栈" class="headerlink" title="155. 最小栈"></a><a href="https://leetcode-cn.com/problems/min-stack/">155. 最小栈</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128202806.png" style="zoom:50%;"></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128202835.png" alt=""></p>
+<h2 id="503-下一个更大元素-II"><a href="#503-下一个更大元素-II" class="headerlink" title="503. 下一个更大元素 II"></a><a href="https://leetcode-cn.com/problems/next-greater-element-ii/">503. 下一个更大元素 II</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128204715.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128204731.png" alt=""></p>
+<ul>
+<li>单调递减栈</li>
+</ul>
+<h2 id="901-股票价格跨度"><a href="#901-股票价格跨度" class="headerlink" title="901. 股票价格跨度"></a><a href="https://leetcode-cn.com/problems/online-stock-span/">901. 股票价格跨度</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128210814.png" alt=""></p>
+<p>分析：此题求解往回数有多少天是小于等于当前股票的天数-&gt;等价于求左边第一个大于当前数的元素</p>
+<p>解法：单调递减栈</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128211155.png" alt=""></p>
+<h2 id="739-每日温度"><a href="#739-每日温度" class="headerlink" title="739. 每日温度"></a><a href="https://leetcode-cn.com/problems/daily-temperatures/">739. 每日温度</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128212837.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128212853.png" alt=""></p>
+<h2 id="84-柱状图中最大的矩形"><a href="#84-柱状图中最大的矩形" class="headerlink" title="84. 柱状图中最大的矩形"></a><a href="https://leetcode-cn.com/problems/largest-rectangle-in-histogram/">84. 柱状图中最大的矩形</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128220317.png" alt=""></p>
+<ul>
+<li>分析：以每个矩形的高为基准，向前找第一个小于当前矩形的位置，向后找第一个小于当前矩形的位置，宽为这两个位置的差值-1</li>
+<li>小于关系-&gt;单调递增栈</li>
+<li>考虑重复元素，例如：2，3，3，3，3，2的情况</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128220333.png" alt=""></p>
 ]]></content>
   </entry>
   <entry>
