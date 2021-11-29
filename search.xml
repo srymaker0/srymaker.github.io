@@ -1500,7 +1500,21 @@ init_prime <span class="token variable">${End}</span>
 </ul>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128223324.png" alt=""></p>
 <h2 id="907-子数组的最小值之和"><a href="#907-子数组的最小值之和" class="headerlink" title="907. 子数组的最小值之和"></a><a href="https://leetcode-cn.com/problems/sum-of-subarray-minimums/">907. 子数组的最小值之和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128232033.png" alt=""></p>
+<ul>
+<li>分析：$\sum{RMQ(x,y)}$问题——所有固定末尾的RMQ的和值相加</li>
+<li>思路：单调递增栈</li>
+</ul>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128232050.png" alt=""></p>
+<ul>
+<li>ind为前面第一个比当前元素小的元素的下标</li>
+<li>13行——以当前位置为结尾的RMQ问题的和值，是前n-1个和值+当前元素✖️区间跨度（当前元素为区间最小值）</li>
+</ul>
+<h2 id="496-下一个更大元素-I"><a href="#496-下一个更大元素-I" class="headerlink" title="496. 下一个更大元素 I"></a><a href="https://leetcode-cn.com/problems/next-greater-element-i/">496. 下一个更大元素 I</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129204101.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129204118.png" alt=""></p>
+<h2 id="456-132-模式"><a href="#456-132-模式" class="headerlink" title="456. 132 模式"></a><a href="https://leetcode-cn.com/problems/132-pattern/">456. 132 模式</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129211016.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129211028.png" alt=""></p>
+<h2 id="42-接雨水"><a href="#42-接雨水" class="headerlink" title="42. 接雨水"></a><a href="https://leetcode-cn.com/problems/trapping-rain-water/">42. 接雨水</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129212309.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129212345.png" alt=""></p>
 ]]></content>
   </entry>
   <entry>
