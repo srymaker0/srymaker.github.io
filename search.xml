@@ -51,117 +51,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Effective C++</title>
-    <url>/posts/ec29.html</url>
-    <content><![CDATA[<h1 id="Effective-C"><a href="#Effective-C" class="headerlink" title="Effective C++"></a>Effective C++</h1><p>刚开始看第一遍， 记录一些关键、有趣、不是很懂的地方</p>
-<h2 id="static-amp-const-amp-inline"><a href="#static-amp-const-amp-inline" class="headerlink" title="static&amp;const&amp;inline"></a>static&amp;const&amp;inline</h2><p>const多才多艺：</p>
-<ul>
-<li>可修饰global或namespace作用域内的常量</li>
-<li>被声明为static的对象</li>
-<li>可修饰class内的static和non-static成员变量</li>
-<li>修饰指针</li>
-</ul>
-<p>修饰迭代器有讲究</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103105459.png" style="zoom: 25%;"></p>
-<p>修饰成员函数</p>
-<ul>
-<li>可以使class接口容易被理解<ul>
-<li>哪个函数可以改动对象内容哪个不可以</li>
-<li>可以操作const对象</li>
-</ul>
-</li>
-<li>两种概念——bitwise constness 和 logical constness<ul>
-<li>bitwise：指成员函数只有在不更改对象之人和成员变量时才可以说是const</li>
-<li>logical：一个const成员函数可以修改它所处理的对象内的某些bits，但只有在哭护短侦测不出的情况下才可以——<span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>使用mutable关键字修饰你可以修改的变量</li>
-</ul>
-</li>
-</ul>
-<p>Static:</p>
-<ul>
-<li>static对象，寿命从被构造出来知道程序结束为止</li>
-<li>在函数内的static对象称为local static， 其他的static对象称为non-local static对象</li>
-<li>程序结束时static对象会被自动销毁  </li>
-</ul>
-<h1 id="构造-析构-赋值运算"><a href="#构造-析构-赋值运算" class="headerlink" title="构造/析构/赋值运算"></a>构造/析构/赋值运算</h1><p>析构函数：任何class只要带有virtual函数都几乎确定应该也有一个virtual析构函数。</p>
-<ul>
-<li>若有继承关系，确没有vitual析构函数会造成局部销毁的bug，派生类只会销毁基类的对象</li>
-<li>只有当class内含至少一个virtual函数，才为它声明virtual析构函数</li>
-<li>STL容器都不被设计作为base classes使用</li>
-</ul>
-<p>虚函数：virtual关键字修饰</p>
-<ul>
-<li>在构造和析构期间不要调用virtual函数，因为这类调用从不下降至derived class</li>
-</ul>
-<h2 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h2><p>看到条款15懵b了 </p>
-<pre class="line-numbers language-CPP" data-language="CPP"><code class="language-CPP">class Font {
-public:
-    ...
-    operator FontHandle() const
-    { return f;}
-    ...
-};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>看到这个我开始怀疑自己有没有学过C++了<span class="github-emoji"><span>😢</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，我在想运算符重载还能这样写？后面查了资料才知道这并不是运算符重载</p>
-<p>关于隐式类型转换的规则<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<ul>
-<li>接受单个实参的构造函数，定义了从形参类型到该类类型的一个隐式转换。</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210919212342.png" alt=""></p>
-<p>explicit关键字</p>
-<ul>
-<li>类的构造函数被声明为<code>explicit</code>方式，可以用来<strong>阻止隐式类型转换</strong>，但被声明为explicit的构造函数依然可被用来执行<strong>显示类型转换</strong>。即，explicit构造函数必须显示调用。</li>
-</ul>
-<h1 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h1><p>以对象管理资源</p>
-<ul>
-<li>将资源放进对象内，依赖c++析构函数自动调用机制确保资源被释放</li>
-<li>RAII：资源取得时机便是初始化时机</li>
-<li>智能指针</li>
-</ul>
-<h2 id="auto-ptr-amp-shared-ptr"><a href="#auto-ptr-amp-shared-ptr" class="headerlink" title="auto_ptr&amp;shared_ptr"></a>auto_ptr&amp;shared_ptr</h2><p>auto_ptr: </p>
-<ul>
-<li>被销毁时自动删除所指之物，不能让多个auto_ptr指向同一个对象，否则该对象会被删除一次以上——未定义行为</li>
-<li>若通过copy构造函数或copy assignment操作符复制auto_ptr，它们会变成null，而复制所得的指针将取得资源的唯一拥有权<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103164044.png" style="zoom: 33%;"></p>
-<p>shared_ptr:</p>
-<ul>
-<li><p>被称为引用计数型智慧指针（RCSP），解决了auto_ptr的问题，可以用多个shared_ptr对象指向同一个对象</p>
-</li>
-<li><p>RAII class copying行为：有时候我们并不想删除对象，例如mutex这样的资源（当出现copy行为时并不合理），也许只是解除锁定</p>
-<ul>
-<li><p>抑制copying</p>
-</li>
-<li><p>shared_ptr有第二个参数——删除器（deleter）</p>
-</li>
-<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103165647.png" style="zoom:33%;"></li>
-<li>通过get可以访问shared_ptr对象的原始指针</li>
-</ul>
-</li>
-</ul>
-<p>看如下的几个调用</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-<span class="token keyword">void</span> <span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> pw<span class="token punctuation">,</span> <span class="token keyword">int</span> priority<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">// 1、错误，shared_ptr构造函数需要一个原始指针</span>
-<span class="token function">processWidget</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
-
-<span class="token comment">// 2、正确，但还是会造成资源泄露</span>
-<span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">shared_ptr</span><span class="token generic class-name"><span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-
-<span class="token comment">// 3、完美</span>
-std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> <span class="token function">pw</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">processWidget</span><span class="token punctuation">(</span>pw<span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>对于第二种调用的第一个参数有两个步骤</p>
-<ul>
-<li>执行“new Widget”</li>
-<li>调用tr1:shared_ptr构造函数</li>
-</ul>
-<p>而priority()的调用可能发生在这两步之间，若priority()的调用产生异常，则“new Widget”返回的指针将会遗失</p>
-<ul>
-<li>解决办法是第三种调用，分两步执行。</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>shell</title>
     <url>/posts/9924.html</url>
     <content><![CDATA[<h1 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h1><p><strong>我们用的是bash解释器 写的脚本</strong></p>
@@ -588,6 +477,117 @@ init_prime <span class="token variable">${End}</span>
       <tags>
         <tag>shell</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Effective C++</title>
+    <url>/posts/ec29.html</url>
+    <content><![CDATA[<h1 id="Effective-C"><a href="#Effective-C" class="headerlink" title="Effective C++"></a>Effective C++</h1><p>刚开始看第一遍， 记录一些关键、有趣、不是很懂的地方</p>
+<h2 id="static-amp-const-amp-inline"><a href="#static-amp-const-amp-inline" class="headerlink" title="static&amp;const&amp;inline"></a>static&amp;const&amp;inline</h2><p>const多才多艺：</p>
+<ul>
+<li>可修饰global或namespace作用域内的常量</li>
+<li>被声明为static的对象</li>
+<li>可修饰class内的static和non-static成员变量</li>
+<li>修饰指针</li>
+</ul>
+<p>修饰迭代器有讲究</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103105459.png" style="zoom: 25%;"></p>
+<p>修饰成员函数</p>
+<ul>
+<li>可以使class接口容易被理解<ul>
+<li>哪个函数可以改动对象内容哪个不可以</li>
+<li>可以操作const对象</li>
+</ul>
+</li>
+<li>两种概念——bitwise constness 和 logical constness<ul>
+<li>bitwise：指成员函数只有在不更改对象之人和成员变量时才可以说是const</li>
+<li>logical：一个const成员函数可以修改它所处理的对象内的某些bits，但只有在哭护短侦测不出的情况下才可以——<span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>使用mutable关键字修饰你可以修改的变量</li>
+</ul>
+</li>
+</ul>
+<p>Static:</p>
+<ul>
+<li>static对象，寿命从被构造出来知道程序结束为止</li>
+<li>在函数内的static对象称为local static， 其他的static对象称为non-local static对象</li>
+<li>程序结束时static对象会被自动销毁  </li>
+</ul>
+<h1 id="构造-析构-赋值运算"><a href="#构造-析构-赋值运算" class="headerlink" title="构造/析构/赋值运算"></a>构造/析构/赋值运算</h1><p>析构函数：任何class只要带有virtual函数都几乎确定应该也有一个virtual析构函数。</p>
+<ul>
+<li>若有继承关系，确没有vitual析构函数会造成局部销毁的bug，派生类只会销毁基类的对象</li>
+<li>只有当class内含至少一个virtual函数，才为它声明virtual析构函数</li>
+<li>STL容器都不被设计作为base classes使用</li>
+</ul>
+<p>虚函数：virtual关键字修饰</p>
+<ul>
+<li>在构造和析构期间不要调用virtual函数，因为这类调用从不下降至derived class</li>
+</ul>
+<h2 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h2><p>看到条款15懵b了 </p>
+<pre class="line-numbers language-CPP" data-language="CPP"><code class="language-CPP">class Font {
+public:
+    ...
+    operator FontHandle() const
+    { return f;}
+    ...
+};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>看到这个我开始怀疑自己有没有学过C++了<span class="github-emoji"><span>😢</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，我在想运算符重载还能这样写？后面查了资料才知道这并不是运算符重载</p>
+<p>关于隐式类型转换的规则<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<ul>
+<li>接受单个实参的构造函数，定义了从形参类型到该类类型的一个隐式转换。</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210919212342.png" alt=""></p>
+<p>explicit关键字</p>
+<ul>
+<li>类的构造函数被声明为<code>explicit</code>方式，可以用来<strong>阻止隐式类型转换</strong>，但被声明为explicit的构造函数依然可被用来执行<strong>显示类型转换</strong>。即，explicit构造函数必须显示调用。</li>
+</ul>
+<h1 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h1><p>以对象管理资源</p>
+<ul>
+<li>将资源放进对象内，依赖c++析构函数自动调用机制确保资源被释放</li>
+<li>RAII：资源取得时机便是初始化时机</li>
+<li>智能指针</li>
+</ul>
+<h2 id="auto-ptr-amp-shared-ptr"><a href="#auto-ptr-amp-shared-ptr" class="headerlink" title="auto_ptr&amp;shared_ptr"></a>auto_ptr&amp;shared_ptr</h2><p>auto_ptr: </p>
+<ul>
+<li>被销毁时自动删除所指之物，不能让多个auto_ptr指向同一个对象，否则该对象会被删除一次以上——未定义行为</li>
+<li>若通过copy构造函数或copy assignment操作符复制auto_ptr，它们会变成null，而复制所得的指针将取得资源的唯一拥有权<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103164044.png" style="zoom: 33%;"></p>
+<p>shared_ptr:</p>
+<ul>
+<li><p>被称为引用计数型智慧指针（RCSP），解决了auto_ptr的问题，可以用多个shared_ptr对象指向同一个对象</p>
+</li>
+<li><p>RAII class copying行为：有时候我们并不想删除对象，例如mutex这样的资源（当出现copy行为时并不合理），也许只是解除锁定</p>
+<ul>
+<li><p>抑制copying</p>
+</li>
+<li><p>shared_ptr有第二个参数——删除器（deleter）</p>
+</li>
+<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103165647.png" style="zoom:33%;"></li>
+<li>通过get可以访问shared_ptr对象的原始指针</li>
+</ul>
+</li>
+</ul>
+<p>看如下的几个调用</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token keyword">void</span> <span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> pw<span class="token punctuation">,</span> <span class="token keyword">int</span> priority<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 1、错误，shared_ptr构造函数需要一个原始指针</span>
+<span class="token function">processWidget</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+
+<span class="token comment">// 2、正确，但还是会造成资源泄露</span>
+<span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">shared_ptr</span><span class="token generic class-name"><span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token comment">// 3、完美</span>
+std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> <span class="token function">pw</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">processWidget</span><span class="token punctuation">(</span>pw<span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>对于第二种调用的第一个参数有两个步骤</p>
+<ul>
+<li>执行“new Widget”</li>
+<li>调用tr1:shared_ptr构造函数</li>
+</ul>
+<p>而priority()的调用可能发生在这两步之间，若priority()的调用产生异常，则“new Widget”返回的指针将会遗失</p>
+<ul>
+<li>解决办法是第三种调用，分两步执行。</li>
+</ul>
+]]></content>
   </entry>
   <entry>
     <title>C/S文件传输软件的设计与实现</title>
@@ -1182,6 +1182,64 @@ init_prime <span class="token variable">${End}</span>
 ]]></content>
   </entry>
   <entry>
+    <title>单调栈</title>
+    <url>/posts/831c.html</url>
+    <content><![CDATA[<h1 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h1><blockquote>
+<p>砍掉一端的单调队列</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128191947.png" alt=""></p>
+<p>例如：单调递减栈——蓝色是黄色右边第一个比它们大的元素，是绿色右边第一个比它们小的元素</p>
+<p>黄色——被蓝色踢出的元素——比蓝色小</p>
+<p>绿色——比蓝色大</p>
+<p>单调递减栈：维护最近大于关系</p>
+<p>单调递增栈：维护最近小于关系</p>
+<h2 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201107.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201156.png" alt=""></p>
+<p>效果：</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201439.png" alt=""></p>
+<h1 id="Leetcode环节"><a href="#Leetcode环节" class="headerlink" title="Leetcode环节"></a>Leetcode环节</h1><h2 id="155-最小栈"><a href="#155-最小栈" class="headerlink" title="155. 最小栈"></a><a href="https://leetcode-cn.com/problems/min-stack/">155. 最小栈</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128202806.png" style="zoom:50%;"></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128202835.png" alt=""></p>
+<h2 id="503-下一个更大元素-II"><a href="#503-下一个更大元素-II" class="headerlink" title="503. 下一个更大元素 II"></a><a href="https://leetcode-cn.com/problems/next-greater-element-ii/">503. 下一个更大元素 II</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128204715.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128204731.png" alt=""></p>
+<ul>
+<li>单调递减栈</li>
+</ul>
+<h2 id="901-股票价格跨度"><a href="#901-股票价格跨度" class="headerlink" title="901. 股票价格跨度"></a><a href="https://leetcode-cn.com/problems/online-stock-span/">901. 股票价格跨度</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128210814.png" alt=""></p>
+<p>分析：此题求解往回数有多少天是小于等于当前股票的天数-&gt;等价于求左边第一个大于当前数的元素</p>
+<p>解法：单调递减栈</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128211155.png" alt=""></p>
+<h2 id="739-每日温度"><a href="#739-每日温度" class="headerlink" title="739. 每日温度"></a><a href="https://leetcode-cn.com/problems/daily-temperatures/">739. 每日温度</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128212837.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128212853.png" alt=""></p>
+<h2 id="84-柱状图中最大的矩形"><a href="#84-柱状图中最大的矩形" class="headerlink" title="84. 柱状图中最大的矩形"></a><a href="https://leetcode-cn.com/problems/largest-rectangle-in-histogram/">84. 柱状图中最大的矩形</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128220317.png" alt=""></p>
+<ul>
+<li>分析：以每个矩形的高为基准，向前找第一个小于当前矩形的位置，向后找第一个小于当前矩形的位置，宽为这两个位置的差值-1</li>
+<li>小于关系-&gt;单调递增栈</li>
+<li>考虑重复元素，例如：2，3，3，3，3，2的情况</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128220333.png" alt=""></p>
+<h2 id="1856-子数组最小乘积的最大值"><a href="#1856-子数组最小乘积的最大值" class="headerlink" title="1856. 子数组最小乘积的最大值"></a><a href="https://leetcode-cn.com/problems/maximum-subarray-min-product/">1856. 子数组最小乘积的最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128222816.png" alt=""></p>
+<ul>
+<li>其实和前一题一样：把每个位置当成最小元素，向左向右找第一个小于当前元素的位置</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128223324.png" alt=""></p>
+<h2 id="907-子数组的最小值之和"><a href="#907-子数组的最小值之和" class="headerlink" title="907. 子数组的最小值之和"></a><a href="https://leetcode-cn.com/problems/sum-of-subarray-minimums/">907. 子数组的最小值之和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128232033.png" alt=""></p>
+<ul>
+<li>分析：$\sum{RMQ(x,y)}$问题——所有固定末尾的RMQ的和值相加</li>
+<li>思路：单调递增栈</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128232050.png" alt=""></p>
+<ul>
+<li>ind为前面第一个比当前元素小的元素的下标</li>
+<li>13行——以当前位置为结尾的RMQ问题的和值，是前n-1个和值+当前元素✖️区间跨度（当前元素为区间最小值）</li>
+</ul>
+<h2 id="496-下一个更大元素-I"><a href="#496-下一个更大元素-I" class="headerlink" title="496. 下一个更大元素 I"></a><a href="https://leetcode-cn.com/problems/next-greater-element-i/">496. 下一个更大元素 I</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129204101.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129204118.png" alt=""></p>
+<h2 id="456-132-模式"><a href="#456-132-模式" class="headerlink" title="456. 132 模式"></a><a href="https://leetcode-cn.com/problems/132-pattern/">456. 132 模式</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129211016.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129211028.png" alt=""></p>
+<h2 id="42-接雨水"><a href="#42-接雨水" class="headerlink" title="42. 接雨水"></a><a href="https://leetcode-cn.com/problems/trapping-rain-water/">42. 接雨水</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129212309.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129212345.png" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
     <title>深搜与广搜</title>
     <url>/posts/8160.html</url>
     <content><![CDATA[<h1 id="深搜与广搜"><a href="#深搜与广搜" class="headerlink" title="深搜与广搜"></a>深搜与广搜</h1><h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103213830.png" style="zoom: 25%;"></p>
@@ -1457,64 +1515,6 @@ init_prime <span class="token variable">${End}</span>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223503.png" alt=""></p>
 <h2 id="43-字符串相乘"><a href="#43-字符串相乘" class="headerlink" title="43. 字符串相乘"></a><a href="https://leetcode-cn.com/problems/multiply-strings/">43. 字符串相乘</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116224625.png" alt=""></p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116224638.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>单调栈</title>
-    <url>/posts/831c.html</url>
-    <content><![CDATA[<h1 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h1><blockquote>
-<p>砍掉一端的单调队列</p>
-</blockquote>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128191947.png" alt=""></p>
-<p>例如：单调递减栈——蓝色是黄色右边第一个比它们大的元素，是绿色右边第一个比它们小的元素</p>
-<p>黄色——被蓝色踢出的元素——比蓝色小</p>
-<p>绿色——比蓝色大</p>
-<p>单调递减栈：维护最近大于关系</p>
-<p>单调递增栈：维护最近小于关系</p>
-<h2 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201107.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201156.png" alt=""></p>
-<p>效果：</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201439.png" alt=""></p>
-<h1 id="Leetcode环节"><a href="#Leetcode环节" class="headerlink" title="Leetcode环节"></a>Leetcode环节</h1><h2 id="155-最小栈"><a href="#155-最小栈" class="headerlink" title="155. 最小栈"></a><a href="https://leetcode-cn.com/problems/min-stack/">155. 最小栈</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128202806.png" style="zoom:50%;"></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128202835.png" alt=""></p>
-<h2 id="503-下一个更大元素-II"><a href="#503-下一个更大元素-II" class="headerlink" title="503. 下一个更大元素 II"></a><a href="https://leetcode-cn.com/problems/next-greater-element-ii/">503. 下一个更大元素 II</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128204715.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128204731.png" alt=""></p>
-<ul>
-<li>单调递减栈</li>
-</ul>
-<h2 id="901-股票价格跨度"><a href="#901-股票价格跨度" class="headerlink" title="901. 股票价格跨度"></a><a href="https://leetcode-cn.com/problems/online-stock-span/">901. 股票价格跨度</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128210814.png" alt=""></p>
-<p>分析：此题求解往回数有多少天是小于等于当前股票的天数-&gt;等价于求左边第一个大于当前数的元素</p>
-<p>解法：单调递减栈</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128211155.png" alt=""></p>
-<h2 id="739-每日温度"><a href="#739-每日温度" class="headerlink" title="739. 每日温度"></a><a href="https://leetcode-cn.com/problems/daily-temperatures/">739. 每日温度</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128212837.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128212853.png" alt=""></p>
-<h2 id="84-柱状图中最大的矩形"><a href="#84-柱状图中最大的矩形" class="headerlink" title="84. 柱状图中最大的矩形"></a><a href="https://leetcode-cn.com/problems/largest-rectangle-in-histogram/">84. 柱状图中最大的矩形</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128220317.png" alt=""></p>
-<ul>
-<li>分析：以每个矩形的高为基准，向前找第一个小于当前矩形的位置，向后找第一个小于当前矩形的位置，宽为这两个位置的差值-1</li>
-<li>小于关系-&gt;单调递增栈</li>
-<li>考虑重复元素，例如：2，3，3，3，3，2的情况</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128220333.png" alt=""></p>
-<h2 id="1856-子数组最小乘积的最大值"><a href="#1856-子数组最小乘积的最大值" class="headerlink" title="1856. 子数组最小乘积的最大值"></a><a href="https://leetcode-cn.com/problems/maximum-subarray-min-product/">1856. 子数组最小乘积的最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128222816.png" alt=""></p>
-<ul>
-<li>其实和前一题一样：把每个位置当成最小元素，向左向右找第一个小于当前元素的位置</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128223324.png" alt=""></p>
-<h2 id="907-子数组的最小值之和"><a href="#907-子数组的最小值之和" class="headerlink" title="907. 子数组的最小值之和"></a><a href="https://leetcode-cn.com/problems/sum-of-subarray-minimums/">907. 子数组的最小值之和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128232033.png" alt=""></p>
-<ul>
-<li>分析：$\sum{RMQ(x,y)}$问题——所有固定末尾的RMQ的和值相加</li>
-<li>思路：单调递增栈</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128232050.png" alt=""></p>
-<ul>
-<li>ind为前面第一个比当前元素小的元素的下标</li>
-<li>13行——以当前位置为结尾的RMQ问题的和值，是前n-1个和值+当前元素✖️区间跨度（当前元素为区间最小值）</li>
-</ul>
-<h2 id="496-下一个更大元素-I"><a href="#496-下一个更大元素-I" class="headerlink" title="496. 下一个更大元素 I"></a><a href="https://leetcode-cn.com/problems/next-greater-element-i/">496. 下一个更大元素 I</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129204101.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129204118.png" alt=""></p>
-<h2 id="456-132-模式"><a href="#456-132-模式" class="headerlink" title="456. 132 模式"></a><a href="https://leetcode-cn.com/problems/132-pattern/">456. 132 模式</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129211016.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129211028.png" alt=""></p>
-<h2 id="42-接雨水"><a href="#42-接雨水" class="headerlink" title="42. 接雨水"></a><a href="https://leetcode-cn.com/problems/trapping-rain-water/">42. 接雨水</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129212309.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129212345.png" alt=""></p>
 ]]></content>
   </entry>
   <entry>
@@ -1951,6 +1951,63 @@ init_prime <span class="token variable">${End}</span>
       </tags>
   </entry>
   <entry>
+    <title>面向面试选择题之查漏补缺</title>
+    <url>/posts/2dfc.html</url>
+    <content><![CDATA[<blockquote>
+<p>  选择题包含Linux， 计算机网络，C++语法，操作系统，数据结构等方面的知识点，非常适合查漏补缺</p>
+<p>  这些错题个人感觉比较基础，对于操作系统知识需要加强，有一些个人不常见的Linux命令也会考到</p>
+<p>  <span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>需要了解对于图这样的数据结构，对于二叉树来说（结点=边数+1）经常考到</p>
+<p>  计算机网络考查最多的——TCP、UDP等一系列知识，需重点注意</p>
+</blockquote>
+<h1 id="选择题"><a href="#选择题" class="headerlink" title="选择题"></a>选择题</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105933.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105856.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210517133930.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105811.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110007.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110102.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110118.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110154.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110318.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="/Users/sorrymaker/Library/Application Support/typora-user-images/image-20210520110411001.png" alt="image-20210520110411001"></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110445.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210524134029.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210524134125.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201107.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201015.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201200.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201234.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201302.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201320.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201344.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201403.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201424.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201442.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201501.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201519.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201543.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201601.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201620.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201635.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201656.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201720.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201738.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201756.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201849.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201912.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201930.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202132.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202151.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202209.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202230.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202249.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202306.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202337.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202355.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202413.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202429.png" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
     <title>面向面试简答题之查漏补缺</title>
     <url>/posts/79b0.html</url>
     <content><![CDATA[<p><code>面试是一个相互引导的过程，面试官会通过相应的问题来考察你的知识广度和深度，而你需要引导面试官你擅长的领域。</code></p>
@@ -2132,63 +2189,6 @@ init_prime <span class="token variable">${End}</span>
       <tags>
         <tag>面试</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>面向面试选择题之查漏补缺</title>
-    <url>/posts/2dfc.html</url>
-    <content><![CDATA[<blockquote>
-<p>  选择题包含Linux， 计算机网络，C++语法，操作系统，数据结构等方面的知识点，非常适合查漏补缺</p>
-<p>  这些错题个人感觉比较基础，对于操作系统知识需要加强，有一些个人不常见的Linux命令也会考到</p>
-<p>  <span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>需要了解对于图这样的数据结构，对于二叉树来说（结点=边数+1）经常考到</p>
-<p>  计算机网络考查最多的——TCP、UDP等一系列知识，需重点注意</p>
-</blockquote>
-<h1 id="选择题"><a href="#选择题" class="headerlink" title="选择题"></a>选择题</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105933.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105856.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210517133930.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105811.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110007.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110102.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110118.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110154.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110318.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="/Users/sorrymaker/Library/Application Support/typora-user-images/image-20210520110411001.png" alt="image-20210520110411001"></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110445.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210524134029.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210524134125.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201107.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201015.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201200.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201234.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201302.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201320.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201344.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201403.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201424.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201442.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201501.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201519.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201543.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201601.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201620.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201635.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201656.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201720.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201738.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201756.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201849.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201912.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201930.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202132.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202151.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202209.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202230.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202249.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202306.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202337.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202355.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202413.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202429.png" alt=""></p>
-]]></content>
   </entry>
   <entry>
     <title>mysql之基础篇</title>
