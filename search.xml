@@ -1535,7 +1535,7 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128232050.png" alt=""></p>
 <ul>
 <li>ind为前面第一个比当前元素小的元素的下标</li>
-<li>13行——以当前位置为结尾的RMQ问题的和值，是前n-1个和值+当前元素✖️区间跨度（当前元素为区间最小值）</li>
+<li>13行——以当前位置为结尾的RMQ问题的和值，是前n-1个和值+当前元素✖️区间跨度 （假设当前元素为区间最小值，往前找第一个比他小的元素，此区间跨度为当前元素作为最小值的跨度）</li>
 </ul>
 <h2 id="496-下一个更大元素-I"><a href="#496-下一个更大元素-I" class="headerlink" title="496. 下一个更大元素 I"></a><a href="https://leetcode-cn.com/problems/next-greater-element-i/">496. 下一个更大元素 I</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129204101.png" alt=""></p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129204118.png" alt=""></p>
