@@ -1540,7 +1540,17 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 <h2 id="496-下一个更大元素-I"><a href="#496-下一个更大元素-I" class="headerlink" title="496. 下一个更大元素 I"></a><a href="https://leetcode-cn.com/problems/next-greater-element-i/">496. 下一个更大元素 I</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129204101.png" alt=""></p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129204118.png" alt=""></p>
 <h2 id="456-132-模式"><a href="#456-132-模式" class="headerlink" title="456. 132 模式"></a><a href="https://leetcode-cn.com/problems/132-pattern/">456. 132 模式</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129211016.png" alt=""></p>
+<ul>
+<li><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211223231543.png" alt=""></p>
+<p>1⃣️先记录每个i位置之前的最小值，记录在L数组中，至此我们可以获得足够大的区间m～i。</p>
+<p>2⃣️我们需要找i位置后面是否存在数k满足m&lt;k&lt;i</p>
+<p>3⃣️利用单调递减栈，寻找第一个大于i的数j，在i和j区间寻找是否存在小于i的最大值。</p>
+</li>
+</ul>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129211028.png" alt=""></p>
+<ul>
+<li>注意是从后往前遍历数组，val是最后一个被弹出的栈顶元素（如上图的k）</li>
+</ul>
 <h2 id="42-接雨水"><a href="#42-接雨水" class="headerlink" title="42. 接雨水"></a><a href="https://leetcode-cn.com/problems/trapping-rain-water/">42. 接雨水</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129212309.png" alt=""></p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129212345.png" alt=""></p>
 ]]></content>
