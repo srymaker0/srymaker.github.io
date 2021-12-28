@@ -1247,6 +1247,74 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 ]]></content>
   </entry>
   <entry>
+    <title>单调栈</title>
+    <url>/posts/831c.html</url>
+    <content><![CDATA[<h1 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h1><blockquote>
+<p>砍掉一端的单调队列</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128191947.png" alt=""></p>
+<p>例如：单调递减栈——蓝色是黄色右边第一个比它们大的元素，是绿色右边第一个比它们小的元素</p>
+<p>黄色——被蓝色踢出的元素——比蓝色小</p>
+<p>绿色——比蓝色大</p>
+<p>单调递减栈：维护最近大于关系</p>
+<p>单调递增栈：维护最近小于关系</p>
+<h2 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201107.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201156.png" alt=""></p>
+<p>效果：</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201439.png" alt=""></p>
+<h1 id="Leetcode环节"><a href="#Leetcode环节" class="headerlink" title="Leetcode环节"></a>Leetcode环节</h1><h2 id="155-最小栈"><a href="#155-最小栈" class="headerlink" title="155. 最小栈"></a><a href="https://leetcode-cn.com/problems/min-stack/">155. 最小栈</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128202806.png" style="zoom:50%;"></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128202835.png" alt=""></p>
+<h2 id="503-下一个更大元素-II"><a href="#503-下一个更大元素-II" class="headerlink" title="503. 下一个更大元素 II"></a><a href="https://leetcode-cn.com/problems/next-greater-element-ii/">503. 下一个更大元素 II</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128204715.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128204731.png" alt=""></p>
+<ul>
+<li>单调递减栈</li>
+</ul>
+<h2 id="901-股票价格跨度"><a href="#901-股票价格跨度" class="headerlink" title="901. 股票价格跨度"></a><a href="https://leetcode-cn.com/problems/online-stock-span/">901. 股票价格跨度</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128210814.png" alt=""></p>
+<p>分析：此题求解往回数有多少天是小于等于当前股票的天数-&gt;等价于求左边第一个大于当前数的元素</p>
+<p>解法：单调递减栈</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128211155.png" alt=""></p>
+<h2 id="739-每日温度"><a href="#739-每日温度" class="headerlink" title="739. 每日温度"></a><a href="https://leetcode-cn.com/problems/daily-temperatures/">739. 每日温度</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128212837.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128212853.png" alt=""></p>
+<h2 id="84-柱状图中最大的矩形"><a href="#84-柱状图中最大的矩形" class="headerlink" title="84. 柱状图中最大的矩形"></a><a href="https://leetcode-cn.com/problems/largest-rectangle-in-histogram/">84. 柱状图中最大的矩形</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128220317.png" alt=""></p>
+<ul>
+<li>分析：以每个矩形的高为基准，向前找第一个小于当前矩形的位置，向后找第一个小于当前矩形的位置，宽为这两个位置的差值-1</li>
+<li>小于关系-&gt;单调递增栈</li>
+<li>考虑重复元素，例如：2，3，3，3，3，2的情况</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128220333.png" alt=""></p>
+<h2 id="1856-子数组最小乘积的最大值"><a href="#1856-子数组最小乘积的最大值" class="headerlink" title="1856. 子数组最小乘积的最大值"></a><a href="https://leetcode-cn.com/problems/maximum-subarray-min-product/">1856. 子数组最小乘积的最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128222816.png" alt=""></p>
+<ul>
+<li>其实和前一题一样：把每个位置当成最小元素，向左向右找第一个小于当前元素的位置</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128223324.png" alt=""></p>
+<h2 id="907-子数组的最小值之和"><a href="#907-子数组的最小值之和" class="headerlink" title="907. 子数组的最小值之和"></a><a href="https://leetcode-cn.com/problems/sum-of-subarray-minimums/">907. 子数组的最小值之和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128232033.png" alt=""></p>
+<ul>
+<li>分析：$\sum{RMQ(x,y)}$问题——所有固定末尾的RMQ的和值相加</li>
+<li>思路：单调递增栈</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128232050.png" alt=""></p>
+<ul>
+<li>ind为前面第一个比当前元素小的元素的下标</li>
+<li>13行——以当前位置为结尾的RMQ问题的和值，是前n-1个和值+当前元素✖️区间跨度 （假设当前元素为区间最小值，往前找第一个比他小的元素，此区间跨度为当前元素作为最小值的跨度）</li>
+</ul>
+<h2 id="496-下一个更大元素-I"><a href="#496-下一个更大元素-I" class="headerlink" title="496. 下一个更大元素 I"></a><a href="https://leetcode-cn.com/problems/next-greater-element-i/">496. 下一个更大元素 I</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129204101.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129204118.png" alt=""></p>
+<h2 id="456-132-模式"><a href="#456-132-模式" class="headerlink" title="456. 132 模式"></a><a href="https://leetcode-cn.com/problems/132-pattern/">456. 132 模式</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129211016.png" alt=""></p>
+<ul>
+<li><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211223231543.png" alt=""></p>
+<p>1⃣️先记录每个i位置之前的最小值，记录在L数组中，至此我们可以获得足够大的区间m～i。</p>
+<p>2⃣️我们需要找i位置后面是否存在数k满足m&lt;k&lt;i</p>
+<p>3⃣️利用单调递减栈，寻找第一个大于i的数j，在i和j区间寻找是否存在小于i的最大值。</p>
+</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129211028.png" alt=""></p>
+<ul>
+<li>注意是从后往前遍历数组，val是最后一个被弹出的栈顶元素（如上图的k）</li>
+</ul>
+<h2 id="42-接雨水"><a href="#42-接雨水" class="headerlink" title="42. 接雨水"></a><a href="https://leetcode-cn.com/problems/trapping-rain-water/">42. 接雨水</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129212309.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129212345.png" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
     <title>单调队列</title>
     <url>/posts/2132.html</url>
     <content><![CDATA[<h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h2><ul>
@@ -1488,74 +1556,6 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 ]]></content>
   </entry>
   <entry>
-    <title>单调栈</title>
-    <url>/posts/831c.html</url>
-    <content><![CDATA[<h1 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h1><blockquote>
-<p>砍掉一端的单调队列</p>
-</blockquote>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128191947.png" alt=""></p>
-<p>例如：单调递减栈——蓝色是黄色右边第一个比它们大的元素，是绿色右边第一个比它们小的元素</p>
-<p>黄色——被蓝色踢出的元素——比蓝色小</p>
-<p>绿色——比蓝色大</p>
-<p>单调递减栈：维护最近大于关系</p>
-<p>单调递增栈：维护最近小于关系</p>
-<h2 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201107.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201156.png" alt=""></p>
-<p>效果：</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201439.png" alt=""></p>
-<h1 id="Leetcode环节"><a href="#Leetcode环节" class="headerlink" title="Leetcode环节"></a>Leetcode环节</h1><h2 id="155-最小栈"><a href="#155-最小栈" class="headerlink" title="155. 最小栈"></a><a href="https://leetcode-cn.com/problems/min-stack/">155. 最小栈</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128202806.png" style="zoom:50%;"></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128202835.png" alt=""></p>
-<h2 id="503-下一个更大元素-II"><a href="#503-下一个更大元素-II" class="headerlink" title="503. 下一个更大元素 II"></a><a href="https://leetcode-cn.com/problems/next-greater-element-ii/">503. 下一个更大元素 II</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128204715.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128204731.png" alt=""></p>
-<ul>
-<li>单调递减栈</li>
-</ul>
-<h2 id="901-股票价格跨度"><a href="#901-股票价格跨度" class="headerlink" title="901. 股票价格跨度"></a><a href="https://leetcode-cn.com/problems/online-stock-span/">901. 股票价格跨度</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128210814.png" alt=""></p>
-<p>分析：此题求解往回数有多少天是小于等于当前股票的天数-&gt;等价于求左边第一个大于当前数的元素</p>
-<p>解法：单调递减栈</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128211155.png" alt=""></p>
-<h2 id="739-每日温度"><a href="#739-每日温度" class="headerlink" title="739. 每日温度"></a><a href="https://leetcode-cn.com/problems/daily-temperatures/">739. 每日温度</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128212837.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128212853.png" alt=""></p>
-<h2 id="84-柱状图中最大的矩形"><a href="#84-柱状图中最大的矩形" class="headerlink" title="84. 柱状图中最大的矩形"></a><a href="https://leetcode-cn.com/problems/largest-rectangle-in-histogram/">84. 柱状图中最大的矩形</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128220317.png" alt=""></p>
-<ul>
-<li>分析：以每个矩形的高为基准，向前找第一个小于当前矩形的位置，向后找第一个小于当前矩形的位置，宽为这两个位置的差值-1</li>
-<li>小于关系-&gt;单调递增栈</li>
-<li>考虑重复元素，例如：2，3，3，3，3，2的情况</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128220333.png" alt=""></p>
-<h2 id="1856-子数组最小乘积的最大值"><a href="#1856-子数组最小乘积的最大值" class="headerlink" title="1856. 子数组最小乘积的最大值"></a><a href="https://leetcode-cn.com/problems/maximum-subarray-min-product/">1856. 子数组最小乘积的最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128222816.png" alt=""></p>
-<ul>
-<li>其实和前一题一样：把每个位置当成最小元素，向左向右找第一个小于当前元素的位置</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128223324.png" alt=""></p>
-<h2 id="907-子数组的最小值之和"><a href="#907-子数组的最小值之和" class="headerlink" title="907. 子数组的最小值之和"></a><a href="https://leetcode-cn.com/problems/sum-of-subarray-minimums/">907. 子数组的最小值之和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128232033.png" alt=""></p>
-<ul>
-<li>分析：$\sum{RMQ(x,y)}$问题——所有固定末尾的RMQ的和值相加</li>
-<li>思路：单调递增栈</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128232050.png" alt=""></p>
-<ul>
-<li>ind为前面第一个比当前元素小的元素的下标</li>
-<li>13行——以当前位置为结尾的RMQ问题的和值，是前n-1个和值+当前元素✖️区间跨度 （假设当前元素为区间最小值，往前找第一个比他小的元素，此区间跨度为当前元素作为最小值的跨度）</li>
-</ul>
-<h2 id="496-下一个更大元素-I"><a href="#496-下一个更大元素-I" class="headerlink" title="496. 下一个更大元素 I"></a><a href="https://leetcode-cn.com/problems/next-greater-element-i/">496. 下一个更大元素 I</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129204101.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129204118.png" alt=""></p>
-<h2 id="456-132-模式"><a href="#456-132-模式" class="headerlink" title="456. 132 模式"></a><a href="https://leetcode-cn.com/problems/132-pattern/">456. 132 模式</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129211016.png" alt=""></p>
-<ul>
-<li><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211223231543.png" alt=""></p>
-<p>1⃣️先记录每个i位置之前的最小值，记录在L数组中，至此我们可以获得足够大的区间m～i。</p>
-<p>2⃣️我们需要找i位置后面是否存在数k满足m&lt;k&lt;i</p>
-<p>3⃣️利用单调递减栈，寻找第一个大于i的数j，在i和j区间寻找是否存在小于i的最大值。</p>
-</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129211028.png" alt=""></p>
-<ul>
-<li>注意是从后往前遍历数组，val是最后一个被弹出的栈顶元素（如上图的k）</li>
-</ul>
-<h2 id="42-接雨水"><a href="#42-接雨水" class="headerlink" title="42. 接雨水"></a><a href="https://leetcode-cn.com/problems/trapping-rain-water/">42. 接雨水</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129212309.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129212345.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
     <title>15题——回顾篇</title>
     <url>/posts/cdd7.html</url>
     <content><![CDATA[<h1 id="力扣15题"><a href="#力扣15题" class="headerlink" title="力扣15题"></a>力扣15题</h1><h2 id="1367-二叉树中的列表"><a href="#1367-二叉树中的列表" class="headerlink" title="1367. 二叉树中的列表"></a><a href="https://leetcode-cn.com/problems/linked-list-in-binary-tree/">1367. 二叉树中的列表</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206220539.png" alt=""></p>
@@ -1603,6 +1603,22 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216215248.png" alt=""></p>
 <h2 id="1499-满足不等式的最大值"><a href="#1499-满足不等式的最大值" class="headerlink" title="1499. 满足不等式的最大值"></a><a href="https://leetcode-cn.com/problems/max-value-of-equation/">1499. 满足不等式的最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216224617.png" alt=""></p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216224637.png" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>AVL</title>
+    <url>/posts/416e.html</url>
+    <content><![CDATA[<h1 id="LeetCode环节"><a href="#LeetCode环节" class="headerlink" title="LeetCode环节"></a>LeetCode环节</h1><h2 id="面试题-04-06-后继者"><a href="#面试题-04-06-后继者" class="headerlink" title="面试题 04.06. 后继者"></a><a href="https://leetcode-cn.com/problems/successor-lcci/">面试题 04.06. 后继者</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228192531.png" alt=""></p>
+<ul>
+<li>使用中序遍历</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228192550.png" alt=""></p>
+<ul>
+<li>node用来防止遍历是遇到空节点直接返回 </li>
+<li>结构化思维——pre会依次访问到树中的每一个节点</li>
+</ul>
+<h2 id="450-删除二叉搜索树中的节点"><a href="#450-删除二叉搜索树中的节点" class="headerlink" title="450. 删除二叉搜索树中的节点"></a><a href="https://leetcode-cn.com/problems/delete-node-in-a-bst/">450. 删除二叉搜索树中的节点</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228195933.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228195949.png" alt=""></p>
 ]]></content>
   </entry>
   <entry>
