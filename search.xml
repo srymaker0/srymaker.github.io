@@ -1592,6 +1592,71 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 ]]></content>
   </entry>
   <entry>
+    <title>深搜与广搜</title>
+    <url>/posts/8160.html</url>
+    <content><![CDATA[<h1 id="深搜与广搜"><a href="#深搜与广搜" class="headerlink" title="深搜与广搜"></a>深搜与广搜</h1><h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103213830.png" style="zoom: 25%;"></p>
+<ul>
+<li>在思维逻辑层面——节点代表问题状态的树形结构</li>
+</ul>
+<p>例如走迷宫问题</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103214358.png" alt=""></p>
+<ul>
+<li>这里的状态就是小牛可以走到的位置——右边生成的就是问题求解树</li>
+<li>解题的关键是定义状态</li>
+</ul>
+<p>深搜与广搜</p>
+<ul>
+<li>就是对问题求解树的不同遍历方式</li>
+</ul>
+<p>搜索剪枝和优化</p>
+<ul>
+<li>排除某些问题求解树中的子树遍历过程</li>
+</ul>
+<p>设计搜索算法的核心关键点</p>
+<ul>
+<li>设计问题求解树中的状态</li>
+</ul>
+<h1 id="刷题-go！"><a href="#刷题-go！" class="headerlink" title="刷题 go！"></a>刷题 go！</h1><h2 id="993-二叉树的堂兄弟节点"><a href="#993-二叉树的堂兄弟节点" class="headerlink" title="993. 二叉树的堂兄弟节点"></a><a href="https://leetcode-cn.com/problems/cousins-in-binary-tree/">993. 二叉树的堂兄弟节点</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103223455.png" alt=""></p>
+<p>深搜版本</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103223509.png" alt=""></p>
+<p>广搜版本</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103225332.png" alt=""></p>
+<ul>
+<li>定义状态</li>
+<li>把状态放入队列中</li>
+</ul>
+<h2 id="542-01-矩阵"><a href="#542-01-矩阵" class="headerlink" title="542. 01 矩阵"></a><a href="https://leetcode-cn.com/problems/01-matrix/">542. 01 矩阵</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232742.png" alt=""></p>
+<ul>
+<li>计算从0位置到每个1点的最少步数</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232811.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232833.png" alt=""></p>
+<h2 id="1091-二进制矩阵中的最短路径"><a href="#1091-二进制矩阵中的最短路径" class="headerlink" title="1091. 二进制矩阵中的最短路径"></a><a href="https://leetcode-cn.com/problems/shortest-path-in-binary-matrix/">1091. 二进制矩阵中的最短路径</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104002412.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104002437.png" alt=""></p>
+<h2 id="752-打开转盘锁"><a href="#752-打开转盘锁" class="headerlink" title="752. 打开转盘锁"></a><a href="https://leetcode-cn.com/problems/open-the-lock/">752. 打开转盘锁</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010444.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010510.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010528.png" alt=""></p>
+<ul>
+<li>注意扩展状态，4个转盘，两个方向，难点在于这里</li>
+<li>使用哈希存储deadends中的值，加快查找效率，也可以使用其进行去重</li>
+</ul>
+<h2 id="剑指-Offer-13-机器人的运动范围"><a href="#剑指-Offer-13-机器人的运动范围" class="headerlink" title="剑指 Offer 13. 机器人的运动范围"></a><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/">剑指 Offer 13. 机器人的运动范围</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014444.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014506.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014528.png" alt=""></p>
+<h2 id="130-被围绕的区域"><a href="#130-被围绕的区域" class="headerlink" title="130. 被围绕的区域"></a><a href="https://leetcode-cn.com/problems/surrounded-regions/">130. 被围绕的区域</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104021658.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104021715.png" alt=""></p>
+<ul>
+<li>采用逆思维，扫描边界O，搜索与其相邻的O，最后剩下的大O即为被X包围的</li>
+</ul>
+<h2 id="494-目标和"><a href="#494-目标和" class="headerlink" title="494. 目标和"></a><a href="https://leetcode-cn.com/problems/target-sum/">494. 目标和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109220710.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109220730.png" alt=""></p>
+<ul>
+<li>记忆化——函数是展开的数组，数组是压缩的函数</li>
+</ul>
+<h2 id="473-火柴拼正方形"><a href="#473-火柴拼正方形" class="headerlink" title="473. 火柴拼正方形"></a><a href="https://leetcode-cn.com/problems/matchsticks-to-square/">473. 火柴拼正方形</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109231955.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109232016.png" alt=""></p>
+<h2 id="39-组合总和"><a href="#39-组合总和" class="headerlink" title="39. 组合总和"></a><a href="https://leetcode-cn.com/problems/combination-sum/">39. 组合总和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211110215350.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211110215408.png" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
     <title>单调队列</title>
     <url>/posts/2132.html</url>
     <content><![CDATA[<h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h2><ul>
@@ -1830,71 +1895,6 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 <li>倒着存储</li>
 </ul>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116224638.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>深搜与广搜</title>
-    <url>/posts/8160.html</url>
-    <content><![CDATA[<h1 id="深搜与广搜"><a href="#深搜与广搜" class="headerlink" title="深搜与广搜"></a>深搜与广搜</h1><h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103213830.png" style="zoom: 25%;"></p>
-<ul>
-<li>在思维逻辑层面——节点代表问题状态的树形结构</li>
-</ul>
-<p>例如走迷宫问题</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103214358.png" alt=""></p>
-<ul>
-<li>这里的状态就是小牛可以走到的位置——右边生成的就是问题求解树</li>
-<li>解题的关键是定义状态</li>
-</ul>
-<p>深搜与广搜</p>
-<ul>
-<li>就是对问题求解树的不同遍历方式</li>
-</ul>
-<p>搜索剪枝和优化</p>
-<ul>
-<li>排除某些问题求解树中的子树遍历过程</li>
-</ul>
-<p>设计搜索算法的核心关键点</p>
-<ul>
-<li>设计问题求解树中的状态</li>
-</ul>
-<h1 id="刷题-go！"><a href="#刷题-go！" class="headerlink" title="刷题 go！"></a>刷题 go！</h1><h2 id="993-二叉树的堂兄弟节点"><a href="#993-二叉树的堂兄弟节点" class="headerlink" title="993. 二叉树的堂兄弟节点"></a><a href="https://leetcode-cn.com/problems/cousins-in-binary-tree/">993. 二叉树的堂兄弟节点</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103223455.png" alt=""></p>
-<p>深搜版本</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103223509.png" alt=""></p>
-<p>广搜版本</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103225332.png" alt=""></p>
-<ul>
-<li>定义状态</li>
-<li>把状态放入队列中</li>
-</ul>
-<h2 id="542-01-矩阵"><a href="#542-01-矩阵" class="headerlink" title="542. 01 矩阵"></a><a href="https://leetcode-cn.com/problems/01-matrix/">542. 01 矩阵</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232742.png" alt=""></p>
-<ul>
-<li>计算从0位置到每个1点的最少步数</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232811.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232833.png" alt=""></p>
-<h2 id="1091-二进制矩阵中的最短路径"><a href="#1091-二进制矩阵中的最短路径" class="headerlink" title="1091. 二进制矩阵中的最短路径"></a><a href="https://leetcode-cn.com/problems/shortest-path-in-binary-matrix/">1091. 二进制矩阵中的最短路径</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104002412.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104002437.png" alt=""></p>
-<h2 id="752-打开转盘锁"><a href="#752-打开转盘锁" class="headerlink" title="752. 打开转盘锁"></a><a href="https://leetcode-cn.com/problems/open-the-lock/">752. 打开转盘锁</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010444.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010510.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010528.png" alt=""></p>
-<ul>
-<li>注意扩展状态，4个转盘，两个方向，难点在于这里</li>
-<li>使用哈希存储deadends中的值，加快查找效率，也可以使用其进行去重</li>
-</ul>
-<h2 id="剑指-Offer-13-机器人的运动范围"><a href="#剑指-Offer-13-机器人的运动范围" class="headerlink" title="剑指 Offer 13. 机器人的运动范围"></a><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/">剑指 Offer 13. 机器人的运动范围</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014444.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014506.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014528.png" alt=""></p>
-<h2 id="130-被围绕的区域"><a href="#130-被围绕的区域" class="headerlink" title="130. 被围绕的区域"></a><a href="https://leetcode-cn.com/problems/surrounded-regions/">130. 被围绕的区域</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104021658.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104021715.png" alt=""></p>
-<ul>
-<li>采用逆思维，扫描边界O，搜索与其相邻的O，最后剩下的大O即为被X包围的</li>
-</ul>
-<h2 id="494-目标和"><a href="#494-目标和" class="headerlink" title="494. 目标和"></a><a href="https://leetcode-cn.com/problems/target-sum/">494. 目标和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109220710.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109220730.png" alt=""></p>
-<ul>
-<li>记忆化——函数是展开的数组，数组是压缩的函数</li>
-</ul>
-<h2 id="473-火柴拼正方形"><a href="#473-火柴拼正方形" class="headerlink" title="473. 火柴拼正方形"></a><a href="https://leetcode-cn.com/problems/matchsticks-to-square/">473. 火柴拼正方形</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109231955.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109232016.png" alt=""></p>
-<h2 id="39-组合总和"><a href="#39-组合总和" class="headerlink" title="39. 组合总和"></a><a href="https://leetcode-cn.com/problems/combination-sum/">39. 组合总和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211110215350.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211110215408.png" alt=""></p>
 ]]></content>
   </entry>
   <entry>
