@@ -1,6 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>BSTree&amp;AVL_Tree</title>
+    <url>/posts/a49b.html</url>
+    <content><![CDATA[<h1 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h1><h2 id="一、性质"><a href="#一、性质" class="headerlink" title="一、性质"></a>一、性质</h2><ol>
+<li>左子树 &lt; 根节点</li>
+<li>右子树 &gt; 根节点</li>
+<li>中序遍历的结果，是一个有序序列</li>
+</ol>
+<p>数据结构，就是定义一种性质，并且维护这种性质。</p>
+<h2 id="二、插入操作"><a href="#二、插入操作" class="headerlink" title="二、插入操作"></a>二、插入操作</h2><ol>
+<li>插入的新节点，一定会做为叶子结点</li>
+</ol>
+<h2 id="三、删除操作"><a href="#三、删除操作" class="headerlink" title="三、删除操作"></a>三、删除操作</h2><ol>
+<li><p>删除度为0的节点，直接删除</p>
+</li>
+<li><p>删除度为1的节点，把『孤儿子树』挂到其父节点上面去</p>
+</li>
+<li><p>删除度为2的节点，可以转化成删除度为1的节点</p>
+<ul>
+<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/Zgpth4EPz25eYMO.png" style="zoom:50%;"></p>
+</li>
+<li><p>首先找到度为2的节点的前驱节点</p>
+</li>
+<li>该前驱是左子树中最大的值</li>
+<li>将此值把度为2的节点覆盖掉</li>
+<li>然后再在原来的左子树中把此值（前驱节点）删除</li>
+<li><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>代码中有bug  但是对整体来说并没有bug因为度为0或者1的节点都被处理了<ul>
+<li>❗注意： 度为1的前驱不一定在子树中  </li>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/x7H2kao9lNEpAY6.png" style="zoom:50%;"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>对于度为2的节点：</p>
+<ol>
+<li>前驱节点：左子树最大值 </li>
+<li>后继节点：右子树最小值</li>
+</ol>
+<h2 id="四、随堂练习"><a href="#四、随堂练习" class="headerlink" title="四、随堂练习"></a>四、随堂练习</h2><ol>
+<li><p>插入顺序会影响最终的树形结构</p>
+<ul>
+<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/9CKfJa5PhuB8pnj.png" style="zoom:50%;"></p>
+</li>
+<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/cH7RaKAN9IGUJuq.png" style="zoom:50%;"></p>
+</li>
+<li>我们可以看到第2种插入顺序 这不就是一个链表吗   而且此时的查找效率会退化为<code>O(n)</code></li>
+</ul>
+</li>
+<li><p>不同的树形结构，查找效率不同</p>
+</li>
+</ol>
+<ul>
+<li><p>平均查找效率：节点查找次数的期望值，$\frac{总次数}{节点数量}$ </p>
+<ul>
+<li><p>前提条件：假设每个节点等概率的被查找</p>
+</li>
+<li><p>总次数=每个节点的查找次数之和</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>leetcode 110    669</li>
+</ul>
+<h2 id="五、扩展内容"><a href="#五、扩展内容" class="headerlink" title="五、扩展内容"></a>五、扩展内容</h2><ol>
+<li>二叉排序树的删除代码优化<ol>
+<li>删除掉处理度为0的代码逻辑，不影响代码整体功能</li>
+</ol>
+</li>
+<li>如何解决==排名==相关的检索需求<ol>
+<li>修改二叉排序树的结构定义，增加 size 字段，记录每棵树的节点数量</li>
+<li>$k = LS - 1$根节点就是排名第 k 位的元素</li>
+<li>$k \le LS$，排名第 k 位的元素在左子树中</li>
+<li>$k \gt LS，search_k(root-&gt;rchild, k - LS - 1)$</li>
+</ol>
+</li>
+<li>解决 Top-K 问题（找到小于第 k 位的所有元素）(也可以用堆来解决)<ol>
+<li>根节点就是第 k 位元素的话，就把左子树中的值全部输出出来</li>
+<li>第 k 位在左子树中，前 k 位元素全都在左子树中</li>
+<li>第 k 位在右子树中，说明根节点和左子树中的元素，都是前 k 位元素里面的值</li>
+</ol>
+</li>
+<li>二叉排序树和快速排序的关系<ol>
+<li>二叉排序树是快速排序在思维逻辑结构层面用的数据结构</li>
+<li>思考1：快速排序的时间复杂度和二叉排序树建树时间复杂度之间的关系</li>
+<li>思考2：快速选择算法和二叉排序树之间的关系</li>
+<li>程序=算法+数据结构</li>
+</ol>
+</li>
+</ol>
+<p>所谓算法设计及分析能力：分类讨论及归纳总结的能力</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142541.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142625.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142653.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142733.png" alt=""></p>
+<h1 id="平衡二叉查找树之AVL树"><a href="#平衡二叉查找树之AVL树" class="headerlink" title="平衡二叉查找树之AVL树"></a>平衡二叉查找树之AVL树</h1><h2 id="一、学习重点"><a href="#一、学习重点" class="headerlink" title="一、学习重点"></a>一、学习重点</h2><ol>
+<li>平衡二叉树排序树，本质上也是二叉排序树，所以拥有二叉排序树的所有性质</li>
+<li>平衡二叉树排序树的学习重点， 在于平衡条件以及平衡调整的相关学习<ul>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/Ig6mp1WjGoVaQP4.png" style="zoom:50%;"></li>
+</ul>
+</li>
+</ol>
+<h2 id="二、性质"><a href="#二、性质" class="headerlink" title="二、性质"></a>二、性质</h2><h6 id="1-平衡条件：左右子树高度差不超过1"><a href="#1-平衡条件：左右子树高度差不超过1" class="headerlink" title="1.平衡条件：左右子树高度差不超过1"></a>1.平衡条件：左右子树高度差不超过1</h6><h2 id="三、思考"><a href="#三、思考" class="headerlink" title="三、思考"></a>三、思考</h2><ul>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/3bLVEBUH6yig7ux.png" style="zoom:50%;"></li>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/ODHTjxocSY9Nf3W.png" style="zoom: 50%;"></li>
+</ul>
+<ol>
+<li>AVL树改进的是节点数量的下限 <ul>
+<li>大约是$1.5^h$ </li>
+<li>提高了下限  再差也差不到哪里去  查找效率为<code>O(logn)</code></li>
+<li>节点数n 和 树高h之间的关系<ul>
+<li>$h=log^n$ </li>
+<li>当表示最少节点数时  log的底数是1.5</li>
+<li>当表示最少节点数时  log的底数是2</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>树高 = 生命长度， 节点数量 = 生命财富</li>
+<li>教育提升的是底线，而不是上限</li>
+</ol>
+<h2 id="四、平衡调整策略"><a href="#四、平衡调整策略" class="headerlink" title="四、平衡调整策略"></a>四、平衡调整策略</h2><ul>
+<li><p>左旋</p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/6xaZ9s2XQzNrJC1.png" style="zoom: 33%;"></p>
+<ul>
+<li>左旋的操作意义 （有点类似与天平）<ul>
+<li>降低右子树的树高  </li>
+<li>加深左子树的树高</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>右旋其实就是左旋的翻版</p>
+</li>
+</ul>
+<ol>
+<li>发生在回溯阶段的，第一个失衡节点处</li>
+<li>理解平衡调整策略的关键在于： 分析清楚四种情况下， ABCD四棵子树树高的关系</li>
+<li>LL<ul>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/Zlo8chWSxu2rVsA.png" style="zoom: 67%;"></li>
+<li>假设A，B，C，D子树的树高分别为h1，h2，h3， h4<ul>
+<li>首先 h3, h4 不一定相等  但是他们满足平衡条件👉h3和h4之间的高度差不会大于1</li>
+<li>为什么会发生失衡？👉 这是由于插入了一个节点所产生的  且由于是LL型的失衡所以插入到A子树产生了失衡</li>
+<li>根据失衡条件 K2的高度要比K3的高度大2👉这是大前提  也就是站在K1的视角看下面的子树是失衡的<ul>
+<li>平衡时K2的高度为h1+1 ， K3的高度为max（h3，h4）+ 1</li>
+<li>那么失衡时$h1+1=max（h3，h4）+ 1 + 2$👉$h1 = max(h3,h4) + 2$</li>
+<li>大前提情况下A B不能失衡 否则就是站在K2的视角就已经失衡了  所以$h1 = h2 + 1$ </li>
+<li>综上所述$h1 = max(h3,h4) + 2 = h2 + 1$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/23/Hu7JSBDGLgXmy9C.png" style="zoom: 67%;"><ul>
+<li>这种失衡用右旋操作解决<ul>
+<li>平衡的可怕❗ </li>
+<li>$h2 = max(h3,h4) + 1 = K3$</li>
+<li>$K1 = h2 + 1 = h1$</li>
+<li>放眼看去  Woc  全部平衡了 🤭 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>LR<ul>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/23/UsrA5ql7QmKJ94x.png" style="zoom:33%;"></li>
+<li><strong>处理方法</strong><ul>
+<li>先抓着K2小左旋<ul>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/23/MBwEIQ3pKiH6ydU.png" style="zoom:33%;"></li>
+</ul>
+</li>
+<li>再抓着K1大右旋<ul>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/23/USxYIQeZlbPpwg6.png" style="zoom:33%;"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>RL</li>
+<li>RR</li>
+</ol>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><ul>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/9CKfJa5PhuB8pnj.png" style="zoom:50%;"></li>
+</ul>
+<h2 id="五、代码演示"><a href="#五、代码演示" class="headerlink" title="五、代码演示"></a>五、代码演示</h2><ol>
+<li>插入和删除以后， 注意重新计算树高字段</li>
+<li>引入了NIL阶段， 代替NULL，NULL不可访问，NIL是一个实际节点，可访问 (帮助我们实现)</li>
+</ol>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142857.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142946.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103143027.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103143053.png" alt=""></p>
+<h3 id="vim微操"><a href="#vim微操" class="headerlink" title="vim微操"></a>vim微操</h3><ul>
+<li><code>ctrl+v</code>进入可视块模式 : 可以选中一块内容</li>
+<li>选中后按<code>shift + i</code>选中一列👉这种插入模式可以按列插入</li>
+<li>只要在第一行插入 接着按<code>ESC</code>就可以一列插入</li>
+<li>删除也是<code>ctrl+v</code>进入可视块模式  选中要删除的按<code>x</code></li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>手撕红黑树！！！</title>
     <url>/posts/9afc.html</url>
     <content><![CDATA[<h1 id="红黑树（上）"><a href="#红黑树（上）" class="headerlink" title="红黑树（上）"></a>红黑树（上）</h1><h2 id="一、五个平衡条件"><a href="#一、五个平衡条件" class="headerlink" title="一、五个平衡条件"></a>一、五个平衡条件</h2><ol>
@@ -229,202 +425,6 @@
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220104001240.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220104001327.png" alt=""></p>
 <p>输出调试</p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220104001502.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>BSTree&amp;AVL_Tree</title>
-    <url>/posts/a49b.html</url>
-    <content><![CDATA[<h1 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h1><h2 id="一、性质"><a href="#一、性质" class="headerlink" title="一、性质"></a>一、性质</h2><ol>
-<li>左子树 &lt; 根节点</li>
-<li>右子树 &gt; 根节点</li>
-<li>中序遍历的结果，是一个有序序列</li>
-</ol>
-<p>数据结构，就是定义一种性质，并且维护这种性质。</p>
-<h2 id="二、插入操作"><a href="#二、插入操作" class="headerlink" title="二、插入操作"></a>二、插入操作</h2><ol>
-<li>插入的新节点，一定会做为叶子结点</li>
-</ol>
-<h2 id="三、删除操作"><a href="#三、删除操作" class="headerlink" title="三、删除操作"></a>三、删除操作</h2><ol>
-<li><p>删除度为0的节点，直接删除</p>
-</li>
-<li><p>删除度为1的节点，把『孤儿子树』挂到其父节点上面去</p>
-</li>
-<li><p>删除度为2的节点，可以转化成删除度为1的节点</p>
-<ul>
-<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/Zgpth4EPz25eYMO.png" style="zoom:50%;"></p>
-</li>
-<li><p>首先找到度为2的节点的前驱节点</p>
-</li>
-<li>该前驱是左子树中最大的值</li>
-<li>将此值把度为2的节点覆盖掉</li>
-<li>然后再在原来的左子树中把此值（前驱节点）删除</li>
-<li><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>代码中有bug  但是对整体来说并没有bug因为度为0或者1的节点都被处理了<ul>
-<li>❗注意： 度为1的前驱不一定在子树中  </li>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/x7H2kao9lNEpAY6.png" style="zoom:50%;"></li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<p>对于度为2的节点：</p>
-<ol>
-<li>前驱节点：左子树最大值 </li>
-<li>后继节点：右子树最小值</li>
-</ol>
-<h2 id="四、随堂练习"><a href="#四、随堂练习" class="headerlink" title="四、随堂练习"></a>四、随堂练习</h2><ol>
-<li><p>插入顺序会影响最终的树形结构</p>
-<ul>
-<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/9CKfJa5PhuB8pnj.png" style="zoom:50%;"></p>
-</li>
-<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/cH7RaKAN9IGUJuq.png" style="zoom:50%;"></p>
-</li>
-<li>我们可以看到第2种插入顺序 这不就是一个链表吗   而且此时的查找效率会退化为<code>O(n)</code></li>
-</ul>
-</li>
-<li><p>不同的树形结构，查找效率不同</p>
-</li>
-</ol>
-<ul>
-<li><p>平均查找效率：节点查找次数的期望值，$\frac{总次数}{节点数量}$ </p>
-<ul>
-<li><p>前提条件：假设每个节点等概率的被查找</p>
-</li>
-<li><p>总次数=每个节点的查找次数之和</p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>leetcode 110    669</li>
-</ul>
-<h2 id="五、扩展内容"><a href="#五、扩展内容" class="headerlink" title="五、扩展内容"></a>五、扩展内容</h2><ol>
-<li>二叉排序树的删除代码优化<ol>
-<li>删除掉处理度为0的代码逻辑，不影响代码整体功能</li>
-</ol>
-</li>
-<li>如何解决==排名==相关的检索需求<ol>
-<li>修改二叉排序树的结构定义，增加 size 字段，记录每棵树的节点数量</li>
-<li>$k = LS - 1$根节点就是排名第 k 位的元素</li>
-<li>$k \le LS$，排名第 k 位的元素在左子树中</li>
-<li>$k \gt LS，search_k(root-&gt;rchild, k - LS - 1)$</li>
-</ol>
-</li>
-<li>解决 Top-K 问题（找到小于第 k 位的所有元素）(也可以用堆来解决)<ol>
-<li>根节点就是第 k 位元素的话，就把左子树中的值全部输出出来</li>
-<li>第 k 位在左子树中，前 k 位元素全都在左子树中</li>
-<li>第 k 位在右子树中，说明根节点和左子树中的元素，都是前 k 位元素里面的值</li>
-</ol>
-</li>
-<li>二叉排序树和快速排序的关系<ol>
-<li>二叉排序树是快速排序在思维逻辑结构层面用的数据结构</li>
-<li>思考1：快速排序的时间复杂度和二叉排序树建树时间复杂度之间的关系</li>
-<li>思考2：快速选择算法和二叉排序树之间的关系</li>
-<li>程序=算法+数据结构</li>
-</ol>
-</li>
-</ol>
-<p>所谓算法设计及分析能力：分类讨论及归纳总结的能力</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142541.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142625.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142653.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142733.png" alt=""></p>
-<h1 id="平衡二叉查找树之AVL树"><a href="#平衡二叉查找树之AVL树" class="headerlink" title="平衡二叉查找树之AVL树"></a>平衡二叉查找树之AVL树</h1><h2 id="一、学习重点"><a href="#一、学习重点" class="headerlink" title="一、学习重点"></a>一、学习重点</h2><ol>
-<li>平衡二叉树排序树，本质上也是二叉排序树，所以拥有二叉排序树的所有性质</li>
-<li>平衡二叉树排序树的学习重点， 在于平衡条件以及平衡调整的相关学习<ul>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/Ig6mp1WjGoVaQP4.png" style="zoom:50%;"></li>
-</ul>
-</li>
-</ol>
-<h2 id="二、性质"><a href="#二、性质" class="headerlink" title="二、性质"></a>二、性质</h2><h6 id="1-平衡条件：左右子树高度差不超过1"><a href="#1-平衡条件：左右子树高度差不超过1" class="headerlink" title="1.平衡条件：左右子树高度差不超过1"></a>1.平衡条件：左右子树高度差不超过1</h6><h2 id="三、思考"><a href="#三、思考" class="headerlink" title="三、思考"></a>三、思考</h2><ul>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/3bLVEBUH6yig7ux.png" style="zoom:50%;"></li>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/ODHTjxocSY9Nf3W.png" style="zoom: 50%;"></li>
-</ul>
-<ol>
-<li>AVL树改进的是节点数量的下限 <ul>
-<li>大约是$1.5^h$ </li>
-<li>提高了下限  再差也差不到哪里去  查找效率为<code>O(logn)</code></li>
-<li>节点数n 和 树高h之间的关系<ul>
-<li>$h=log^n$ </li>
-<li>当表示最少节点数时  log的底数是1.5</li>
-<li>当表示最少节点数时  log的底数是2</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>树高 = 生命长度， 节点数量 = 生命财富</li>
-<li>教育提升的是底线，而不是上限</li>
-</ol>
-<h2 id="四、平衡调整策略"><a href="#四、平衡调整策略" class="headerlink" title="四、平衡调整策略"></a>四、平衡调整策略</h2><ul>
-<li><p>左旋</p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/6xaZ9s2XQzNrJC1.png" style="zoom: 33%;"></p>
-<ul>
-<li>左旋的操作意义 （有点类似与天平）<ul>
-<li>降低右子树的树高  </li>
-<li>加深左子树的树高</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>右旋其实就是左旋的翻版</p>
-</li>
-</ul>
-<ol>
-<li>发生在回溯阶段的，第一个失衡节点处</li>
-<li>理解平衡调整策略的关键在于： 分析清楚四种情况下， ABCD四棵子树树高的关系</li>
-<li>LL<ul>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/Zlo8chWSxu2rVsA.png" style="zoom: 67%;"></li>
-<li>假设A，B，C，D子树的树高分别为h1，h2，h3， h4<ul>
-<li>首先 h3, h4 不一定相等  但是他们满足平衡条件👉h3和h4之间的高度差不会大于1</li>
-<li>为什么会发生失衡？👉 这是由于插入了一个节点所产生的  且由于是LL型的失衡所以插入到A子树产生了失衡</li>
-<li>根据失衡条件 K2的高度要比K3的高度大2👉这是大前提  也就是站在K1的视角看下面的子树是失衡的<ul>
-<li>平衡时K2的高度为h1+1 ， K3的高度为max（h3，h4）+ 1</li>
-<li>那么失衡时$h1+1=max（h3，h4）+ 1 + 2$👉$h1 = max(h3,h4) + 2$</li>
-<li>大前提情况下A B不能失衡 否则就是站在K2的视角就已经失衡了  所以$h1 = h2 + 1$ </li>
-<li>综上所述$h1 = max(h3,h4) + 2 = h2 + 1$</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/23/Hu7JSBDGLgXmy9C.png" style="zoom: 67%;"><ul>
-<li>这种失衡用右旋操作解决<ul>
-<li>平衡的可怕❗ </li>
-<li>$h2 = max(h3,h4) + 1 = K3$</li>
-<li>$K1 = h2 + 1 = h1$</li>
-<li>放眼看去  Woc  全部平衡了 🤭 </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>LR<ul>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/23/UsrA5ql7QmKJ94x.png" style="zoom:33%;"></li>
-<li><strong>处理方法</strong><ul>
-<li>先抓着K2小左旋<ul>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/23/MBwEIQ3pKiH6ydU.png" style="zoom:33%;"></li>
-</ul>
-</li>
-<li>再抓着K1大右旋<ul>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/23/USxYIQeZlbPpwg6.png" style="zoom:33%;"></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>RL</li>
-<li>RR</li>
-</ol>
-<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><ul>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/9CKfJa5PhuB8pnj.png" style="zoom:50%;"></li>
-</ul>
-<h2 id="五、代码演示"><a href="#五、代码演示" class="headerlink" title="五、代码演示"></a>五、代码演示</h2><ol>
-<li>插入和删除以后， 注意重新计算树高字段</li>
-<li>引入了NIL阶段， 代替NULL，NULL不可访问，NIL是一个实际节点，可访问 (帮助我们实现)</li>
-</ol>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142857.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142946.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103143027.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103143053.png" alt=""></p>
-<h3 id="vim微操"><a href="#vim微操" class="headerlink" title="vim微操"></a>vim微操</h3><ul>
-<li><code>ctrl+v</code>进入可视块模式 : 可以选中一块内容</li>
-<li>选中后按<code>shift + i</code>选中一列👉这种插入模式可以按列插入</li>
-<li>只要在第一行插入 接着按<code>ESC</code>就可以一列插入</li>
-<li>删除也是<code>ctrl+v</code>进入可视块模式  选中要删除的按<code>x</code></li>
-</ul>
 ]]></content>
   </entry>
   <entry>
@@ -2087,46 +2087,6 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 ]]></content>
   </entry>
   <entry>
-    <title>MySQL的使用</title>
-    <url>/posts/0.html</url>
-    <content><![CDATA[<h1 id="MySQL的使用"><a href="#MySQL的使用" class="headerlink" title="MySQL的使用"></a>MySQL的使用</h1><p>在云服务器上查看是否有MySQL</p>
-<p>使用<code>ps -ef | grep mysql</code><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004171647.png" style="zoom: 50%;"></p>
-<p><code>grep</code> 其实本身就是一个命令。在执行 <code>ps -ef | grep mysql</code> 时，其实是起了一个 <code>grep</code> 的进程，所以你在这里看到了这个进程，它并不是 <code>mysql</code> 的进程。</p>
-<p>更新系统一些资源【这些资源不更新有可能导致mysql或其他软件运行不了】</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004172101.png" style="zoom:50%;"></p>
-<ul>
-<li>需要在root用户下</li>
-</ul>
-<p>安装MySQL</p>
-<ul>
-<li><code>apt install mysql-server</code></li>
-</ul>
-<p>安装完后可查看是否有mysql进程</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004172441.png" style="zoom:50%;"></p>
-<p>初始化MySQL</p>
-<ul>
-<li><code>mysql_secure_installation</code></li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004200725.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004201020.png" alt=""></p>
-<ul>
-<li>设置密码等级</li>
-<li>移除匿名用户</li>
-<li>禁止root用户远程登录</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004201603.png" style="zoom:50%;"></p>
-<p>创建用户     <img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004202244.png" style="zoom:50%;"></p>
-<p>@前面表示用户名，@后面表示指定ip地址，%表示任意ip。</p>
-<p>设置用户权限        <img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004210049.png" style="zoom:50%;"></p>
-<p>修改配置文件，注释掉绑定地址<code>vim /etc/mysql/mysql.conf.d/mysqld.cnf</code></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004211821.png" alt=""></p>
-<p>使用<code>apt-cache serch mysql | grep dev</code>找到对应的开发库，里面有一些MySQL的接口（C语言）</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004225018.png" alt=""></p>
-<p>下载完后如下图可见<code>mysql.h</code></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004225158.png" style="zoom:50%;"></p>
-]]></content>
-  </entry>
-  <entry>
     <title>脚本获取系统信息</title>
     <url>/posts/e826.html</url>
     <content><![CDATA[<h1 id="脚本获取系统信息"><a href="#脚本获取系统信息" class="headerlink" title="脚本获取系统信息"></a>脚本获取系统信息</h1><h2 id="MemLog"><a href="#MemLog" class="headerlink" title="MemLog"></a>MemLog</h2><p>最终效果：</p>
@@ -2189,12 +2149,43 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 ]]></content>
   </entry>
   <entry>
-    <title>InnoDB索引</title>
-    <url>/posts/a128.html</url>
-    <content><![CDATA[<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/%E7%B4%A2%E5%BC%95.png" alt=""></p>
-<h2 id="内存结构"><a href="#内存结构" class="headerlink" title="内存结构"></a>内存结构</h2><p>Change buff——针对次要索引</p>
-<p> LRU——数据预热（yong， old）</p>
-<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/09/23/N2ABoeCxpcWnKbZ.png" style="zoom:50%;"></p>
+    <title>MySQL的使用</title>
+    <url>/posts/0.html</url>
+    <content><![CDATA[<h1 id="MySQL的使用"><a href="#MySQL的使用" class="headerlink" title="MySQL的使用"></a>MySQL的使用</h1><p>在云服务器上查看是否有MySQL</p>
+<p>使用<code>ps -ef | grep mysql</code><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004171647.png" style="zoom: 50%;"></p>
+<p><code>grep</code> 其实本身就是一个命令。在执行 <code>ps -ef | grep mysql</code> 时，其实是起了一个 <code>grep</code> 的进程，所以你在这里看到了这个进程，它并不是 <code>mysql</code> 的进程。</p>
+<p>更新系统一些资源【这些资源不更新有可能导致mysql或其他软件运行不了】</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004172101.png" style="zoom:50%;"></p>
+<ul>
+<li>需要在root用户下</li>
+</ul>
+<p>安装MySQL</p>
+<ul>
+<li><code>apt install mysql-server</code></li>
+</ul>
+<p>安装完后可查看是否有mysql进程</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004172441.png" style="zoom:50%;"></p>
+<p>初始化MySQL</p>
+<ul>
+<li><code>mysql_secure_installation</code></li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004200725.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004201020.png" alt=""></p>
+<ul>
+<li>设置密码等级</li>
+<li>移除匿名用户</li>
+<li>禁止root用户远程登录</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004201603.png" style="zoom:50%;"></p>
+<p>创建用户     <img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004202244.png" style="zoom:50%;"></p>
+<p>@前面表示用户名，@后面表示指定ip地址，%表示任意ip。</p>
+<p>设置用户权限        <img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004210049.png" style="zoom:50%;"></p>
+<p>修改配置文件，注释掉绑定地址<code>vim /etc/mysql/mysql.conf.d/mysqld.cnf</code></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004211821.png" alt=""></p>
+<p>使用<code>apt-cache serch mysql | grep dev</code>找到对应的开发库，里面有一些MySQL的接口（C语言）</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004225018.png" alt=""></p>
+<p>下载完后如下图可见<code>mysql.h</code></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004225158.png" style="zoom:50%;"></p>
 ]]></content>
   </entry>
   <entry>
@@ -2518,6 +2509,15 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
       <tags>
         <tag>计算机网络</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>InnoDB索引</title>
+    <url>/posts/a128.html</url>
+    <content><![CDATA[<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/%E7%B4%A2%E5%BC%95.png" alt=""></p>
+<h2 id="内存结构"><a href="#内存结构" class="headerlink" title="内存结构"></a>内存结构</h2><p>Change buff——针对次要索引</p>
+<p> LRU——数据预热（yong， old）</p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/09/23/N2ABoeCxpcWnKbZ.png" style="zoom:50%;"></p>
+]]></content>
   </entry>
   <entry>
     <title>面向面试简答题之查漏补缺</title>
