@@ -197,26 +197,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>数据结构之Leetcode刷题集</title>
-    <url>/posts/1124.html</url>
-    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><ul>
-<li><a href="https://srymaker0.com/posts/d64e">1.链表</a></li>
-<li><a href="https://srymaker0.com/posts/9199">2.栈</a></li>
-<li><a href="https://srymaker0.com/posts/682f">3.队列</a></li>
-<li><a href="https://srymaker0.com/posts/2a0c">4.二叉树</a></li>
-<li><a href="https://srymaker0.com/posts/3c7d">5.堆与优先队列</a></li>
-<li><a href="https://srymaker0.com/posts/20cf">6.并查集</a></li>
-<li><a href="https://srymaker0.com/posts/9271">7.快速排序+优化</a></li>
-<li><a href="https://srymaker0.com/posts/27bc">8.归并排序</a></li>
-<li><a href="https://srymaker0.com/posts/5930">9.有趣的排序</a></li>
-<li><a href="https://srymaker0.com/posts/96d5">10.二分查找</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>手撕红黑树！！！</title>
     <url>/posts/9afc.html</url>
     <content><![CDATA[<h1 id="红黑树（上）"><a href="#红黑树（上）" class="headerlink" title="红黑树（上）"></a>红黑树（上）</h1><h2 id="一、五个平衡条件"><a href="#一、五个平衡条件" class="headerlink" title="一、五个平衡条件"></a>一、五个平衡条件</h2><ol>
@@ -467,6 +447,26 @@
       </tags>
   </entry>
   <entry>
+    <title>数据结构之Leetcode刷题集</title>
+    <url>/posts/1124.html</url>
+    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><ul>
+<li><a href="https://srymaker0.com/posts/d64e">1.链表</a></li>
+<li><a href="https://srymaker0.com/posts/9199">2.栈</a></li>
+<li><a href="https://srymaker0.com/posts/682f">3.队列</a></li>
+<li><a href="https://srymaker0.com/posts/2a0c">4.二叉树</a></li>
+<li><a href="https://srymaker0.com/posts/3c7d">5.堆与优先队列</a></li>
+<li><a href="https://srymaker0.com/posts/20cf">6.并查集</a></li>
+<li><a href="https://srymaker0.com/posts/9271">7.快速排序+优化</a></li>
+<li><a href="https://srymaker0.com/posts/27bc">8.归并排序</a></li>
+<li><a href="https://srymaker0.com/posts/5930">9.有趣的排序</a></li>
+<li><a href="https://srymaker0.com/posts/96d5">10.二分查找</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>关于MySQL那点事儿</title>
     <url>/posts/d4d4.html</url>
     <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><p><a href="https://srymaker0.com/posts/54a3">1.关于MySQL架构</a></p>
@@ -476,117 +476,6 @@
       <tags>
         <tag>Innodb</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Effective C++</title>
-    <url>/posts/ec29.html</url>
-    <content><![CDATA[<h1 id="Effective-C"><a href="#Effective-C" class="headerlink" title="Effective C++"></a>Effective C++</h1><p>刚开始看第一遍， 记录一些关键、有趣、不是很懂的地方</p>
-<h2 id="static-amp-const-amp-inline"><a href="#static-amp-const-amp-inline" class="headerlink" title="static&amp;const&amp;inline"></a>static&amp;const&amp;inline</h2><p>const多才多艺：</p>
-<ul>
-<li>可修饰global或namespace作用域内的常量</li>
-<li>被声明为static的对象</li>
-<li>可修饰class内的static和non-static成员变量</li>
-<li>修饰指针</li>
-</ul>
-<p>修饰迭代器有讲究</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103105459.png" style="zoom: 25%;"></p>
-<p>修饰成员函数</p>
-<ul>
-<li>可以使class接口容易被理解<ul>
-<li>哪个函数可以改动对象内容哪个不可以</li>
-<li>可以操作const对象</li>
-</ul>
-</li>
-<li>两种概念——bitwise constness 和 logical constness<ul>
-<li>bitwise：指成员函数只有在不更改对象之人和成员变量时才可以说是const</li>
-<li>logical：一个const成员函数可以修改它所处理的对象内的某些bits，但只有在哭护短侦测不出的情况下才可以——<span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>使用mutable关键字修饰你可以修改的变量</li>
-</ul>
-</li>
-</ul>
-<p>Static:</p>
-<ul>
-<li>static对象，寿命从被构造出来知道程序结束为止</li>
-<li>在函数内的static对象称为local static， 其他的static对象称为non-local static对象</li>
-<li>程序结束时static对象会被自动销毁  </li>
-</ul>
-<h1 id="构造-析构-赋值运算"><a href="#构造-析构-赋值运算" class="headerlink" title="构造/析构/赋值运算"></a>构造/析构/赋值运算</h1><p>析构函数：任何class只要带有virtual函数都几乎确定应该也有一个virtual析构函数。</p>
-<ul>
-<li>若有继承关系，确没有vitual析构函数会造成局部销毁的bug，派生类只会销毁基类的对象</li>
-<li>只有当class内含至少一个virtual函数，才为它声明virtual析构函数</li>
-<li>STL容器都不被设计作为base classes使用</li>
-</ul>
-<p>虚函数：virtual关键字修饰</p>
-<ul>
-<li>在构造和析构期间不要调用virtual函数，因为这类调用从不下降至derived class</li>
-</ul>
-<h2 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h2><p>看到条款15懵b了 </p>
-<pre class="line-numbers language-CPP" data-language="CPP"><code class="language-CPP">class Font {
-public:
-    ...
-    operator FontHandle() const
-    { return f;}
-    ...
-};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>看到这个我开始怀疑自己有没有学过C++了<span class="github-emoji"><span>😢</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，我在想运算符重载还能这样写？后面查了资料才知道这并不是运算符重载</p>
-<p>关于隐式类型转换的规则<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<ul>
-<li>接受单个实参的构造函数，定义了从形参类型到该类类型的一个隐式转换。</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210919212342.png" alt=""></p>
-<p>explicit关键字</p>
-<ul>
-<li>类的构造函数被声明为<code>explicit</code>方式，可以用来<strong>阻止隐式类型转换</strong>，但被声明为explicit的构造函数依然可被用来执行<strong>显示类型转换</strong>。即，explicit构造函数必须显示调用。</li>
-</ul>
-<h1 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h1><p>以对象管理资源</p>
-<ul>
-<li>将资源放进对象内，依赖c++析构函数自动调用机制确保资源被释放</li>
-<li>RAII：资源取得时机便是初始化时机</li>
-<li>智能指针</li>
-</ul>
-<h2 id="auto-ptr-amp-shared-ptr"><a href="#auto-ptr-amp-shared-ptr" class="headerlink" title="auto_ptr&amp;shared_ptr"></a>auto_ptr&amp;shared_ptr</h2><p>auto_ptr: </p>
-<ul>
-<li>被销毁时自动删除所指之物，不能让多个auto_ptr指向同一个对象，否则该对象会被删除一次以上——未定义行为</li>
-<li>若通过copy构造函数或copy assignment操作符复制auto_ptr，它们会变成null，而复制所得的指针将取得资源的唯一拥有权<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103164044.png" style="zoom: 33%;"></p>
-<p>shared_ptr:</p>
-<ul>
-<li><p>被称为引用计数型智慧指针（RCSP），解决了auto_ptr的问题，可以用多个shared_ptr对象指向同一个对象</p>
-</li>
-<li><p>RAII class copying行为：有时候我们并不想删除对象，例如mutex这样的资源（当出现copy行为时并不合理），也许只是解除锁定</p>
-<ul>
-<li><p>抑制copying</p>
-</li>
-<li><p>shared_ptr有第二个参数——删除器（deleter）</p>
-</li>
-<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103165647.png" style="zoom:33%;"></li>
-<li>通过get可以访问shared_ptr对象的原始指针</li>
-</ul>
-</li>
-</ul>
-<p>看如下的几个调用</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-<span class="token keyword">void</span> <span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> pw<span class="token punctuation">,</span> <span class="token keyword">int</span> priority<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">// 1、错误，shared_ptr构造函数需要一个原始指针</span>
-<span class="token function">processWidget</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
-
-<span class="token comment">// 2、正确，但还是会造成资源泄露</span>
-<span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">shared_ptr</span><span class="token generic class-name"><span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-
-<span class="token comment">// 3、完美</span>
-std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> <span class="token function">pw</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">processWidget</span><span class="token punctuation">(</span>pw<span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>对于第二种调用的第一个参数有两个步骤</p>
-<ul>
-<li>执行“new Widget”</li>
-<li>调用tr1:shared_ptr构造函数</li>
-</ul>
-<p>而priority()的调用可能发生在这两步之间，若priority()的调用产生异常，则“new Widget”返回的指针将会遗失</p>
-<ul>
-<li>解决办法是第三种调用，分两步执行。</li>
-</ul>
-]]></content>
   </entry>
   <entry>
     <title>shell</title>
@@ -1017,6 +906,117 @@ init_prime <span class="token variable">${End}</span>
       </tags>
   </entry>
   <entry>
+    <title>Effective C++</title>
+    <url>/posts/ec29.html</url>
+    <content><![CDATA[<h1 id="Effective-C"><a href="#Effective-C" class="headerlink" title="Effective C++"></a>Effective C++</h1><p>刚开始看第一遍， 记录一些关键、有趣、不是很懂的地方</p>
+<h2 id="static-amp-const-amp-inline"><a href="#static-amp-const-amp-inline" class="headerlink" title="static&amp;const&amp;inline"></a>static&amp;const&amp;inline</h2><p>const多才多艺：</p>
+<ul>
+<li>可修饰global或namespace作用域内的常量</li>
+<li>被声明为static的对象</li>
+<li>可修饰class内的static和non-static成员变量</li>
+<li>修饰指针</li>
+</ul>
+<p>修饰迭代器有讲究</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103105459.png" style="zoom: 25%;"></p>
+<p>修饰成员函数</p>
+<ul>
+<li>可以使class接口容易被理解<ul>
+<li>哪个函数可以改动对象内容哪个不可以</li>
+<li>可以操作const对象</li>
+</ul>
+</li>
+<li>两种概念——bitwise constness 和 logical constness<ul>
+<li>bitwise：指成员函数只有在不更改对象之人和成员变量时才可以说是const</li>
+<li>logical：一个const成员函数可以修改它所处理的对象内的某些bits，但只有在哭护短侦测不出的情况下才可以——<span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>使用mutable关键字修饰你可以修改的变量</li>
+</ul>
+</li>
+</ul>
+<p>Static:</p>
+<ul>
+<li>static对象，寿命从被构造出来知道程序结束为止</li>
+<li>在函数内的static对象称为local static， 其他的static对象称为non-local static对象</li>
+<li>程序结束时static对象会被自动销毁  </li>
+</ul>
+<h1 id="构造-析构-赋值运算"><a href="#构造-析构-赋值运算" class="headerlink" title="构造/析构/赋值运算"></a>构造/析构/赋值运算</h1><p>析构函数：任何class只要带有virtual函数都几乎确定应该也有一个virtual析构函数。</p>
+<ul>
+<li>若有继承关系，确没有vitual析构函数会造成局部销毁的bug，派生类只会销毁基类的对象</li>
+<li>只有当class内含至少一个virtual函数，才为它声明virtual析构函数</li>
+<li>STL容器都不被设计作为base classes使用</li>
+</ul>
+<p>虚函数：virtual关键字修饰</p>
+<ul>
+<li>在构造和析构期间不要调用virtual函数，因为这类调用从不下降至derived class</li>
+</ul>
+<h2 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h2><p>看到条款15懵b了 </p>
+<pre class="line-numbers language-CPP" data-language="CPP"><code class="language-CPP">class Font {
+public:
+    ...
+    operator FontHandle() const
+    { return f;}
+    ...
+};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>看到这个我开始怀疑自己有没有学过C++了<span class="github-emoji"><span>😢</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，我在想运算符重载还能这样写？后面查了资料才知道这并不是运算符重载</p>
+<p>关于隐式类型转换的规则<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<ul>
+<li>接受单个实参的构造函数，定义了从形参类型到该类类型的一个隐式转换。</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210919212342.png" alt=""></p>
+<p>explicit关键字</p>
+<ul>
+<li>类的构造函数被声明为<code>explicit</code>方式，可以用来<strong>阻止隐式类型转换</strong>，但被声明为explicit的构造函数依然可被用来执行<strong>显示类型转换</strong>。即，explicit构造函数必须显示调用。</li>
+</ul>
+<h1 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h1><p>以对象管理资源</p>
+<ul>
+<li>将资源放进对象内，依赖c++析构函数自动调用机制确保资源被释放</li>
+<li>RAII：资源取得时机便是初始化时机</li>
+<li>智能指针</li>
+</ul>
+<h2 id="auto-ptr-amp-shared-ptr"><a href="#auto-ptr-amp-shared-ptr" class="headerlink" title="auto_ptr&amp;shared_ptr"></a>auto_ptr&amp;shared_ptr</h2><p>auto_ptr: </p>
+<ul>
+<li>被销毁时自动删除所指之物，不能让多个auto_ptr指向同一个对象，否则该对象会被删除一次以上——未定义行为</li>
+<li>若通过copy构造函数或copy assignment操作符复制auto_ptr，它们会变成null，而复制所得的指针将取得资源的唯一拥有权<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103164044.png" style="zoom: 33%;"></p>
+<p>shared_ptr:</p>
+<ul>
+<li><p>被称为引用计数型智慧指针（RCSP），解决了auto_ptr的问题，可以用多个shared_ptr对象指向同一个对象</p>
+</li>
+<li><p>RAII class copying行为：有时候我们并不想删除对象，例如mutex这样的资源（当出现copy行为时并不合理），也许只是解除锁定</p>
+<ul>
+<li><p>抑制copying</p>
+</li>
+<li><p>shared_ptr有第二个参数——删除器（deleter）</p>
+</li>
+<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103165647.png" style="zoom:33%;"></li>
+<li>通过get可以访问shared_ptr对象的原始指针</li>
+</ul>
+</li>
+</ul>
+<p>看如下的几个调用</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token keyword">void</span> <span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> pw<span class="token punctuation">,</span> <span class="token keyword">int</span> priority<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 1、错误，shared_ptr构造函数需要一个原始指针</span>
+<span class="token function">processWidget</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+
+<span class="token comment">// 2、正确，但还是会造成资源泄露</span>
+<span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">shared_ptr</span><span class="token generic class-name"><span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token comment">// 3、完美</span>
+std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> <span class="token function">pw</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">processWidget</span><span class="token punctuation">(</span>pw<span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>对于第二种调用的第一个参数有两个步骤</p>
+<ul>
+<li>执行“new Widget”</li>
+<li>调用tr1:shared_ptr构造函数</li>
+</ul>
+<p>而priority()的调用可能发生在这两步之间，若priority()的调用产生异常，则“new Widget”返回的指针将会遗失</p>
+<ul>
+<li>解决办法是第三种调用，分两步执行。</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>C/S文件传输软件的设计与实现</title>
     <url>/posts/b12c.html</url>
     <content><![CDATA[<h1 id="C-S文件传输软件的设计与实现"><a href="#C-S文件传输软件的设计与实现" class="headerlink" title="C/S文件传输软件的设计与实现"></a>C/S文件传输软件的设计与实现</h1><h2 id="理解三个包"><a href="#理解三个包" class="headerlink" title="理解三个包"></a>理解三个包</h2><p>需要明白这是出现在哪一层的设计</p>
@@ -1419,247 +1419,6 @@ init_prime <span class="token variable">${End}</span>
 ]]></content>
   </entry>
   <entry>
-    <title>单调队列</title>
-    <url>/posts/2132.html</url>
-    <content><![CDATA[<h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h2><ul>
-<li><p>RMQ(x, y)函数：查询数组$[x, y]$区间内部的最小值，参考<a href="https://oi-wiki.org/topic/rmq/#_2">RMQ</a>——OI Wiki</p>
-</li>
-<li><p>如果固定询问区间的尾部，例如：RMQ(x,7)</p>
-<ul>
-<li>最少记录如上4个蓝色元素，即可满足RMQ(x,7)的<strong>所有</strong>需求</li>
-<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111327.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111327.png" alt="图片"></a></li>
-<li>并且这4个元素构成了一个<strong>单调递增</strong>的序列，也是单调队列</li>
-</ul>
-</li>
-<li><p>单调队列解决的就是这类维护区间最值的问题 [固定结尾的RMQ问题]</p>
-</li>
-</ul>
-<h2 id="单调队列"><a href="#单调队列" class="headerlink" title="单调队列"></a>单调队列</h2><ul>
-<li><p>要解决的问题性质：维护<strong>滑动窗口</strong>内部的<strong>区间</strong>最值</p>
-</li>
-<li><p>结构定义：单调的队列</p>
-</li>
-<li><p>结构操作</p>
-<ul>
-<li>入队：先将队尾违反单调性的元素淘汰出局，再将当前元素入队</li>
-<li>出队：如果队首元素超出了滑动窗口的范围，队首出队</li>
-</ul>
-</li>
-<li><p>维护的核心：队首元素——滑动窗口内的最值⭐</p>
-<ul>
-<li>最小值→递增队列</li>
-<li>最大值→递减队列</li>
-</ul>
-</li>
-<li><p>均摊时间复杂度：O(1)，求解一次</p>
-</li>
-<li><p>[PS] 再举个例加深印象：学校选出学生代表去参赛</p>
-<ul>
-<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111338.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111338.png" alt="图片"></a></li>
-<li>类比：年级-&gt;数组索引，能力值-&gt;数据值，时间段-&gt;滑动窗口</li>
-<li>在维护区间[14-17]最大值的单调队列中，当你入队时，赵六就会被踢出<ul>
-<li>延伸：如果一个人年龄比你小，能力还比你强，那你就永远被踢掉了</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h2><ul>
-<li><p>想想栈和队列的区别，而单调栈和单调队列的唯一区别也就在这，其它操作一致 [入队、出队]</p>
-<ul>
-<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111345.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111345.png" alt="图片"></a></li>
-<li>单调栈是一头堵死的单调队列</li>
-<li>单调栈保留了单调队列的入队操作，依然维护单调性⭐</li>
-</ul>
-</li>
-<li><p>问题性质：最近（大于/小于）关系</p>
-<ul>
-<li>入栈之前，符合单调性的<strong>栈顶</strong>元素，就是当前<strong>入栈元素</strong>的最近（大于/小于）关系</li>
-</ul>
-</li>
-<li><p>维护的核心：</p>
-<p>栈顶元素</p>
-<p>——最近（大于/小于）关系⭐</p>
-<ul>
-<li>左侧最近关系→左侧先入栈</li>
-<li>右侧最近关系→右侧先入栈</li>
-<li>[PS] 其栈底是<strong>全局</strong>最小值，但用栈维护并没有意义</li>
-</ul>
-</li>
-<li><p>均摊时间复杂度：O(1)，求解一次</p>
-</li>
-</ul>
-<h2 id="两者对比"><a href="#两者对比" class="headerlink" title="两者对比"></a>两者对比</h2><p>其实两者主要是形式上不同，但本质差不多</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:left"><strong>开放端口</strong></th>
-<th style="text-align:center"><strong>维护核心</strong></th>
-<th style="text-align:left"><strong>擅长问题</strong></th>
-<th style="text-align:center"><strong>基本操作</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><strong>单调队列</strong></td>
-<td style="text-align:left">首、尾</td>
-<td style="text-align:center">队首</td>
-<td style="text-align:left">区间最值</td>
-<td style="text-align:center">维单+入队、出队、<strong>取值</strong></td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>单调栈</strong></td>
-<td style="text-align:left">顶</td>
-<td style="text-align:center">栈顶</td>
-<td style="text-align:left">最近大小关系</td>
-<td style="text-align:center">出栈[维单]、<strong>取值</strong>、入栈</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h1 id="经典例题"><a href="#经典例题" class="headerlink" title="经典例题"></a>经典例题</h1><h2 id="HZOJ-271：滑动窗口"><a href="#HZOJ-271：滑动窗口" class="headerlink" title="HZOJ-271：滑动窗口"></a><a href="http://oj.haizeix.com/problem/271">HZOJ-271</a>：滑动窗口</h2><p><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111456.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111456.png" alt="图片"></a></p>
-<p><strong>样例输入</strong></p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">8 3
-1 3 -1 -3 5 3 6 7
-复制代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p><strong>样例输出</strong></p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">-1 -3 -3 -3 3 3
-3 3 5 5 6 7
-复制代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>思路<ul>
-<li>纯单调队列，关注代码实现</li>
-</ul>
-</li>
-<li>代码<ul>
-<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112213429.png" alt=""></li>
-<li>思考：单调队列中是记录值还是记录【下标】<ul>
-<li>记录<strong>下标</strong>🆒，因为有了下标可以索引到值 [顺藤摸瓜]</li>
-<li>记录值，却反向不可查</li>
-</ul>
-</li>
-<li>这是一个常用的单调队列<strong>模板</strong>：维护单调性→入队→出队→根据题意输出</li>
-<li>关注最大/小值、窗口的大小</li>
-<li>[PS] 队尾既可以入队，也可以出 [踢，维护单调性]，所以认为不是单向队列</li>
-</ul>
-</li>
-</ul>
-<h2 id="HZOJ-372：双生序列"><a href="#HZOJ-372：双生序列" class="headerlink" title="HZOJ-372：双生序列"></a><a href="http://oj.haizeix.com/problem/372">HZOJ-372</a>：双生序列</h2><p><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111528.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111528.png" alt="图片"></a></p>
-<p><strong>样例输入</strong></p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">5
-3 1 5 2 4
-5 2 4 3 1
-复制代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>样例输出</strong></p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">4
-复制代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<ul>
-<li><p>思路</p>
-<ul>
-<li><p>思考：什么是两个序列的趋势相同？</p>
-<ul>
-<li>相同区间内部的RMQ值相同，❗ 这里RMQ值→最小值的最大<strong>下标</strong></li>
-</ul>
-</li>
-<li><p>【关键】两个序列的每个区间的RMQ值相等👉两个序列的单调队列长得一样</p>
-<ul>
-<li>换句话说，每时每刻，两个序列对应相同的单调队列</li>
-<li>注意：长得一样，指的不是最小值，而是对应下标 [单调队列里存的是下标]</li>
-</ul>
-</li>
-<li><p>将两个序列的元素，依次插入到单调队列中，每次插入后比较单调队列的大小即可</p>
-<ul>
-<li>① 如果一致，继续入队</li>
-</ul>
-</li>
-<li>② 如果不一致，输出答案</li>
-</ul>
-</li>
-<li><p>代码</p>
-<ul>
-<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111541.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111541.png" alt="图片"></a></li>
-<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111604.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111604.png" alt="图片"></a></li>
-<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112215050.png" alt=""></li>
-<li>用类定义单调队列，便于复用</li>
-<li>单调队列里存的是<strong>下标</strong>：p</li>
-<li>单调队列操作：维护→入队，都不需要出队</li>
-<li>【巧妙】根据队列的<strong>大小</strong>变化把握趋势变化</li>
-</ul>
-</li>
-</ul>
-<h2 id="239-滑动窗口最大值"><a href="#239-滑动窗口最大值" class="headerlink" title="239. 滑动窗口最大值"></a><a href="https://leetcode-cn.com/problems/sliding-window-maximum/">239. 滑动窗口最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112222023.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112222037.png" alt=""></p>
-<h2 id="剑指-Offer-59-II-队列的最大值"><a href="#剑指-Offer-59-II-队列的最大值" class="headerlink" title="剑指 Offer 59 - II. 队列的最大值"></a><a href="https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/">剑指 Offer 59 - II. 队列的最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112225049.png" alt=""></p>
-<ul>
-<li>思路<ul>
-<li>可维护两个队列，一个用于存储原数据，一个用于存储最大值（单调队列）</li>
-</ul>
-</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112225214.png" alt=""></p>
-<ul>
-<li><p>注意入队时的比较</p>
-<ul>
-<li>&gt;，表示可记录重复元素，并且元素相对位置不会变，对于pop_front()操作，若q.front() 等于mq.front()则可以认为当前在q中删除的值也要在mq中删除</li>
-<li>&gt;=, 表示不记录重复元素，但是在pop操作时要额外记录下标</li>
-</ul>
-</li>
-<li><p>单调队列是原队列的另一种信息表示方式</p>
-</li>
-<li>此题的窗口大小为整个数组</li>
-</ul>
-<h2 id="862-和至少为-K-的最短子数组"><a href="#862-和至少为-K-的最短子数组" class="headerlink" title="862. 和至少为 K 的最短子数组"></a><a href="https://leetcode-cn.com/problems/shortest-subarray-with-sum-at-least-k/">862. 和至少为 K 的最短子数组</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115204304.png" alt=""></p>
-<ul>
-<li>思路<ul>
-<li>把原数组转化为前缀和数组——可以方便求区间和，求这个前缀和数组中的RMQ问题，单调队列维护数组中的最小值</li>
-<li>每次遍历前缀和数组的时候，都减去当前位置之前的最小值</li>
-</ul>
-</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115204320.png" alt=""></p>
-<ul>
-<li><p>正确的分析思路——先分析我们需要得到什么样特点的数据，再对应我们所学的数据结构和算法</p>
-</li>
-<li><p>每次更新pos，都需要弹出q的首部元素，因为求的是最短队列，如果q队列中下一个元素不满足条件，则pos就是前一个位置</p>
-</li>
-</ul>
-<h2 id="1438-绝对差不超过限制的最长连续子数组"><a href="#1438-绝对差不超过限制的最长连续子数组" class="headerlink" title="1438. 绝对差不超过限制的最长连续子数组"></a><a href="https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/">1438. 绝对差不超过限制的最长连续子数组</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115211443.png" alt=""></p>
-<ul>
-<li><p>思路</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211219231407.png" alt=""></p>
-</li>
-</ul>
-<p>假设在上图长度为L的区间中，找到一个min和一个max符合题意max-min &lt;= limit，也就是说在这段区间内无论怎么动只要包含这个min和max，长度可以为L-1， L-2，L-3…  但是L+1，L+2却不行（因为可能存在新的min和max也符合题意）——由此得出这是一个二分问题，也是111111000000的二分问题，需要找到最长的L。</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115211505.png" alt=""></p>
-<ul>
-<li>二分的是长度，check函数表示在mid长度范围内是否存在有最大值-最小值小于limit，找最长的L</li>
-</ul>
-<h1 id="温故知新"><a href="#温故知新" class="headerlink" title="温故知新"></a>温故知新</h1><h2 id="513-找树左下角的值"><a href="#513-找树左下角的值" class="headerlink" title="513. 找树左下角的值"></a><a href="https://leetcode-cn.com/problems/find-bottom-left-tree-value/">513. 找树左下角的值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115213203.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115213219.png" alt=""></p>
-<h2 id="135-分发糖果"><a href="#135-分发糖果" class="headerlink" title="135. 分发糖果"></a><a href="https://leetcode-cn.com/problems/candy/">135. 分发糖果</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115214537.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115214553.png" alt=""></p>
-<h2 id="365-水壶问题"><a href="#365-水壶问题" class="headerlink" title="365. 水壶问题"></a><a href="https://leetcode-cn.com/problems/water-and-jug-problem/">365. 水壶问题</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115222304.png" alt=""></p>
-<ul>
-<li>这是一个模拟题</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115222325.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115222414.png" alt=""></p>
-<h2 id="1760-袋子里最少数目的球"><a href="#1760-袋子里最少数目的球" class="headerlink" title="1760. 袋子里最少数目的球"></a><a href="https://leetcode-cn.com/problems/minimum-limit-of-balls-in-a-bag/">1760. 袋子里最少数目的球</a></h2><h2 id="45-跳跃游戏-II"><a href="#45-跳跃游戏-II" class="headerlink" title="45. 跳跃游戏 II"></a><a href="https://leetcode-cn.com/problems/jump-game-ii/">45. 跳跃游戏 II</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116220506.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116220522.png" alt=""></p>
-<h2 id="93-复原-IP-地址"><a href="#93-复原-IP-地址" class="headerlink" title="93. 复原 IP 地址"></a><a href="https://leetcode-cn.com/problems/restore-ip-addresses/">93. 复原 IP 地址</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223107.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223122.png" alt=""></p>
-<h2 id="46-全排列"><a href="#46-全排列" class="headerlink" title="46. 全排列"></a><a href="https://leetcode-cn.com/problems/permutations/">46. 全排列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223421.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223503.png" alt=""></p>
-<h2 id="43-字符串相乘"><a href="#43-字符串相乘" class="headerlink" title="43. 字符串相乘"></a><a href="https://leetcode-cn.com/problems/multiply-strings/">43. 字符串相乘</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116224625.png" alt=""></p>
-<ul>
-<li>倒着存储</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116224638.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
     <title>哈希表与布隆过滤器</title>
     <url>/posts/69d8.html</url>
     <content><![CDATA[<h1 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h1><blockquote>
@@ -1915,107 +1674,244 @@ init_prime <span class="token variable">${End}</span>
 ]]></content>
   </entry>
   <entry>
-    <title>AVL</title>
-    <url>/posts/416e.html</url>
-    <content><![CDATA[<h1 id="LeetCode环节"><a href="#LeetCode环节" class="headerlink" title="LeetCode环节"></a>LeetCode环节</h1><h2 id="面试题-04-06-后继者"><a href="#面试题-04-06-后继者" class="headerlink" title="面试题 04.06. 后继者"></a><a href="https://leetcode-cn.com/problems/successor-lcci/">面试题 04.06. 后继者</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228192531.png" alt=""></p>
+    <title>单调队列</title>
+    <url>/posts/2132.html</url>
+    <content><![CDATA[<h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h2><ul>
+<li><p>RMQ(x, y)函数：查询数组$[x, y]$区间内部的最小值，参考<a href="https://oi-wiki.org/topic/rmq/#_2">RMQ</a>——OI Wiki</p>
+</li>
+<li><p>如果固定询问区间的尾部，例如：RMQ(x,7)</p>
 <ul>
-<li>使用中序遍历</li>
+<li>最少记录如上4个蓝色元素，即可满足RMQ(x,7)的<strong>所有</strong>需求</li>
+<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111327.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111327.png" alt="图片"></a></li>
+<li>并且这4个元素构成了一个<strong>单调递增</strong>的序列，也是单调队列</li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228192550.png" alt=""></p>
-<ul>
-<li>node用来防止遍历是遇到空节点直接返回 </li>
-<li>结构化思维——pre会依次访问到树中的每一个节点</li>
+</li>
+<li><p>单调队列解决的就是这类维护区间最值的问题 [固定结尾的RMQ问题]</p>
+</li>
 </ul>
-<h2 id="450-删除二叉搜索树中的节点"><a href="#450-删除二叉搜索树中的节点" class="headerlink" title="450. 删除二叉搜索树中的节点"></a><a href="https://leetcode-cn.com/problems/delete-node-in-a-bst/">450. 删除二叉搜索树中的节点</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228195933.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228195949.png" alt=""></p>
-<h2 id="1382-将二叉搜索树变平衡"><a href="#1382-将二叉搜索树变平衡" class="headerlink" title="1382. 将二叉搜索树变平衡"></a><a href="https://leetcode-cn.com/problems/balance-a-binary-search-tree/">1382. 将二叉搜索树变平衡</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102221043.png" alt=""></p>
+<h2 id="单调队列"><a href="#单调队列" class="headerlink" title="单调队列"></a>单调队列</h2><ul>
+<li><p>要解决的问题性质：维护<strong>滑动窗口</strong>内部的<strong>区间</strong>最值</p>
+</li>
+<li><p>结构定义：单调的队列</p>
+</li>
+<li><p>结构操作</p>
 <ul>
-<li>可把原来的树看成一个有序的序列（中序遍历），使最中间的那个数作为根节点，递归解题</li>
+<li>入队：先将队尾违反单调性的元素淘汰出局，再将当前元素入队</li>
+<li>出队：如果队首元素超出了滑动窗口的范围，队首出队</li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102221102.png" alt=""></p>
-<h2 id="108-将有序数组转换为二叉搜索树"><a href="#108-将有序数组转换为二叉搜索树" class="headerlink" title="108. 将有序数组转换为二叉搜索树"></a><a href="https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/">108. 将有序数组转换为二叉搜索树</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102223424.png" alt=""></p>
+</li>
+<li><p>维护的核心：队首元素——滑动窗口内的最值⭐</p>
 <ul>
-<li>和上题几乎一样</li>
+<li>最小值→递增队列</li>
+<li>最大值→递减队列</li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102223443.png" alt=""></p>
-<h2 id="98-验证二叉搜索树"><a href="#98-验证二叉搜索树" class="headerlink" title="98. 验证二叉搜索树"></a><a href="https://leetcode-cn.com/problems/validate-binary-search-tree/">98. 验证二叉搜索树</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102230343.png" alt=""></p>
+</li>
+<li><p>均摊时间复杂度：O(1)，求解一次</p>
+</li>
+<li><p>[PS] 再举个例加深印象：学校选出学生代表去参赛</p>
 <ul>
-<li>使用中序遍历，看成在遍历一个有序数组</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102230429.png" alt=""></p>
-<h2 id="501-二叉搜索树中的众数"><a href="#501-二叉搜索树中的众数" class="headerlink" title="501. 二叉搜索树中的众数"></a><a href="https://leetcode-cn.com/problems/find-mode-in-binary-search-tree/">501. 二叉搜索树中的众数</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102232757.png" alt=""></p>
-<ul>
-<li>思路：二叉搜索树的中序遍历是一个升序序列，逐个比对当前结点(root)值与前驱结点（pre)值。<ul>
-<li>更新当前节点值出现次数(cnt)及最大出现次数(max_cnt)</li>
-<li>更新规则：若cnt=max_cnt,将root-&gt;val添加到结果向量(ret)中；若cnt&gt;max_cnt,清空ret,将root-&gt;val添加到ret,并更新max_cnt为cnt。</li>
+<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111338.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111338.png" alt="图片"></a></li>
+<li>类比：年级-&gt;数组索引，能力值-&gt;数据值，时间段-&gt;滑动窗口</li>
+<li>在维护区间[14-17]最大值的单调队列中，当你入队时，赵六就会被踢出<ul>
+<li>延伸：如果一个人年龄比你小，能力还比你强，那你就永远被踢掉了</li>
 </ul>
 </li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102232813.png" alt=""></p>
-<h2 id="面试题-17-12-BiNode"><a href="#面试题-17-12-BiNode" class="headerlink" title="面试题 17.12. BiNode"></a><a href="https://leetcode-cn.com/problems/binode-lcci/">面试题 17.12. BiNode</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103133734.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103133750.png" alt=""></p>
-<h2 id="剑指-Offer-33-二叉搜索树的后序遍历序列"><a href="#剑指-Offer-33-二叉搜索树的后序遍历序列" class="headerlink" title="剑指 Offer 33. 二叉搜索树的后序遍历序列"></a><a href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/">剑指 Offer 33. 二叉搜索树的后序遍历序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103135412.png" alt=""></p>
-<ul>
-<li><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103135543.png" alt=""></p>
-</li>
-<li><p>思路：利用结构化思维，把此序列想成一棵二叉搜索树，用中序遍历的性质，找到第一个大于根节点的值的下标ind，和左子树根节点ind-1，递归比较根节点的大小。</p>
 </li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103140017.png" alt=""></p>
-<h2 id="1008-前序遍历构造二叉搜索树"><a href="#1008-前序遍历构造二叉搜索树" class="headerlink" title="1008. 前序遍历构造二叉搜索树"></a><a href="https://leetcode-cn.com/problems/construct-binary-search-tree-from-preorder-traversal/">1008. 前序遍历构造二叉搜索树</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103162916.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103162934.png" alt=""></p>
-<h2 id="面试题-04-09-二叉搜索树序列"><a href="#面试题-04-09-二叉搜索树序列" class="headerlink" title="面试题 04.09. 二叉搜索树序列"></a><a href="https://leetcode-cn.com/problems/bst-sequences-lcci/">面试题 04.09. 二叉搜索树序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103170805.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103170823.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>15题——回顾篇</title>
-    <url>/posts/cdd7.html</url>
-    <content><![CDATA[<h1 id="力扣15题"><a href="#力扣15题" class="headerlink" title="力扣15题"></a>力扣15题</h1><h2 id="1367-二叉树中的列表"><a href="#1367-二叉树中的列表" class="headerlink" title="1367. 二叉树中的列表"></a><a href="https://leetcode-cn.com/problems/linked-list-in-binary-tree/">1367. 二叉树中的列表</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206220539.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206220600.png" alt=""></p>
-<h2 id="958-二叉树的完全性检验"><a href="#958-二叉树的完全性检验" class="headerlink" title="958. 二叉树的完全性检验"></a><a href="https://leetcode-cn.com/problems/check-completeness-of-a-binary-tree/">958. 二叉树的完全性检验</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206232505.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206232527.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206232355.png" style="zoom: 33%;"></p>
-<h2 id="剑指-Offer-36-二叉搜索树与双向链表"><a href="#剑指-Offer-36-二叉搜索树与双向链表" class="headerlink" title="剑指 Offer 36. 二叉搜索树与双向链表"></a><a href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/">剑指 Offer 36. 二叉搜索树与双向链表</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207184740.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207185000.png" alt=""></p>
-<h2 id="464-我能赢吗"><a href="#464-我能赢吗" class="headerlink" title="464. 我能赢吗"></a><a href="https://leetcode-cn.com/problems/can-i-win/">464. 我能赢吗</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207195938.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207195951.png" alt=""></p>
+<h2 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h2><ul>
+<li><p>想想栈和队列的区别，而单调栈和单调队列的唯一区别也就在这，其它操作一致 [入队、出队]</p>
 <ul>
-<li>记忆化——mask为自变量，total是随着mask的值改变而改变，使用自变量当做去重哈希表的下标值</li>
+<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111345.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111345.png" alt="图片"></a></li>
+<li>单调栈是一头堵死的单调队列</li>
+<li>单调栈保留了单调队列的入队操作，依然维护单调性⭐</li>
 </ul>
-<h2 id="172-阶乘后的零"><a href="#172-阶乘后的零" class="headerlink" title="172. 阶乘后的零"></a><a href="https://leetcode-cn.com/problems/factorial-trailing-zeroes/">172. 阶乘后的零</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207202657.png" alt=""></p>
+</li>
+<li><p>问题性质：最近（大于/小于）关系</p>
 <ul>
-<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207202730.png" alt=""></li>
+<li>入栈之前，符合单调性的<strong>栈顶</strong>元素，就是当前<strong>入栈元素</strong>的最近（大于/小于）关系</li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207202712.png" alt=""></p>
-<h2 id="384-打乱数组"><a href="#384-打乱数组" class="headerlink" title="384. 打乱数组"></a><a href="https://leetcode-cn.com/problems/shuffle-an-array/">384. 打乱数组</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207203828.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207203845.png" alt=""></p>
-<h2 id="437-路径总和-III"><a href="#437-路径总和-III" class="headerlink" title="437. 路径总和 III"></a><a href="https://leetcode-cn.com/problems/path-sum-iii/">437. 路径总和 III</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207205806.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207205821.png" alt=""></p>
-<h2 id="395-至少有-K-个重复字符的最长子串"><a href="#395-至少有-K-个重复字符的最长子串" class="headerlink" title="395. 至少有 K 个重复字符的最长子串"></a><a href="https://leetcode-cn.com/problems/longest-substring-with-at-least-k-repeating-characters/">395. 至少有 K 个重复字符的最长子串</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207212559.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207212613.png" alt=""></p>
-<h2 id="190-颠倒二进制位"><a href="#190-颠倒二进制位" class="headerlink" title="190. 颠倒二进制位"></a><a href="https://leetcode-cn.com/problems/reverse-bits/">190. 颠倒二进制位</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207213707.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207213718.png" alt=""></p>
-<h2 id="8-字符串转换整数-atoi"><a href="#8-字符串转换整数-atoi" class="headerlink" title="8. 字符串转换整数 (atoi)"></a><a href="https://leetcode-cn.com/problems/string-to-integer-atoi/">8. 字符串转换整数 (atoi)</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207215729.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207215745.png" alt=""></p>
-<h2 id="380-O-1-时间插入、删除和获取随机元素"><a href="#380-O-1-时间插入、删除和获取随机元素" class="headerlink" title="380. O(1) 时间插入、删除和获取随机元素"></a><a href="https://leetcode-cn.com/problems/insert-delete-getrandom-o1/">380. O(1) 时间插入、删除和获取随机元素</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216204204.png" alt=""></p>
+</li>
+<li><p>维护的核心：</p>
+<p>栈顶元素</p>
+<p>——最近（大于/小于）关系⭐</p>
 <ul>
-<li>要求删除、插入时间复杂度为$O(1)$——哈希表，但$O(1)$获取随机元素——哈希表无法完成，可以用动态数组——<code>push_back()</code>，<code>pop_back()</code>，二者联用可完成此题</li>
-<li>哈希表记录val在动态数组的位置</li>
+<li>左侧最近关系→左侧先入栈</li>
+<li>右侧最近关系→右侧先入栈</li>
+<li>[PS] 其栈底是<strong>全局</strong>最小值，但用栈维护并没有意义</li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216204222.png" alt=""></p>
-<h2 id="402-移掉-K-位数字"><a href="#402-移掉-K-位数字" class="headerlink" title="402. 移掉 K 位数字"></a><a href="https://leetcode-cn.com/problems/remove-k-digits/">402. 移掉 K 位数字</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216210524.png" alt=""></p>
+</li>
+<li><p>均摊时间复杂度：O(1)，求解一次</p>
+</li>
+</ul>
+<h2 id="两者对比"><a href="#两者对比" class="headerlink" title="两者对比"></a>两者对比</h2><p>其实两者主要是形式上不同，但本质差不多</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:left"><strong>开放端口</strong></th>
+<th style="text-align:center"><strong>维护核心</strong></th>
+<th style="text-align:left"><strong>擅长问题</strong></th>
+<th style="text-align:center"><strong>基本操作</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>单调队列</strong></td>
+<td style="text-align:left">首、尾</td>
+<td style="text-align:center">队首</td>
+<td style="text-align:left">区间最值</td>
+<td style="text-align:center">维单+入队、出队、<strong>取值</strong></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>单调栈</strong></td>
+<td style="text-align:left">顶</td>
+<td style="text-align:center">栈顶</td>
+<td style="text-align:left">最近大小关系</td>
+<td style="text-align:center">出栈[维单]、<strong>取值</strong>、入栈</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="经典例题"><a href="#经典例题" class="headerlink" title="经典例题"></a>经典例题</h1><h2 id="HZOJ-271：滑动窗口"><a href="#HZOJ-271：滑动窗口" class="headerlink" title="HZOJ-271：滑动窗口"></a><a href="http://oj.haizeix.com/problem/271">HZOJ-271</a>：滑动窗口</h2><p><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111456.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111456.png" alt="图片"></a></p>
+<p><strong>样例输入</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">8 3
+1 3 -1 -3 5 3 6 7
+复制代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><strong>样例输出</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">-1 -3 -3 -3 3 3
+3 3 5 5 6 7
+复制代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <ul>
-<li>删除k个数，形成最小的数字-&gt;尽量把较小的数字往前拱，联想到单调递增栈，把违反单调性的数字删除</li>
+<li>思路<ul>
+<li>纯单调队列，关注代码实现</li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216210538.png" alt=""></p>
+</li>
+<li>代码<ul>
+<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112213429.png" alt=""></li>
+<li>思考：单调队列中是记录值还是记录【下标】<ul>
+<li>记录<strong>下标</strong>🆒，因为有了下标可以索引到值 [顺藤摸瓜]</li>
+<li>记录值，却反向不可查</li>
+</ul>
+</li>
+<li>这是一个常用的单调队列<strong>模板</strong>：维护单调性→入队→出队→根据题意输出</li>
+<li>关注最大/小值、窗口的大小</li>
+<li>[PS] 队尾既可以入队，也可以出 [踢，维护单调性]，所以认为不是单向队列</li>
+</ul>
+</li>
+</ul>
+<h2 id="HZOJ-372：双生序列"><a href="#HZOJ-372：双生序列" class="headerlink" title="HZOJ-372：双生序列"></a><a href="http://oj.haizeix.com/problem/372">HZOJ-372</a>：双生序列</h2><p><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111528.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111528.png" alt="图片"></a></p>
+<p><strong>样例输入</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">5
+3 1 5 2 4
+5 2 4 3 1
+复制代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>样例输出</strong></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">4
+复制代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <ul>
-<li>substr第二个参数超过字符串长度时，表示从当前位置截取到最后一个位置</li>
+<li><p>思路</p>
+<ul>
+<li><p>思考：什么是两个序列的趋势相同？</p>
+<ul>
+<li>相同区间内部的RMQ值相同，❗ 这里RMQ值→最小值的最大<strong>下标</strong></li>
 </ul>
-<h2 id="1081-不同字符的最小子序列"><a href="#1081-不同字符的最小子序列" class="headerlink" title="1081. 不同字符的最小子序列"></a><a href="https://leetcode-cn.com/problems/smallest-subsequence-of-distinct-characters/">1081. 不同字符的最小子序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216215225.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216215248.png" alt=""></p>
-<h2 id="1499-满足不等式的最大值"><a href="#1499-满足不等式的最大值" class="headerlink" title="1499. 满足不等式的最大值"></a><a href="https://leetcode-cn.com/problems/max-value-of-equation/">1499. 满足不等式的最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216224617.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216224637.png" alt=""></p>
+</li>
+<li><p>【关键】两个序列的每个区间的RMQ值相等👉两个序列的单调队列长得一样</p>
+<ul>
+<li>换句话说，每时每刻，两个序列对应相同的单调队列</li>
+<li>注意：长得一样，指的不是最小值，而是对应下标 [单调队列里存的是下标]</li>
+</ul>
+</li>
+<li><p>将两个序列的元素，依次插入到单调队列中，每次插入后比较单调队列的大小即可</p>
+<ul>
+<li>① 如果一致，继续入队</li>
+</ul>
+</li>
+<li>② 如果不一致，输出答案</li>
+</ul>
+</li>
+<li><p>代码</p>
+<ul>
+<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111541.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111541.png" alt="图片"></a></li>
+<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111604.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111604.png" alt="图片"></a></li>
+<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112215050.png" alt=""></li>
+<li>用类定义单调队列，便于复用</li>
+<li>单调队列里存的是<strong>下标</strong>：p</li>
+<li>单调队列操作：维护→入队，都不需要出队</li>
+<li>【巧妙】根据队列的<strong>大小</strong>变化把握趋势变化</li>
+</ul>
+</li>
+</ul>
+<h2 id="239-滑动窗口最大值"><a href="#239-滑动窗口最大值" class="headerlink" title="239. 滑动窗口最大值"></a><a href="https://leetcode-cn.com/problems/sliding-window-maximum/">239. 滑动窗口最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112222023.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112222037.png" alt=""></p>
+<h2 id="剑指-Offer-59-II-队列的最大值"><a href="#剑指-Offer-59-II-队列的最大值" class="headerlink" title="剑指 Offer 59 - II. 队列的最大值"></a><a href="https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/">剑指 Offer 59 - II. 队列的最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112225049.png" alt=""></p>
+<ul>
+<li>思路<ul>
+<li>可维护两个队列，一个用于存储原数据，一个用于存储最大值（单调队列）</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112225214.png" alt=""></p>
+<ul>
+<li><p>注意入队时的比较</p>
+<ul>
+<li>&gt;，表示可记录重复元素，并且元素相对位置不会变，对于pop_front()操作，若q.front() 等于mq.front()则可以认为当前在q中删除的值也要在mq中删除</li>
+<li>&gt;=, 表示不记录重复元素，但是在pop操作时要额外记录下标</li>
+</ul>
+</li>
+<li><p>单调队列是原队列的另一种信息表示方式</p>
+</li>
+<li>此题的窗口大小为整个数组</li>
+</ul>
+<h2 id="862-和至少为-K-的最短子数组"><a href="#862-和至少为-K-的最短子数组" class="headerlink" title="862. 和至少为 K 的最短子数组"></a><a href="https://leetcode-cn.com/problems/shortest-subarray-with-sum-at-least-k/">862. 和至少为 K 的最短子数组</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115204304.png" alt=""></p>
+<ul>
+<li>思路<ul>
+<li>把原数组转化为前缀和数组——可以方便求区间和，求这个前缀和数组中的RMQ问题，单调队列维护数组中的最小值</li>
+<li>每次遍历前缀和数组的时候，都减去当前位置之前的最小值</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115204320.png" alt=""></p>
+<ul>
+<li><p>正确的分析思路——先分析我们需要得到什么样特点的数据，再对应我们所学的数据结构和算法</p>
+</li>
+<li><p>每次更新pos，都需要弹出q的首部元素，因为求的是最短队列，如果q队列中下一个元素不满足条件，则pos就是前一个位置</p>
+</li>
+</ul>
+<h2 id="1438-绝对差不超过限制的最长连续子数组"><a href="#1438-绝对差不超过限制的最长连续子数组" class="headerlink" title="1438. 绝对差不超过限制的最长连续子数组"></a><a href="https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/">1438. 绝对差不超过限制的最长连续子数组</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115211443.png" alt=""></p>
+<ul>
+<li><p>思路</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211219231407.png" alt=""></p>
+</li>
+</ul>
+<p>假设在上图长度为L的区间中，找到一个min和一个max符合题意max-min &lt;= limit，也就是说在这段区间内无论怎么动只要包含这个min和max，长度可以为L-1， L-2，L-3…  但是L+1，L+2却不行（因为可能存在新的min和max也符合题意）——由此得出这是一个二分问题，也是111111000000的二分问题，需要找到最长的L。</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115211505.png" alt=""></p>
+<ul>
+<li>二分的是长度，check函数表示在mid长度范围内是否存在有最大值-最小值小于limit，找最长的L</li>
+</ul>
+<h1 id="温故知新"><a href="#温故知新" class="headerlink" title="温故知新"></a>温故知新</h1><h2 id="513-找树左下角的值"><a href="#513-找树左下角的值" class="headerlink" title="513. 找树左下角的值"></a><a href="https://leetcode-cn.com/problems/find-bottom-left-tree-value/">513. 找树左下角的值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115213203.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115213219.png" alt=""></p>
+<h2 id="135-分发糖果"><a href="#135-分发糖果" class="headerlink" title="135. 分发糖果"></a><a href="https://leetcode-cn.com/problems/candy/">135. 分发糖果</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115214537.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115214553.png" alt=""></p>
+<h2 id="365-水壶问题"><a href="#365-水壶问题" class="headerlink" title="365. 水壶问题"></a><a href="https://leetcode-cn.com/problems/water-and-jug-problem/">365. 水壶问题</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115222304.png" alt=""></p>
+<ul>
+<li>这是一个模拟题</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115222325.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115222414.png" alt=""></p>
+<h2 id="1760-袋子里最少数目的球"><a href="#1760-袋子里最少数目的球" class="headerlink" title="1760. 袋子里最少数目的球"></a><a href="https://leetcode-cn.com/problems/minimum-limit-of-balls-in-a-bag/">1760. 袋子里最少数目的球</a></h2><h2 id="45-跳跃游戏-II"><a href="#45-跳跃游戏-II" class="headerlink" title="45. 跳跃游戏 II"></a><a href="https://leetcode-cn.com/problems/jump-game-ii/">45. 跳跃游戏 II</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116220506.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116220522.png" alt=""></p>
+<h2 id="93-复原-IP-地址"><a href="#93-复原-IP-地址" class="headerlink" title="93. 复原 IP 地址"></a><a href="https://leetcode-cn.com/problems/restore-ip-addresses/">93. 复原 IP 地址</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223107.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223122.png" alt=""></p>
+<h2 id="46-全排列"><a href="#46-全排列" class="headerlink" title="46. 全排列"></a><a href="https://leetcode-cn.com/problems/permutations/">46. 全排列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223421.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223503.png" alt=""></p>
+<h2 id="43-字符串相乘"><a href="#43-字符串相乘" class="headerlink" title="43. 字符串相乘"></a><a href="https://leetcode-cn.com/problems/multiply-strings/">43. 字符串相乘</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116224625.png" alt=""></p>
+<ul>
+<li>倒着存储</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116224638.png" alt=""></p>
 ]]></content>
   </entry>
   <entry>
@@ -2087,43 +1983,266 @@ init_prime <span class="token variable">${End}</span>
 ]]></content>
   </entry>
   <entry>
-    <title>MySQL的使用</title>
-    <url>/posts/0.html</url>
-    <content><![CDATA[<h1 id="MySQL的使用"><a href="#MySQL的使用" class="headerlink" title="MySQL的使用"></a>MySQL的使用</h1><p>在云服务器上查看是否有MySQL</p>
-<p>使用<code>ps -ef | grep mysql</code><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004171647.png" style="zoom: 50%;"></p>
-<p><code>grep</code> 其实本身就是一个命令。在执行 <code>ps -ef | grep mysql</code> 时，其实是起了一个 <code>grep</code> 的进程，所以你在这里看到了这个进程，它并不是 <code>mysql</code> 的进程。</p>
-<p>更新系统一些资源【这些资源不更新有可能导致mysql或其他软件运行不了】</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004172101.png" style="zoom:50%;"></p>
+    <title>15题——回顾篇</title>
+    <url>/posts/cdd7.html</url>
+    <content><![CDATA[<h1 id="力扣15题"><a href="#力扣15题" class="headerlink" title="力扣15题"></a>力扣15题</h1><h2 id="1367-二叉树中的列表"><a href="#1367-二叉树中的列表" class="headerlink" title="1367. 二叉树中的列表"></a><a href="https://leetcode-cn.com/problems/linked-list-in-binary-tree/">1367. 二叉树中的列表</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206220539.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206220600.png" alt=""></p>
+<h2 id="958-二叉树的完全性检验"><a href="#958-二叉树的完全性检验" class="headerlink" title="958. 二叉树的完全性检验"></a><a href="https://leetcode-cn.com/problems/check-completeness-of-a-binary-tree/">958. 二叉树的完全性检验</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206232505.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206232527.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206232355.png" style="zoom: 33%;"></p>
+<h2 id="剑指-Offer-36-二叉搜索树与双向链表"><a href="#剑指-Offer-36-二叉搜索树与双向链表" class="headerlink" title="剑指 Offer 36. 二叉搜索树与双向链表"></a><a href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/">剑指 Offer 36. 二叉搜索树与双向链表</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207184740.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207185000.png" alt=""></p>
+<h2 id="464-我能赢吗"><a href="#464-我能赢吗" class="headerlink" title="464. 我能赢吗"></a><a href="https://leetcode-cn.com/problems/can-i-win/">464. 我能赢吗</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207195938.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207195951.png" alt=""></p>
 <ul>
-<li>需要在root用户下</li>
+<li>记忆化——mask为自变量，total是随着mask的值改变而改变，使用自变量当做去重哈希表的下标值</li>
 </ul>
-<p>安装MySQL</p>
+<h2 id="172-阶乘后的零"><a href="#172-阶乘后的零" class="headerlink" title="172. 阶乘后的零"></a><a href="https://leetcode-cn.com/problems/factorial-trailing-zeroes/">172. 阶乘后的零</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207202657.png" alt=""></p>
 <ul>
-<li><code>apt install mysql-server</code></li>
+<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207202730.png" alt=""></li>
 </ul>
-<p>安装完后可查看是否有mysql进程</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004172441.png" style="zoom:50%;"></p>
-<p>初始化MySQL</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207202712.png" alt=""></p>
+<h2 id="384-打乱数组"><a href="#384-打乱数组" class="headerlink" title="384. 打乱数组"></a><a href="https://leetcode-cn.com/problems/shuffle-an-array/">384. 打乱数组</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207203828.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207203845.png" alt=""></p>
+<h2 id="437-路径总和-III"><a href="#437-路径总和-III" class="headerlink" title="437. 路径总和 III"></a><a href="https://leetcode-cn.com/problems/path-sum-iii/">437. 路径总和 III</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207205806.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207205821.png" alt=""></p>
+<h2 id="395-至少有-K-个重复字符的最长子串"><a href="#395-至少有-K-个重复字符的最长子串" class="headerlink" title="395. 至少有 K 个重复字符的最长子串"></a><a href="https://leetcode-cn.com/problems/longest-substring-with-at-least-k-repeating-characters/">395. 至少有 K 个重复字符的最长子串</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207212559.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207212613.png" alt=""></p>
+<h2 id="190-颠倒二进制位"><a href="#190-颠倒二进制位" class="headerlink" title="190. 颠倒二进制位"></a><a href="https://leetcode-cn.com/problems/reverse-bits/">190. 颠倒二进制位</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207213707.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207213718.png" alt=""></p>
+<h2 id="8-字符串转换整数-atoi"><a href="#8-字符串转换整数-atoi" class="headerlink" title="8. 字符串转换整数 (atoi)"></a><a href="https://leetcode-cn.com/problems/string-to-integer-atoi/">8. 字符串转换整数 (atoi)</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207215729.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207215745.png" alt=""></p>
+<h2 id="380-O-1-时间插入、删除和获取随机元素"><a href="#380-O-1-时间插入、删除和获取随机元素" class="headerlink" title="380. O(1) 时间插入、删除和获取随机元素"></a><a href="https://leetcode-cn.com/problems/insert-delete-getrandom-o1/">380. O(1) 时间插入、删除和获取随机元素</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216204204.png" alt=""></p>
 <ul>
-<li><code>mysql_secure_installation</code></li>
+<li>要求删除、插入时间复杂度为$O(1)$——哈希表，但$O(1)$获取随机元素——哈希表无法完成，可以用动态数组——<code>push_back()</code>，<code>pop_back()</code>，二者联用可完成此题</li>
+<li>哈希表记录val在动态数组的位置</li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004200725.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004201020.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216204222.png" alt=""></p>
+<h2 id="402-移掉-K-位数字"><a href="#402-移掉-K-位数字" class="headerlink" title="402. 移掉 K 位数字"></a><a href="https://leetcode-cn.com/problems/remove-k-digits/">402. 移掉 K 位数字</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216210524.png" alt=""></p>
 <ul>
-<li>设置密码等级</li>
-<li>移除匿名用户</li>
-<li>禁止root用户远程登录</li>
+<li>删除k个数，形成最小的数字-&gt;尽量把较小的数字往前拱，联想到单调递增栈，把违反单调性的数字删除</li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004201603.png" style="zoom:50%;"></p>
-<p>创建用户     <img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004202244.png" style="zoom:50%;"></p>
-<p>@前面表示用户名，@后面表示指定ip地址，%表示任意ip。</p>
-<p>设置用户权限        <img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004210049.png" style="zoom:50%;"></p>
-<p>修改配置文件，注释掉绑定地址<code>vim /etc/mysql/mysql.conf.d/mysqld.cnf</code></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004211821.png" alt=""></p>
-<p>使用<code>apt-cache serch mysql | grep dev</code>找到对应的开发库，里面有一些MySQL的接口（C语言）</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004225018.png" alt=""></p>
-<p>下载完后如下图可见<code>mysql.h</code></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004225158.png" style="zoom:50%;"></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216210538.png" alt=""></p>
+<ul>
+<li>substr第二个参数超过字符串长度时，表示从当前位置截取到最后一个位置</li>
+</ul>
+<h2 id="1081-不同字符的最小子序列"><a href="#1081-不同字符的最小子序列" class="headerlink" title="1081. 不同字符的最小子序列"></a><a href="https://leetcode-cn.com/problems/smallest-subsequence-of-distinct-characters/">1081. 不同字符的最小子序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216215225.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216215248.png" alt=""></p>
+<h2 id="1499-满足不等式的最大值"><a href="#1499-满足不等式的最大值" class="headerlink" title="1499. 满足不等式的最大值"></a><a href="https://leetcode-cn.com/problems/max-value-of-equation/">1499. 满足不等式的最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216224617.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216224637.png" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>AVL</title>
+    <url>/posts/416e.html</url>
+    <content><![CDATA[<h1 id="LeetCode环节"><a href="#LeetCode环节" class="headerlink" title="LeetCode环节"></a>LeetCode环节</h1><h2 id="面试题-04-06-后继者"><a href="#面试题-04-06-后继者" class="headerlink" title="面试题 04.06. 后继者"></a><a href="https://leetcode-cn.com/problems/successor-lcci/">面试题 04.06. 后继者</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228192531.png" alt=""></p>
+<ul>
+<li>使用中序遍历</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228192550.png" alt=""></p>
+<ul>
+<li>node用来防止遍历是遇到空节点直接返回 </li>
+<li>结构化思维——pre会依次访问到树中的每一个节点</li>
+</ul>
+<h2 id="450-删除二叉搜索树中的节点"><a href="#450-删除二叉搜索树中的节点" class="headerlink" title="450. 删除二叉搜索树中的节点"></a><a href="https://leetcode-cn.com/problems/delete-node-in-a-bst/">450. 删除二叉搜索树中的节点</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228195933.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228195949.png" alt=""></p>
+<h2 id="1382-将二叉搜索树变平衡"><a href="#1382-将二叉搜索树变平衡" class="headerlink" title="1382. 将二叉搜索树变平衡"></a><a href="https://leetcode-cn.com/problems/balance-a-binary-search-tree/">1382. 将二叉搜索树变平衡</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102221043.png" alt=""></p>
+<ul>
+<li>可把原来的树看成一个有序的序列（中序遍历），使最中间的那个数作为根节点，递归解题</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102221102.png" alt=""></p>
+<h2 id="108-将有序数组转换为二叉搜索树"><a href="#108-将有序数组转换为二叉搜索树" class="headerlink" title="108. 将有序数组转换为二叉搜索树"></a><a href="https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/">108. 将有序数组转换为二叉搜索树</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102223424.png" alt=""></p>
+<ul>
+<li>和上题几乎一样</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102223443.png" alt=""></p>
+<h2 id="98-验证二叉搜索树"><a href="#98-验证二叉搜索树" class="headerlink" title="98. 验证二叉搜索树"></a><a href="https://leetcode-cn.com/problems/validate-binary-search-tree/">98. 验证二叉搜索树</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102230343.png" alt=""></p>
+<ul>
+<li>使用中序遍历，看成在遍历一个有序数组</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102230429.png" alt=""></p>
+<h2 id="501-二叉搜索树中的众数"><a href="#501-二叉搜索树中的众数" class="headerlink" title="501. 二叉搜索树中的众数"></a><a href="https://leetcode-cn.com/problems/find-mode-in-binary-search-tree/">501. 二叉搜索树中的众数</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102232757.png" alt=""></p>
+<ul>
+<li>思路：二叉搜索树的中序遍历是一个升序序列，逐个比对当前结点(root)值与前驱结点（pre)值。<ul>
+<li>更新当前节点值出现次数(cnt)及最大出现次数(max_cnt)</li>
+<li>更新规则：若cnt=max_cnt,将root-&gt;val添加到结果向量(ret)中；若cnt&gt;max_cnt,清空ret,将root-&gt;val添加到ret,并更新max_cnt为cnt。</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102232813.png" alt=""></p>
+<h2 id="面试题-17-12-BiNode"><a href="#面试题-17-12-BiNode" class="headerlink" title="面试题 17.12. BiNode"></a><a href="https://leetcode-cn.com/problems/binode-lcci/">面试题 17.12. BiNode</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103133734.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103133750.png" alt=""></p>
+<h2 id="剑指-Offer-33-二叉搜索树的后序遍历序列"><a href="#剑指-Offer-33-二叉搜索树的后序遍历序列" class="headerlink" title="剑指 Offer 33. 二叉搜索树的后序遍历序列"></a><a href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/">剑指 Offer 33. 二叉搜索树的后序遍历序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103135412.png" alt=""></p>
+<ul>
+<li><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103135543.png" alt=""></p>
+</li>
+<li><p>思路：利用结构化思维，把此序列想成一棵二叉搜索树，用中序遍历的性质，找到第一个大于根节点的值的下标ind，和左子树根节点ind-1，递归比较根节点的大小。</p>
+</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103140017.png" alt=""></p>
+<h2 id="1008-前序遍历构造二叉搜索树"><a href="#1008-前序遍历构造二叉搜索树" class="headerlink" title="1008. 前序遍历构造二叉搜索树"></a><a href="https://leetcode-cn.com/problems/construct-binary-search-tree-from-preorder-traversal/">1008. 前序遍历构造二叉搜索树</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103162916.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103162934.png" alt=""></p>
+<h2 id="面试题-04-09-二叉搜索树序列"><a href="#面试题-04-09-二叉搜索树序列" class="headerlink" title="面试题 04.09. 二叉搜索树序列"></a><a href="https://leetcode-cn.com/problems/bst-sequences-lcci/">面试题 04.09. 二叉搜索树序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103170805.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103170823.png" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>操作系统</title>
+    <url>/posts/437.html</url>
+    <content><![CDATA[<h1 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h1><h2 id="什么是应用程序？"><a href="#什么是应用程序？" class="headerlink" title="什么是应用程序？"></a>什么是应用程序？</h2><ul>
+<li><p>可执行的文件（程序的二进制代码和数据）和其他数据文件</p>
+<ul>
+<li>Linux支持多种可执行文件格式</li>
+<li>ELF（Executable Linkable Format）是其中最常用的</li>
+</ul>
+</li>
+<li><p>运行的程序称为进（正在运行的）程（程序）</p>
+<ul>
+<li>操作系统中有很多进程对象</li>
+<li>在运行时，进程会<ul>
+<li>在CPU上执行，进行计算</li>
+<li>使用操作系用API访问操作系统中的其他对象</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="系统中常用的应用程序"><a href="#系统中常用的应用程序" class="headerlink" title="系统中常用的应用程序"></a>系统中常用的应用程序</h2><p>Core Utilities（coreutils）</p>
+<ul>
+<li>standard programs for text and file manipulation</li>
+<li>系统中安装的时GNU Coreutils</li>
+</ul>
+<p>系统/工具程序</p>
+<ul>
+<li><p>bash, apt, ip, ssh, vim, tmux, jdk, python, …</p>
+</li>
+<li><p>Ubuntu Packages —— 支持文件名检索；因此缺少什么东西这是最佳STFW的入口</p>
+</li>
+</ul>
+<p>其他各种应用程序</p>
+<ul>
+<li>浏览器、音乐播放器…..</li>
+</ul>
+<h2 id="ELF二进制文件"><a href="#ELF二进制文件" class="headerlink" title="ELF二进制文件"></a>ELF二进制文件</h2><p>首先，可执行文件也是普通的文件</p>
+<ul>
+<li><p>操作系统里的一个对象</p>
+</li>
+<li><p>一个存储在文件系统（通常是存储设备）上的字节序列</p>
+<ul>
+<li><p>与大家平时创建的文本文件没有本质区别</p>
+</li>
+<li><p>操作系统提供API打开、读取、改写（都需要相应的权限）</p>
+</li>
+<li><p>因此我们可以用vim，cat，xxd等命令查看可执行文件</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>使用file命令 查看可执行文件a.out</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220115195029.png" alt=""></p>
+<p><span class="github-emoji"><span>☝</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/261d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>ELF</p>
+<p>正常打开ELF文件查看如下：</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220115195616.png" style="zoom: 25%;"></p>
+<ul>
+<li>可以看到—color等字符串常量存在ELF文件中</li>
+</ul>
+<p>使用readelf解析ELF文件，主要关注：</p>
+<ul>
+<li>ELF文件的header(元数据)——文件内容的分布，指令集体系结构，入口地址等等</li>
+<li>ELF的program headers——决定ELF应该如何被加载器加载（执行）<ul>
+<li>/usr/include/elf.h</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220115200154.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220115200524.png" alt=""></p>
+<p>没有magic，应用程序就是一个普通的文件，按照特定的格式（ELF）存储在磁盘上，通过操作系统加载，运行</p>
+<h2 id="应用程序怎么和操作系统交互"><a href="#应用程序怎么和操作系统交互" class="headerlink" title="应用程序怎么和操作系统交互"></a>应用程序怎么和操作系统交互</h2><h3 id="尝试1-在操作系统上写一个“最小”的Hello-World"><a href="#尝试1-在操作系统上写一个“最小”的Hello-World" class="headerlink" title="尝试1:在操作系统上写一个“最小”的Hello World"></a>尝试1:在操作系统上写一个“最小”的Hello World</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h&gt;</span></span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"Hello World!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// c标准默认返回0</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220115212016.png" alt=""></p>
+<p>我们使用gcc 编译后生成hello.o文件，再用命令ld链接惊奇的发现致命问题<span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<ul>
+<li><p>程序出现未定义错误，为什么是puts，而不是printf？</p>
+<ul>
+<li><p>gcc在 -O0选项下依然会进行一定程度的编译优化</p>
+</li>
+<li><p>puts是库函数（libc），需要进行链接，若链接进来就不是“最小”的Hello World了</p>
+</li>
+</ul>
+</li>
+<li><p>找不到入口函数 _start？</p>
+<ul>
+<li>_start是连接器默认的入口</li>
+<li>可以用-e指定，比如<code>ld -e main printf</code>（被优化成的puts）是库函数的一部分</li>
+</ul>
+</li>
+</ul>
+<h3 id="尝试2"><a href="#尝试2" class="headerlink" title="尝试2"></a>尝试2</h3><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>假设这样写，总可以了达到最小的程序了吧，hhhhh</p>
+<p>结果：</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220115213403.png" alt=""></p>
+<p>发现出现了段错误？  这是为什么？</p>
+<p>为此需要一个工具帮助我们观察程序的执行——GDB</p>
+<p>一些常用指令：</p>
+<ul>
+<li><code>starti</code>：执行第一条指令</li>
+<li>si：执行一条指令</li>
+<li>info register：查看所有寄存器状态</li>
+<li>bt：打印调用栈的函数</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220115220302.png" alt=""></p>
+<p><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>ret这条指令会把main函数地址弹出栈，由于栈上还有其他值，返回一个地址不合法？？？</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220115222326.png" alt=""></p>
+<h3 id="尝试3：使用汇编"><a href="#尝试3：使用汇编" class="headerlink" title="尝试3：使用汇编"></a>尝试3：使用汇编</h3><pre class="line-numbers language-assembly" data-language="assembly"><code class="language-assembly">.globl foo
+foo:
+    movl $1,    %eax # write (
+    movl $1,    %edi #    fd=1,
+    movq $s,    %rsi #    buf=s,
+    movl $(e-s),%edx #    count=e-s
+    syscall          # );
+
+    movl $60,   %eax # exit(
+    movl $1,    %edi # status=1;
+    syscall   		 # );	
+
+s:
+    .ascii "\033[01;31mHello, OS World\033[0m\n"
+e:<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>代码理解：使用了两个系统调用——write，exit</p>
+<ul>
+<li>write系统调用向文件描述符为1的文件写入了大小为e-s的字符串常量s</li>
+<li>exit退出程序，并设置1</li>
+</ul>
+<p>进入gdb：</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220115223741.png" style="zoom:33%;"></p>
+<ul>
+<li><p>可以看到程序经过指令<code>syscall</code>成功在终端打印出了Hello，OS World，<span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>这个<code>syscall</code>可能有上千条指令</p>
+</li>
+<li><p>可见我们运行如此简单的程序，其实在操作系统层面已经经过了非常久的时间</p>
+</li>
+</ul>
+<p><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>回答应用程序（Hello World）怎么和操作系统交互这个问题</p>
+<p>​        ——通过设置正确的参数和syscall指令去调用操作系统的API</p>
+<h3 id="question-问题：syscall到底在哪"><a href="#question-问题：syscall到底在哪" class="headerlink" title=":question:问题：syscall到底在哪"></a><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>问题：syscall到底在哪</h3><p>代码：</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;unistd.h&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;sys/syscall.h&gt;</span></span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name function">LENGTH</span><span class="token expression"><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span></span></span>
+
+<span class="token keyword">const</span> <span class="token keyword">char</span> hello<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"\033[01;31mHello, OS World\033[0m\n"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">syscall</span><span class="token punctuation">(</span>SYS_write<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> hello<span class="token punctuation">,</span> <span class="token function">LENGTH</span><span class="token punctuation">(</span>hello<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">syscall</span><span class="token punctuation">(</span>SYS_exit<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>使用objdump查看：阅读man手册</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220115230219.png" alt=""></p>
+<p>[-d]：打印汇编指令</p>
+<p>使用以下命令显示源文件函数汇编指令</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">gcc -g syscall-demo.c
+objdump -S a.out<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 ]]></content>
   </entry>
   <entry>
@@ -2186,6 +2305,46 @@ init_prime <span class="token variable">${End}</span>
 </ul>
 </li>
 </ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>MySQL的使用</title>
+    <url>/posts/0.html</url>
+    <content><![CDATA[<h1 id="MySQL的使用"><a href="#MySQL的使用" class="headerlink" title="MySQL的使用"></a>MySQL的使用</h1><p>在云服务器上查看是否有MySQL</p>
+<p>使用<code>ps -ef | grep mysql</code><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004171647.png" style="zoom: 50%;"></p>
+<p><code>grep</code> 其实本身就是一个命令。在执行 <code>ps -ef | grep mysql</code> 时，其实是起了一个 <code>grep</code> 的进程，所以你在这里看到了这个进程，它并不是 <code>mysql</code> 的进程。</p>
+<p>更新系统一些资源【这些资源不更新有可能导致mysql或其他软件运行不了】</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004172101.png" style="zoom:50%;"></p>
+<ul>
+<li>需要在root用户下</li>
+</ul>
+<p>安装MySQL</p>
+<ul>
+<li><code>apt install mysql-server</code></li>
+</ul>
+<p>安装完后可查看是否有mysql进程</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004172441.png" style="zoom:50%;"></p>
+<p>初始化MySQL</p>
+<ul>
+<li><code>mysql_secure_installation</code></li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004200725.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004201020.png" alt=""></p>
+<ul>
+<li>设置密码等级</li>
+<li>移除匿名用户</li>
+<li>禁止root用户远程登录</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004201603.png" style="zoom:50%;"></p>
+<p>创建用户     <img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004202244.png" style="zoom:50%;"></p>
+<p>@前面表示用户名，@后面表示指定ip地址，%表示任意ip。</p>
+<p>设置用户权限        <img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004210049.png" style="zoom:50%;"></p>
+<p>修改配置文件，注释掉绑定地址<code>vim /etc/mysql/mysql.conf.d/mysqld.cnf</code></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004211821.png" alt=""></p>
+<p>使用<code>apt-cache serch mysql | grep dev</code>找到对应的开发库，里面有一些MySQL的接口（C语言）</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004225018.png" alt=""></p>
+<p>下载完后如下图可见<code>mysql.h</code></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004225158.png" style="zoom:50%;"></p>
 ]]></content>
   </entry>
   <entry>
