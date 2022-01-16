@@ -197,25 +197,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>CPP个人笔记</title>
-    <url>/posts/db87.html</url>
-    <content><![CDATA[<h2 id="冲-兄弟们"><a href="#冲-兄弟们" class="headerlink" title="冲, 兄弟们"></a>冲, 兄弟们</h2><ul>
-<li><a href="https://srymaker0.com/posts/85a7">1.从c到c++</a></li>
-<li><a href="https://srymaker0.com/posts/3bd">2.构造与析构</a></li>
-<li><a href="https://srymaker0.com/posts/8a1e">3.类与对象</a></li>
-<li><a href="https://srymaker0.com/posts/6f17">4.继承</a></li>
-<li><a href="https://srymaker0.com/posts/21f6">5.多态</a></li>
-<li><a href="https://srymaker0.com/posts/b26a">6.auto、constexpr、nullptr、左值与右值、移动构造</a></li>
-<li><a href="https://srymaker0.com/posts/e383">7.模板</a></li>
-<li><a href="https://srymaker0.com/posts/130c">8.异常</a></li>
-<li><a href="https://srymaker0.com/posts/4864">9.C++线程</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>C++, 面向对象</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>手撕红黑树！！！</title>
     <url>/posts/9afc.html</url>
     <content><![CDATA[<h1 id="红黑树（上）"><a href="#红黑树（上）" class="headerlink" title="红黑树（上）"></a>红黑树（上）</h1><h2 id="一、五个平衡条件"><a href="#一、五个平衡条件" class="headerlink" title="一、五个平衡条件"></a>一、五个平衡条件</h2><ol>
@@ -445,6 +426,25 @@
 <p>输出调试</p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220104001502.png" alt=""></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>CPP个人笔记</title>
+    <url>/posts/db87.html</url>
+    <content><![CDATA[<h2 id="冲-兄弟们"><a href="#冲-兄弟们" class="headerlink" title="冲, 兄弟们"></a>冲, 兄弟们</h2><ul>
+<li><a href="https://srymaker0.com/posts/85a7">1.从c到c++</a></li>
+<li><a href="https://srymaker0.com/posts/3bd">2.构造与析构</a></li>
+<li><a href="https://srymaker0.com/posts/8a1e">3.类与对象</a></li>
+<li><a href="https://srymaker0.com/posts/6f17">4.继承</a></li>
+<li><a href="https://srymaker0.com/posts/21f6">5.多态</a></li>
+<li><a href="https://srymaker0.com/posts/b26a">6.auto、constexpr、nullptr、左值与右值、移动构造</a></li>
+<li><a href="https://srymaker0.com/posts/e383">7.模板</a></li>
+<li><a href="https://srymaker0.com/posts/130c">8.异常</a></li>
+<li><a href="https://srymaker0.com/posts/4864">9.C++线程</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>C++, 面向对象</tag>
+      </tags>
   </entry>
   <entry>
     <title>数据结构之Leetcode刷题集</title>
@@ -1609,6 +1609,71 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 ]]></content>
   </entry>
   <entry>
+    <title>深搜与广搜</title>
+    <url>/posts/8160.html</url>
+    <content><![CDATA[<h1 id="深搜与广搜"><a href="#深搜与广搜" class="headerlink" title="深搜与广搜"></a>深搜与广搜</h1><h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103213830.png" style="zoom: 25%;"></p>
+<ul>
+<li>在思维逻辑层面——节点代表问题状态的树形结构</li>
+</ul>
+<p>例如走迷宫问题</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103214358.png" alt=""></p>
+<ul>
+<li>这里的状态就是小牛可以走到的位置——右边生成的就是问题求解树</li>
+<li>解题的关键是定义状态</li>
+</ul>
+<p>深搜与广搜</p>
+<ul>
+<li>就是对问题求解树的不同遍历方式</li>
+</ul>
+<p>搜索剪枝和优化</p>
+<ul>
+<li>排除某些问题求解树中的子树遍历过程</li>
+</ul>
+<p>设计搜索算法的核心关键点</p>
+<ul>
+<li>设计问题求解树中的状态</li>
+</ul>
+<h1 id="刷题-go！"><a href="#刷题-go！" class="headerlink" title="刷题 go！"></a>刷题 go！</h1><h2 id="993-二叉树的堂兄弟节点"><a href="#993-二叉树的堂兄弟节点" class="headerlink" title="993. 二叉树的堂兄弟节点"></a><a href="https://leetcode-cn.com/problems/cousins-in-binary-tree/">993. 二叉树的堂兄弟节点</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103223455.png" alt=""></p>
+<p>深搜版本</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103223509.png" alt=""></p>
+<p>广搜版本</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103225332.png" alt=""></p>
+<ul>
+<li>定义状态</li>
+<li>把状态放入队列中</li>
+</ul>
+<h2 id="542-01-矩阵"><a href="#542-01-矩阵" class="headerlink" title="542. 01 矩阵"></a><a href="https://leetcode-cn.com/problems/01-matrix/">542. 01 矩阵</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232742.png" alt=""></p>
+<ul>
+<li>计算从0位置到每个1点的最少步数</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232811.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232833.png" alt=""></p>
+<h2 id="1091-二进制矩阵中的最短路径"><a href="#1091-二进制矩阵中的最短路径" class="headerlink" title="1091. 二进制矩阵中的最短路径"></a><a href="https://leetcode-cn.com/problems/shortest-path-in-binary-matrix/">1091. 二进制矩阵中的最短路径</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104002412.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104002437.png" alt=""></p>
+<h2 id="752-打开转盘锁"><a href="#752-打开转盘锁" class="headerlink" title="752. 打开转盘锁"></a><a href="https://leetcode-cn.com/problems/open-the-lock/">752. 打开转盘锁</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010444.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010510.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010528.png" alt=""></p>
+<ul>
+<li>注意扩展状态，4个转盘，两个方向，难点在于这里</li>
+<li>使用哈希存储deadends中的值，加快查找效率，也可以使用其进行去重</li>
+</ul>
+<h2 id="剑指-Offer-13-机器人的运动范围"><a href="#剑指-Offer-13-机器人的运动范围" class="headerlink" title="剑指 Offer 13. 机器人的运动范围"></a><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/">剑指 Offer 13. 机器人的运动范围</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014444.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014506.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014528.png" alt=""></p>
+<h2 id="130-被围绕的区域"><a href="#130-被围绕的区域" class="headerlink" title="130. 被围绕的区域"></a><a href="https://leetcode-cn.com/problems/surrounded-regions/">130. 被围绕的区域</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104021658.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104021715.png" alt=""></p>
+<ul>
+<li>采用逆思维，扫描边界O，搜索与其相邻的O，最后剩下的大O即为被X包围的</li>
+</ul>
+<h2 id="494-目标和"><a href="#494-目标和" class="headerlink" title="494. 目标和"></a><a href="https://leetcode-cn.com/problems/target-sum/">494. 目标和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109220710.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109220730.png" alt=""></p>
+<ul>
+<li>记忆化——函数是展开的数组，数组是压缩的函数</li>
+</ul>
+<h2 id="473-火柴拼正方形"><a href="#473-火柴拼正方形" class="headerlink" title="473. 火柴拼正方形"></a><a href="https://leetcode-cn.com/problems/matchsticks-to-square/">473. 火柴拼正方形</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109231955.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109232016.png" alt=""></p>
+<h2 id="39-组合总和"><a href="#39-组合总和" class="headerlink" title="39. 组合总和"></a><a href="https://leetcode-cn.com/problems/combination-sum/">39. 组合总和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211110215350.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211110215408.png" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
     <title>单调队列</title>
     <url>/posts/2132.html</url>
     <content><![CDATA[<h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h2><ul>
@@ -1918,71 +1983,6 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 ]]></content>
   </entry>
   <entry>
-    <title>深搜与广搜</title>
-    <url>/posts/8160.html</url>
-    <content><![CDATA[<h1 id="深搜与广搜"><a href="#深搜与广搜" class="headerlink" title="深搜与广搜"></a>深搜与广搜</h1><h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103213830.png" style="zoom: 25%;"></p>
-<ul>
-<li>在思维逻辑层面——节点代表问题状态的树形结构</li>
-</ul>
-<p>例如走迷宫问题</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103214358.png" alt=""></p>
-<ul>
-<li>这里的状态就是小牛可以走到的位置——右边生成的就是问题求解树</li>
-<li>解题的关键是定义状态</li>
-</ul>
-<p>深搜与广搜</p>
-<ul>
-<li>就是对问题求解树的不同遍历方式</li>
-</ul>
-<p>搜索剪枝和优化</p>
-<ul>
-<li>排除某些问题求解树中的子树遍历过程</li>
-</ul>
-<p>设计搜索算法的核心关键点</p>
-<ul>
-<li>设计问题求解树中的状态</li>
-</ul>
-<h1 id="刷题-go！"><a href="#刷题-go！" class="headerlink" title="刷题 go！"></a>刷题 go！</h1><h2 id="993-二叉树的堂兄弟节点"><a href="#993-二叉树的堂兄弟节点" class="headerlink" title="993. 二叉树的堂兄弟节点"></a><a href="https://leetcode-cn.com/problems/cousins-in-binary-tree/">993. 二叉树的堂兄弟节点</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103223455.png" alt=""></p>
-<p>深搜版本</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103223509.png" alt=""></p>
-<p>广搜版本</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103225332.png" alt=""></p>
-<ul>
-<li>定义状态</li>
-<li>把状态放入队列中</li>
-</ul>
-<h2 id="542-01-矩阵"><a href="#542-01-矩阵" class="headerlink" title="542. 01 矩阵"></a><a href="https://leetcode-cn.com/problems/01-matrix/">542. 01 矩阵</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232742.png" alt=""></p>
-<ul>
-<li>计算从0位置到每个1点的最少步数</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232811.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232833.png" alt=""></p>
-<h2 id="1091-二进制矩阵中的最短路径"><a href="#1091-二进制矩阵中的最短路径" class="headerlink" title="1091. 二进制矩阵中的最短路径"></a><a href="https://leetcode-cn.com/problems/shortest-path-in-binary-matrix/">1091. 二进制矩阵中的最短路径</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104002412.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104002437.png" alt=""></p>
-<h2 id="752-打开转盘锁"><a href="#752-打开转盘锁" class="headerlink" title="752. 打开转盘锁"></a><a href="https://leetcode-cn.com/problems/open-the-lock/">752. 打开转盘锁</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010444.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010510.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010528.png" alt=""></p>
-<ul>
-<li>注意扩展状态，4个转盘，两个方向，难点在于这里</li>
-<li>使用哈希存储deadends中的值，加快查找效率，也可以使用其进行去重</li>
-</ul>
-<h2 id="剑指-Offer-13-机器人的运动范围"><a href="#剑指-Offer-13-机器人的运动范围" class="headerlink" title="剑指 Offer 13. 机器人的运动范围"></a><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/">剑指 Offer 13. 机器人的运动范围</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014444.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014506.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014528.png" alt=""></p>
-<h2 id="130-被围绕的区域"><a href="#130-被围绕的区域" class="headerlink" title="130. 被围绕的区域"></a><a href="https://leetcode-cn.com/problems/surrounded-regions/">130. 被围绕的区域</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104021658.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104021715.png" alt=""></p>
-<ul>
-<li>采用逆思维，扫描边界O，搜索与其相邻的O，最后剩下的大O即为被X包围的</li>
-</ul>
-<h2 id="494-目标和"><a href="#494-目标和" class="headerlink" title="494. 目标和"></a><a href="https://leetcode-cn.com/problems/target-sum/">494. 目标和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109220710.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109220730.png" alt=""></p>
-<ul>
-<li>记忆化——函数是展开的数组，数组是压缩的函数</li>
-</ul>
-<h2 id="473-火柴拼正方形"><a href="#473-火柴拼正方形" class="headerlink" title="473. 火柴拼正方形"></a><a href="https://leetcode-cn.com/problems/matchsticks-to-square/">473. 火柴拼正方形</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109231955.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109232016.png" alt=""></p>
-<h2 id="39-组合总和"><a href="#39-组合总和" class="headerlink" title="39. 组合总和"></a><a href="https://leetcode-cn.com/problems/combination-sum/">39. 组合总和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211110215350.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211110215408.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
     <title>15题——回顾篇</title>
     <url>/posts/cdd7.html</url>
     <content><![CDATA[<h1 id="力扣15题"><a href="#力扣15题" class="headerlink" title="力扣15题"></a>力扣15题</h1><h2 id="1367-二叉树中的列表"><a href="#1367-二叉树中的列表" class="headerlink" title="1367. 二叉树中的列表"></a><a href="https://leetcode-cn.com/problems/linked-list-in-binary-tree/">1367. 二叉树中的列表</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206220539.png" alt=""></p>
@@ -2033,71 +2033,145 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 ]]></content>
   </entry>
   <entry>
-    <title>脚本获取系统信息</title>
-    <url>/posts/e826.html</url>
-    <content><![CDATA[<h1 id="脚本获取系统信息"><a href="#脚本获取系统信息" class="headerlink" title="脚本获取系统信息"></a>脚本获取系统信息</h1><h2 id="MemLog"><a href="#MemLog" class="headerlink" title="MemLog"></a>MemLog</h2><p>最终效果：</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913150405.png" alt=""></p>
-<p>显示：时间 总量 剩余量  当前占用  占用百分比动态平均值</p>
-<p>使用free命令查看当前内存使用情况</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913145254.png" alt=""></p>
+    <title>AVL</title>
+    <url>/posts/416e.html</url>
+    <content><![CDATA[<h1 id="LeetCode环节"><a href="#LeetCode环节" class="headerlink" title="LeetCode环节"></a>LeetCode环节</h1><h2 id="面试题-04-06-后继者"><a href="#面试题-04-06-后继者" class="headerlink" title="面试题 04.06. 后继者"></a><a href="https://leetcode-cn.com/problems/successor-lcci/">面试题 04.06. 后继者</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228192531.png" alt=""></p>
 <ul>
-<li><p>-m表示单位为兆M</p>
-</li>
-<li><p>红框为我们需要的数据</p>
-</li>
+<li>使用中序遍历</li>
 </ul>
-<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913150944.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228192550.png" alt=""></p>
 <ul>
-<li><p>MemValue是一个数组，使用awk命令去获取total，used这两个值</p>
-</li>
-<li><p>MemPrec为当前占用率，NowDyAver为占用百分比动态平均值</p>
+<li>node用来防止遍历是遇到空节点直接返回 </li>
+<li>结构化思维——pre会依次访问到树中的每一个节点</li>
+</ul>
+<h2 id="450-删除二叉搜索树中的节点"><a href="#450-删除二叉搜索树中的节点" class="headerlink" title="450. 删除二叉搜索树中的节点"></a><a href="https://leetcode-cn.com/problems/delete-node-in-a-bst/">450. 删除二叉搜索树中的节点</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228195933.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228195949.png" alt=""></p>
+<h2 id="1382-将二叉搜索树变平衡"><a href="#1382-将二叉搜索树变平衡" class="headerlink" title="1382. 将二叉搜索树变平衡"></a><a href="https://leetcode-cn.com/problems/balance-a-binary-search-tree/">1382. 将二叉搜索树变平衡</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102221043.png" alt=""></p>
 <ul>
-<li><p>利用bc命令去计算，<code>scale=2</code>表示保留2位小数</p>
-</li>
-<li><p>$ 动态平均值 =  0.8*加权平均值（上一次)+0.2当前占用比$​</p>
-</li>
+<li>可把原来的树看成一个有序的序列（中序遍历），使最中间的那个数作为根节点，递归解题</li>
 </ul>
-</li>
-</ul>
-<h2 id="Disk"><a href="#Disk" class="headerlink" title="Disk"></a>Disk</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171937.png" alt=""></p>
-<p>最终效果：</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171921.png" alt=""></p>
-<p>使用df命令查看磁盘使用情况，-T表示类型</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913165756.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102221102.png" alt=""></p>
+<h2 id="108-将有序数组转换为二叉搜索树"><a href="#108-将有序数组转换为二叉搜索树" class="headerlink" title="108. 将有序数组转换为二叉搜索树"></a><a href="https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/">108. 将有序数组转换为二叉搜索树</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102223424.png" alt=""></p>
 <ul>
-<li>红框内是我们需要的，<code>devtmpfs</code>和<code>tmpfs</code>是虚拟内存文件系统<ul>
-<li>tmpfs是一种基于内存的文件系统，不像其他的文件系统需要格式化后才可以挂载，而是直接使用，由于是在内存中存储数据，那么在断电后会导致数据丢失。在使用到tmpfs文件系统存储数据效率会得到一定的提升。</li>
-<li>devtmpfs 的功用是在 Linux 核心 启动早期建立一个初步的 /dev，令一般启动程序不用等待 udev，缩短 GNU/Linux 的开机时间</li>
+<li>和上题几乎一样</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102223443.png" alt=""></p>
+<h2 id="98-验证二叉搜索树"><a href="#98-验证二叉搜索树" class="headerlink" title="98. 验证二叉搜索树"></a><a href="https://leetcode-cn.com/problems/validate-binary-search-tree/">98. 验证二叉搜索树</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102230343.png" alt=""></p>
+<ul>
+<li>使用中序遍历，看成在遍历一个有序数组</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102230429.png" alt=""></p>
+<h2 id="501-二叉搜索树中的众数"><a href="#501-二叉搜索树中的众数" class="headerlink" title="501. 二叉搜索树中的众数"></a><a href="https://leetcode-cn.com/problems/find-mode-in-binary-search-tree/">501. 二叉搜索树中的众数</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102232757.png" alt=""></p>
+<ul>
+<li>思路：二叉搜索树的中序遍历是一个升序序列，逐个比对当前结点(root)值与前驱结点（pre)值。<ul>
+<li>更新当前节点值出现次数(cnt)及最大出现次数(max_cnt)</li>
+<li>更新规则：若cnt=max_cnt,将root-&gt;val添加到结果向量(ret)中；若cnt&gt;max_cnt,清空ret,将root-&gt;val添加到ret,并更新max_cnt为cnt。</li>
 </ul>
 </li>
 </ul>
-<p>取得数据</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171709.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102232813.png" alt=""></p>
+<h2 id="面试题-17-12-BiNode"><a href="#面试题-17-12-BiNode" class="headerlink" title="面试题 17.12. BiNode"></a><a href="https://leetcode-cn.com/problems/binode-lcci/">面试题 17.12. BiNode</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103133734.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103133750.png" alt=""></p>
+<h2 id="剑指-Offer-33-二叉搜索树的后序遍历序列"><a href="#剑指-Offer-33-二叉搜索树的后序遍历序列" class="headerlink" title="剑指 Offer 33. 二叉搜索树的后序遍历序列"></a><a href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/">剑指 Offer 33. 二叉搜索树的后序遍历序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103135412.png" alt=""></p>
 <ul>
-<li>tail -n +2——显示的第二条以后的数据</li>
-<li>-x——表示过滤</li>
-</ul>
-<h3 id="代码演示-1"><a href="#代码演示-1" class="headerlink" title="代码演示"></a>代码演示</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913174139.png" alt=""></p>
-<ul>
-<li>awk -v 表示定义一个变量<ul>
-<li>NR是awk内置变量——已经读出的记录数: 注意是从0开始</li>
-</ul>
+<li><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103135543.png" alt=""></p>
 </li>
-<li>eval——<a href="https://blog.51cto.com/u_10706198/1788573">eval的使用</a></li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913181125.png" alt=""></p>
-<ul>
-<li>先输出总的磁盘情况，再输出分区的磁盘情况<ul>
-<li>parnum里面存的是读到的记录数</li>
-</ul>
+<li><p>思路：利用结构化思维，把此序列想成一棵二叉搜索树，用中序遍历的性质，找到第一个大于根节点的值的下标ind，和左子树根节点ind-1，递归比较根节点的大小。</p>
 </li>
 </ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103140017.png" alt=""></p>
+<h2 id="1008-前序遍历构造二叉搜索树"><a href="#1008-前序遍历构造二叉搜索树" class="headerlink" title="1008. 前序遍历构造二叉搜索树"></a><a href="https://leetcode-cn.com/problems/construct-binary-search-tree-from-preorder-traversal/">1008. 前序遍历构造二叉搜索树</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103162916.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103162934.png" alt=""></p>
+<h2 id="面试题-04-09-二叉搜索树序列"><a href="#面试题-04-09-二叉搜索树序列" class="headerlink" title="面试题 04.09. 二叉搜索树序列"></a><a href="https://leetcode-cn.com/problems/bst-sequences-lcci/">面试题 04.09. 二叉搜索树序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103170805.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103170823.png" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>递推算法</title>
+    <url>/posts/654.html</url>
+    <content><![CDATA[<h1 id="Leetcode环节"><a href="#Leetcode环节" class="headerlink" title="Leetcode环节"></a>Leetcode环节</h1><h2 id="70-爬楼梯"><a href="#70-爬楼梯" class="headerlink" title="70. 爬楼梯"></a><a href="https://leetcode-cn.com/problems/climbing-stairs/">70. 爬楼梯</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116162143.png" alt=""></p>
+<p>代码：</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116162246.png" alt=""></p>
+<h2 id="746-使用最小花费爬楼梯"><a href="#746-使用最小花费爬楼梯" class="headerlink" title="746. 使用最小花费爬楼梯"></a><a href="https://leetcode-cn.com/problems/min-cost-climbing-stairs/">746. 使用最小花费爬楼梯</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116172057.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116172115.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116195440.png" alt=""></p>
+<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">class Solution { 
+public:
+	int minCost(vector&lt;vector&lt;int&gt;&gt;&amp; costs) { 
+        int n = costs.size(); 
+        vector&lt;vector&lt;int&gt;&gt; dp; 
+        for (int i = 0; i &lt; 2; i++) dp.push_back(vector&lt;int&gt;(3));
+		for (int i = 0; i &lt; 3; i++) dp[0][i] = costs[0][i];
+		for (int i = 1; i &lt; n; i++) {
+            // 滚动数组
+			int ind = i % 2;
+			int pre_ind = !ind;
+			dp[ind][0] = min(dp[pre_ind][1], dp[pre_ind][2]) + costs[i][0];
+			dp[ind][1] = min(dp[pre_ind][0], dp[pre_ind][2]) + costs[i][1];
+			dp[ind][2] = min(dp[pre_ind][0], dp[pre_ind][1]) + costs[i][2];
+		}
+
+		int ind = (n - 1) % 2;
+		return min(dp[ind][0], min(dp[ind][1], dp[ind][2]));
+	}
+};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>$dp[n][i]$：n个房子，最后一个房子涂i种颜色的最少花费</li>
+<li>$dp[n][i] = min(dp[n-1][剩余两种颜色]) + costs[n][i]$</li>
+</ul>
+<h2 id="120-三角形最小路径和"><a href="#120-三角形最小路径和" class="headerlink" title="120. 三角形最小路径和"></a><a href="https://leetcode-cn.com/problems/triangle/">120. 三角形最小路径和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116202353.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116202414.png" alt=""></p>
+<h2 id="119-杨辉三角-II"><a href="#119-杨辉三角-II" class="headerlink" title="119. 杨辉三角 II"></a><a href="https://leetcode-cn.com/problems/pascals-triangle-ii/">119. 杨辉三角 II</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116205306.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116205319.png" alt=""></p>
+<h2 id="53-最大子数组和"><a href="#53-最大子数组和" class="headerlink" title="53. 最大子数组和"></a><a href="https://leetcode-cn.com/problems/maximum-subarray/">53. 最大子数组和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116211843.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116211855.png" alt=""></p>
+<h2 id="122-买卖股票的最佳时机-II"><a href="#122-买卖股票的最佳时机-II" class="headerlink" title="122. 买卖股票的最佳时机 II"></a><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/">122. 买卖股票的最佳时机 II</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116212910.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116212924.png" alt=""></p>
+<ul>
+<li>炒股尝试，对于折现一样的图，最大收益为：若后面一天的数大于前面一天的数，则相减并累加</li>
+</ul>
+<h2 id="198-打家劫舍"><a href="#198-打家劫舍" class="headerlink" title="198. 打家劫舍"></a><a href="https://leetcode-cn.com/problems/house-robber/">198. 打家劫舍</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116214403.png" alt=""></p>
+<ul>
+<li>状态定义：$dp[n][0/1]$ : 当到第n家时，偷还是不偷所达到的最大收益<ul>
+<li>$dp[n][0] = max(dp[n - 1][0], d[n - 1][1])$➡️若当前不偷，则最大收益为前一家不偷/偷的最大值</li>
+<li>$dp[n][1] = dp[n - 1][0] + nums[i]$➡️若当前偷，则最大收益为前一家不偷+当前的价值</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116214418.png" alt=""></p>
+<h2 id="152-乘积最大子数组"><a href="#152-乘积最大子数组" class="headerlink" title="152. 乘积最大子数组"></a><a href="https://leetcode-cn.com/problems/maximum-product-subarray/">152. 乘积最大子数组</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116223234.png" alt=""></p>
+<p>状态定义：$dp[i]$➡️以i位置结尾的连续子数组最大值</p>
+<ul>
+<li>$dp[i]=max(dp[i-1]*nums[i], nums[i])$</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116223252.png" alt=""></p>
+<ul>
+<li>简化代码 </li>
+</ul>
+<h2 id="322-零钱兑换"><a href="#322-零钱兑换" class="headerlink" title="322. 零钱兑换"></a><a href="https://leetcode-cn.com/problems/coin-change/">322. 零钱兑换</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116223828.png" alt=""></p>
+<ul>
+<li>状态定义——$dp[n]$：以每一张面额作为最后一张面额所凑得n的最少硬币个数<ul>
+<li>$dp[n]=min(dp[n-v_i]+1)$——$v_i$：第i张硬币的面值，$dp[n-v_i]$：凑够$n-v_i$需要的最少硬币个数最后还要加上当前的硬币值$v_i$</li>
+<li>$n-v_i$需要合法，也就是能够拼凑出</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116225439.png" alt=""></p>
+<h2 id="300-最长递增子序列"><a href="#300-最长递增子序列" class="headerlink" title="300. 最长递增子序列"></a><a href="https://leetcode-cn.com/problems/longest-increasing-subsequence/">300. 最长递增子序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116230658.png" alt=""></p>
+<ul>
+<li>状态定义——$dp[n]$：以n位置为结尾的最长递增子序列的长度<ul>
+<li>$dp[n]=max(dp[j]+1)|j&lt;n,val_j&lt;val_n$</li>
+</ul>
+</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116231328.png" alt=""></p>
 ]]></content>
   </entry>
   <entry>
     <title>操作系统</title>
     <url>/posts/437.html</url>
-    <content><![CDATA[<h2 id="什么是应用程序？"><a href="#什么是应用程序？" class="headerlink" title="什么是应用程序？"></a>什么是应用程序？</h2><ul>
+    <content><![CDATA[<p>最进在学习CSAPP，偶然间看到了B站jyy的视频，发现讲的确实帅，想做一点笔记，写在这里。</p>
+<h2 id="什么是应用程序？"><a href="#什么是应用程序？" class="headerlink" title="什么是应用程序？"></a>什么是应用程序？</h2><ul>
 <li><p>可执行的文件（程序的二进制代码和数据）和其他数据文件</p>
 <ul>
 <li>Linux支持多种可执行文件格式</li>
@@ -2270,57 +2344,65 @@ objdump -S a.out<span aria-hidden="true" class="line-numbers-rows"><span></span>
 ]]></content>
   </entry>
   <entry>
-    <title>AVL</title>
-    <url>/posts/416e.html</url>
-    <content><![CDATA[<h1 id="LeetCode环节"><a href="#LeetCode环节" class="headerlink" title="LeetCode环节"></a>LeetCode环节</h1><h2 id="面试题-04-06-后继者"><a href="#面试题-04-06-后继者" class="headerlink" title="面试题 04.06. 后继者"></a><a href="https://leetcode-cn.com/problems/successor-lcci/">面试题 04.06. 后继者</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228192531.png" alt=""></p>
+    <title>脚本获取系统信息</title>
+    <url>/posts/e826.html</url>
+    <content><![CDATA[<h1 id="脚本获取系统信息"><a href="#脚本获取系统信息" class="headerlink" title="脚本获取系统信息"></a>脚本获取系统信息</h1><h2 id="MemLog"><a href="#MemLog" class="headerlink" title="MemLog"></a>MemLog</h2><p>最终效果：</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913150405.png" alt=""></p>
+<p>显示：时间 总量 剩余量  当前占用  占用百分比动态平均值</p>
+<p>使用free命令查看当前内存使用情况</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913145254.png" alt=""></p>
 <ul>
-<li>使用中序遍历</li>
+<li><p>-m表示单位为兆M</p>
+</li>
+<li><p>红框为我们需要的数据</p>
+</li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228192550.png" alt=""></p>
+<h3 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913150944.png" alt=""></p>
 <ul>
-<li>node用来防止遍历是遇到空节点直接返回 </li>
-<li>结构化思维——pre会依次访问到树中的每一个节点</li>
-</ul>
-<h2 id="450-删除二叉搜索树中的节点"><a href="#450-删除二叉搜索树中的节点" class="headerlink" title="450. 删除二叉搜索树中的节点"></a><a href="https://leetcode-cn.com/problems/delete-node-in-a-bst/">450. 删除二叉搜索树中的节点</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228195933.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228195949.png" alt=""></p>
-<h2 id="1382-将二叉搜索树变平衡"><a href="#1382-将二叉搜索树变平衡" class="headerlink" title="1382. 将二叉搜索树变平衡"></a><a href="https://leetcode-cn.com/problems/balance-a-binary-search-tree/">1382. 将二叉搜索树变平衡</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102221043.png" alt=""></p>
+<li><p>MemValue是一个数组，使用awk命令去获取total，used这两个值</p>
+</li>
+<li><p>MemPrec为当前占用率，NowDyAver为占用百分比动态平均值</p>
 <ul>
-<li>可把原来的树看成一个有序的序列（中序遍历），使最中间的那个数作为根节点，递归解题</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102221102.png" alt=""></p>
-<h2 id="108-将有序数组转换为二叉搜索树"><a href="#108-将有序数组转换为二叉搜索树" class="headerlink" title="108. 将有序数组转换为二叉搜索树"></a><a href="https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/">108. 将有序数组转换为二叉搜索树</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102223424.png" alt=""></p>
-<ul>
-<li>和上题几乎一样</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102223443.png" alt=""></p>
-<h2 id="98-验证二叉搜索树"><a href="#98-验证二叉搜索树" class="headerlink" title="98. 验证二叉搜索树"></a><a href="https://leetcode-cn.com/problems/validate-binary-search-tree/">98. 验证二叉搜索树</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102230343.png" alt=""></p>
-<ul>
-<li>使用中序遍历，看成在遍历一个有序数组</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102230429.png" alt=""></p>
-<h2 id="501-二叉搜索树中的众数"><a href="#501-二叉搜索树中的众数" class="headerlink" title="501. 二叉搜索树中的众数"></a><a href="https://leetcode-cn.com/problems/find-mode-in-binary-search-tree/">501. 二叉搜索树中的众数</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102232757.png" alt=""></p>
-<ul>
-<li>思路：二叉搜索树的中序遍历是一个升序序列，逐个比对当前结点(root)值与前驱结点（pre)值。<ul>
-<li>更新当前节点值出现次数(cnt)及最大出现次数(max_cnt)</li>
-<li>更新规则：若cnt=max_cnt,将root-&gt;val添加到结果向量(ret)中；若cnt&gt;max_cnt,清空ret,将root-&gt;val添加到ret,并更新max_cnt为cnt。</li>
+<li><p>利用bc命令去计算，<code>scale=2</code>表示保留2位小数</p>
+</li>
+<li><p>$ 动态平均值 =  0.8*加权平均值（上一次)+0.2当前占用比$​</p>
+</li>
 </ul>
 </li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220102232813.png" alt=""></p>
-<h2 id="面试题-17-12-BiNode"><a href="#面试题-17-12-BiNode" class="headerlink" title="面试题 17.12. BiNode"></a><a href="https://leetcode-cn.com/problems/binode-lcci/">面试题 17.12. BiNode</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103133734.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103133750.png" alt=""></p>
-<h2 id="剑指-Offer-33-二叉搜索树的后序遍历序列"><a href="#剑指-Offer-33-二叉搜索树的后序遍历序列" class="headerlink" title="剑指 Offer 33. 二叉搜索树的后序遍历序列"></a><a href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/">剑指 Offer 33. 二叉搜索树的后序遍历序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103135412.png" alt=""></p>
+<h2 id="Disk"><a href="#Disk" class="headerlink" title="Disk"></a>Disk</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171937.png" alt=""></p>
+<p>最终效果：</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171921.png" alt=""></p>
+<p>使用df命令查看磁盘使用情况，-T表示类型</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913165756.png" alt=""></p>
 <ul>
-<li><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103135543.png" alt=""></p>
-</li>
-<li><p>思路：利用结构化思维，把此序列想成一棵二叉搜索树，用中序遍历的性质，找到第一个大于根节点的值的下标ind，和左子树根节点ind-1，递归比较根节点的大小。</p>
+<li>红框内是我们需要的，<code>devtmpfs</code>和<code>tmpfs</code>是虚拟内存文件系统<ul>
+<li>tmpfs是一种基于内存的文件系统，不像其他的文件系统需要格式化后才可以挂载，而是直接使用，由于是在内存中存储数据，那么在断电后会导致数据丢失。在使用到tmpfs文件系统存储数据效率会得到一定的提升。</li>
+<li>devtmpfs 的功用是在 Linux 核心 启动早期建立一个初步的 /dev，令一般启动程序不用等待 udev，缩短 GNU/Linux 的开机时间</li>
+</ul>
 </li>
 </ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103140017.png" alt=""></p>
-<h2 id="1008-前序遍历构造二叉搜索树"><a href="#1008-前序遍历构造二叉搜索树" class="headerlink" title="1008. 前序遍历构造二叉搜索树"></a><a href="https://leetcode-cn.com/problems/construct-binary-search-tree-from-preorder-traversal/">1008. 前序遍历构造二叉搜索树</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103162916.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103162934.png" alt=""></p>
-<h2 id="面试题-04-09-二叉搜索树序列"><a href="#面试题-04-09-二叉搜索树序列" class="headerlink" title="面试题 04.09. 二叉搜索树序列"></a><a href="https://leetcode-cn.com/problems/bst-sequences-lcci/">面试题 04.09. 二叉搜索树序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103170805.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103170823.png" alt=""></p>
+<p>取得数据</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913171709.png" alt=""></p>
+<ul>
+<li>tail -n +2——显示的第二条以后的数据</li>
+<li>-x——表示过滤</li>
+</ul>
+<h3 id="代码演示-1"><a href="#代码演示-1" class="headerlink" title="代码演示"></a>代码演示</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913174139.png" alt=""></p>
+<ul>
+<li>awk -v 表示定义一个变量<ul>
+<li>NR是awk内置变量——已经读出的记录数: 注意是从0开始</li>
+</ul>
+</li>
+<li>eval——<a href="https://blog.51cto.com/u_10706198/1788573">eval的使用</a></li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210913181125.png" alt=""></p>
+<ul>
+<li>先输出总的磁盘情况，再输出分区的磁盘情况<ul>
+<li>parnum里面存的是读到的记录数</li>
+</ul>
+</li>
+</ul>
 ]]></content>
   </entry>
   <entry>
