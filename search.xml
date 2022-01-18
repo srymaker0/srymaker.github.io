@@ -1915,56 +1915,6 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 ]]></content>
   </entry>
   <entry>
-    <title>15题——回顾篇</title>
-    <url>/posts/cdd7.html</url>
-    <content><![CDATA[<h1 id="力扣15题"><a href="#力扣15题" class="headerlink" title="力扣15题"></a>力扣15题</h1><h2 id="1367-二叉树中的列表"><a href="#1367-二叉树中的列表" class="headerlink" title="1367. 二叉树中的列表"></a><a href="https://leetcode-cn.com/problems/linked-list-in-binary-tree/">1367. 二叉树中的列表</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206220539.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206220600.png" alt=""></p>
-<h2 id="958-二叉树的完全性检验"><a href="#958-二叉树的完全性检验" class="headerlink" title="958. 二叉树的完全性检验"></a><a href="https://leetcode-cn.com/problems/check-completeness-of-a-binary-tree/">958. 二叉树的完全性检验</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206232505.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206232527.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206232355.png" style="zoom: 33%;"></p>
-<h2 id="剑指-Offer-36-二叉搜索树与双向链表"><a href="#剑指-Offer-36-二叉搜索树与双向链表" class="headerlink" title="剑指 Offer 36. 二叉搜索树与双向链表"></a><a href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/">剑指 Offer 36. 二叉搜索树与双向链表</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207184740.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207185000.png" alt=""></p>
-<h2 id="464-我能赢吗"><a href="#464-我能赢吗" class="headerlink" title="464. 我能赢吗"></a><a href="https://leetcode-cn.com/problems/can-i-win/">464. 我能赢吗</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207195938.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207195951.png" alt=""></p>
-<ul>
-<li>记忆化——mask为自变量，total是随着mask的值改变而改变，使用自变量当做去重哈希表的下标值</li>
-</ul>
-<h2 id="172-阶乘后的零"><a href="#172-阶乘后的零" class="headerlink" title="172. 阶乘后的零"></a><a href="https://leetcode-cn.com/problems/factorial-trailing-zeroes/">172. 阶乘后的零</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207202657.png" alt=""></p>
-<ul>
-<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207202730.png" alt=""></li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207202712.png" alt=""></p>
-<h2 id="384-打乱数组"><a href="#384-打乱数组" class="headerlink" title="384. 打乱数组"></a><a href="https://leetcode-cn.com/problems/shuffle-an-array/">384. 打乱数组</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207203828.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207203845.png" alt=""></p>
-<h2 id="437-路径总和-III"><a href="#437-路径总和-III" class="headerlink" title="437. 路径总和 III"></a><a href="https://leetcode-cn.com/problems/path-sum-iii/">437. 路径总和 III</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207205806.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207205821.png" alt=""></p>
-<h2 id="395-至少有-K-个重复字符的最长子串"><a href="#395-至少有-K-个重复字符的最长子串" class="headerlink" title="395. 至少有 K 个重复字符的最长子串"></a><a href="https://leetcode-cn.com/problems/longest-substring-with-at-least-k-repeating-characters/">395. 至少有 K 个重复字符的最长子串</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207212559.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207212613.png" alt=""></p>
-<h2 id="190-颠倒二进制位"><a href="#190-颠倒二进制位" class="headerlink" title="190. 颠倒二进制位"></a><a href="https://leetcode-cn.com/problems/reverse-bits/">190. 颠倒二进制位</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207213707.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207213718.png" alt=""></p>
-<h2 id="8-字符串转换整数-atoi"><a href="#8-字符串转换整数-atoi" class="headerlink" title="8. 字符串转换整数 (atoi)"></a><a href="https://leetcode-cn.com/problems/string-to-integer-atoi/">8. 字符串转换整数 (atoi)</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207215729.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207215745.png" alt=""></p>
-<h2 id="380-O-1-时间插入、删除和获取随机元素"><a href="#380-O-1-时间插入、删除和获取随机元素" class="headerlink" title="380. O(1) 时间插入、删除和获取随机元素"></a><a href="https://leetcode-cn.com/problems/insert-delete-getrandom-o1/">380. O(1) 时间插入、删除和获取随机元素</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216204204.png" alt=""></p>
-<ul>
-<li>要求删除、插入时间复杂度为$O(1)$——哈希表，但$O(1)$获取随机元素——哈希表无法完成，可以用动态数组——<code>push_back()</code>，<code>pop_back()</code>，二者联用可完成此题</li>
-<li>哈希表记录val在动态数组的位置</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216204222.png" alt=""></p>
-<h2 id="402-移掉-K-位数字"><a href="#402-移掉-K-位数字" class="headerlink" title="402. 移掉 K 位数字"></a><a href="https://leetcode-cn.com/problems/remove-k-digits/">402. 移掉 K 位数字</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216210524.png" alt=""></p>
-<ul>
-<li>删除k个数，形成最小的数字-&gt;尽量把较小的数字往前拱，联想到单调递增栈，把违反单调性的数字删除</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216210538.png" alt=""></p>
-<ul>
-<li>substr第二个参数超过字符串长度时，表示从当前位置截取到最后一个位置</li>
-</ul>
-<h2 id="1081-不同字符的最小子序列"><a href="#1081-不同字符的最小子序列" class="headerlink" title="1081. 不同字符的最小子序列"></a><a href="https://leetcode-cn.com/problems/smallest-subsequence-of-distinct-characters/">1081. 不同字符的最小子序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216215225.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216215248.png" alt=""></p>
-<h2 id="1499-满足不等式的最大值"><a href="#1499-满足不等式的最大值" class="headerlink" title="1499. 满足不等式的最大值"></a><a href="https://leetcode-cn.com/problems/max-value-of-equation/">1499. 满足不等式的最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216224617.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216224637.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
     <title>单调栈</title>
     <url>/posts/831c.html</url>
     <content><![CDATA[<h1 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h1><blockquote>
@@ -2084,6 +2034,56 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103162934.png" alt=""></p>
 <h2 id="面试题-04-09-二叉搜索树序列"><a href="#面试题-04-09-二叉搜索树序列" class="headerlink" title="面试题 04.09. 二叉搜索树序列"></a><a href="https://leetcode-cn.com/problems/bst-sequences-lcci/">面试题 04.09. 二叉搜索树序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103170805.png" alt=""></p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103170823.png" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>15题——回顾篇</title>
+    <url>/posts/cdd7.html</url>
+    <content><![CDATA[<h1 id="力扣15题"><a href="#力扣15题" class="headerlink" title="力扣15题"></a>力扣15题</h1><h2 id="1367-二叉树中的列表"><a href="#1367-二叉树中的列表" class="headerlink" title="1367. 二叉树中的列表"></a><a href="https://leetcode-cn.com/problems/linked-list-in-binary-tree/">1367. 二叉树中的列表</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206220539.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206220600.png" alt=""></p>
+<h2 id="958-二叉树的完全性检验"><a href="#958-二叉树的完全性检验" class="headerlink" title="958. 二叉树的完全性检验"></a><a href="https://leetcode-cn.com/problems/check-completeness-of-a-binary-tree/">958. 二叉树的完全性检验</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206232505.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206232527.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206232355.png" style="zoom: 33%;"></p>
+<h2 id="剑指-Offer-36-二叉搜索树与双向链表"><a href="#剑指-Offer-36-二叉搜索树与双向链表" class="headerlink" title="剑指 Offer 36. 二叉搜索树与双向链表"></a><a href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/">剑指 Offer 36. 二叉搜索树与双向链表</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207184740.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207185000.png" alt=""></p>
+<h2 id="464-我能赢吗"><a href="#464-我能赢吗" class="headerlink" title="464. 我能赢吗"></a><a href="https://leetcode-cn.com/problems/can-i-win/">464. 我能赢吗</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207195938.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207195951.png" alt=""></p>
+<ul>
+<li>记忆化——mask为自变量，total是随着mask的值改变而改变，使用自变量当做去重哈希表的下标值</li>
+</ul>
+<h2 id="172-阶乘后的零"><a href="#172-阶乘后的零" class="headerlink" title="172. 阶乘后的零"></a><a href="https://leetcode-cn.com/problems/factorial-trailing-zeroes/">172. 阶乘后的零</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207202657.png" alt=""></p>
+<ul>
+<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207202730.png" alt=""></li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207202712.png" alt=""></p>
+<h2 id="384-打乱数组"><a href="#384-打乱数组" class="headerlink" title="384. 打乱数组"></a><a href="https://leetcode-cn.com/problems/shuffle-an-array/">384. 打乱数组</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207203828.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207203845.png" alt=""></p>
+<h2 id="437-路径总和-III"><a href="#437-路径总和-III" class="headerlink" title="437. 路径总和 III"></a><a href="https://leetcode-cn.com/problems/path-sum-iii/">437. 路径总和 III</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207205806.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207205821.png" alt=""></p>
+<h2 id="395-至少有-K-个重复字符的最长子串"><a href="#395-至少有-K-个重复字符的最长子串" class="headerlink" title="395. 至少有 K 个重复字符的最长子串"></a><a href="https://leetcode-cn.com/problems/longest-substring-with-at-least-k-repeating-characters/">395. 至少有 K 个重复字符的最长子串</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207212559.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207212613.png" alt=""></p>
+<h2 id="190-颠倒二进制位"><a href="#190-颠倒二进制位" class="headerlink" title="190. 颠倒二进制位"></a><a href="https://leetcode-cn.com/problems/reverse-bits/">190. 颠倒二进制位</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207213707.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207213718.png" alt=""></p>
+<h2 id="8-字符串转换整数-atoi"><a href="#8-字符串转换整数-atoi" class="headerlink" title="8. 字符串转换整数 (atoi)"></a><a href="https://leetcode-cn.com/problems/string-to-integer-atoi/">8. 字符串转换整数 (atoi)</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207215729.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207215745.png" alt=""></p>
+<h2 id="380-O-1-时间插入、删除和获取随机元素"><a href="#380-O-1-时间插入、删除和获取随机元素" class="headerlink" title="380. O(1) 时间插入、删除和获取随机元素"></a><a href="https://leetcode-cn.com/problems/insert-delete-getrandom-o1/">380. O(1) 时间插入、删除和获取随机元素</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216204204.png" alt=""></p>
+<ul>
+<li>要求删除、插入时间复杂度为$O(1)$——哈希表，但$O(1)$获取随机元素——哈希表无法完成，可以用动态数组——<code>push_back()</code>，<code>pop_back()</code>，二者联用可完成此题</li>
+<li>哈希表记录val在动态数组的位置</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216204222.png" alt=""></p>
+<h2 id="402-移掉-K-位数字"><a href="#402-移掉-K-位数字" class="headerlink" title="402. 移掉 K 位数字"></a><a href="https://leetcode-cn.com/problems/remove-k-digits/">402. 移掉 K 位数字</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216210524.png" alt=""></p>
+<ul>
+<li>删除k个数，形成最小的数字-&gt;尽量把较小的数字往前拱，联想到单调递增栈，把违反单调性的数字删除</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216210538.png" alt=""></p>
+<ul>
+<li>substr第二个参数超过字符串长度时，表示从当前位置截取到最后一个位置</li>
+</ul>
+<h2 id="1081-不同字符的最小子序列"><a href="#1081-不同字符的最小子序列" class="headerlink" title="1081. 不同字符的最小子序列"></a><a href="https://leetcode-cn.com/problems/smallest-subsequence-of-distinct-characters/">1081. 不同字符的最小子序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216215225.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216215248.png" alt=""></p>
+<h2 id="1499-满足不等式的最大值"><a href="#1499-满足不等式的最大值" class="headerlink" title="1499. 满足不等式的最大值"></a><a href="https://leetcode-cn.com/problems/max-value-of-equation/">1499. 满足不等式的最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216224617.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216224637.png" alt=""></p>
 ]]></content>
   </entry>
   <entry>
@@ -2341,6 +2341,25 @@ objdump -S a.out<span aria-hidden="true" class="line-numbers-rows"><span></span>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116135050.png" alt=""></p>
 <p>此时进程的内存空间中加载了2个a.out，以及一个ld-2.27.so（这是由操作系统的加载器ld-linux-x86-64.so加载的），然后由ld-2.27.so去加载libc，之后libc完成自己的初始化，最后再调用main。</p>
 <p>至此说明，main的开始和结束并不是整个程序的开始和结束</p>
+<h3 id="main执行之前，发生了哪些操作系统API调用？"><a href="#main执行之前，发生了哪些操作系统API调用？" class="headerlink" title="main执行之前，发生了哪些操作系统API调用？"></a>main执行之前，发生了哪些操作系统API调用？</h3><p>示例代码：</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220118150353.png" alt=""></p>
+<p>使用strace命令：</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220118150928.png" alt=""></p>
+<p>这些是main执行之前调用的操作系统API</p>
+<p>本质上，所有的程序和Hello World类似</p>
+<ul>
+<li>被操作系统加载<ul>
+<li>通过父进程的execve</li>
+</ul>
+</li>
+<li>不断执行系统调用<ul>
+<li>进程管理：fork，execve，exit….</li>
+<li>文件/设备管理：open，close，read，write…..</li>
+<li>存储管理：mmap，brk，….</li>
+</ul>
+</li>
+<li>直到_exit(exit_group)退出</li>
+</ul>
 ]]></content>
   </entry>
   <entry>
