@@ -197,6 +197,45 @@
 ]]></content>
   </entry>
   <entry>
+    <title>CPP个人笔记</title>
+    <url>/posts/db87.html</url>
+    <content><![CDATA[<h2 id="冲-兄弟们"><a href="#冲-兄弟们" class="headerlink" title="冲, 兄弟们"></a>冲, 兄弟们</h2><ul>
+<li><a href="https://srymaker0.com/posts/85a7">1.从c到c++</a></li>
+<li><a href="https://srymaker0.com/posts/3bd">2.构造与析构</a></li>
+<li><a href="https://srymaker0.com/posts/8a1e">3.类与对象</a></li>
+<li><a href="https://srymaker0.com/posts/6f17">4.继承</a></li>
+<li><a href="https://srymaker0.com/posts/21f6">5.多态</a></li>
+<li><a href="https://srymaker0.com/posts/b26a">6.auto、constexpr、nullptr、左值与右值、移动构造</a></li>
+<li><a href="https://srymaker0.com/posts/e383">7.模板</a></li>
+<li><a href="https://srymaker0.com/posts/130c">8.异常</a></li>
+<li><a href="https://srymaker0.com/posts/4864">9.C++线程</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>C++, 面向对象</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构之Leetcode刷题集</title>
+    <url>/posts/1124.html</url>
+    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><ul>
+<li><a href="https://srymaker0.com/posts/d64e">1.链表</a></li>
+<li><a href="https://srymaker0.com/posts/9199">2.栈</a></li>
+<li><a href="https://srymaker0.com/posts/682f">3.队列</a></li>
+<li><a href="https://srymaker0.com/posts/2a0c">4.二叉树</a></li>
+<li><a href="https://srymaker0.com/posts/3c7d">5.堆与优先队列</a></li>
+<li><a href="https://srymaker0.com/posts/20cf">6.并查集</a></li>
+<li><a href="https://srymaker0.com/posts/9271">7.快速排序+优化</a></li>
+<li><a href="https://srymaker0.com/posts/27bc">8.归并排序</a></li>
+<li><a href="https://srymaker0.com/posts/5930">9.有趣的排序</a></li>
+<li><a href="https://srymaker0.com/posts/96d5">10.二分查找</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>手撕红黑树！！！</title>
     <url>/posts/9afc.html</url>
     <content><![CDATA[<h1 id="红黑树（上）"><a href="#红黑树（上）" class="headerlink" title="红黑树（上）"></a>红黑树（上）</h1><h2 id="一、五个平衡条件"><a href="#一、五个平衡条件" class="headerlink" title="一、五个平衡条件"></a>一、五个平衡条件</h2><ol>
@@ -428,25 +467,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>CPP个人笔记</title>
-    <url>/posts/db87.html</url>
-    <content><![CDATA[<h2 id="冲-兄弟们"><a href="#冲-兄弟们" class="headerlink" title="冲, 兄弟们"></a>冲, 兄弟们</h2><ul>
-<li><a href="https://srymaker0.com/posts/85a7">1.从c到c++</a></li>
-<li><a href="https://srymaker0.com/posts/3bd">2.构造与析构</a></li>
-<li><a href="https://srymaker0.com/posts/8a1e">3.类与对象</a></li>
-<li><a href="https://srymaker0.com/posts/6f17">4.继承</a></li>
-<li><a href="https://srymaker0.com/posts/21f6">5.多态</a></li>
-<li><a href="https://srymaker0.com/posts/b26a">6.auto、constexpr、nullptr、左值与右值、移动构造</a></li>
-<li><a href="https://srymaker0.com/posts/e383">7.模板</a></li>
-<li><a href="https://srymaker0.com/posts/130c">8.异常</a></li>
-<li><a href="https://srymaker0.com/posts/4864">9.C++线程</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>C++, 面向对象</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于MySQL那点事儿</title>
     <url>/posts/d4d4.html</url>
     <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><p><a href="https://srymaker0.com/posts/54a3">1.关于MySQL架构</a></p>
@@ -458,24 +478,115 @@
       </tags>
   </entry>
   <entry>
-    <title>数据结构之Leetcode刷题集</title>
-    <url>/posts/1124.html</url>
-    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><ul>
-<li><a href="https://srymaker0.com/posts/d64e">1.链表</a></li>
-<li><a href="https://srymaker0.com/posts/9199">2.栈</a></li>
-<li><a href="https://srymaker0.com/posts/682f">3.队列</a></li>
-<li><a href="https://srymaker0.com/posts/2a0c">4.二叉树</a></li>
-<li><a href="https://srymaker0.com/posts/3c7d">5.堆与优先队列</a></li>
-<li><a href="https://srymaker0.com/posts/20cf">6.并查集</a></li>
-<li><a href="https://srymaker0.com/posts/9271">7.快速排序+优化</a></li>
-<li><a href="https://srymaker0.com/posts/27bc">8.归并排序</a></li>
-<li><a href="https://srymaker0.com/posts/5930">9.有趣的排序</a></li>
-<li><a href="https://srymaker0.com/posts/96d5">10.二分查找</a></li>
+    <title>Effective C++</title>
+    <url>/posts/ec29.html</url>
+    <content><![CDATA[<h1 id="Effective-C"><a href="#Effective-C" class="headerlink" title="Effective C++"></a>Effective C++</h1><p>刚开始看第一遍， 记录一些关键、有趣、不是很懂的地方</p>
+<h2 id="static-amp-const-amp-inline"><a href="#static-amp-const-amp-inline" class="headerlink" title="static&amp;const&amp;inline"></a>static&amp;const&amp;inline</h2><p>const多才多艺：</p>
+<ul>
+<li>可修饰global或namespace作用域内的常量</li>
+<li>被声明为static的对象</li>
+<li>可修饰class内的static和non-static成员变量</li>
+<li>修饰指针</li>
+</ul>
+<p>修饰迭代器有讲究</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103105459.png" style="zoom: 25%;"></p>
+<p>修饰成员函数</p>
+<ul>
+<li>可以使class接口容易被理解<ul>
+<li>哪个函数可以改动对象内容哪个不可以</li>
+<li>可以操作const对象</li>
+</ul>
+</li>
+<li>两种概念——bitwise constness 和 logical constness<ul>
+<li>bitwise：指成员函数只有在不更改对象之人和成员变量时才可以说是const</li>
+<li>logical：一个const成员函数可以修改它所处理的对象内的某些bits，但只有在哭护短侦测不出的情况下才可以——<span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>使用mutable关键字修饰你可以修改的变量</li>
+</ul>
+</li>
+</ul>
+<p>Static:</p>
+<ul>
+<li>static对象，寿命从被构造出来知道程序结束为止</li>
+<li>在函数内的static对象称为local static， 其他的static对象称为non-local static对象</li>
+<li>程序结束时static对象会被自动销毁  </li>
+</ul>
+<h1 id="构造-析构-赋值运算"><a href="#构造-析构-赋值运算" class="headerlink" title="构造/析构/赋值运算"></a>构造/析构/赋值运算</h1><p>析构函数：任何class只要带有virtual函数都几乎确定应该也有一个virtual析构函数。</p>
+<ul>
+<li>若有继承关系，确没有vitual析构函数会造成局部销毁的bug，派生类只会销毁基类的对象</li>
+<li>只有当class内含至少一个virtual函数，才为它声明virtual析构函数</li>
+<li>STL容器都不被设计作为base classes使用</li>
+</ul>
+<p>虚函数：virtual关键字修饰</p>
+<ul>
+<li>在构造和析构期间不要调用virtual函数，因为这类调用从不下降至derived class</li>
+</ul>
+<h2 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h2><p>看到条款15懵b了 </p>
+<pre class="line-numbers language-CPP" data-language="CPP"><code class="language-CPP">class Font {
+public:
+    ...
+    operator FontHandle() const
+    { return f;}
+    ...
+};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>看到这个我开始怀疑自己有没有学过C++了<span class="github-emoji"><span>😢</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，我在想运算符重载还能这样写？后面查了资料才知道这并不是运算符重载</p>
+<p>关于隐式类型转换的规则<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<ul>
+<li>接受单个实参的构造函数，定义了从形参类型到该类类型的一个隐式转换。</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210919212342.png" alt=""></p>
+<p>explicit关键字</p>
+<ul>
+<li>类的构造函数被声明为<code>explicit</code>方式，可以用来<strong>阻止隐式类型转换</strong>，但被声明为explicit的构造函数依然可被用来执行<strong>显示类型转换</strong>。即，explicit构造函数必须显示调用。</li>
+</ul>
+<h1 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h1><p>以对象管理资源</p>
+<ul>
+<li>将资源放进对象内，依赖c++析构函数自动调用机制确保资源被释放</li>
+<li>RAII：资源取得时机便是初始化时机</li>
+<li>智能指针</li>
+</ul>
+<h2 id="auto-ptr-amp-shared-ptr"><a href="#auto-ptr-amp-shared-ptr" class="headerlink" title="auto_ptr&amp;shared_ptr"></a>auto_ptr&amp;shared_ptr</h2><p>auto_ptr: </p>
+<ul>
+<li>被销毁时自动删除所指之物，不能让多个auto_ptr指向同一个对象，否则该对象会被删除一次以上——未定义行为</li>
+<li>若通过copy构造函数或copy assignment操作符复制auto_ptr，它们会变成null，而复制所得的指针将取得资源的唯一拥有权<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103164044.png" style="zoom: 33%;"></p>
+<p>shared_ptr:</p>
+<ul>
+<li><p>被称为引用计数型智慧指针（RCSP），解决了auto_ptr的问题，可以用多个shared_ptr对象指向同一个对象</p>
+</li>
+<li><p>RAII class copying行为：有时候我们并不想删除对象，例如mutex这样的资源（当出现copy行为时并不合理），也许只是解除锁定</p>
+<ul>
+<li><p>抑制copying</p>
+</li>
+<li><p>shared_ptr有第二个参数——删除器（deleter）</p>
+</li>
+<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103165647.png" style="zoom:33%;"></li>
+<li>通过get可以访问shared_ptr对象的原始指针</li>
+</ul>
+</li>
+</ul>
+<p>看如下的几个调用</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+<span class="token keyword">void</span> <span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> pw<span class="token punctuation">,</span> <span class="token keyword">int</span> priority<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 1、错误，shared_ptr构造函数需要一个原始指针</span>
+<span class="token function">processWidget</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+
+<span class="token comment">// 2、正确，但还是会造成资源泄露</span>
+<span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">shared_ptr</span><span class="token generic class-name"><span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token comment">// 3、完美</span>
+std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> <span class="token function">pw</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">processWidget</span><span class="token punctuation">(</span>pw<span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>对于第二种调用的第一个参数有两个步骤</p>
+<ul>
+<li>执行“new Widget”</li>
+<li>调用tr1:shared_ptr构造函数</li>
+</ul>
+<p>而priority()的调用可能发生在这两步之间，若priority()的调用产生异常，则“new Widget”返回的指针将会遗失</p>
+<ul>
+<li>解决办法是第三种调用，分两步执行。</li>
 </ul>
 ]]></content>
-      <tags>
-        <tag>Leetcode</tag>
-      </tags>
   </entry>
   <entry>
     <title>shell</title>
@@ -906,117 +1017,6 @@ init_prime <span class="token variable">${End}</span>
       </tags>
   </entry>
   <entry>
-    <title>Effective C++</title>
-    <url>/posts/ec29.html</url>
-    <content><![CDATA[<h1 id="Effective-C"><a href="#Effective-C" class="headerlink" title="Effective C++"></a>Effective C++</h1><p>刚开始看第一遍， 记录一些关键、有趣、不是很懂的地方</p>
-<h2 id="static-amp-const-amp-inline"><a href="#static-amp-const-amp-inline" class="headerlink" title="static&amp;const&amp;inline"></a>static&amp;const&amp;inline</h2><p>const多才多艺：</p>
-<ul>
-<li>可修饰global或namespace作用域内的常量</li>
-<li>被声明为static的对象</li>
-<li>可修饰class内的static和non-static成员变量</li>
-<li>修饰指针</li>
-</ul>
-<p>修饰迭代器有讲究</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103105459.png" style="zoom: 25%;"></p>
-<p>修饰成员函数</p>
-<ul>
-<li>可以使class接口容易被理解<ul>
-<li>哪个函数可以改动对象内容哪个不可以</li>
-<li>可以操作const对象</li>
-</ul>
-</li>
-<li>两种概念——bitwise constness 和 logical constness<ul>
-<li>bitwise：指成员函数只有在不更改对象之人和成员变量时才可以说是const</li>
-<li>logical：一个const成员函数可以修改它所处理的对象内的某些bits，但只有在哭护短侦测不出的情况下才可以——<span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>使用mutable关键字修饰你可以修改的变量</li>
-</ul>
-</li>
-</ul>
-<p>Static:</p>
-<ul>
-<li>static对象，寿命从被构造出来知道程序结束为止</li>
-<li>在函数内的static对象称为local static， 其他的static对象称为non-local static对象</li>
-<li>程序结束时static对象会被自动销毁  </li>
-</ul>
-<h1 id="构造-析构-赋值运算"><a href="#构造-析构-赋值运算" class="headerlink" title="构造/析构/赋值运算"></a>构造/析构/赋值运算</h1><p>析构函数：任何class只要带有virtual函数都几乎确定应该也有一个virtual析构函数。</p>
-<ul>
-<li>若有继承关系，确没有vitual析构函数会造成局部销毁的bug，派生类只会销毁基类的对象</li>
-<li>只有当class内含至少一个virtual函数，才为它声明virtual析构函数</li>
-<li>STL容器都不被设计作为base classes使用</li>
-</ul>
-<p>虚函数：virtual关键字修饰</p>
-<ul>
-<li>在构造和析构期间不要调用virtual函数，因为这类调用从不下降至derived class</li>
-</ul>
-<h2 id="隐式类型转换"><a href="#隐式类型转换" class="headerlink" title="隐式类型转换"></a>隐式类型转换</h2><p>看到条款15懵b了 </p>
-<pre class="line-numbers language-CPP" data-language="CPP"><code class="language-CPP">class Font {
-public:
-    ...
-    operator FontHandle() const
-    { return f;}
-    ...
-};<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>看到这个我开始怀疑自己有没有学过C++了<span class="github-emoji"><span>😢</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，我在想运算符重载还能这样写？后面查了资料才知道这并不是运算符重载</p>
-<p>关于隐式类型转换的规则<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<ul>
-<li>接受单个实参的构造函数，定义了从形参类型到该类类型的一个隐式转换。</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210919212342.png" alt=""></p>
-<p>explicit关键字</p>
-<ul>
-<li>类的构造函数被声明为<code>explicit</code>方式，可以用来<strong>阻止隐式类型转换</strong>，但被声明为explicit的构造函数依然可被用来执行<strong>显示类型转换</strong>。即，explicit构造函数必须显示调用。</li>
-</ul>
-<h1 id="资源管理"><a href="#资源管理" class="headerlink" title="资源管理"></a>资源管理</h1><p>以对象管理资源</p>
-<ul>
-<li>将资源放进对象内，依赖c++析构函数自动调用机制确保资源被释放</li>
-<li>RAII：资源取得时机便是初始化时机</li>
-<li>智能指针</li>
-</ul>
-<h2 id="auto-ptr-amp-shared-ptr"><a href="#auto-ptr-amp-shared-ptr" class="headerlink" title="auto_ptr&amp;shared_ptr"></a>auto_ptr&amp;shared_ptr</h2><p>auto_ptr: </p>
-<ul>
-<li>被销毁时自动删除所指之物，不能让多个auto_ptr指向同一个对象，否则该对象会被删除一次以上——未定义行为</li>
-<li>若通过copy构造函数或copy assignment操作符复制auto_ptr，它们会变成null，而复制所得的指针将取得资源的唯一拥有权<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103164044.png" style="zoom: 33%;"></p>
-<p>shared_ptr:</p>
-<ul>
-<li><p>被称为引用计数型智慧指针（RCSP），解决了auto_ptr的问题，可以用多个shared_ptr对象指向同一个对象</p>
-</li>
-<li><p>RAII class copying行为：有时候我们并不想删除对象，例如mutex这样的资源（当出现copy行为时并不合理），也许只是解除锁定</p>
-<ul>
-<li><p>抑制copying</p>
-</li>
-<li><p>shared_ptr有第二个参数——删除器（deleter）</p>
-</li>
-<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103165647.png" style="zoom:33%;"></li>
-<li>通过get可以访问shared_ptr对象的原始指针</li>
-</ul>
-</li>
-</ul>
-<p>看如下的几个调用</p>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-<span class="token keyword">void</span> <span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> pw<span class="token punctuation">,</span> <span class="token keyword">int</span> priority<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment">// 1、错误，shared_ptr构造函数需要一个原始指针</span>
-<span class="token function">processWidget</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
-
-<span class="token comment">// 2、正确，但还是会造成资源泄露</span>
-<span class="token function">processWidget</span><span class="token punctuation">(</span>std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">shared_ptr</span><span class="token generic class-name"><span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-
-<span class="token comment">// 3、完美</span>
-std<span class="token double-colon punctuation">::</span>tr1<span class="token double-colon punctuation">::</span>shared_ptr<span class="token operator">&lt;</span>Widget<span class="token operator">&gt;</span> <span class="token function">pw</span><span class="token punctuation">(</span><span class="token keyword">new</span> Widget<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">processWidget</span><span class="token punctuation">(</span>pw<span class="token punctuation">,</span> <span class="token function">priority</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>对于第二种调用的第一个参数有两个步骤</p>
-<ul>
-<li>执行“new Widget”</li>
-<li>调用tr1:shared_ptr构造函数</li>
-</ul>
-<p>而priority()的调用可能发生在这两步之间，若priority()的调用产生异常，则“new Widget”返回的指针将会遗失</p>
-<ul>
-<li>解决办法是第三种调用，分两步执行。</li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>C/S文件传输软件的设计与实现</title>
     <url>/posts/b12c.html</url>
     <content><![CDATA[<h1 id="C-S文件传输软件的设计与实现"><a href="#C-S文件传输软件的设计与实现" class="headerlink" title="C/S文件传输软件的设计与实现"></a>C/S文件传输软件的设计与实现</h1><h2 id="理解三个包"><a href="#理解三个包" class="headerlink" title="理解三个包"></a>理解三个包</h2><p>需要明白这是出现在哪一层的设计</p>
@@ -1121,41 +1121,6 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 <ul>
 <li>参考<a href="http://cnblogs.com/caihuafeng/p/5438753.html">对于多线程程序，单核cpu与多核cpu是怎么工作的</a>——cnblogs</li>
 </ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>reactor反应堆</title>
-    <url>/posts/1fd0.html</url>
-    <content><![CDATA[<h1 id="reactor"><a href="#reactor" class="headerlink" title="reactor"></a>reactor</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912184500.png" style="zoom: 25%;"></p>
-<p>Reactor thread : 反应堆线程——epoll实例，感知业务发生，直接给<code>Thread Pool</code>的线程做对应的工作</p>
-<p>这里会引发几个问题：</p>
-<p>1⃣️线程池中的线程量设计多少才合理？是越多越好吗？</p>
-<ul>
-<li>结论：不超过cpu核心数，要想性能最高，就让线程数等于cpu核心数</li>
-<li>原因：若是超过了cpu核心数，那么线程池中的线程之间也会发生调度，尽管线程间调度消耗的时间很少，但还是付出了损失性能的代价</li>
-</ul>
-<p>2⃣️既然不能超过cpu核心数，那主线程或者辅助的心跳线程放哪里呢？假设有8个cpu，是不是应该在线程池中设计6个呢？</p>
-<ul>
-<li>在我们设计这个反应堆模式时，线程池中处理的应该是繁忙的业务(由reactor分发过来的，ready状态的，无需等待)，应该要一直运行在cpu上的（cpu密集型）</li>
-<li>主线程和心跳线程——IO约束型的，更多时候在<code>sleep</code>，可以插空执行，</li>
-</ul>
-<p>3⃣️那既然这样，是不是意味着cpu越多，我处理并发的性能就越高呢？</p>
-<ul>
-<li>并不是，cpu越多，则任务在cpu中协调更困难（可靠性）</li>
-</ul>
-<h1 id="主从反应堆"><a href="#主从反应堆" class="headerlink" title="主从反应堆"></a>主从反应堆</h1><blockquote>
-<p>类比：理发店问题</p>
-<p>假设<code>reactor dispatch</code>为理发店老板，<code>sub-reactor dispatch</code>为合伙人，<code>client</code>为客户，<code>Thread Pool</code>为理发师。</p>
-<p>现在老板拉来了3个客人，老板只负责分配任务交给两个合伙人（从反应堆），两个合伙人一个给男孩剪头，一个给女孩剪头（也就是说现在客户跟合伙人有关联），并且合伙人只负责维护这些客户，这些客户之后和老板没有直接关系，如果客户要剪头发了（任务，可放在任务队列中），那么通知合伙人，由合伙人再去通知理发师线程去抢生意（抢占任务）</p>
-<p>假设客人要离开了，只需要通知合伙人就行，在合伙人这里进行删除，注销操作。</p>
-</blockquote>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912190559.png" style="zoom:25%;"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912191314.png" style="zoom:25%;"></p>
-<p>为什么需要从反应堆？</p>
-<ul>
-<li>因为主反应堆不够用，处理的能力不行，需要从反应堆分担压力</li>
-</ul>
-<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>什么是IO多路复用</p>
-<p>什么是线程池，原理是什么，线程池设计多少的并发量比较适合，最大化使用应该设置为多少——线程池中的线程不能超过cpu核心数</p>
 ]]></content>
   </entry>
   <entry>
@@ -1419,6 +1384,41 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
       </tags>
   </entry>
   <entry>
+    <title>reactor反应堆</title>
+    <url>/posts/1fd0.html</url>
+    <content><![CDATA[<h1 id="reactor"><a href="#reactor" class="headerlink" title="reactor"></a>reactor</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912184500.png" style="zoom: 25%;"></p>
+<p>Reactor thread : 反应堆线程——epoll实例，感知业务发生，直接给<code>Thread Pool</code>的线程做对应的工作</p>
+<p>这里会引发几个问题：</p>
+<p>1⃣️线程池中的线程量设计多少才合理？是越多越好吗？</p>
+<ul>
+<li>结论：不超过cpu核心数，要想性能最高，就让线程数等于cpu核心数</li>
+<li>原因：若是超过了cpu核心数，那么线程池中的线程之间也会发生调度，尽管线程间调度消耗的时间很少，但还是付出了损失性能的代价</li>
+</ul>
+<p>2⃣️既然不能超过cpu核心数，那主线程或者辅助的心跳线程放哪里呢？假设有8个cpu，是不是应该在线程池中设计6个呢？</p>
+<ul>
+<li>在我们设计这个反应堆模式时，线程池中处理的应该是繁忙的业务(由reactor分发过来的，ready状态的，无需等待)，应该要一直运行在cpu上的（cpu密集型）</li>
+<li>主线程和心跳线程——IO约束型的，更多时候在<code>sleep</code>，可以插空执行，</li>
+</ul>
+<p>3⃣️那既然这样，是不是意味着cpu越多，我处理并发的性能就越高呢？</p>
+<ul>
+<li>并不是，cpu越多，则任务在cpu中协调更困难（可靠性）</li>
+</ul>
+<h1 id="主从反应堆"><a href="#主从反应堆" class="headerlink" title="主从反应堆"></a>主从反应堆</h1><blockquote>
+<p>类比：理发店问题</p>
+<p>假设<code>reactor dispatch</code>为理发店老板，<code>sub-reactor dispatch</code>为合伙人，<code>client</code>为客户，<code>Thread Pool</code>为理发师。</p>
+<p>现在老板拉来了3个客人，老板只负责分配任务交给两个合伙人（从反应堆），两个合伙人一个给男孩剪头，一个给女孩剪头（也就是说现在客户跟合伙人有关联），并且合伙人只负责维护这些客户，这些客户之后和老板没有直接关系，如果客户要剪头发了（任务，可放在任务队列中），那么通知合伙人，由合伙人再去通知理发师线程去抢生意（抢占任务）</p>
+<p>假设客人要离开了，只需要通知合伙人就行，在合伙人这里进行删除，注销操作。</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912190559.png" style="zoom:25%;"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912191314.png" style="zoom:25%;"></p>
+<p>为什么需要从反应堆？</p>
+<ul>
+<li>因为主反应堆不够用，处理的能力不行，需要从反应堆分担压力</li>
+</ul>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>什么是IO多路复用</p>
+<p>什么是线程池，原理是什么，线程池设计多少的并发量比较适合，最大化使用应该设置为多少——线程池中的线程不能超过cpu核心数</p>
+]]></content>
+  </entry>
+  <entry>
     <title>哈希表与布隆过滤器</title>
     <url>/posts/69d8.html</url>
     <content><![CDATA[<h1 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h1><blockquote>
@@ -1606,71 +1606,6 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103184436.png" alt=""></p>
 <h2 id="863-二叉树中所有距离为-K-的结点"><a href="#863-二叉树中所有距离为-K-的结点" class="headerlink" title="863. 二叉树中所有距离为 K 的结点"></a><a href="https://leetcode-cn.com/problems/all-nodes-distance-k-in-binary-tree/">863. 二叉树中所有距离为 K 的结点</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103192007.png" alt=""></p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103192032.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103192054.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>深搜与广搜</title>
-    <url>/posts/8160.html</url>
-    <content><![CDATA[<h1 id="深搜与广搜"><a href="#深搜与广搜" class="headerlink" title="深搜与广搜"></a>深搜与广搜</h1><h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103213830.png" style="zoom: 25%;"></p>
-<ul>
-<li>在思维逻辑层面——节点代表问题状态的树形结构</li>
-</ul>
-<p>例如走迷宫问题</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103214358.png" alt=""></p>
-<ul>
-<li>这里的状态就是小牛可以走到的位置——右边生成的就是问题求解树</li>
-<li>解题的关键是定义状态</li>
-</ul>
-<p>深搜与广搜</p>
-<ul>
-<li>就是对问题求解树的不同遍历方式</li>
-</ul>
-<p>搜索剪枝和优化</p>
-<ul>
-<li>排除某些问题求解树中的子树遍历过程</li>
-</ul>
-<p>设计搜索算法的核心关键点</p>
-<ul>
-<li>设计问题求解树中的状态</li>
-</ul>
-<h1 id="刷题-go！"><a href="#刷题-go！" class="headerlink" title="刷题 go！"></a>刷题 go！</h1><h2 id="993-二叉树的堂兄弟节点"><a href="#993-二叉树的堂兄弟节点" class="headerlink" title="993. 二叉树的堂兄弟节点"></a><a href="https://leetcode-cn.com/problems/cousins-in-binary-tree/">993. 二叉树的堂兄弟节点</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103223455.png" alt=""></p>
-<p>深搜版本</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103223509.png" alt=""></p>
-<p>广搜版本</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103225332.png" alt=""></p>
-<ul>
-<li>定义状态</li>
-<li>把状态放入队列中</li>
-</ul>
-<h2 id="542-01-矩阵"><a href="#542-01-矩阵" class="headerlink" title="542. 01 矩阵"></a><a href="https://leetcode-cn.com/problems/01-matrix/">542. 01 矩阵</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232742.png" alt=""></p>
-<ul>
-<li>计算从0位置到每个1点的最少步数</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232811.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232833.png" alt=""></p>
-<h2 id="1091-二进制矩阵中的最短路径"><a href="#1091-二进制矩阵中的最短路径" class="headerlink" title="1091. 二进制矩阵中的最短路径"></a><a href="https://leetcode-cn.com/problems/shortest-path-in-binary-matrix/">1091. 二进制矩阵中的最短路径</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104002412.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104002437.png" alt=""></p>
-<h2 id="752-打开转盘锁"><a href="#752-打开转盘锁" class="headerlink" title="752. 打开转盘锁"></a><a href="https://leetcode-cn.com/problems/open-the-lock/">752. 打开转盘锁</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010444.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010510.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010528.png" alt=""></p>
-<ul>
-<li>注意扩展状态，4个转盘，两个方向，难点在于这里</li>
-<li>使用哈希存储deadends中的值，加快查找效率，也可以使用其进行去重</li>
-</ul>
-<h2 id="剑指-Offer-13-机器人的运动范围"><a href="#剑指-Offer-13-机器人的运动范围" class="headerlink" title="剑指 Offer 13. 机器人的运动范围"></a><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/">剑指 Offer 13. 机器人的运动范围</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014444.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014506.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014528.png" alt=""></p>
-<h2 id="130-被围绕的区域"><a href="#130-被围绕的区域" class="headerlink" title="130. 被围绕的区域"></a><a href="https://leetcode-cn.com/problems/surrounded-regions/">130. 被围绕的区域</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104021658.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104021715.png" alt=""></p>
-<ul>
-<li>采用逆思维，扫描边界O，搜索与其相邻的O，最后剩下的大O即为被X包围的</li>
-</ul>
-<h2 id="494-目标和"><a href="#494-目标和" class="headerlink" title="494. 目标和"></a><a href="https://leetcode-cn.com/problems/target-sum/">494. 目标和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109220710.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109220730.png" alt=""></p>
-<ul>
-<li>记忆化——函数是展开的数组，数组是压缩的函数</li>
-</ul>
-<h2 id="473-火柴拼正方形"><a href="#473-火柴拼正方形" class="headerlink" title="473. 火柴拼正方形"></a><a href="https://leetcode-cn.com/problems/matchsticks-to-square/">473. 火柴拼正方形</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109231955.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109232016.png" alt=""></p>
-<h2 id="39-组合总和"><a href="#39-组合总和" class="headerlink" title="39. 组合总和"></a><a href="https://leetcode-cn.com/problems/combination-sum/">39. 组合总和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211110215350.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211110215408.png" alt=""></p>
 ]]></content>
   </entry>
   <entry>
@@ -1912,6 +1847,71 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 <li>倒着存储</li>
 </ul>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116224638.png" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>深搜与广搜</title>
+    <url>/posts/8160.html</url>
+    <content><![CDATA[<h1 id="深搜与广搜"><a href="#深搜与广搜" class="headerlink" title="深搜与广搜"></a>深搜与广搜</h1><h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103213830.png" style="zoom: 25%;"></p>
+<ul>
+<li>在思维逻辑层面——节点代表问题状态的树形结构</li>
+</ul>
+<p>例如走迷宫问题</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103214358.png" alt=""></p>
+<ul>
+<li>这里的状态就是小牛可以走到的位置——右边生成的就是问题求解树</li>
+<li>解题的关键是定义状态</li>
+</ul>
+<p>深搜与广搜</p>
+<ul>
+<li>就是对问题求解树的不同遍历方式</li>
+</ul>
+<p>搜索剪枝和优化</p>
+<ul>
+<li>排除某些问题求解树中的子树遍历过程</li>
+</ul>
+<p>设计搜索算法的核心关键点</p>
+<ul>
+<li>设计问题求解树中的状态</li>
+</ul>
+<h1 id="刷题-go！"><a href="#刷题-go！" class="headerlink" title="刷题 go！"></a>刷题 go！</h1><h2 id="993-二叉树的堂兄弟节点"><a href="#993-二叉树的堂兄弟节点" class="headerlink" title="993. 二叉树的堂兄弟节点"></a><a href="https://leetcode-cn.com/problems/cousins-in-binary-tree/">993. 二叉树的堂兄弟节点</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103223455.png" alt=""></p>
+<p>深搜版本</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103223509.png" alt=""></p>
+<p>广搜版本</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103225332.png" alt=""></p>
+<ul>
+<li>定义状态</li>
+<li>把状态放入队列中</li>
+</ul>
+<h2 id="542-01-矩阵"><a href="#542-01-矩阵" class="headerlink" title="542. 01 矩阵"></a><a href="https://leetcode-cn.com/problems/01-matrix/">542. 01 矩阵</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232742.png" alt=""></p>
+<ul>
+<li>计算从0位置到每个1点的最少步数</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232811.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232833.png" alt=""></p>
+<h2 id="1091-二进制矩阵中的最短路径"><a href="#1091-二进制矩阵中的最短路径" class="headerlink" title="1091. 二进制矩阵中的最短路径"></a><a href="https://leetcode-cn.com/problems/shortest-path-in-binary-matrix/">1091. 二进制矩阵中的最短路径</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104002412.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104002437.png" alt=""></p>
+<h2 id="752-打开转盘锁"><a href="#752-打开转盘锁" class="headerlink" title="752. 打开转盘锁"></a><a href="https://leetcode-cn.com/problems/open-the-lock/">752. 打开转盘锁</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010444.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010510.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010528.png" alt=""></p>
+<ul>
+<li>注意扩展状态，4个转盘，两个方向，难点在于这里</li>
+<li>使用哈希存储deadends中的值，加快查找效率，也可以使用其进行去重</li>
+</ul>
+<h2 id="剑指-Offer-13-机器人的运动范围"><a href="#剑指-Offer-13-机器人的运动范围" class="headerlink" title="剑指 Offer 13. 机器人的运动范围"></a><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/">剑指 Offer 13. 机器人的运动范围</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014444.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014506.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014528.png" alt=""></p>
+<h2 id="130-被围绕的区域"><a href="#130-被围绕的区域" class="headerlink" title="130. 被围绕的区域"></a><a href="https://leetcode-cn.com/problems/surrounded-regions/">130. 被围绕的区域</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104021658.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104021715.png" alt=""></p>
+<ul>
+<li>采用逆思维，扫描边界O，搜索与其相邻的O，最后剩下的大O即为被X包围的</li>
+</ul>
+<h2 id="494-目标和"><a href="#494-目标和" class="headerlink" title="494. 目标和"></a><a href="https://leetcode-cn.com/problems/target-sum/">494. 目标和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109220710.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109220730.png" alt=""></p>
+<ul>
+<li>记忆化——函数是展开的数组，数组是压缩的函数</li>
+</ul>
+<h2 id="473-火柴拼正方形"><a href="#473-火柴拼正方形" class="headerlink" title="473. 火柴拼正方形"></a><a href="https://leetcode-cn.com/problems/matchsticks-to-square/">473. 火柴拼正方形</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109231955.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109232016.png" alt=""></p>
+<h2 id="39-组合总和"><a href="#39-组合总和" class="headerlink" title="39. 组合总和"></a><a href="https://leetcode-cn.com/problems/combination-sum/">39. 组合总和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211110215350.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211110215408.png" alt=""></p>
 ]]></content>
   </entry>
   <entry>
@@ -2157,6 +2157,11 @@ public:
 </li>
 </ul>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116225439.png" alt=""></p>
+<p>2：状态定义<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220124230139.png" style="zoom:25%;"></p>
+<p>正向刷表：当前$dp[i][j]$依赖上一行的$dp[i-1][j]$和这一行的$dp[i][j-x]$</p>
+<p>反向刷表：当前$dp[i][j]$依赖上一行的$dp[i-1][j]$和上一行的$dp[i-1][j-x]$</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220125000122.png" alt=""></p>
 <h2 id="300-最长递增子序列"><a href="#300-最长递增子序列" class="headerlink" title="300. 最长递增子序列"></a><a href="https://leetcode-cn.com/problems/longest-increasing-subsequence/">300. 最长递增子序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220116230658.png" alt=""></p>
 <ul>
 <li>状态定义——$dp[n]$：以n位置为结尾的最长递增子序列的长度<ul>
@@ -2218,7 +2223,42 @@ public:
 <ul>
 <li>$f[i][j] = f[i - 1][j + x] + f[i - 1][j - x]$</li>
 </ul>
-<p>由于数组下标不能为负数，所以此题可用哈希表存储</p>
+<p>由于数组下标不能为负数，所以此题可用哈希表存储，还可以用如下方法</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220124222902.png" style="zoom:25%;"></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220124224136.png" alt=""></p>
+<p>三处难点：滚动数组，处理数组下标，数组更新方式：我到哪里去</p>
+<h2 id="518-零钱兑换-II"><a href="#518-零钱兑换-II" class="headerlink" title="518. 零钱兑换 II"></a><a href="https://leetcode-cn.com/problems/coin-change-2/">518. 零钱兑换 II</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220125001444.png" alt=""></p>
+<p>状态定义</p>
+<ul>
+<li>$f[i][j]$：使用前i种钱币凑出j元的方法总数</li>
+<li>$f[i][j]=f[i-1][j]+f[i][j-x]$</li>
+</ul>
+<p><span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>注意：每个数字可以选无数次，不管选了多少个第 i 种物品，物品种数还是前 i 种</p>
+<p>优化：正向刷表</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220125002240.png" alt=""></p>
+<h2 id="377-组合总和-Ⅳ"><a href="#377-组合总和-Ⅳ" class="headerlink" title="377. 组合总和 Ⅳ"></a><a href="https://leetcode-cn.com/problems/combination-sum-iv/">377. 组合总和 Ⅳ</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220125010212.png" alt=""></p>
+<p>状态定义：</p>
+<ul>
+<li>$dp[n]$:用所有硬币拼凑n元钱的方法总数</li>
+<li>$dp[n]=\sum{dp[n-x_i]}$ $1 \le i \le n$</li>
+</ul>
+<p>注意：这样求解时不会考虑顺序问题</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220125010741.png" alt=""></p>
+<h2 id="382-链表随机节点"><a href="#382-链表随机节点" class="headerlink" title="382. 链表随机节点"></a><a href="https://leetcode-cn.com/problems/linked-list-random-node/">382. 链表随机节点</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220125011512.png" alt=""></p>
+<ul>
+<li>非最优解</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220125011533.png" alt=""></p>
+<h2 id="462-最少移动次数使数组元素相等-II"><a href="#462-最少移动次数使数组元素相等-II" class="headerlink" title="462. 最少移动次数使数组元素相等 II"></a><a href="https://leetcode-cn.com/problems/minimum-moves-to-equal-array-elements-ii/">462. 最少移动次数使数组元素相等 II</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220125012237.png" alt=""></p>
+<ul>
+<li>思路——基于货仓选址，选取中位数</li>
+<li>需要将此题看成一类数学问题$cost=\sum\abs{x_i-x_0}$——$x_0$为$x_i$序列的中位数，才可使cost最小</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220125012645.png" alt=""></p>
+<h2 id="77-组合"><a href="#77-组合" class="headerlink" title="77. 组合"></a><a href="https://leetcode-cn.com/problems/combinations/">77. 组合</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220125013630.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220125013955.png" alt=""></p>
+<h2 id="234-回文链表"><a href="#234-回文链表" class="headerlink" title="234. 回文链表"></a><a href="https://leetcode-cn.com/problems/palindrome-linked-list/">234. 回文链表</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220125015417.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220125015436.png" alt=""></p>
 ]]></content>
   </entry>
   <entry>
