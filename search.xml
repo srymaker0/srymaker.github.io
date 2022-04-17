@@ -1,6 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>BSTree&amp;AVL_Tree</title>
+    <url>/posts/a49b.html</url>
+    <content><![CDATA[<h1 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h1><h2 id="一、性质"><a href="#一、性质" class="headerlink" title="一、性质"></a>一、性质</h2><ol>
+<li>左子树 &lt; 根节点</li>
+<li>右子树 &gt; 根节点</li>
+<li>中序遍历的结果，是一个有序序列</li>
+</ol>
+<p>数据结构，就是定义一种性质，并且维护这种性质。</p>
+<h2 id="二、插入操作"><a href="#二、插入操作" class="headerlink" title="二、插入操作"></a>二、插入操作</h2><ol>
+<li>插入的新节点，一定会做为叶子结点</li>
+</ol>
+<h2 id="三、删除操作"><a href="#三、删除操作" class="headerlink" title="三、删除操作"></a>三、删除操作</h2><ol>
+<li><p>删除度为0的节点，直接删除</p>
+</li>
+<li><p>删除度为1的节点，把『孤儿子树』挂到其父节点上面去</p>
+</li>
+<li><p>删除度为2的节点，可以转化成删除度为1的节点</p>
+<ul>
+<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/Zgpth4EPz25eYMO.png" style="zoom:50%;"></p>
+</li>
+<li><p>首先找到度为2的节点的前驱节点</p>
+</li>
+<li>该前驱是左子树中最大的值</li>
+<li>将此值把度为2的节点覆盖掉</li>
+<li>然后再在原来的左子树中把此值（前驱节点）删除</li>
+<li><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>代码中有bug  但是对整体来说并没有bug因为度为0或者1的节点都被处理了<ul>
+<li>❗注意： 度为1的前驱不一定在子树中  </li>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/x7H2kao9lNEpAY6.png" style="zoom:50%;"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>对于度为2的节点：</p>
+<ol>
+<li>前驱节点：左子树最大值 </li>
+<li>后继节点：右子树最小值</li>
+</ol>
+<h2 id="四、随堂练习"><a href="#四、随堂练习" class="headerlink" title="四、随堂练习"></a>四、随堂练习</h2><ol>
+<li><p>插入顺序会影响最终的树形结构</p>
+<ul>
+<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/9CKfJa5PhuB8pnj.png" style="zoom:50%;"></p>
+</li>
+<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/cH7RaKAN9IGUJuq.png" style="zoom:50%;"></p>
+</li>
+<li>我们可以看到第2种插入顺序 这不就是一个链表吗   而且此时的查找效率会退化为<code>O(n)</code></li>
+</ul>
+</li>
+<li><p>不同的树形结构，查找效率不同</p>
+</li>
+</ol>
+<ul>
+<li><p>平均查找效率：节点查找次数的期望值，$\frac{总次数}{节点数量}$ </p>
+<ul>
+<li><p>前提条件：假设每个节点等概率的被查找</p>
+</li>
+<li><p>总次数=每个节点的查找次数之和</p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>leetcode 110    669</li>
+</ul>
+<h2 id="五、扩展内容"><a href="#五、扩展内容" class="headerlink" title="五、扩展内容"></a>五、扩展内容</h2><ol>
+<li>二叉排序树的删除代码优化<ol>
+<li>删除掉处理度为0的代码逻辑，不影响代码整体功能</li>
+</ol>
+</li>
+<li>如何解决==排名==相关的检索需求<ol>
+<li>修改二叉排序树的结构定义，增加 size 字段，记录每棵树的节点数量</li>
+<li>$k = LS - 1$根节点就是排名第 k 位的元素</li>
+<li>$k \le LS$，排名第 k 位的元素在左子树中</li>
+<li>$k \gt LS，search_k(root-&gt;rchild, k - LS - 1)$</li>
+</ol>
+</li>
+<li>解决 Top-K 问题（找到小于第 k 位的所有元素）(也可以用堆来解决)<ol>
+<li>根节点就是第 k 位元素的话，就把左子树中的值全部输出出来</li>
+<li>第 k 位在左子树中，前 k 位元素全都在左子树中</li>
+<li>第 k 位在右子树中，说明根节点和左子树中的元素，都是前 k 位元素里面的值</li>
+</ol>
+</li>
+<li>二叉排序树和快速排序的关系<ol>
+<li>二叉排序树是快速排序在思维逻辑结构层面用的数据结构</li>
+<li>思考1：快速排序的时间复杂度和二叉排序树建树时间复杂度之间的关系</li>
+<li>思考2：快速选择算法和二叉排序树之间的关系</li>
+<li>程序=算法+数据结构</li>
+</ol>
+</li>
+</ol>
+<p>所谓算法设计及分析能力：分类讨论及归纳总结的能力</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142541.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142625.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142653.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142733.png" alt=""></p>
+<h1 id="平衡二叉查找树之AVL树"><a href="#平衡二叉查找树之AVL树" class="headerlink" title="平衡二叉查找树之AVL树"></a>平衡二叉查找树之AVL树</h1><h2 id="一、学习重点"><a href="#一、学习重点" class="headerlink" title="一、学习重点"></a>一、学习重点</h2><ol>
+<li>平衡二叉树排序树，本质上也是二叉排序树，所以拥有二叉排序树的所有性质</li>
+<li>平衡二叉树排序树的学习重点， 在于平衡条件以及平衡调整的相关学习<ul>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/Ig6mp1WjGoVaQP4.png" style="zoom:50%;"></li>
+</ul>
+</li>
+</ol>
+<h2 id="二、性质"><a href="#二、性质" class="headerlink" title="二、性质"></a>二、性质</h2><h6 id="1-平衡条件：左右子树高度差不超过1"><a href="#1-平衡条件：左右子树高度差不超过1" class="headerlink" title="1.平衡条件：左右子树高度差不超过1"></a>1.平衡条件：左右子树高度差不超过1</h6><h2 id="三、思考"><a href="#三、思考" class="headerlink" title="三、思考"></a>三、思考</h2><ul>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/3bLVEBUH6yig7ux.png" style="zoom:50%;"></li>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/ODHTjxocSY9Nf3W.png" style="zoom: 50%;"></li>
+</ul>
+<ol>
+<li>AVL树改进的是节点数量的下限 <ul>
+<li>大约是$1.5^h$ </li>
+<li>提高了下限  再差也差不到哪里去  查找效率为<code>O(logn)</code></li>
+<li>节点数n 和 树高h之间的关系<ul>
+<li>$h=log^n$ </li>
+<li>当表示最少节点数时  log的底数是1.5</li>
+<li>当表示最少节点数时  log的底数是2</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>树高 = 生命长度， 节点数量 = 生命财富</li>
+<li>教育提升的是底线，而不是上限</li>
+</ol>
+<h2 id="四、平衡调整策略"><a href="#四、平衡调整策略" class="headerlink" title="四、平衡调整策略"></a>四、平衡调整策略</h2><ul>
+<li><p>左旋</p>
+<p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/6xaZ9s2XQzNrJC1.png" style="zoom: 33%;"></p>
+<ul>
+<li>左旋的操作意义 （有点类似与天平）<ul>
+<li>降低右子树的树高  </li>
+<li>加深左子树的树高</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>右旋其实就是左旋的翻版</p>
+</li>
+</ul>
+<ol>
+<li>发生在回溯阶段的，第一个失衡节点处</li>
+<li>理解平衡调整策略的关键在于： 分析清楚四种情况下， ABCD四棵子树树高的关系</li>
+<li>LL<ul>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/Zlo8chWSxu2rVsA.png" style="zoom: 67%;"></li>
+<li>假设A，B，C，D子树的树高分别为h1，h2，h3， h4<ul>
+<li>首先 h3, h4 不一定相等  但是他们满足平衡条件👉h3和h4之间的高度差不会大于1</li>
+<li>为什么会发生失衡？👉 这是由于插入了一个节点所产生的  且由于是LL型的失衡所以插入到A子树产生了失衡</li>
+<li>根据失衡条件 K2的高度要比K3的高度大2👉这是大前提  也就是站在K1的视角看下面的子树是失衡的<ul>
+<li>平衡时K2的高度为h1+1 ， K3的高度为max（h3，h4）+ 1</li>
+<li>那么失衡时$h1+1=max（h3，h4）+ 1 + 2$👉$h1 = max(h3,h4) + 2$</li>
+<li>大前提情况下A B不能失衡 否则就是站在K2的视角就已经失衡了  所以$h1 = h2 + 1$ </li>
+<li>综上所述$h1 = max(h3,h4) + 2 = h2 + 1$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/23/Hu7JSBDGLgXmy9C.png" style="zoom: 67%;"><ul>
+<li>这种失衡用右旋操作解决<ul>
+<li>平衡的可怕❗ </li>
+<li>$h2 = max(h3,h4) + 1 = K3$</li>
+<li>$K1 = h2 + 1 = h1$</li>
+<li>放眼看去  Woc  全部平衡了 🤭 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>LR<ul>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/23/UsrA5ql7QmKJ94x.png" style="zoom:33%;"></li>
+<li><strong>处理方法</strong><ul>
+<li>先抓着K2小左旋<ul>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/23/MBwEIQ3pKiH6ydU.png" style="zoom:33%;"></li>
+</ul>
+</li>
+<li>再抓着K1大右旋<ul>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/23/USxYIQeZlbPpwg6.png" style="zoom:33%;"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>RL</li>
+<li>RR</li>
+</ol>
+<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><ul>
+<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/9CKfJa5PhuB8pnj.png" style="zoom:50%;"></li>
+</ul>
+<h2 id="五、代码演示"><a href="#五、代码演示" class="headerlink" title="五、代码演示"></a>五、代码演示</h2><ol>
+<li>插入和删除以后， 注意重新计算树高字段</li>
+<li>引入了NIL阶段， 代替NULL，NULL不可访问，NIL是一个实际节点，可访问 (帮助我们实现)</li>
+</ol>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142857.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142946.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103143027.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103143053.png" alt=""></p>
+<h3 id="vim微操"><a href="#vim微操" class="headerlink" title="vim微操"></a>vim微操</h3><ul>
+<li><code>ctrl+v</code>进入可视块模式 : 可以选中一块内容</li>
+<li>选中后按<code>shift + i</code>选中一列👉这种插入模式可以按列插入</li>
+<li>只要在第一行插入 接着按<code>ESC</code>就可以一列插入</li>
+<li>删除也是<code>ctrl+v</code>进入可视块模式  选中要删除的按<code>x</code></li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>手撕红黑树！！！</title>
     <url>/posts/9afc.html</url>
     <content><![CDATA[<h1 id="红黑树（上）"><a href="#红黑树（上）" class="headerlink" title="红黑树（上）"></a>红黑树（上）</h1><h2 id="一、五个平衡条件"><a href="#一、五个平衡条件" class="headerlink" title="一、五个平衡条件"></a>一、五个平衡条件</h2><ol>
@@ -235,202 +431,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>BSTree&amp;AVL_Tree</title>
-    <url>/posts/a49b.html</url>
-    <content><![CDATA[<h1 id="二叉查找树"><a href="#二叉查找树" class="headerlink" title="二叉查找树"></a>二叉查找树</h1><h2 id="一、性质"><a href="#一、性质" class="headerlink" title="一、性质"></a>一、性质</h2><ol>
-<li>左子树 &lt; 根节点</li>
-<li>右子树 &gt; 根节点</li>
-<li>中序遍历的结果，是一个有序序列</li>
-</ol>
-<p>数据结构，就是定义一种性质，并且维护这种性质。</p>
-<h2 id="二、插入操作"><a href="#二、插入操作" class="headerlink" title="二、插入操作"></a>二、插入操作</h2><ol>
-<li>插入的新节点，一定会做为叶子结点</li>
-</ol>
-<h2 id="三、删除操作"><a href="#三、删除操作" class="headerlink" title="三、删除操作"></a>三、删除操作</h2><ol>
-<li><p>删除度为0的节点，直接删除</p>
-</li>
-<li><p>删除度为1的节点，把『孤儿子树』挂到其父节点上面去</p>
-</li>
-<li><p>删除度为2的节点，可以转化成删除度为1的节点</p>
-<ul>
-<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/Zgpth4EPz25eYMO.png" style="zoom:50%;"></p>
-</li>
-<li><p>首先找到度为2的节点的前驱节点</p>
-</li>
-<li>该前驱是左子树中最大的值</li>
-<li>将此值把度为2的节点覆盖掉</li>
-<li>然后再在原来的左子树中把此值（前驱节点）删除</li>
-<li><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>代码中有bug  但是对整体来说并没有bug因为度为0或者1的节点都被处理了<ul>
-<li>❗注意： 度为1的前驱不一定在子树中  </li>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/x7H2kao9lNEpAY6.png" style="zoom:50%;"></li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<p>对于度为2的节点：</p>
-<ol>
-<li>前驱节点：左子树最大值 </li>
-<li>后继节点：右子树最小值</li>
-</ol>
-<h2 id="四、随堂练习"><a href="#四、随堂练习" class="headerlink" title="四、随堂练习"></a>四、随堂练习</h2><ol>
-<li><p>插入顺序会影响最终的树形结构</p>
-<ul>
-<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/9CKfJa5PhuB8pnj.png" style="zoom:50%;"></p>
-</li>
-<li><p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/cH7RaKAN9IGUJuq.png" style="zoom:50%;"></p>
-</li>
-<li>我们可以看到第2种插入顺序 这不就是一个链表吗   而且此时的查找效率会退化为<code>O(n)</code></li>
-</ul>
-</li>
-<li><p>不同的树形结构，查找效率不同</p>
-</li>
-</ol>
-<ul>
-<li><p>平均查找效率：节点查找次数的期望值，$\frac{总次数}{节点数量}$ </p>
-<ul>
-<li><p>前提条件：假设每个节点等概率的被查找</p>
-</li>
-<li><p>总次数=每个节点的查找次数之和</p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>leetcode 110    669</li>
-</ul>
-<h2 id="五、扩展内容"><a href="#五、扩展内容" class="headerlink" title="五、扩展内容"></a>五、扩展内容</h2><ol>
-<li>二叉排序树的删除代码优化<ol>
-<li>删除掉处理度为0的代码逻辑，不影响代码整体功能</li>
-</ol>
-</li>
-<li>如何解决==排名==相关的检索需求<ol>
-<li>修改二叉排序树的结构定义，增加 size 字段，记录每棵树的节点数量</li>
-<li>$k = LS - 1$根节点就是排名第 k 位的元素</li>
-<li>$k \le LS$，排名第 k 位的元素在左子树中</li>
-<li>$k \gt LS，search_k(root-&gt;rchild, k - LS - 1)$</li>
-</ol>
-</li>
-<li>解决 Top-K 问题（找到小于第 k 位的所有元素）(也可以用堆来解决)<ol>
-<li>根节点就是第 k 位元素的话，就把左子树中的值全部输出出来</li>
-<li>第 k 位在左子树中，前 k 位元素全都在左子树中</li>
-<li>第 k 位在右子树中，说明根节点和左子树中的元素，都是前 k 位元素里面的值</li>
-</ol>
-</li>
-<li>二叉排序树和快速排序的关系<ol>
-<li>二叉排序树是快速排序在思维逻辑结构层面用的数据结构</li>
-<li>思考1：快速排序的时间复杂度和二叉排序树建树时间复杂度之间的关系</li>
-<li>思考2：快速选择算法和二叉排序树之间的关系</li>
-<li>程序=算法+数据结构</li>
-</ol>
-</li>
-</ol>
-<p>所谓算法设计及分析能力：分类讨论及归纳总结的能力</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142541.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142625.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142653.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142733.png" alt=""></p>
-<h1 id="平衡二叉查找树之AVL树"><a href="#平衡二叉查找树之AVL树" class="headerlink" title="平衡二叉查找树之AVL树"></a>平衡二叉查找树之AVL树</h1><h2 id="一、学习重点"><a href="#一、学习重点" class="headerlink" title="一、学习重点"></a>一、学习重点</h2><ol>
-<li>平衡二叉树排序树，本质上也是二叉排序树，所以拥有二叉排序树的所有性质</li>
-<li>平衡二叉树排序树的学习重点， 在于平衡条件以及平衡调整的相关学习<ul>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/Ig6mp1WjGoVaQP4.png" style="zoom:50%;"></li>
-</ul>
-</li>
-</ol>
-<h2 id="二、性质"><a href="#二、性质" class="headerlink" title="二、性质"></a>二、性质</h2><h6 id="1-平衡条件：左右子树高度差不超过1"><a href="#1-平衡条件：左右子树高度差不超过1" class="headerlink" title="1.平衡条件：左右子树高度差不超过1"></a>1.平衡条件：左右子树高度差不超过1</h6><h2 id="三、思考"><a href="#三、思考" class="headerlink" title="三、思考"></a>三、思考</h2><ul>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/3bLVEBUH6yig7ux.png" style="zoom:50%;"></li>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/ODHTjxocSY9Nf3W.png" style="zoom: 50%;"></li>
-</ul>
-<ol>
-<li>AVL树改进的是节点数量的下限 <ul>
-<li>大约是$1.5^h$ </li>
-<li>提高了下限  再差也差不到哪里去  查找效率为<code>O(logn)</code></li>
-<li>节点数n 和 树高h之间的关系<ul>
-<li>$h=log^n$ </li>
-<li>当表示最少节点数时  log的底数是1.5</li>
-<li>当表示最少节点数时  log的底数是2</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>树高 = 生命长度， 节点数量 = 生命财富</li>
-<li>教育提升的是底线，而不是上限</li>
-</ol>
-<h2 id="四、平衡调整策略"><a href="#四、平衡调整策略" class="headerlink" title="四、平衡调整策略"></a>四、平衡调整策略</h2><ul>
-<li><p>左旋</p>
-<p><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/6xaZ9s2XQzNrJC1.png" style="zoom: 33%;"></p>
-<ul>
-<li>左旋的操作意义 （有点类似与天平）<ul>
-<li>降低右子树的树高  </li>
-<li>加深左子树的树高</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>右旋其实就是左旋的翻版</p>
-</li>
-</ul>
-<ol>
-<li>发生在回溯阶段的，第一个失衡节点处</li>
-<li>理解平衡调整策略的关键在于： 分析清楚四种情况下， ABCD四棵子树树高的关系</li>
-<li>LL<ul>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/Zlo8chWSxu2rVsA.png" style="zoom: 67%;"></li>
-<li>假设A，B，C，D子树的树高分别为h1，h2，h3， h4<ul>
-<li>首先 h3, h4 不一定相等  但是他们满足平衡条件👉h3和h4之间的高度差不会大于1</li>
-<li>为什么会发生失衡？👉 这是由于插入了一个节点所产生的  且由于是LL型的失衡所以插入到A子树产生了失衡</li>
-<li>根据失衡条件 K2的高度要比K3的高度大2👉这是大前提  也就是站在K1的视角看下面的子树是失衡的<ul>
-<li>平衡时K2的高度为h1+1 ， K3的高度为max（h3，h4）+ 1</li>
-<li>那么失衡时$h1+1=max（h3，h4）+ 1 + 2$👉$h1 = max(h3,h4) + 2$</li>
-<li>大前提情况下A B不能失衡 否则就是站在K2的视角就已经失衡了  所以$h1 = h2 + 1$ </li>
-<li>综上所述$h1 = max(h3,h4) + 2 = h2 + 1$</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/23/Hu7JSBDGLgXmy9C.png" style="zoom: 67%;"><ul>
-<li>这种失衡用右旋操作解决<ul>
-<li>平衡的可怕❗ </li>
-<li>$h2 = max(h3,h4) + 1 = K3$</li>
-<li>$K1 = h2 + 1 = h1$</li>
-<li>放眼看去  Woc  全部平衡了 🤭 </li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>LR<ul>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/23/UsrA5ql7QmKJ94x.png" style="zoom:33%;"></li>
-<li><strong>处理方法</strong><ul>
-<li>先抓着K2小左旋<ul>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/23/MBwEIQ3pKiH6ydU.png" style="zoom:33%;"></li>
-</ul>
-</li>
-<li>再抓着K1大右旋<ul>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/23/USxYIQeZlbPpwg6.png" style="zoom:33%;"></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>RL</li>
-<li>RR</li>
-</ol>
-<h3 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h3><ul>
-<li><img src="/img/loading.gif" data-original="https://i.loli.net/2020/12/22/9CKfJa5PhuB8pnj.png" style="zoom:50%;"></li>
-</ul>
-<h2 id="五、代码演示"><a href="#五、代码演示" class="headerlink" title="五、代码演示"></a>五、代码演示</h2><ol>
-<li>插入和删除以后， 注意重新计算树高字段</li>
-<li>引入了NIL阶段， 代替NULL，NULL不可访问，NIL是一个实际节点，可访问 (帮助我们实现)</li>
-</ol>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142857.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103142946.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103143027.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103143053.png" alt=""></p>
-<h3 id="vim微操"><a href="#vim微操" class="headerlink" title="vim微操"></a>vim微操</h3><ul>
-<li><code>ctrl+v</code>进入可视块模式 : 可以选中一块内容</li>
-<li>选中后按<code>shift + i</code>选中一列👉这种插入模式可以按列插入</li>
-<li>只要在第一行插入 接着按<code>ESC</code>就可以一列插入</li>
-<li>删除也是<code>ctrl+v</code>进入可视块模式  选中要删除的按<code>x</code></li>
-</ul>
-]]></content>
-  </entry>
-  <entry>
     <title>CPP个人笔记</title>
     <url>/posts/db87.html</url>
     <content><![CDATA[<h2 id="冲-兄弟们"><a href="#冲-兄弟们" class="headerlink" title="冲, 兄弟们"></a>冲, 兄弟们</h2><ul>
@@ -450,17 +450,6 @@
       </tags>
   </entry>
   <entry>
-    <title>关于MySQL那点事儿</title>
-    <url>/posts/d4d4.html</url>
-    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><p><a href="https://srymaker0.com/posts/54a3">1.关于MySQL架构</a></p>
-<p><a href="https://srymaker0.com/posts/5a4f">2.InnoDB的RC和RR隔离级别的实现</a></p>
-<p><a href="https://srymaker0.com/posts/7c75">3.InnoDB与事务持久性</a></p>
-]]></content>
-      <tags>
-        <tag>Innodb</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据结构之Leetcode刷题集</title>
     <url>/posts/1124.html</url>
     <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><ul>
@@ -473,7 +462,19 @@
 <li><a href="https://srymaker0.com/posts/9271">7.快速排序+优化</a></li>
 <li><a href="https://srymaker0.com/posts/27bc">8.归并排序</a></li>
 <li><a href="https://srymaker0.com/posts/5930">9.有趣的排序</a></li>
-<li><a href="https://srymaker0.com/posts/96d5">10.二分查找</a></li>
+<li><p><a href="https://srymaker0.com/posts/96d5">10.二分查找</a></p>
+</li>
+<li><p><a href="https://srymaker0.com/posts/69d8">11.哈希查找</a></p>
+</li>
+<li><a href="https://srymaker0.com/posts/8160">12.深搜广搜</a></li>
+<li><a href="https://srymaker0.com/posts/2132">13.单调队列</a></li>
+<li><a href="https://srymaker0.com/posts/831c">14.单调栈</a></li>
+<li><p><a href="https://srymaker0.com/posts/cdd7">15.专项训练</a></p>
+</li>
+<li><p><a href="https://srymaker0.com/posts/416e">16.AVL</a></p>
+</li>
+<li><a href="https://srymaker0.com/posts/654">17.递推，动归</a></li>
+<li><a href="https://srymaker0.com/posts/a0dd">18.字符串匹配</a></li>
 </ul>
 ]]></content>
       <tags>
@@ -481,112 +482,15 @@
       </tags>
   </entry>
   <entry>
-    <title>C/S文件传输软件的设计与实现</title>
-    <url>/posts/b12c.html</url>
-    <content><![CDATA[<h1 id="C-S文件传输软件的设计与实现"><a href="#C-S文件传输软件的设计与实现" class="headerlink" title="C/S文件传输软件的设计与实现"></a>C/S文件传输软件的设计与实现</h1><h2 id="理解三个包"><a href="#理解三个包" class="headerlink" title="理解三个包"></a>理解三个包</h2><p>需要明白这是出现在哪一层的设计</p>
-<ul>
-<li>1、这应该是应用层的逻辑，tcp不会管这些数据是否是按协议规定的，tcp只需要达到发送条件(=size)发送即可<ul>
-<li>“TCP粘包”这个说法——在TCP传输协议下，应用层数据拼装发送和接收解析问题</li>
-<li>tcp发送数据是基于字节流发送的，即发送端执行多次写操作之后，tcp系统先把数据保存在写缓冲区，真正发送的时候封装成一个一个包发出去，发送方发送的若干包数据到达接收方时粘成了一包。导致一个包里面出现不同类型或者不是同一批的数据，就会出现粘包。</li>
-</ul>
-</li>
-<li>2、Nagle算法解决的Small Packet Problem</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002232711.png" style="zoom:50%;"></p>
-<p>Nagle算法存在的原因</p>
-<blockquote>
-<p>  Small Packet Problem<br>  在使用一些协议通讯的时候，比如Telnet，会有一个字节字节的发送的情景，每次发送一个字节的有用数据，就会产生41个字节长的分组，20个字节的IP Header 和 20个字节的TCP Header，这就导致了1个字节的有用信息要浪费掉40个字节的头部信息，这是一笔巨大的字节开销，而且这种Small packet在广域网上会增加拥塞的出现。<br>  如果解决这种问题？ Nagle就提出了一种通过减少需要通过网络发送包的数量来提高TCP/IP传输的效率，这就是Nagle算法</p>
-</blockquote>
-<p>参考：</p>
-<p><a href="https://blog.csdn.net/wdscq1234/article/details/52432095">Nagle算法</a>——CSDN</p>
-<p><a href="https://www.zhihu.com/question/20210025">怎么解决TCP网络传输「粘包」问题？</a>——知乎</p>
-<p>我们这里其实设计的第一种“粘“<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>——应用层数据拼装发送和接收解析问题</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002225044.png" alt=""></p>
-<p>三个都可以看成是结构体，可以理解为某种约定好的协议</p>
-<ul>
-<li><p><code>packet_pre</code>——存放临时的数据包，其实可以和packet合二为一</p>
-</li>
-<li><p><code>packet_t</code>——存放临时的数据包</p>
-</li>
-<li><p><code>packet</code>——真正的数据包的大小</p>
-</li>
-<li><p><code>offset</code>——偏移量</p>
-</li>
-<li><p><code>recv_size</code>——接收大小——其实就是设计好的缓存大小</p>
-</li>
-</ul>
-<p>整包：$offset + recv_size = packet_size$  收到的等于发送的</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002230802.png" alt=""></p>
-<ul>
-<li>若收到一个整包，则直接交付给packet</li>
-</ul>
-<p>拆包：$offset + recv_size &lt; packet_size$  </p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143256.png" alt=""></p>
-<ul>
-<li>若收到这样的数据，则先将这部分数据交给packet，移动offset位置，然后接收到如下图的数据</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143329.png" style="zoom:25%;"></p>
-<ul>
-<li>此时由于数据过大，超出了packet的大小，需要将packet_t的数据做拆分处理（这就是所谓的“拆包”），大小为$packet_size - offset$</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143551.png" style="zoom:25%;"></p>
-<ul>
-<li>将$packet_size - offset$大小的数据交给packet后，packet又满了，那么可以交给调用<code>send()</code>了，可剩下的数据咋办<span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
-</ul>
-<p><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003145154.png" style="zoom:25%;"></p>
-<ul>
-<li>将$recv_size - packet_size + offset$大小的数据先暂存在packet_pre中，之后再移交给packet<ul>
-<li>其实可以将packet_pre和packet合二为一，即等packet的数据全部交付完后，再把packet_t中剩下的数据移到packet中，但使用packet_pre方便理解</li>
-</ul>
-</li>
-</ul>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="server端"><a href="#server端" class="headerlink" title="server端"></a>server端</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153118.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153221.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153250.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153321.png" alt=""></p>
-<h3 id="client端"><a href="#client端" class="headerlink" title="client端"></a>client端</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004155237.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004155304.png" alt=""></p>
-<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>开两个终端，服务端运行<code>./server port</code>接收文件，客户端运行<code>./client ip file</code>传输文件</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004164450.png" alt=""></p>
-<p>我这里把一个较大的图片由本地传到服务器上，可以发现ZYJ目录下的图片大小和本地的图片大小一样</p>
-<h2 id="一些文件IO的知识"><a href="#一些文件IO的知识" class="headerlink" title="一些文件IO的知识"></a>一些文件IO的知识</h2><h3 id="fread"><a href="#fread" class="headerlink" title="fread"></a>fread</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003194812.png" alt=""></p>
-<p>其实这里的这个size困扰了我一会，为什么这个size要写成1，难道一次读很多个不好吗？</p>
-<p><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>即以下两者有啥区别</p>
-<ol>
-<li><code>fread(a, 1, 1000, stdin);</code></li>
-<li><code>fread(a, 1000, 1, stdin);</code></li>
-</ol>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003203953.png" style="zoom:50%;"></p>
-<ul>
-<li><code>fread()</code>返回的是能被读到的data elements的数量，而不是读到的字节，手册里也讲到<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003205335.png" alt=""></p>
-<ul>
-<li>只有当size等于1时，返回的number才是字节数量</li>
-</ul>
-<p>当以 <code>fread(a, 1, 1000, stdin);</code>  这种方式读取，若文件只有900字节，indicator会指向文件末尾，并返回900字节</p>
-<p>若以<code>fread(a, 1000, 1, stdin);</code>读取，则返回值是未定义的，因为读不到一个大小为1000字节的元素</p>
-<p>参考：</p>
-<p><a href="https://stackoverflow.com/questions/8589425/how-does-fread-really-work">How does fread really work?</a>——stackoverflow</p>
-<h3 id="fseek-amp-ftell"><a href="#fseek-amp-ftell" class="headerlink" title="fseek&amp;ftell"></a>fseek&amp;ftell</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193344.png" style="zoom:33%;"></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193456.png" style="zoom:33%;"></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193716.png" alt=""></p>
-<h3 id="关于fclose"><a href="#关于fclose" class="headerlink" title="关于fclose"></a>关于fclose</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003212809.png" alt=""></p>
-<ul>
-<li>这里我想指出一点，其中<code>fopen()</code>返回的是一个文件指针，只不过底层还是会调用<code>open()</code>，打开一个文件描述符</li>
-</ul>
-<p>参考：</p>
-<p><a href="https://blog.csdn.net/qq_43648751/article/details/104057656">文件描述符与文件指针</a>——CSDN</p>
-<p><a href="https://blog.csdn.net/bajianxiaofendui/article/details/84777733">为什么要调用fclose</a>——CSDN</p>
-<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>关于视频流tcp与udp的问题——<a href="https://stackoverflow.com/questions/6187456/tcp-vs-udp-on-video-stream">TCP vs UDP on video stream</a></p>
-<p><code>stream oriented</code> VS <code>message oriented</code>—— <a href="https://stackoverflow.com/questions/17446491/tcp-stream-vs-udp-message">TCP stream vs UDP message</a></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002224652.png" style="zoom: 50%;"></p>
-<ul>
-<li>udp——发一个收一个</li>
-<li>tcp——可以制定规则，可以发很多次，只接收一次。</li>
-</ul>
-<p>多线程在单cpu中还是顺序执行的，所以在单核CPU上，不推荐使用多线程</p>
-<ul>
-<li>参考<a href="http://cnblogs.com/caihuafeng/p/5438753.html">对于多线程程序，单核cpu与多核cpu是怎么工作的</a>——cnblogs</li>
-</ul>
+    <title>关于MySQL那点事儿</title>
+    <url>/posts/d4d4.html</url>
+    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><p><a href="https://srymaker0.com/posts/54a3">1.关于MySQL架构</a></p>
+<p><a href="https://srymaker0.com/posts/5a4f">2.InnoDB的RC和RR隔离级别的实现</a></p>
+<p><a href="https://srymaker0.com/posts/7c75">3.InnoDB与事务持久性</a></p>
 ]]></content>
+      <tags>
+        <tag>Innodb</tag>
+      </tags>
   </entry>
   <entry>
     <title>shell</title>
@@ -1128,6 +1032,149 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 ]]></content>
   </entry>
   <entry>
+    <title>C/S文件传输软件的设计与实现</title>
+    <url>/posts/b12c.html</url>
+    <content><![CDATA[<h1 id="C-S文件传输软件的设计与实现"><a href="#C-S文件传输软件的设计与实现" class="headerlink" title="C/S文件传输软件的设计与实现"></a>C/S文件传输软件的设计与实现</h1><h2 id="理解三个包"><a href="#理解三个包" class="headerlink" title="理解三个包"></a>理解三个包</h2><p>需要明白这是出现在哪一层的设计</p>
+<ul>
+<li>1、这应该是应用层的逻辑，tcp不会管这些数据是否是按协议规定的，tcp只需要达到发送条件(=size)发送即可<ul>
+<li>“TCP粘包”这个说法——在TCP传输协议下，应用层数据拼装发送和接收解析问题</li>
+<li>tcp发送数据是基于字节流发送的，即发送端执行多次写操作之后，tcp系统先把数据保存在写缓冲区，真正发送的时候封装成一个一个包发出去，发送方发送的若干包数据到达接收方时粘成了一包。导致一个包里面出现不同类型或者不是同一批的数据，就会出现粘包。</li>
+</ul>
+</li>
+<li>2、Nagle算法解决的Small Packet Problem</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002232711.png" style="zoom:50%;"></p>
+<p>Nagle算法存在的原因</p>
+<blockquote>
+<p>  Small Packet Problem<br>  在使用一些协议通讯的时候，比如Telnet，会有一个字节字节的发送的情景，每次发送一个字节的有用数据，就会产生41个字节长的分组，20个字节的IP Header 和 20个字节的TCP Header，这就导致了1个字节的有用信息要浪费掉40个字节的头部信息，这是一笔巨大的字节开销，而且这种Small packet在广域网上会增加拥塞的出现。<br>  如果解决这种问题？ Nagle就提出了一种通过减少需要通过网络发送包的数量来提高TCP/IP传输的效率，这就是Nagle算法</p>
+</blockquote>
+<p>参考：</p>
+<p><a href="https://blog.csdn.net/wdscq1234/article/details/52432095">Nagle算法</a>——CSDN</p>
+<p><a href="https://www.zhihu.com/question/20210025">怎么解决TCP网络传输「粘包」问题？</a>——知乎</p>
+<p>我们这里其实设计的第一种“粘“<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>——应用层数据拼装发送和接收解析问题</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002225044.png" alt=""></p>
+<p>三个都可以看成是结构体，可以理解为某种约定好的协议</p>
+<ul>
+<li><p><code>packet_pre</code>——存放临时的数据包，其实可以和packet合二为一</p>
+</li>
+<li><p><code>packet_t</code>——存放临时的数据包</p>
+</li>
+<li><p><code>packet</code>——真正的数据包的大小</p>
+</li>
+<li><p><code>offset</code>——偏移量</p>
+</li>
+<li><p><code>recv_size</code>——接收大小——其实就是设计好的缓存大小</p>
+</li>
+</ul>
+<p>整包：$offset + recv_size = packet_size$  收到的等于发送的</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002230802.png" alt=""></p>
+<ul>
+<li>若收到一个整包，则直接交付给packet</li>
+</ul>
+<p>拆包：$offset + recv_size &lt; packet_size$  </p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143256.png" alt=""></p>
+<ul>
+<li>若收到这样的数据，则先将这部分数据交给packet，移动offset位置，然后接收到如下图的数据</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143329.png" style="zoom:25%;"></p>
+<ul>
+<li>此时由于数据过大，超出了packet的大小，需要将packet_t的数据做拆分处理（这就是所谓的“拆包”），大小为$packet_size - offset$</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003143551.png" style="zoom:25%;"></p>
+<ul>
+<li>将$packet_size - offset$大小的数据交给packet后，packet又满了，那么可以交给调用<code>send()</code>了，可剩下的数据咋办<span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+</ul>
+<p><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003145154.png" style="zoom:25%;"></p>
+<ul>
+<li>将$recv_size - packet_size + offset$大小的数据先暂存在packet_pre中，之后再移交给packet<ul>
+<li>其实可以将packet_pre和packet合二为一，即等packet的数据全部交付完后，再把packet_t中剩下的数据移到packet中，但使用packet_pre方便理解</li>
+</ul>
+</li>
+</ul>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><h3 id="server端"><a href="#server端" class="headerlink" title="server端"></a>server端</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153118.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153221.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153250.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004153321.png" alt=""></p>
+<h3 id="client端"><a href="#client端" class="headerlink" title="client端"></a>client端</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004155237.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004155304.png" alt=""></p>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>开两个终端，服务端运行<code>./server port</code>接收文件，客户端运行<code>./client ip file</code>传输文件</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004164450.png" alt=""></p>
+<p>我这里把一个较大的图片由本地传到服务器上，可以发现ZYJ目录下的图片大小和本地的图片大小一样</p>
+<h2 id="一些文件IO的知识"><a href="#一些文件IO的知识" class="headerlink" title="一些文件IO的知识"></a>一些文件IO的知识</h2><h3 id="fread"><a href="#fread" class="headerlink" title="fread"></a>fread</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003194812.png" alt=""></p>
+<p>其实这里的这个size困扰了我一会，为什么这个size要写成1，难道一次读很多个不好吗？</p>
+<p><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>即以下两者有啥区别</p>
+<ol>
+<li><code>fread(a, 1, 1000, stdin);</code></li>
+<li><code>fread(a, 1000, 1, stdin);</code></li>
+</ol>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003203953.png" style="zoom:50%;"></p>
+<ul>
+<li><code>fread()</code>返回的是能被读到的data elements的数量，而不是读到的字节，手册里也讲到<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003205335.png" alt=""></p>
+<ul>
+<li>只有当size等于1时，返回的number才是字节数量</li>
+</ul>
+<p>当以 <code>fread(a, 1, 1000, stdin);</code>  这种方式读取，若文件只有900字节，indicator会指向文件末尾，并返回900字节</p>
+<p>若以<code>fread(a, 1000, 1, stdin);</code>读取，则返回值是未定义的，因为读不到一个大小为1000字节的元素</p>
+<p>参考：</p>
+<p><a href="https://stackoverflow.com/questions/8589425/how-does-fread-really-work">How does fread really work?</a>——stackoverflow</p>
+<h3 id="fseek-amp-ftell"><a href="#fseek-amp-ftell" class="headerlink" title="fseek&amp;ftell"></a>fseek&amp;ftell</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193344.png" style="zoom:33%;"></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193456.png" style="zoom:33%;"></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003193716.png" alt=""></p>
+<h3 id="关于fclose"><a href="#关于fclose" class="headerlink" title="关于fclose"></a>关于fclose</h3><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211003212809.png" alt=""></p>
+<ul>
+<li>这里我想指出一点，其中<code>fopen()</code>返回的是一个文件指针，只不过底层还是会调用<code>open()</code>，打开一个文件描述符</li>
+</ul>
+<p>参考：</p>
+<p><a href="https://blog.csdn.net/qq_43648751/article/details/104057656">文件描述符与文件指针</a>——CSDN</p>
+<p><a href="https://blog.csdn.net/bajianxiaofendui/article/details/84777733">为什么要调用fclose</a>——CSDN</p>
+<h1 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h1><p>关于视频流tcp与udp的问题——<a href="https://stackoverflow.com/questions/6187456/tcp-vs-udp-on-video-stream">TCP vs UDP on video stream</a></p>
+<p><code>stream oriented</code> VS <code>message oriented</code>—— <a href="https://stackoverflow.com/questions/17446491/tcp-stream-vs-udp-message">TCP stream vs UDP message</a></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211002224652.png" style="zoom: 50%;"></p>
+<ul>
+<li>udp——发一个收一个</li>
+<li>tcp——可以制定规则，可以发很多次，只接收一次。</li>
+</ul>
+<p>多线程在单cpu中还是顺序执行的，所以在单核CPU上，不推荐使用多线程</p>
+<ul>
+<li>参考<a href="http://cnblogs.com/caihuafeng/p/5438753.html">对于多线程程序，单核cpu与多核cpu是怎么工作的</a>——cnblogs</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
+    <title>reactor反应堆</title>
+    <url>/posts/1fd0.html</url>
+    <content><![CDATA[<h1 id="reactor"><a href="#reactor" class="headerlink" title="reactor"></a>reactor</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912184500.png" style="zoom: 25%;"></p>
+<p>Reactor thread : 反应堆线程——epoll实例，感知业务发生，直接给<code>Thread Pool</code>的线程做对应的工作</p>
+<p>这里会引发几个问题：</p>
+<p>1⃣️线程池中的线程量设计多少才合理？是越多越好吗？</p>
+<ul>
+<li>结论：不超过cpu核心数，要想性能最高，就让线程数等于cpu核心数</li>
+<li>原因：若是超过了cpu核心数，那么线程池中的线程之间也会发生调度，尽管线程间调度消耗的时间很少，但还是付出了损失性能的代价</li>
+</ul>
+<p>2⃣️既然不能超过cpu核心数，那主线程或者辅助的心跳线程放哪里呢？假设有8个cpu，是不是应该在线程池中设计6个呢？</p>
+<ul>
+<li>在我们设计这个反应堆模式时，线程池中处理的应该是繁忙的业务(由reactor分发过来的，ready状态的，无需等待)，应该要一直运行在cpu上的（cpu密集型）</li>
+<li>主线程和心跳线程——IO约束型的，更多时候在<code>sleep</code>，可以插空执行，</li>
+</ul>
+<p>3⃣️那既然这样，是不是意味着cpu越多，我处理并发的性能就越高呢？</p>
+<ul>
+<li>并不是，cpu越多，则任务在cpu中协调更困难（可靠性）</li>
+</ul>
+<h1 id="主从反应堆"><a href="#主从反应堆" class="headerlink" title="主从反应堆"></a>主从反应堆</h1><blockquote>
+<p>类比：理发店问题</p>
+<p>假设<code>reactor dispatch</code>为理发店老板，<code>sub-reactor dispatch</code>为合伙人，<code>client</code>为客户，<code>Thread Pool</code>为理发师。</p>
+<p>现在老板拉来了3个客人，老板只负责分配任务交给两个合伙人（从反应堆），两个合伙人一个给男孩剪头，一个给女孩剪头（也就是说现在客户跟合伙人有关联），并且合伙人只负责维护这些客户，这些客户之后和老板没有直接关系，如果客户要剪头发了（任务，可放在任务队列中），那么通知合伙人，由合伙人再去通知理发师线程去抢生意（抢占任务）</p>
+<p>假设客人要离开了，只需要通知合伙人就行，在合伙人这里进行删除，注销操作。</p>
+</blockquote>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912190559.png" style="zoom:25%;"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912191314.png" style="zoom:25%;"></p>
+<p>为什么需要从反应堆？</p>
+<ul>
+<li>因为主反应堆不够用，处理的能力不行，需要从反应堆分担压力</li>
+</ul>
+<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>什么是IO多路复用</p>
+<p>什么是线程池，原理是什么，线程池设计多少的并发量比较适合，最大化使用应该设置为多少——线程池中的线程不能超过cpu核心数</p>
+]]></content>
+  </entry>
+  <entry>
     <title>IO多路复用</title>
     <url>/posts/0.html</url>
     <content><![CDATA[<h1 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h1><p><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>为什么会出现IO多路复用</p>
@@ -1441,587 +1488,6 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
       </tags>
   </entry>
   <entry>
-    <title>reactor反应堆</title>
-    <url>/posts/1fd0.html</url>
-    <content><![CDATA[<h1 id="reactor"><a href="#reactor" class="headerlink" title="reactor"></a>reactor</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912184500.png" style="zoom: 25%;"></p>
-<p>Reactor thread : 反应堆线程——epoll实例，感知业务发生，直接给<code>Thread Pool</code>的线程做对应的工作</p>
-<p>这里会引发几个问题：</p>
-<p>1⃣️线程池中的线程量设计多少才合理？是越多越好吗？</p>
-<ul>
-<li>结论：不超过cpu核心数，要想性能最高，就让线程数等于cpu核心数</li>
-<li>原因：若是超过了cpu核心数，那么线程池中的线程之间也会发生调度，尽管线程间调度消耗的时间很少，但还是付出了损失性能的代价</li>
-</ul>
-<p>2⃣️既然不能超过cpu核心数，那主线程或者辅助的心跳线程放哪里呢？假设有8个cpu，是不是应该在线程池中设计6个呢？</p>
-<ul>
-<li>在我们设计这个反应堆模式时，线程池中处理的应该是繁忙的业务(由reactor分发过来的，ready状态的，无需等待)，应该要一直运行在cpu上的（cpu密集型）</li>
-<li>主线程和心跳线程——IO约束型的，更多时候在<code>sleep</code>，可以插空执行，</li>
-</ul>
-<p>3⃣️那既然这样，是不是意味着cpu越多，我处理并发的性能就越高呢？</p>
-<ul>
-<li>并不是，cpu越多，则任务在cpu中协调更困难（可靠性）</li>
-</ul>
-<h1 id="主从反应堆"><a href="#主从反应堆" class="headerlink" title="主从反应堆"></a>主从反应堆</h1><blockquote>
-<p>类比：理发店问题</p>
-<p>假设<code>reactor dispatch</code>为理发店老板，<code>sub-reactor dispatch</code>为合伙人，<code>client</code>为客户，<code>Thread Pool</code>为理发师。</p>
-<p>现在老板拉来了3个客人，老板只负责分配任务交给两个合伙人（从反应堆），两个合伙人一个给男孩剪头，一个给女孩剪头（也就是说现在客户跟合伙人有关联），并且合伙人只负责维护这些客户，这些客户之后和老板没有直接关系，如果客户要剪头发了（任务，可放在任务队列中），那么通知合伙人，由合伙人再去通知理发师线程去抢生意（抢占任务）</p>
-<p>假设客人要离开了，只需要通知合伙人就行，在合伙人这里进行删除，注销操作。</p>
-</blockquote>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912190559.png" style="zoom:25%;"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210912191314.png" style="zoom:25%;"></p>
-<p>为什么需要从反应堆？</p>
-<ul>
-<li>因为主反应堆不够用，处理的能力不行，需要从反应堆分担压力</li>
-</ul>
-<h1 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h1><p>什么是IO多路复用</p>
-<p>什么是线程池，原理是什么，线程池设计多少的并发量比较适合，最大化使用应该设置为多少——线程池中的线程不能超过cpu核心数</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>哈希表与布隆过滤器</title>
-    <url>/posts/69d8.html</url>
-    <content><![CDATA[<h1 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h1><blockquote>
-<p>哈希表是利用数组的快速存取的特性<span class="github-emoji"><span>👉</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f449.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>关键是利用哈希函数——设计感极强</p>
-<p>哈希函数：将任意数据类型映射成数组下标，数据类型不同，映射过程也不相同</p>
-<p><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>哈希的过程本质是 高维-&gt;低维的转换，哈希冲突一定会发生，但是可以通过很多方式预防这种冲突，但是这种冲突是无法避免的</p>
-<p>冲突处理方法：开放定址法，再哈希法，建立公共溢出区，链式地址法（拉链法）</p>
-</blockquote>
-<p>可查看中<a href="https://srymaker0.com/posts/73f4">数据结构基础——C语言实验</a>哈希过程</p>
-<h2 id="开放定址法"><a href="#开放定址法" class="headerlink" title="开放定址法"></a>开放定址法</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710205559.png" style="zoom:50%;"></p>
-<p>注意扩容操作——装填因子：$\frac{存储元素个数}{哈希总容量}=0.75$ ，假设有100个容量存储数据，当容量为75个时就应该进行扩容操作</p>
-<p>扩容的时间复杂度——算的是均摊时间复杂度$O(1)$, $\frac{n}{2}+\frac{n}{4}+\frac{n}{8}+…\approx n$ </p>
-<p>估算：假设有n个元素，并且第一次发生扩容操作在$\frac{n}{2}$处，那么第一次的时间复杂度为$\frac{n}{2}$，依次类推所有元素进行的扩容操作为$O(n)$,但是算均摊，每一个元素进行的扩容操作为$O(1)$</p>
-<h2 id="建立公共溢出缓冲区"><a href="#建立公共溢出缓冲区" class="headerlink" title="建立公共溢出缓冲区"></a>建立公共溢出缓冲区</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710222603.png" style="zoom:50%;"></p>
-<p>当发生冲突，直接将元素放入set容器中（公共溢出缓冲区）</p>
-<p>set底层是红黑树，单次查找，插入时间复杂度都是$O(logn)$</p>
-<p>注意扩容的时候 缓冲区的值也要拷贝给新的哈希表</p>
-<h2 id="拉链法"><a href="#拉链法" class="headerlink" title="拉链法"></a>拉链法</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710223124.png" style="zoom:50%;"></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710223208.png" style="zoom:50%;"></p>
-<h2 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h2><p>传统哈希表——存储空间与元素数量有关</p>
-<p>布隆过滤器——存储空间与元素数量无关</p>
-<p>关于爬虫：爬网站可以将这些存储在哈希表中，一样的url会被去重，但是动态网络的url可能非常庞大，使用传统哈希表存储可能占用几TB的存储空间</p>
-<p>布隆过滤器的应用：大数据量；有信息安全要求(传统哈希表会存储数据，而布隆过滤器存的是二进制标志)</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210710224832.png" style="zoom: 33%;"></p>
-<p>设计巧妙之处：一个数据经过3个哈希函数，得到3个数组下标，查找数组若这3个下标对应的值都为1，则说明这个数据<span class="github-emoji"><span>❗</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2757.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>大概率存在，若有一个是0，则一定不存在</p>
-<p>缺点：存在误判，只能准确判断一个数据不存在</p>
-<h1 id="Leetcode环节"><a href="#Leetcode环节" class="headerlink" title="Leetcode环节"></a>Leetcode环节</h1><h2 id="705-设计哈希集合"><a href="#705-设计哈希集合" class="headerlink" title="705. 设计哈希集合"></a><a href="https://leetcode-cn.com/problems/design-hashset/">705. 设计哈希集合</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211102224109.png" alt=""></p>
-<ul>
-<li>使用拉链法的思想</li>
-</ul>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span>
-<span class="token keyword">public</span><span class="token operator">:</span>
-    <span class="token function">Node</span><span class="token punctuation">(</span><span class="token keyword">int</span> key <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> Node <span class="token operator">*</span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">key</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">next</span><span class="token punctuation">(</span>next<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-    <span class="token keyword">int</span> key<span class="token punctuation">;</span>
-    Node <span class="token operator">*</span>next<span class="token punctuation">;</span>
-    <span class="token keyword">void</span> <span class="token function">insert_after</span><span class="token punctuation">(</span>Node <span class="token operator">*</span>p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        p<span class="token operator">-&gt;</span>next <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token operator">-&gt;</span>next <span class="token operator">=</span> p<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">void</span> <span class="token function">remove_after</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-&gt;</span>next <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">;</span>
-        Node <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token operator">-&gt;</span>next <span class="token operator">=</span> p<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">delete</span> p<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-
-<span class="token keyword">class</span> <span class="token class-name">MyHashSet</span> <span class="token punctuation">{</span>
-<span class="token keyword">public</span><span class="token operator">:</span>
-    vector<span class="token operator">&lt;</span>Node<span class="token operator">&gt;</span> data<span class="token punctuation">;</span>
-    <span class="token function">MyHashSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
-    <span class="token punctuation">}</span>
-    
-    <span class="token keyword">int</span> <span class="token function">hash_func</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> key <span class="token operator">&amp;</span> <span class="token number">0x7fffffff</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">contains</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">;</span>
-        <span class="token keyword">int</span> ind <span class="token operator">=</span> <span class="token function">hash_func</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">%</span> data<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        data<span class="token punctuation">[</span>ind<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">insert_after</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    
-    <span class="token keyword">void</span> <span class="token function">remove</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> ind <span class="token operator">=</span> <span class="token function">hash_func</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">%</span> data<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Node <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token operator">&amp;</span>data<span class="token punctuation">[</span>ind<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>p<span class="token operator">-&gt;</span>next <span class="token operator">&amp;&amp;</span> p<span class="token operator">-&gt;</span>next<span class="token operator">-&gt;</span>key <span class="token operator">!=</span> key<span class="token punctuation">)</span> p <span class="token operator">=</span> p<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-        p<span class="token operator">-&gt;</span><span class="token function">remove_after</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    
-    <span class="token keyword">bool</span> <span class="token function">contains</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> ind <span class="token operator">=</span> <span class="token function">hash_func</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">%</span> data<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Node <span class="token operator">*</span>p <span class="token operator">=</span> data<span class="token punctuation">[</span>ind<span class="token punctuation">]</span><span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>p <span class="token operator">&amp;&amp;</span> p<span class="token operator">-&gt;</span>key <span class="token operator">!=</span> key<span class="token punctuation">)</span> p <span class="token operator">=</span> p<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> p <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="706-设计哈希映射"><a href="#706-设计哈希映射" class="headerlink" title="706. 设计哈希映射"></a><a href="https://leetcode-cn.com/problems/design-hashmap/">706. 设计哈希映射</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211102230501.png" alt=""></p>
-<ul>
-<li>此题只是多了一个key值</li>
-</ul>
-<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">class</span> <span class="token class-name">Node</span> <span class="token punctuation">{</span>
-<span class="token keyword">public</span><span class="token operator">:</span>
-    <span class="token function">Node</span><span class="token punctuation">(</span><span class="token keyword">int</span> key <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword">int</span> value <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> Node <span class="token operator">*</span>next <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">key</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">value</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">next</span><span class="token punctuation">(</span>next<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-    <span class="token keyword">int</span> key<span class="token punctuation">,</span> value<span class="token punctuation">;</span>
-    Node <span class="token operator">*</span>next<span class="token punctuation">;</span>
-    <span class="token keyword">void</span> <span class="token function">insert_after</span><span class="token punctuation">(</span>Node <span class="token operator">*</span>p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        p<span class="token operator">-&gt;</span>next <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token operator">-&gt;</span>next <span class="token operator">=</span> p<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">void</span> <span class="token function">remove_after</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token operator">-&gt;</span>next <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">;</span>
-        Node <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token keyword">this</span><span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token operator">-&gt;</span>next <span class="token operator">=</span> p<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">delete</span> p<span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token keyword">class</span> <span class="token class-name">MyHashMap</span> <span class="token punctuation">{</span>
-<span class="token keyword">public</span><span class="token operator">:</span>
-    vector<span class="token operator">&lt;</span>Node<span class="token operator">&gt;</span> data<span class="token punctuation">;</span>
-    <span class="token function">MyHashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-    
-    <span class="token keyword">int</span> <span class="token function">hash_func</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> key <span class="token operator">&amp;</span> <span class="token number">0x7fffffff</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">void</span> <span class="token function">put</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">,</span> <span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> ind <span class="token operator">=</span> <span class="token function">hash_func</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">%</span> data<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Node <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token operator">&amp;</span>data<span class="token punctuation">[</span>ind<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>p<span class="token operator">-&gt;</span>next <span class="token operator">&amp;&amp;</span> p<span class="token operator">-&gt;</span>next<span class="token operator">-&gt;</span>key <span class="token operator">!=</span> key<span class="token punctuation">)</span> p <span class="token operator">=</span> p<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>p<span class="token operator">-&gt;</span>next<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            p<span class="token operator">-&gt;</span>next<span class="token operator">-&gt;</span>value <span class="token operator">=</span> value<span class="token punctuation">;</span>
-        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-            p<span class="token operator">-&gt;</span><span class="token function">insert_after</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token function">Node</span><span class="token punctuation">(</span>key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> <span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    
-    <span class="token keyword">int</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> ind <span class="token operator">=</span> <span class="token function">hash_func</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">%</span> data<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Node <span class="token operator">*</span>p <span class="token operator">=</span> data<span class="token punctuation">[</span>ind<span class="token punctuation">]</span><span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>p <span class="token operator">&amp;&amp;</span> p<span class="token operator">-&gt;</span>key <span class="token operator">!=</span> key<span class="token punctuation">)</span> p <span class="token operator">=</span> p<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>p <span class="token operator">==</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> p<span class="token operator">-&gt;</span>value<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    
-    <span class="token keyword">void</span> <span class="token function">remove</span><span class="token punctuation">(</span><span class="token keyword">int</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">int</span> ind <span class="token operator">=</span> <span class="token function">hash_func</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">%</span> data<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Node <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token operator">&amp;</span>data<span class="token punctuation">[</span>ind<span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>p<span class="token operator">-&gt;</span>next <span class="token operator">&amp;&amp;</span> p<span class="token operator">-&gt;</span>next<span class="token operator">-&gt;</span>key <span class="token operator">!=</span> key<span class="token punctuation">)</span> p <span class="token operator">=</span> p<span class="token operator">-&gt;</span>next<span class="token punctuation">;</span>
-        p<span class="token operator">-&gt;</span><span class="token function">remove_after</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="面试题-16-25-LRU-缓存"><a href="#面试题-16-25-LRU-缓存" class="headerlink" title="面试题 16.25. LRU 缓存"></a><a href="https://leetcode-cn.com/problems/lru-cache-lcci/">面试题 16.25. LRU 缓存</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211102234743.png" alt=""></p>
-<ul>
-<li>封装哈希链表</li>
-<li>需要频繁的插入删除——链表$O(1)$，由于需要找到对应到值（get）使用传统链表需要遍历，因此采用哈希表的方法存储一对值，查找效率接近$O(1)$</li>
-<li>链表设计为双向链表，因为需要找到待删除节点的前一个节点</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211102235722.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211102235750.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211102235832.png" alt=""></p>
-<h2 id="535-TinyURL-的加密与解密"><a href="#535-TinyURL-的加密与解密" class="headerlink" title="535. TinyURL 的加密与解密"></a><a href="https://leetcode-cn.com/problems/encode-and-decode-tinyurl/">535. TinyURL 的加密与解密</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103002429.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103002457.png" alt=""></p>
-<ul>
-<li><p>主要设计加密过程——映射过程如下<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<ul>
-<li>[0-25] - [‘a’-‘z’]</li>
-<li>[26-51] - [‘A’-‘Z’]</li>
-<li>[52-61] - [‘0’-‘9’]</li>
-</ul>
-</li>
-<li><p>通过随机生成的x值去生产字符</p>
-</li>
-</ul>
-<h2 id="187-重复的DNA序列"><a href="#187-重复的DNA序列" class="headerlink" title="187. 重复的DNA序列"></a><a href="https://leetcode-cn.com/problems/repeated-dna-sequences/">187. 重复的DNA序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103003712.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103004021.png" alt=""></p>
-<h2 id="318-最大单词长度乘积"><a href="#318-最大单词长度乘积" class="headerlink" title="318. 最大单词长度乘积"></a><a href="https://leetcode-cn.com/problems/maximum-product-of-word-lengths/">318. 最大单词长度乘积</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103005819.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103005836.png" alt=""></p>
-<ul>
-<li>巧妙的使用了位掩码</li>
-</ul>
-<h2 id="240-搜索二维矩阵-II"><a href="#240-搜索二维矩阵-II" class="headerlink" title="240. 搜索二维矩阵 II"></a><a href="https://leetcode-cn.com/problems/search-a-2d-matrix-ii/">240. 搜索二维矩阵 II</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103010839.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103010900.png" alt=""></p>
-<ul>
-<li>右上角和左下角是两个特殊点<ul>
-<li>右上角是第一排最大的数，通过与target值比较，可以判断下一步的走向</li>
-<li>在$n \times m$的矩阵中最多走n+m步</li>
-</ul>
-</li>
-</ul>
-<h2 id="979-在二叉树中分配硬币"><a href="#979-在二叉树中分配硬币" class="headerlink" title="979. 在二叉树中分配硬币"></a><a href="https://leetcode-cn.com/problems/distribute-coins-in-binary-tree/">979. 在二叉树中分配硬币</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103181711.png" alt=""></p>
-<p><span class="github-emoji"><span>❓</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>解题思路：金币的流向是单向流通，没有必要双向，计算子树中的节点数量n和金币数量m的差值即为每条边流向子树的金币数等价为流向的次数</p>
-<p>示例1中：根结点的左子树中有0个金币，1个节点，差值为1，即根节点需要流向左子树1个金币即可</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103182124.png" alt=""></p>
-<h2 id="430-扁平化多级双向链表"><a href="#430-扁平化多级双向链表" class="headerlink" title="430. 扁平化多级双向链表"></a><a href="https://leetcode-cn.com/problems/flatten-a-multilevel-doubly-linked-list/">430. 扁平化多级双向链表</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103184357.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103184416.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103184436.png" alt=""></p>
-<h2 id="863-二叉树中所有距离为-K-的结点"><a href="#863-二叉树中所有距离为-K-的结点" class="headerlink" title="863. 二叉树中所有距离为 K 的结点"></a><a href="https://leetcode-cn.com/problems/all-nodes-distance-k-in-binary-tree/">863. 二叉树中所有距离为 K 的结点</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103192007.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103192032.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103192054.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>深搜与广搜</title>
-    <url>/posts/8160.html</url>
-    <content><![CDATA[<h1 id="深搜与广搜"><a href="#深搜与广搜" class="headerlink" title="深搜与广搜"></a>深搜与广搜</h1><h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103213830.png" style="zoom: 25%;"></p>
-<ul>
-<li>在思维逻辑层面——节点代表问题状态的树形结构</li>
-</ul>
-<p>例如走迷宫问题</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103214358.png" alt=""></p>
-<ul>
-<li>这里的状态就是小牛可以走到的位置——右边生成的就是问题求解树</li>
-<li>解题的关键是定义状态</li>
-</ul>
-<p>深搜与广搜</p>
-<ul>
-<li>就是对问题求解树的不同遍历方式</li>
-</ul>
-<p>搜索剪枝和优化</p>
-<ul>
-<li>排除某些问题求解树中的子树遍历过程</li>
-</ul>
-<p>设计搜索算法的核心关键点</p>
-<ul>
-<li>设计问题求解树中的状态</li>
-</ul>
-<h1 id="刷题-go！"><a href="#刷题-go！" class="headerlink" title="刷题 go！"></a>刷题 go！</h1><h2 id="993-二叉树的堂兄弟节点"><a href="#993-二叉树的堂兄弟节点" class="headerlink" title="993. 二叉树的堂兄弟节点"></a><a href="https://leetcode-cn.com/problems/cousins-in-binary-tree/">993. 二叉树的堂兄弟节点</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103223455.png" alt=""></p>
-<p>深搜版本</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103223509.png" alt=""></p>
-<p>广搜版本</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103225332.png" alt=""></p>
-<ul>
-<li>定义状态</li>
-<li>把状态放入队列中</li>
-</ul>
-<h2 id="542-01-矩阵"><a href="#542-01-矩阵" class="headerlink" title="542. 01 矩阵"></a><a href="https://leetcode-cn.com/problems/01-matrix/">542. 01 矩阵</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232742.png" alt=""></p>
-<ul>
-<li>计算从0位置到每个1点的最少步数</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232811.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211103232833.png" alt=""></p>
-<h2 id="1091-二进制矩阵中的最短路径"><a href="#1091-二进制矩阵中的最短路径" class="headerlink" title="1091. 二进制矩阵中的最短路径"></a><a href="https://leetcode-cn.com/problems/shortest-path-in-binary-matrix/">1091. 二进制矩阵中的最短路径</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104002412.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104002437.png" alt=""></p>
-<h2 id="752-打开转盘锁"><a href="#752-打开转盘锁" class="headerlink" title="752. 打开转盘锁"></a><a href="https://leetcode-cn.com/problems/open-the-lock/">752. 打开转盘锁</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010444.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010510.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104010528.png" alt=""></p>
-<ul>
-<li>注意扩展状态，4个转盘，两个方向，难点在于这里</li>
-<li>使用哈希存储deadends中的值，加快查找效率，也可以使用其进行去重</li>
-</ul>
-<h2 id="剑指-Offer-13-机器人的运动范围"><a href="#剑指-Offer-13-机器人的运动范围" class="headerlink" title="剑指 Offer 13. 机器人的运动范围"></a><a href="https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/">剑指 Offer 13. 机器人的运动范围</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014444.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014506.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104014528.png" alt=""></p>
-<h2 id="130-被围绕的区域"><a href="#130-被围绕的区域" class="headerlink" title="130. 被围绕的区域"></a><a href="https://leetcode-cn.com/problems/surrounded-regions/">130. 被围绕的区域</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104021658.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211104021715.png" alt=""></p>
-<ul>
-<li>采用逆思维，扫描边界O，搜索与其相邻的O，最后剩下的大O即为被X包围的</li>
-</ul>
-<h2 id="494-目标和"><a href="#494-目标和" class="headerlink" title="494. 目标和"></a><a href="https://leetcode-cn.com/problems/target-sum/">494. 目标和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109220710.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109220730.png" alt=""></p>
-<ul>
-<li>记忆化——函数是展开的数组，数组是压缩的函数</li>
-</ul>
-<h2 id="473-火柴拼正方形"><a href="#473-火柴拼正方形" class="headerlink" title="473. 火柴拼正方形"></a><a href="https://leetcode-cn.com/problems/matchsticks-to-square/">473. 火柴拼正方形</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109231955.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211109232016.png" alt=""></p>
-<h2 id="39-组合总和"><a href="#39-组合总和" class="headerlink" title="39. 组合总和"></a><a href="https://leetcode-cn.com/problems/combination-sum/">39. 组合总和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211110215350.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211110215408.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>单调队列</title>
-    <url>/posts/2132.html</url>
-    <content><![CDATA[<h2 id="问题引入"><a href="#问题引入" class="headerlink" title="问题引入"></a>问题引入</h2><ul>
-<li><p>RMQ(x, y)函数：查询数组$[x, y]$区间内部的最小值，参考<a href="https://oi-wiki.org/topic/rmq/#_2">RMQ</a>——OI Wiki</p>
-</li>
-<li><p>如果固定询问区间的尾部，例如：RMQ(x,7)</p>
-<ul>
-<li>最少记录如上4个蓝色元素，即可满足RMQ(x,7)的<strong>所有</strong>需求</li>
-<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111327.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111327.png" alt="图片"></a></li>
-<li>并且这4个元素构成了一个<strong>单调递增</strong>的序列，也是单调队列</li>
-</ul>
-</li>
-<li><p>单调队列解决的就是这类维护区间最值的问题 [固定结尾的RMQ问题]</p>
-</li>
-</ul>
-<h2 id="单调队列"><a href="#单调队列" class="headerlink" title="单调队列"></a>单调队列</h2><ul>
-<li><p>要解决的问题性质：维护<strong>滑动窗口</strong>内部的<strong>区间</strong>最值</p>
-</li>
-<li><p>结构定义：单调的队列</p>
-</li>
-<li><p>结构操作</p>
-<ul>
-<li>入队：先将队尾违反单调性的元素淘汰出局，再将当前元素入队</li>
-<li>出队：如果队首元素超出了滑动窗口的范围，队首出队</li>
-</ul>
-</li>
-<li><p>维护的核心：队首元素——滑动窗口内的最值⭐</p>
-<ul>
-<li>最小值→递增队列</li>
-<li>最大值→递减队列</li>
-</ul>
-</li>
-<li><p>均摊时间复杂度：O(1)，求解一次</p>
-</li>
-<li><p>[PS] 再举个例加深印象：学校选出学生代表去参赛</p>
-<ul>
-<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111338.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111338.png" alt="图片"></a></li>
-<li>类比：年级-&gt;数组索引，能力值-&gt;数据值，时间段-&gt;滑动窗口</li>
-<li>在维护区间[14-17]最大值的单调队列中，当你入队时，赵六就会被踢出<ul>
-<li>延伸：如果一个人年龄比你小，能力还比你强，那你就永远被踢掉了</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h2><ul>
-<li><p>想想栈和队列的区别，而单调栈和单调队列的唯一区别也就在这，其它操作一致 [入队、出队]</p>
-<ul>
-<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111345.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111345.png" alt="图片"></a></li>
-<li>单调栈是一头堵死的单调队列</li>
-<li>单调栈保留了单调队列的入队操作，依然维护单调性⭐</li>
-</ul>
-</li>
-<li><p>问题性质：最近（大于/小于）关系</p>
-<ul>
-<li>入栈之前，符合单调性的<strong>栈顶</strong>元素，就是当前<strong>入栈元素</strong>的最近（大于/小于）关系</li>
-</ul>
-</li>
-<li><p>维护的核心：</p>
-<p>栈顶元素</p>
-<p>——最近（大于/小于）关系⭐</p>
-<ul>
-<li>左侧最近关系→左侧先入栈</li>
-<li>右侧最近关系→右侧先入栈</li>
-<li>[PS] 其栈底是<strong>全局</strong>最小值，但用栈维护并没有意义</li>
-</ul>
-</li>
-<li><p>均摊时间复杂度：O(1)，求解一次</p>
-</li>
-</ul>
-<h2 id="两者对比"><a href="#两者对比" class="headerlink" title="两者对比"></a>两者对比</h2><p>其实两者主要是形式上不同，但本质差不多</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:left"><strong>开放端口</strong></th>
-<th style="text-align:center"><strong>维护核心</strong></th>
-<th style="text-align:left"><strong>擅长问题</strong></th>
-<th style="text-align:center"><strong>基本操作</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><strong>单调队列</strong></td>
-<td style="text-align:left">首、尾</td>
-<td style="text-align:center">队首</td>
-<td style="text-align:left">区间最值</td>
-<td style="text-align:center">维单+入队、出队、<strong>取值</strong></td>
-</tr>
-<tr>
-<td style="text-align:center"><strong>单调栈</strong></td>
-<td style="text-align:left">顶</td>
-<td style="text-align:center">栈顶</td>
-<td style="text-align:left">最近大小关系</td>
-<td style="text-align:center">出栈[维单]、<strong>取值</strong>、入栈</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h1 id="经典例题"><a href="#经典例题" class="headerlink" title="经典例题"></a>经典例题</h1><h2 id="HZOJ-271：滑动窗口"><a href="#HZOJ-271：滑动窗口" class="headerlink" title="HZOJ-271：滑动窗口"></a><a href="http://oj.haizeix.com/problem/271">HZOJ-271</a>：滑动窗口</h2><p><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111456.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111456.png" alt="图片"></a></p>
-<p><strong>样例输入</strong></p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">8 3
-1 3 -1 -3 5 3 6 7
-复制代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p><strong>样例输出</strong></p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">-1 -3 -3 -3 3 3
-3 3 5 5 6 7
-复制代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>思路<ul>
-<li>纯单调队列，关注代码实现</li>
-</ul>
-</li>
-<li>代码<ul>
-<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112213429.png" alt=""></li>
-<li>思考：单调队列中是记录值还是记录【下标】<ul>
-<li>记录<strong>下标</strong>🆒，因为有了下标可以索引到值 [顺藤摸瓜]</li>
-<li>记录值，却反向不可查</li>
-</ul>
-</li>
-<li>这是一个常用的单调队列<strong>模板</strong>：维护单调性→入队→出队→根据题意输出</li>
-<li>关注最大/小值、窗口的大小</li>
-<li>[PS] 队尾既可以入队，也可以出 [踢，维护单调性]，所以认为不是单向队列</li>
-</ul>
-</li>
-</ul>
-<h2 id="HZOJ-372：双生序列"><a href="#HZOJ-372：双生序列" class="headerlink" title="HZOJ-372：双生序列"></a><a href="http://oj.haizeix.com/problem/372">HZOJ-372</a>：双生序列</h2><p><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111528.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111528.png" alt="图片"></a></p>
-<p><strong>样例输入</strong></p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">5
-3 1 5 2 4
-5 2 4 3 1
-复制代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>样例输出</strong></p>
-<pre class="line-numbers language-c++" data-language="c++"><code class="language-c++">4
-复制代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<ul>
-<li><p>思路</p>
-<ul>
-<li><p>思考：什么是两个序列的趋势相同？</p>
-<ul>
-<li>相同区间内部的RMQ值相同，❗ 这里RMQ值→最小值的最大<strong>下标</strong></li>
-</ul>
-</li>
-<li><p>【关键】两个序列的每个区间的RMQ值相等👉两个序列的单调队列长得一样</p>
-<ul>
-<li>换句话说，每时每刻，两个序列对应相同的单调队列</li>
-<li>注意：长得一样，指的不是最小值，而是对应下标 [单调队列里存的是下标]</li>
-</ul>
-</li>
-<li><p>将两个序列的元素，依次插入到单调队列中，每次插入后比较单调队列的大小即可</p>
-<ul>
-<li>① 如果一致，继续入队</li>
-</ul>
-</li>
-<li>② 如果不一致，输出答案</li>
-</ul>
-</li>
-<li><p>代码</p>
-<ul>
-<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111541.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111541.png" alt="图片"></a></li>
-<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111604.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/20210125111604.png" alt="图片"></a></li>
-<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112215050.png" alt=""></li>
-<li>用类定义单调队列，便于复用</li>
-<li>单调队列里存的是<strong>下标</strong>：p</li>
-<li>单调队列操作：维护→入队，都不需要出队</li>
-<li>【巧妙】根据队列的<strong>大小</strong>变化把握趋势变化</li>
-</ul>
-</li>
-</ul>
-<h2 id="239-滑动窗口最大值"><a href="#239-滑动窗口最大值" class="headerlink" title="239. 滑动窗口最大值"></a><a href="https://leetcode-cn.com/problems/sliding-window-maximum/">239. 滑动窗口最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112222023.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112222037.png" alt=""></p>
-<h2 id="剑指-Offer-59-II-队列的最大值"><a href="#剑指-Offer-59-II-队列的最大值" class="headerlink" title="剑指 Offer 59 - II. 队列的最大值"></a><a href="https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/">剑指 Offer 59 - II. 队列的最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112225049.png" alt=""></p>
-<ul>
-<li>思路<ul>
-<li>可维护两个队列，一个用于存储原数据，一个用于存储最大值（单调队列）</li>
-</ul>
-</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211112225214.png" alt=""></p>
-<ul>
-<li><p>注意入队时的比较</p>
-<ul>
-<li>&gt;，表示可记录重复元素，并且元素相对位置不会变，对于pop_front()操作，若q.front() 等于mq.front()则可以认为当前在q中删除的值也要在mq中删除</li>
-<li>&gt;=, 表示不记录重复元素，但是在pop操作时要额外记录下标</li>
-</ul>
-</li>
-<li><p>单调队列是原队列的另一种信息表示方式</p>
-</li>
-<li>此题的窗口大小为整个数组</li>
-</ul>
-<h2 id="862-和至少为-K-的最短子数组"><a href="#862-和至少为-K-的最短子数组" class="headerlink" title="862. 和至少为 K 的最短子数组"></a><a href="https://leetcode-cn.com/problems/shortest-subarray-with-sum-at-least-k/">862. 和至少为 K 的最短子数组</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115204304.png" alt=""></p>
-<ul>
-<li>思路<ul>
-<li>把原数组转化为前缀和数组——可以方便求区间和，求这个前缀和数组中的RMQ问题，单调队列维护数组中的最小值</li>
-<li>每次遍历前缀和数组的时候，都减去当前位置之前的最小值</li>
-</ul>
-</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115204320.png" alt=""></p>
-<ul>
-<li><p>正确的分析思路——先分析我们需要得到什么样特点的数据，再对应我们所学的数据结构和算法</p>
-</li>
-<li><p>每次更新pos，都需要弹出q的首部元素，因为求的是最短队列，如果q队列中下一个元素不满足条件，则pos就是前一个位置</p>
-</li>
-</ul>
-<h2 id="1438-绝对差不超过限制的最长连续子数组"><a href="#1438-绝对差不超过限制的最长连续子数组" class="headerlink" title="1438. 绝对差不超过限制的最长连续子数组"></a><a href="https://leetcode-cn.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/">1438. 绝对差不超过限制的最长连续子数组</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115211443.png" alt=""></p>
-<ul>
-<li><p>思路</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211219231407.png" alt=""></p>
-</li>
-</ul>
-<p>假设在上图长度为L的区间中，找到一个min和一个max符合题意max-min &lt;= limit，也就是说在这段区间内无论怎么动只要包含这个min和max，长度可以为L-1， L-2，L-3…  但是L+1，L+2却不行（因为可能存在新的min和max也符合题意）——由此得出这是一个二分问题，也是111111000000的二分问题，需要找到最长的L。</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115211505.png" alt=""></p>
-<ul>
-<li>二分的是长度，check函数表示在mid长度范围内是否存在有最大值-最小值小于limit，找最长的L</li>
-</ul>
-<h1 id="温故知新"><a href="#温故知新" class="headerlink" title="温故知新"></a>温故知新</h1><h2 id="513-找树左下角的值"><a href="#513-找树左下角的值" class="headerlink" title="513. 找树左下角的值"></a><a href="https://leetcode-cn.com/problems/find-bottom-left-tree-value/">513. 找树左下角的值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115213203.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115213219.png" alt=""></p>
-<h2 id="135-分发糖果"><a href="#135-分发糖果" class="headerlink" title="135. 分发糖果"></a><a href="https://leetcode-cn.com/problems/candy/">135. 分发糖果</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115214537.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115214553.png" alt=""></p>
-<h2 id="365-水壶问题"><a href="#365-水壶问题" class="headerlink" title="365. 水壶问题"></a><a href="https://leetcode-cn.com/problems/water-and-jug-problem/">365. 水壶问题</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115222304.png" alt=""></p>
-<ul>
-<li>这是一个模拟题</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115222325.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211115222414.png" alt=""></p>
-<h2 id="1760-袋子里最少数目的球"><a href="#1760-袋子里最少数目的球" class="headerlink" title="1760. 袋子里最少数目的球"></a><a href="https://leetcode-cn.com/problems/minimum-limit-of-balls-in-a-bag/">1760. 袋子里最少数目的球</a></h2><h2 id="45-跳跃游戏-II"><a href="#45-跳跃游戏-II" class="headerlink" title="45. 跳跃游戏 II"></a><a href="https://leetcode-cn.com/problems/jump-game-ii/">45. 跳跃游戏 II</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116220506.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116220522.png" alt=""></p>
-<h2 id="93-复原-IP-地址"><a href="#93-复原-IP-地址" class="headerlink" title="93. 复原 IP 地址"></a><a href="https://leetcode-cn.com/problems/restore-ip-addresses/">93. 复原 IP 地址</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223107.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223122.png" alt=""></p>
-<h2 id="46-全排列"><a href="#46-全排列" class="headerlink" title="46. 全排列"></a><a href="https://leetcode-cn.com/problems/permutations/">46. 全排列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223421.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116223503.png" alt=""></p>
-<h2 id="43-字符串相乘"><a href="#43-字符串相乘" class="headerlink" title="43. 字符串相乘"></a><a href="https://leetcode-cn.com/problems/multiply-strings/">43. 字符串相乘</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116224625.png" alt=""></p>
-<ul>
-<li>倒着存储</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211116224638.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>15题——回顾篇</title>
-    <url>/posts/cdd7.html</url>
-    <content><![CDATA[<h1 id="力扣15题"><a href="#力扣15题" class="headerlink" title="力扣15题"></a>力扣15题</h1><h2 id="1367-二叉树中的列表"><a href="#1367-二叉树中的列表" class="headerlink" title="1367. 二叉树中的列表"></a><a href="https://leetcode-cn.com/problems/linked-list-in-binary-tree/">1367. 二叉树中的列表</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206220539.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206220600.png" alt=""></p>
-<h2 id="958-二叉树的完全性检验"><a href="#958-二叉树的完全性检验" class="headerlink" title="958. 二叉树的完全性检验"></a><a href="https://leetcode-cn.com/problems/check-completeness-of-a-binary-tree/">958. 二叉树的完全性检验</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206232505.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206232527.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211206232355.png" style="zoom: 33%;"></p>
-<h2 id="剑指-Offer-36-二叉搜索树与双向链表"><a href="#剑指-Offer-36-二叉搜索树与双向链表" class="headerlink" title="剑指 Offer 36. 二叉搜索树与双向链表"></a><a href="https://leetcode-cn.com/problems/er-cha-sou-suo-shu-yu-shuang-xiang-lian-biao-lcof/">剑指 Offer 36. 二叉搜索树与双向链表</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207184740.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207185000.png" alt=""></p>
-<h2 id="464-我能赢吗"><a href="#464-我能赢吗" class="headerlink" title="464. 我能赢吗"></a><a href="https://leetcode-cn.com/problems/can-i-win/">464. 我能赢吗</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207195938.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207195951.png" alt=""></p>
-<ul>
-<li>记忆化——mask为自变量，total是随着mask的值改变而改变，使用自变量当做去重哈希表的下标值</li>
-</ul>
-<h2 id="172-阶乘后的零"><a href="#172-阶乘后的零" class="headerlink" title="172. 阶乘后的零"></a><a href="https://leetcode-cn.com/problems/factorial-trailing-zeroes/">172. 阶乘后的零</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207202657.png" alt=""></p>
-<ul>
-<li><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207202730.png" alt=""></li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207202712.png" alt=""></p>
-<h2 id="384-打乱数组"><a href="#384-打乱数组" class="headerlink" title="384. 打乱数组"></a><a href="https://leetcode-cn.com/problems/shuffle-an-array/">384. 打乱数组</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207203828.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207203845.png" alt=""></p>
-<h2 id="437-路径总和-III"><a href="#437-路径总和-III" class="headerlink" title="437. 路径总和 III"></a><a href="https://leetcode-cn.com/problems/path-sum-iii/">437. 路径总和 III</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207205806.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207205821.png" alt=""></p>
-<h2 id="395-至少有-K-个重复字符的最长子串"><a href="#395-至少有-K-个重复字符的最长子串" class="headerlink" title="395. 至少有 K 个重复字符的最长子串"></a><a href="https://leetcode-cn.com/problems/longest-substring-with-at-least-k-repeating-characters/">395. 至少有 K 个重复字符的最长子串</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207212559.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207212613.png" alt=""></p>
-<h2 id="190-颠倒二进制位"><a href="#190-颠倒二进制位" class="headerlink" title="190. 颠倒二进制位"></a><a href="https://leetcode-cn.com/problems/reverse-bits/">190. 颠倒二进制位</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207213707.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207213718.png" alt=""></p>
-<h2 id="8-字符串转换整数-atoi"><a href="#8-字符串转换整数-atoi" class="headerlink" title="8. 字符串转换整数 (atoi)"></a><a href="https://leetcode-cn.com/problems/string-to-integer-atoi/">8. 字符串转换整数 (atoi)</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207215729.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211207215745.png" alt=""></p>
-<h2 id="380-O-1-时间插入、删除和获取随机元素"><a href="#380-O-1-时间插入、删除和获取随机元素" class="headerlink" title="380. O(1) 时间插入、删除和获取随机元素"></a><a href="https://leetcode-cn.com/problems/insert-delete-getrandom-o1/">380. O(1) 时间插入、删除和获取随机元素</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216204204.png" alt=""></p>
-<ul>
-<li>要求删除、插入时间复杂度为$O(1)$——哈希表，但$O(1)$获取随机元素——哈希表无法完成，可以用动态数组——<code>push_back()</code>，<code>pop_back()</code>，二者联用可完成此题</li>
-<li>哈希表记录val在动态数组的位置</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216204222.png" alt=""></p>
-<h2 id="402-移掉-K-位数字"><a href="#402-移掉-K-位数字" class="headerlink" title="402. 移掉 K 位数字"></a><a href="https://leetcode-cn.com/problems/remove-k-digits/">402. 移掉 K 位数字</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216210524.png" alt=""></p>
-<ul>
-<li>删除k个数，形成最小的数字-&gt;尽量把较小的数字往前拱，联想到单调递增栈，把违反单调性的数字删除</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216210538.png" alt=""></p>
-<ul>
-<li>substr第二个参数超过字符串长度时，表示从当前位置截取到最后一个位置</li>
-</ul>
-<h2 id="1081-不同字符的最小子序列"><a href="#1081-不同字符的最小子序列" class="headerlink" title="1081. 不同字符的最小子序列"></a><a href="https://leetcode-cn.com/problems/smallest-subsequence-of-distinct-characters/">1081. 不同字符的最小子序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216215225.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216215248.png" alt=""></p>
-<h2 id="1499-满足不等式的最大值"><a href="#1499-满足不等式的最大值" class="headerlink" title="1499. 满足不等式的最大值"></a><a href="https://leetcode-cn.com/problems/max-value-of-equation/">1499. 满足不等式的最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216224617.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211216224637.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
     <title>AVL</title>
     <url>/posts/416e.html</url>
     <content><![CDATA[<h1 id="LeetCode环节"><a href="#LeetCode环节" class="headerlink" title="LeetCode环节"></a>LeetCode环节</h1><h2 id="面试题-04-06-后继者"><a href="#面试题-04-06-后继者" class="headerlink" title="面试题 04.06. 后继者"></a><a href="https://leetcode-cn.com/problems/successor-lcci/">面试题 04.06. 后继者</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211228192531.png" alt=""></p>
@@ -2073,74 +1539,6 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103162934.png" alt=""></p>
 <h2 id="面试题-04-09-二叉搜索树序列"><a href="#面试题-04-09-二叉搜索树序列" class="headerlink" title="面试题 04.09. 二叉搜索树序列"></a><a href="https://leetcode-cn.com/problems/bst-sequences-lcci/">面试题 04.09. 二叉搜索树序列</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103170805.png" alt=""></p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220103170823.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>单调栈</title>
-    <url>/posts/831c.html</url>
-    <content><![CDATA[<h1 id="单调栈"><a href="#单调栈" class="headerlink" title="单调栈"></a>单调栈</h1><blockquote>
-<p>砍掉一端的单调队列</p>
-</blockquote>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128191947.png" alt=""></p>
-<p>例如：单调递减栈——蓝色是黄色右边第一个比它们大的元素，是绿色右边第一个比它们小的元素</p>
-<p>黄色——被蓝色踢出的元素——比蓝色小</p>
-<p>绿色——比蓝色大</p>
-<p>单调递减栈：维护最近大于关系</p>
-<p>单调递增栈：维护最近小于关系</p>
-<h2 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201107.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201156.png" alt=""></p>
-<p>效果：</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128201439.png" alt=""></p>
-<h1 id="Leetcode环节"><a href="#Leetcode环节" class="headerlink" title="Leetcode环节"></a>Leetcode环节</h1><h2 id="155-最小栈"><a href="#155-最小栈" class="headerlink" title="155. 最小栈"></a><a href="https://leetcode-cn.com/problems/min-stack/">155. 最小栈</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128202806.png" style="zoom:50%;"></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128202835.png" alt=""></p>
-<h2 id="503-下一个更大元素-II"><a href="#503-下一个更大元素-II" class="headerlink" title="503. 下一个更大元素 II"></a><a href="https://leetcode-cn.com/problems/next-greater-element-ii/">503. 下一个更大元素 II</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128204715.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128204731.png" alt=""></p>
-<ul>
-<li>单调递减栈</li>
-</ul>
-<h2 id="901-股票价格跨度"><a href="#901-股票价格跨度" class="headerlink" title="901. 股票价格跨度"></a><a href="https://leetcode-cn.com/problems/online-stock-span/">901. 股票价格跨度</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128210814.png" alt=""></p>
-<p>分析：此题求解往回数有多少天是小于等于当前股票的天数-&gt;等价于求左边第一个大于当前数的元素</p>
-<p>解法：单调递减栈</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128211155.png" alt=""></p>
-<h2 id="739-每日温度"><a href="#739-每日温度" class="headerlink" title="739. 每日温度"></a><a href="https://leetcode-cn.com/problems/daily-temperatures/">739. 每日温度</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128212837.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128212853.png" alt=""></p>
-<h2 id="84-柱状图中最大的矩形"><a href="#84-柱状图中最大的矩形" class="headerlink" title="84. 柱状图中最大的矩形"></a><a href="https://leetcode-cn.com/problems/largest-rectangle-in-histogram/">84. 柱状图中最大的矩形</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128220317.png" alt=""></p>
-<ul>
-<li>分析：以每个矩形的高为基准，向前找第一个小于当前矩形的位置，向后找第一个小于当前矩形的位置，宽为这两个位置的差值-1</li>
-<li>小于关系-&gt;单调递增栈</li>
-<li>考虑重复元素，例如：2，3，3，3，3，2的情况</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128220333.png" alt=""></p>
-<h2 id="1856-子数组最小乘积的最大值"><a href="#1856-子数组最小乘积的最大值" class="headerlink" title="1856. 子数组最小乘积的最大值"></a><a href="https://leetcode-cn.com/problems/maximum-subarray-min-product/">1856. 子数组最小乘积的最大值</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128222816.png" alt=""></p>
-<ul>
-<li>其实和前一题一样：把每个位置当成最小元素，向左向右找第一个小于当前元素的位置</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128223324.png" alt=""></p>
-<h2 id="907-子数组的最小值之和"><a href="#907-子数组的最小值之和" class="headerlink" title="907. 子数组的最小值之和"></a><a href="https://leetcode-cn.com/problems/sum-of-subarray-minimums/">907. 子数组的最小值之和</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128232033.png" alt=""></p>
-<ul>
-<li>分析：$\sum{RMQ(x,y)}$问题——所有固定末尾的RMQ的和值相加</li>
-<li>思路：单调递增栈</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211128232050.png" alt=""></p>
-<ul>
-<li>ind为前面第一个比当前元素小的元素的下标</li>
-<li>13行——以当前位置为结尾的RMQ问题的和值，是前n-1个和值+当前元素✖️区间跨度 （假设当前元素为区间最小值，往前找第一个比他小的元素，此区间跨度为当前元素作为最小值的跨度）</li>
-</ul>
-<h2 id="496-下一个更大元素-I"><a href="#496-下一个更大元素-I" class="headerlink" title="496. 下一个更大元素 I"></a><a href="https://leetcode-cn.com/problems/next-greater-element-i/">496. 下一个更大元素 I</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129204101.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129204118.png" alt=""></p>
-<h2 id="456-132-模式"><a href="#456-132-模式" class="headerlink" title="456. 132 模式"></a><a href="https://leetcode-cn.com/problems/132-pattern/">456. 132 模式</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129211016.png" alt=""></p>
-<ul>
-<li><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211223231543.png" alt=""></p>
-<p>1⃣️先记录每个i位置之前的最小值，记录在L数组中，至此我们可以获得足够大的区间m～i。</p>
-<p>2⃣️我们需要找i位置后面是否存在数k满足m&lt;k&lt;i</p>
-<p>3⃣️利用单调递减栈，寻找第一个大于i的数j，在i和j区间寻找是否存在小于i的最大值。</p>
-</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129211028.png" alt=""></p>
-<ul>
-<li>注意是从后往前遍历数组，val是最后一个被弹出的栈顶元素（如上图的k）</li>
-</ul>
-<h2 id="42-接雨水"><a href="#42-接雨水" class="headerlink" title="42. 接雨水"></a><a href="https://leetcode-cn.com/problems/trapping-rain-water/">42. 接雨水</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129212309.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211129212345.png" alt=""></p>
 ]]></content>
   </entry>
   <entry>
@@ -2316,46 +1714,6 @@ public:
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220125013955.png" alt=""></p>
 <h2 id="234-回文链表"><a href="#234-回文链表" class="headerlink" title="234. 回文链表"></a><a href="https://leetcode-cn.com/problems/palindrome-linked-list/">234. 回文链表</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220125015417.png" alt=""></p>
 <p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220125015436.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>MySQL的使用</title>
-    <url>/posts/0.html</url>
-    <content><![CDATA[<h1 id="MySQL的使用"><a href="#MySQL的使用" class="headerlink" title="MySQL的使用"></a>MySQL的使用</h1><p>在云服务器上查看是否有MySQL</p>
-<p>使用<code>ps -ef | grep mysql</code><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004171647.png" style="zoom: 50%;"></p>
-<p><code>grep</code> 其实本身就是一个命令。在执行 <code>ps -ef | grep mysql</code> 时，其实是起了一个 <code>grep</code> 的进程，所以你在这里看到了这个进程，它并不是 <code>mysql</code> 的进程。</p>
-<p>更新系统一些资源【这些资源不更新有可能导致mysql或其他软件运行不了】</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004172101.png" style="zoom:50%;"></p>
-<ul>
-<li>需要在root用户下</li>
-</ul>
-<p>安装MySQL</p>
-<ul>
-<li><code>apt install mysql-server</code></li>
-</ul>
-<p>安装完后可查看是否有mysql进程</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004172441.png" style="zoom:50%;"></p>
-<p>初始化MySQL</p>
-<ul>
-<li><code>mysql_secure_installation</code></li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004200725.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004201020.png" alt=""></p>
-<ul>
-<li>设置密码等级</li>
-<li>移除匿名用户</li>
-<li>禁止root用户远程登录</li>
-</ul>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004201603.png" style="zoom:50%;"></p>
-<p>创建用户     <img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004202244.png" style="zoom:50%;"></p>
-<p>@前面表示用户名，@后面表示指定ip地址，%表示任意ip。</p>
-<p>设置用户权限        <img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004210049.png" style="zoom:50%;"></p>
-<p>修改配置文件，注释掉绑定地址<code>vim /etc/mysql/mysql.conf.d/mysqld.cnf</code></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004211821.png" alt=""></p>
-<p>使用<code>apt-cache serch mysql | grep dev</code>找到对应的开发库，里面有一些MySQL的接口（C语言）</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004225018.png" alt=""></p>
-<p>下载完后如下图可见<code>mysql.h</code></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004225158.png" style="zoom:50%;"></p>
 ]]></content>
   </entry>
   <entry>
@@ -2648,60 +2006,43 @@ objdump -S a.out<span aria-hidden="true" class="line-numbers-rows"><span></span>
 ]]></content>
   </entry>
   <entry>
-    <title>面向面试选择题之查漏补缺</title>
-    <url>/posts/2dfc.html</url>
-    <content><![CDATA[<blockquote>
-<p>  选择题包含Linux， 计算机网络，C++语法，操作系统，数据结构等方面的知识点，非常适合查漏补缺</p>
-<p>  这些错题个人感觉比较基础，对于操作系统知识需要加强，有一些个人不常见的Linux命令也会考到</p>
-<p>  <span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>需要了解对于图这样的数据结构，对于二叉树来说（结点=边数+1）经常考到</p>
-<p>  计算机网络考查最多的——TCP、UDP等一系列知识，需重点注意</p>
-</blockquote>
-<h1 id="选择题"><a href="#选择题" class="headerlink" title="选择题"></a>选择题</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105933.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105856.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210517133930.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105811.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110007.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110102.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110118.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110154.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110318.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="/Users/sorrymaker/Library/Application Support/typora-user-images/image-20210520110411001.png" alt="image-20210520110411001"></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110445.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210524134029.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210524134125.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201107.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201015.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201200.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201234.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201302.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201320.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201344.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201403.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201424.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201442.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201501.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201519.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201543.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201601.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201620.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201635.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201656.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201720.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201738.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201756.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201849.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201912.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201930.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202132.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202151.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202209.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202230.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202249.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202306.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202337.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202355.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202413.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202429.png" alt=""></p>
+    <title>MySQL的使用</title>
+    <url>/posts/0.html</url>
+    <content><![CDATA[<h1 id="MySQL的使用"><a href="#MySQL的使用" class="headerlink" title="MySQL的使用"></a>MySQL的使用</h1><p>在云服务器上查看是否有MySQL</p>
+<p>使用<code>ps -ef | grep mysql</code><span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004171647.png" style="zoom: 50%;"></p>
+<p><code>grep</code> 其实本身就是一个命令。在执行 <code>ps -ef | grep mysql</code> 时，其实是起了一个 <code>grep</code> 的进程，所以你在这里看到了这个进程，它并不是 <code>mysql</code> 的进程。</p>
+<p>更新系统一些资源【这些资源不更新有可能导致mysql或其他软件运行不了】</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004172101.png" style="zoom:50%;"></p>
+<ul>
+<li>需要在root用户下</li>
+</ul>
+<p>安装MySQL</p>
+<ul>
+<li><code>apt install mysql-server</code></li>
+</ul>
+<p>安装完后可查看是否有mysql进程</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004172441.png" style="zoom:50%;"></p>
+<p>初始化MySQL</p>
+<ul>
+<li><code>mysql_secure_installation</code></li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004200725.png" alt=""><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004201020.png" alt=""></p>
+<ul>
+<li>设置密码等级</li>
+<li>移除匿名用户</li>
+<li>禁止root用户远程登录</li>
+</ul>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004201603.png" style="zoom:50%;"></p>
+<p>创建用户     <img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004202244.png" style="zoom:50%;"></p>
+<p>@前面表示用户名，@后面表示指定ip地址，%表示任意ip。</p>
+<p>设置用户权限        <img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004210049.png" style="zoom:50%;"></p>
+<p>修改配置文件，注释掉绑定地址<code>vim /etc/mysql/mysql.conf.d/mysqld.cnf</code></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004211821.png" alt=""></p>
+<p>使用<code>apt-cache serch mysql | grep dev</code>找到对应的开发库，里面有一些MySQL的接口（C语言）</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004225018.png" alt=""></p>
+<p>下载完后如下图可见<code>mysql.h</code></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20211004225158.png" style="zoom:50%;"></p>
 ]]></content>
   </entry>
   <entry>
@@ -2712,189 +2053,6 @@ objdump -S a.out<span aria-hidden="true" class="line-numbers-rows"><span></span>
 <p> LRU——数据预热（yong， old）</p>
 <h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p><img src="/img/loading.gif" data-original="https://i.loli.net/2021/09/23/N2ABoeCxpcWnKbZ.png" style="zoom:50%;"></p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>面向面试简答题之查漏补缺</title>
-    <url>/posts/79b0.html</url>
-    <content><![CDATA[<p><code>面试是一个相互引导的过程，面试官会通过相应的问题来考察你的知识广度和深度，而你需要引导面试官你擅长的领域。</code></p>
-<h1 id="——计算机网络——"><a href="#——计算机网络——" class="headerlink" title="——计算机网络——"></a>——计算机网络——</h1><h1 id="简述tcp3次握手"><a href="#简述tcp3次握手" class="headerlink" title="简述tcp3次握手"></a>简述tcp3次握手</h1><p>三次握手 [SYN、ACK]</p>
-<ul>
-<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/C51Xz7NYuU8B5eIK.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/C51Xz7NYuU8B5eIK.png" alt="图片"></a></li>
-<li><strong>第一次握手</strong>：客户端发送SYN包到服务器[客户端进入SYN_SEND状态，等待服务器确认]</li>
-<li><strong>第二次握手</strong>：服务器收到，必须确认客户端，设置一个ACK，同时自己也设置一个SYN，即SYN+ACK包[服务端从LISTEN进入SYN_RECV状态]</li>
-<li><strong>第三次握手</strong>：客户端收到服务器的SYN＋ACK包，向服务器发送ACK确认包，发送完毕后，客户端进入ESTABLISHED状态，服务器收到ACK后也进入ESTABLISHED状态</li>
-<li>注意：每次的ACK序号，在需要确认的包的序号上加一，表示确认</li>
-</ul>
-<h2 id="简述tcp为什么要3次握手，为什么2次不行，4次可以么？"><a href="#简述tcp为什么要3次握手，为什么2次不行，4次可以么？" class="headerlink" title="简述tcp为什么要3次握手，为什么2次不行，4次可以么？"></a>简述tcp为什么要3次握手，为什么2次不行，4次可以么？</h2><p>首先网络是极其复杂且恶劣的环境，以至于设计出了tcp这样的可靠传输协议，全双工的协议，一条连接的建立，有去必有回才算建立</p>
-<ul>
-<li>先来看一次握手为什么不行，这当然是行不通的，假设客户端A传一个包给服务端B，此时建立一条连接，而B没有应答，在这个过程中可能出现了丢包的情况，A就无法确认数据包是否送达，有去无回，此时A自然认为自己无法正确连接B。</li>
-<li><p>为什么2次不行：同样，客户端A想从服务端B请求数据，发了一个数据包，此时A与B建立一条连接（第一次握手），B收到了A的请求并给A一个应答，此时又建立了一条连接（第二次握手），若就这样结束，因为中途数据包可能丢失，或者因为A结束了与B的连接，那么B也无法判断我建立的这条连接是否能正确的发送数据包，也就无法断定是否建立了与A的连接。——B发了但是没收到应答，不算建立成功</p>
-</li>
-<li><p>4次可以么？：是可以的，但是没有必要，对A来讲，若B给了一个响应，那么A认为自己是可以连接到B的，同样的，若B给了A应答后收到了A的应答，那么B认为连接建立成功，这样A与B就可以正常通信了。对于4次握手来说，可能对于B应答的应答（第三次握手）这样的数据包在网络中可能丢失，B会再次传送一个应答，来尝试是否能与A进行连接，但这是网络原因，只要B收到了A的应答，那么就是可以进行正确的连接，4次握手可以，但是没有必要，还是无法保证网络的稳定性</p>
-</li>
-<li><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>扩展：TCP建立连接的过程中还要确认数据包的序号，防止接受不需要或者不想传的包——A与B建立了连接（发送数据包后），此时A直接断开，但是数据包在网络上流离，此时A又与B重新建立连接，由于网络的时延性，B很有可能收到在网络上流离的数据包，那么这样就不是我们想要的数据。<ul>
-<li>所以要确认数据包的序号，这个序号是随着时间的变化而变化的，若是要收到相同序号的包，则需要4个小时，由于存在TTL，那些数据包早就灰飞烟灭了</li>
-</ul>
-</li>
-</ul>
-<h2 id="简述从输入网址到浏览器显示的过程"><a href="#简述从输入网址到浏览器显示的过程" class="headerlink" title="简述从输入网址到浏览器显示的过程"></a>简述从输入网址到浏览器显示的过程</h2><blockquote>
-<p>  这个问题非常经典，但还是会经常问，因为考察你对计算机网络知识的广度，然后面试官再进一步问你更深入的问题</p>
-</blockquote>
-<p>总的来说整个过程如下：</p>
-<p>DNS解析：将域名解析成IP地址</p>
-<ul>
-<li>本地hosts，本地DNS解析器缓存</li>
-<li>本地DNS</li>
-<li>迭代/递归：根DNS服务器，顶级DNS，权威DNS</li>
-<li>直到找到域名对应的IP</li>
-</ul>
-<p>TCP连接：TCP三次握手（可以阐述为什么需要3次握手？）</p>
-<p>发送HTTP请求——请求方法、URL、HTTP版本</p>
-<p>服务器处理请求并返回HTTP报文</p>
-<ul>
-<li>解析用户请求，知道了需要调度哪些资源文件，并调用数据库信息，返回给浏览器客户端</li>
-<li>返回响应结果——一般会有一个HTTP状态码，比如200、301、404等，通过这个状态码我们可以直到服务器端的处理是否正常，并能了解具体的错误</li>
-</ul>
-<p>浏览器解析渲染页面</p>
-<p>断开连接：TCP四次挥手</p>
-<p><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>上述过程如有不熟悉的，应当加以了解，这是计算机基础</p>
-<h2 id="TCP与UDP有哪些区别？"><a href="#TCP与UDP有哪些区别？" class="headerlink" title="TCP与UDP有哪些区别？"></a>TCP与UDP有哪些区别？</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210530151206.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210530151230.png" alt=""></p>
-<ul>
-<li>TCP是面向连接的，实现数据可靠传输，拥有拥塞控制等流量控制算法，会根据网络环境调节传输速度，比较复杂。</li>
-</ul>
-<h2 id="TCP四次挥手的过程是什么样的？"><a href="#TCP四次挥手的过程是什么样的？" class="headerlink" title="TCP四次挥手的过程是什么样的？"></a>TCP四次挥手的过程是什么样的？</h2><ul>
-<li><p>四次挥手 [FIN、ACK]</p>
-<ul>
-<li><p><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/GlWgLx87BeFdH15F.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/GlWgLx87BeFdH15F.png" alt="图片"></a></p>
-</li>
-<li><p><strong>第一次挥手</strong>：假设客户端想要关闭连接，客户端发送一个FIN包，表示自己已经没有数据可以发送了 [此时仍然可以接收数据][客户端进入FIN_WAIT_1状态]</p>
-</li>
-<li><p>第二次挥手：服务端回复一个ACK包，表明自己接收到了客户端关闭连接的请求，但自己还需要做些准备来关闭连接[服务端进入CLOSE_WAIT状态]</p>
-<ul>
-<li>客户端接收到这个ACK后，进入FIN_WAIT_2状态，等待服务端关闭连接</li>
-</ul>
-</li>
-<li><p><strong>第三次挥手</strong>：服务端准备好关闭连接时，向客户端再发送FIN[服务端进入LAST_ACK状态，等待客户端的确认]</p>
-</li>
-<li><p>第四次挥手：客户端接收到来自服务器端的关闭请求，发送一个ACK包[客户端进入 TIME_WAIT状态，为可能出现的超时重传的FIN包，等待2个MSL时间]</p>
-<ul>
-<li>服务端接收到这个ACK之后，关闭连接，进入CLOSED状态</li>
-</ul>
-</li>
-<li>客户端等待了<strong>2个MSL</strong>后，如果没有收到服务端的FIN，则认为服务端已经正常关闭连接，于是自己也关闭连接，进入CLOSED状态；否则，再次发送ACK</li>
-</ul>
-</li>
-<li><p>参考<a href="https://hit-alibaba.github.io/interview/basic/network/TCP.html#三次握手与四次挥手?fileGuid=zdkyBEa86pCYmlA6">三次握手与四次挥手</a>——博客 [注：第四次挥手客户端等待的是超时重传的FIN而不是ACK]</p>
-</li>
-</ul>
-<h3 id="附加：2个MSL的含义"><a href="#附加：2个MSL的含义" class="headerlink" title="附加：2个MSL的含义"></a>附加：2个MSL的含义</h3><p>TIME_WAIT是如何引起的，有什么作用，在编程时有什么弊端，怎么解决？</p>
-<ul>
-<li><p>引起原因：TCP的四次挥手时，已经完成前三次挥手，在第四次挥手时，客户端收到来自服务端的FIN，它在发送一个ACK后，就会进入TIME_WAIT状态</p>
-<ul>
-<li>此时客户端需要等待两个最大<strong>数据段生命周期</strong>（Maximum segment lifetime，MSL）的时间之后，才会进入CLOSED状态</li>
-</ul>
-</li>
-<li><p>存在原因</p>
-<ul>
-<li><p>①阻止延迟数据段</p>
-<ul>
-<li>每一个TCP数据段都包含唯一的序列号，这个序列号能够保证TCP协议的可靠</li>
-<li>为了保证新TCP连接的数据段不会与还在网络中传输的历史连接的数据段重复，TCP连接在分配新的序列号之前需要至少<strong>静默</strong>数据段在网络中能够存活的最长时间，即MSL</li>
-<li>从而防止延迟的数据段被其他使用相同源地址、源端口、目的地址以及目的端口的TCP连接收到</li>
-</ul>
-</li>
-<li><p>②保证连接关闭</p>
-<ul>
-<li>如果客户端等待的时间不够长，当服务端还没有收到ACK消息，而客户端重新与服务端建立TCP连接时，会发生：<ul>
-<li>服务端因为没有收到ACK消息，所以仍然认为当前连接是合法的</li>
-<li>客户端重新发送SYN消息请求握手时，会收到服务端的RST消息，连接建立的过程被终止</li>
-</ul>
-</li>
-<li>所以要保证TCP连接的远程被正确关闭，即等待被动关闭连接的一方收到FIN对应的ACK消息</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>编程影响</p>
-<ul>
-<li>对于高并发的场景容易出现过多的TIME_WAIT</li>
-<li>而MSL的时长一般是60s，这是难以接受的，可能一个TCP连接只为了通信几秒钟，但TIME_WAIT就需要等待2分钟</li>
-</ul>
-</li>
-<li><p>解决方式</p>
-<ul>
-<li>基于一个<strong>时间戳变量</strong>，记录发送数据包、最近一次接收数据包的时间</li>
-<li>然后配合两个参数<ul>
-<li><strong>reuse</strong>：允许主动关闭连接的一方，再次向对方发起连接的时候，复用处于TIME_WAIT状态的连接</li>
-<li><strong>recycle</strong>：内核会快速回收处于TIME_WAIT的连接，只需等待RTO时间 [数据包重传的超时时间]</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>参考</p>
-<ul>
-<li><a href="https://draveness.me/whys-the-design-tcp-time-wait/?fileGuid=zdkyBEa86pCYmlA6">为什么 TCP 协议有 TIME_WAIT 状态</a>——博客</li>
-<li><a href="https://zhuanlan.zhihu.com/p/40013724?fileGuid=zdkyBEa86pCYmlA6">系统调优你所不知道的TIME_WAIT和CLOSE_WAIT</a>——知乎</li>
-<li><a href="https://www.yisu.com/zixun/63792.html?fileGuid=zdkyBEa86pCYmlA6">理解TIME_WAIT，彻底弄清解决TCP: time wait bucket table overflow</a>——亿速云</li>
-</ul>
-</li>
-</ul>
-<h2 id="什么是HTTPS的SSL认证？"><a href="#什么是HTTPS的SSL认证？" class="headerlink" title="什么是HTTPS的SSL认证？"></a>什么是HTTPS的SSL认证？</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210622002619.png" style="zoom:50%;"></p>
-<p>参考——<a href="https://www.runoob.com/w3cnote/https-ssl-intro.html">HTTPS 与 SSL 证书概要</a></p>
-<h1 id="——C-C-相关——"><a href="#——C-C-相关——" class="headerlink" title="——C/C++相关——"></a>——C/C++相关——</h1><h2 id="C-为什么不像JAVA一样有垃圾回收机制"><a href="#C-为什么不像JAVA一样有垃圾回收机制" class="headerlink" title="C++为什么不像JAVA一样有垃圾回收机制"></a>C++为什么不像JAVA一样有垃圾回收机制</h2><p>垃圾回收机制——在JAVA中，我们对资源的申请不需要人为的手动释放，JVM会自动释放这些资源</p>
-<p>C++中有RAII（Resource Acquisition is Initialization——资源获取即初始化）技术管理资源</p>
-<ul>
-<li>在构造函数中申请分配资源，在析构函数中释放资源——这是C++语言机制保证的，当一个对象创建的时候，自动调用构造函数，当对象超出作用域的时候会自动调用析构函数，所以，在RAII的指导下，我们应该使用类来管理资源，将资源和对象的生命周期绑定。</li>
-<li>C++中智能指针就利用这样的思想，实现自动的内存管理</li>
-<li>可参考<a href="https://www.cnblogs.com/jiangbin/p/6986511.html">C++RAII介绍</a></li>
-</ul>
-<h2 id="map和unordered-map的区别"><a href="#map和unordered-map的区别" class="headerlink" title="map和unordered_map的区别"></a>map和unordered_map的区别</h2><p>两者底层实现不同：map——红黑树，unordered_map——哈希表</p>
-<p>map：为什么要使用红黑树实现，用其它的呢？</p>
-<ul>
-<li>因为对于单次增删改查操作的时间复杂度都为$O(logn)$</li>
-<li>红黑树是二叉查找树，中序遍历可以有序输出</li>
-<li>对比BST（binary_search_tree）和AVL——BST会退化为链表，排除；而AVL由于其有严格的平衡条件，每次操作可能花费的时间都在平衡上了，影响效率，不适合</li>
-</ul>
-<p>Unordered_map</p>
-<ul>
-<li>哈希表使用拉链法解决哈希冲突，拉链的数据量超过8会使用拉链法，否则自动退化使用红黑树</li>
-<li>Unordered_map查询时间复杂度可能做不到$O(1)$，因为其存在退化</li>
-<li>做不到数据有序</li>
-</ul>
-<h2 id="C-STL-sort的实现"><a href="#C-STL-sort的实现" class="headerlink" title="C++ STL sort的实现"></a>C++ STL sort的实现</h2><p>可参考</p>
-<p><a href="https://srymaker0.com/posts/9271">数据结构力扣刷题集——7.快速排序+优化</a></p>
-<h2 id="const关键字的作用"><a href="#const关键字的作用" class="headerlink" title="const关键字的作用"></a>const关键字的作用</h2><p>修饰变量——该变量不能被改变</p>
-<p>修饰指针——指针常量和常量指针</p>
-<p>修饰引用</p>
-<ul>
-<li>形参引用使用const修饰：<code>foo(const int &amp;a)</code>，这样修饰表示传递过程中不会对值进行修改？</li>
-</ul>
-<p>修饰成员函数</p>
-<ul>
-<li>成员函数不会对成员变量进行修改</li>
-</ul>
-<h2 id="static关键字的作用"><a href="#static关键字的作用" class="headerlink" title="static关键字的作用"></a>static关键字的作用</h2><p>修饰普通变量</p>
-<ul>
-<li>修改变量的存储区域（变为静态区）和生命周期</li>
-</ul>
-<p>修饰普通函数</p>
-<ul>
-<li>仅在该函数的文件内可使用——多人开发中常见，两个人在A文件与B文件写了同名函数的情况，比如用static修饰A文件的同名函数可以别人使用你在A文件内的这个函数</li>
-</ul>
-<p>修饰成员变量</p>
-<ul>
-<li>对很多实例来说，被static修饰的成员变量只有一个，这么多的实例其实共享一个static成员变量（跟着类走的）</li>
-</ul>
-<p>修饰成员函数</p>
-<ul>
-<li>不需要生成对象就可以访问该函数（跟着类走的）</li>
-<li>函数内部不能访问非static的成员属性</li>
-</ul>
-<h1 id="——操作系统相关——"><a href="#——操作系统相关——" class="headerlink" title="——操作系统相关——"></a>——操作系统相关——</h1><h2 id="什么是虚拟内存？"><a href="#什么是虚拟内存？" class="headerlink" title="什么是虚拟内存？"></a>什么是虚拟内存？</h2><h2 id="说一下零拷贝技术"><a href="#说一下零拷贝技术" class="headerlink" title="说一下零拷贝技术"></a>说一下零拷贝技术</h2>]]></content>
-      <tags>
-        <tag>面试</tag>
-      </tags>
   </entry>
   <entry>
     <title>计算机网络概述</title>
@@ -3217,6 +2375,246 @@ objdump -S a.out<span aria-hidden="true" class="line-numbers-rows"><span></span>
       <tags>
         <tag>计算机网络</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>面向面试简答题之查漏补缺</title>
+    <url>/posts/79b0.html</url>
+    <content><![CDATA[<p><code>面试是一个相互引导的过程，面试官会通过相应的问题来考察你的知识广度和深度，而你需要引导面试官你擅长的领域。</code></p>
+<h1 id="——计算机网络——"><a href="#——计算机网络——" class="headerlink" title="——计算机网络——"></a>——计算机网络——</h1><h1 id="简述tcp3次握手"><a href="#简述tcp3次握手" class="headerlink" title="简述tcp3次握手"></a>简述tcp3次握手</h1><p>三次握手 [SYN、ACK]</p>
+<ul>
+<li><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/C51Xz7NYuU8B5eIK.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/C51Xz7NYuU8B5eIK.png" alt="图片"></a></li>
+<li><strong>第一次握手</strong>：客户端发送SYN包到服务器[客户端进入SYN_SEND状态，等待服务器确认]</li>
+<li><strong>第二次握手</strong>：服务器收到，必须确认客户端，设置一个ACK，同时自己也设置一个SYN，即SYN+ACK包[服务端从LISTEN进入SYN_RECV状态]</li>
+<li><strong>第三次握手</strong>：客户端收到服务器的SYN＋ACK包，向服务器发送ACK确认包，发送完毕后，客户端进入ESTABLISHED状态，服务器收到ACK后也进入ESTABLISHED状态</li>
+<li>注意：每次的ACK序号，在需要确认的包的序号上加一，表示确认</li>
+</ul>
+<h2 id="简述tcp为什么要3次握手，为什么2次不行，4次可以么？"><a href="#简述tcp为什么要3次握手，为什么2次不行，4次可以么？" class="headerlink" title="简述tcp为什么要3次握手，为什么2次不行，4次可以么？"></a>简述tcp为什么要3次握手，为什么2次不行，4次可以么？</h2><p>首先网络是极其复杂且恶劣的环境，以至于设计出了tcp这样的可靠传输协议，全双工的协议，一条连接的建立，有去必有回才算建立</p>
+<ul>
+<li>先来看一次握手为什么不行，这当然是行不通的，假设客户端A传一个包给服务端B，此时建立一条连接，而B没有应答，在这个过程中可能出现了丢包的情况，A就无法确认数据包是否送达，有去无回，此时A自然认为自己无法正确连接B。</li>
+<li><p>为什么2次不行：同样，客户端A想从服务端B请求数据，发了一个数据包，此时A与B建立一条连接（第一次握手），B收到了A的请求并给A一个应答，此时又建立了一条连接（第二次握手），若就这样结束，因为中途数据包可能丢失，或者因为A结束了与B的连接，那么B也无法判断我建立的这条连接是否能正确的发送数据包，也就无法断定是否建立了与A的连接。——B发了但是没收到应答，不算建立成功</p>
+</li>
+<li><p>4次可以么？：是可以的，但是没有必要，对A来讲，若B给了一个响应，那么A认为自己是可以连接到B的，同样的，若B给了A应答后收到了A的应答，那么B认为连接建立成功，这样A与B就可以正常通信了。对于4次握手来说，可能对于B应答的应答（第三次握手）这样的数据包在网络中可能丢失，B会再次传送一个应答，来尝试是否能与A进行连接，但这是网络原因，只要B收到了A的应答，那么就是可以进行正确的连接，4次握手可以，但是没有必要，还是无法保证网络的稳定性</p>
+</li>
+<li><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>扩展：TCP建立连接的过程中还要确认数据包的序号，防止接受不需要或者不想传的包——A与B建立了连接（发送数据包后），此时A直接断开，但是数据包在网络上流离，此时A又与B重新建立连接，由于网络的时延性，B很有可能收到在网络上流离的数据包，那么这样就不是我们想要的数据。<ul>
+<li>所以要确认数据包的序号，这个序号是随着时间的变化而变化的，若是要收到相同序号的包，则需要4个小时，由于存在TTL，那些数据包早就灰飞烟灭了</li>
+</ul>
+</li>
+</ul>
+<h2 id="简述从输入网址到浏览器显示的过程"><a href="#简述从输入网址到浏览器显示的过程" class="headerlink" title="简述从输入网址到浏览器显示的过程"></a>简述从输入网址到浏览器显示的过程</h2><blockquote>
+<p>  这个问题非常经典，但还是会经常问，因为考察你对计算机网络知识的广度，然后面试官再进一步问你更深入的问题</p>
+</blockquote>
+<p>总的来说整个过程如下：</p>
+<p>DNS解析：将域名解析成IP地址</p>
+<ul>
+<li>本地hosts，本地DNS解析器缓存</li>
+<li>本地DNS</li>
+<li>迭代/递归：根DNS服务器，顶级DNS，权威DNS</li>
+<li>直到找到域名对应的IP</li>
+</ul>
+<p>TCP连接：TCP三次握手（可以阐述为什么需要3次握手？）</p>
+<p>发送HTTP请求——请求方法、URL、HTTP版本</p>
+<p>服务器处理请求并返回HTTP报文</p>
+<ul>
+<li>解析用户请求，知道了需要调度哪些资源文件，并调用数据库信息，返回给浏览器客户端</li>
+<li>返回响应结果——一般会有一个HTTP状态码，比如200、301、404等，通过这个状态码我们可以直到服务器端的处理是否正常，并能了解具体的错误</li>
+</ul>
+<p>浏览器解析渲染页面</p>
+<p>断开连接：TCP四次挥手</p>
+<p><span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>上述过程如有不熟悉的，应当加以了解，这是计算机基础</p>
+<h2 id="TCP与UDP有哪些区别？"><a href="#TCP与UDP有哪些区别？" class="headerlink" title="TCP与UDP有哪些区别？"></a>TCP与UDP有哪些区别？</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210530151206.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210530151230.png" alt=""></p>
+<ul>
+<li>TCP是面向连接的，实现数据可靠传输，拥有拥塞控制等流量控制算法，会根据网络环境调节传输速度，比较复杂。</li>
+</ul>
+<h2 id="TCP四次挥手的过程是什么样的？"><a href="#TCP四次挥手的过程是什么样的？" class="headerlink" title="TCP四次挥手的过程是什么样的？"></a>TCP四次挥手的过程是什么样的？</h2><ul>
+<li><p>四次挥手 [FIN、ACK]</p>
+<ul>
+<li><p><a href="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/GlWgLx87BeFdH15F.png"><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/doubleLLL3/blogImgs@main/img/GlWgLx87BeFdH15F.png" alt="图片"></a></p>
+</li>
+<li><p><strong>第一次挥手</strong>：假设客户端想要关闭连接，客户端发送一个FIN包，表示自己已经没有数据可以发送了 [此时仍然可以接收数据][客户端进入FIN_WAIT_1状态]</p>
+</li>
+<li><p>第二次挥手：服务端回复一个ACK包，表明自己接收到了客户端关闭连接的请求，但自己还需要做些准备来关闭连接[服务端进入CLOSE_WAIT状态]</p>
+<ul>
+<li>客户端接收到这个ACK后，进入FIN_WAIT_2状态，等待服务端关闭连接</li>
+</ul>
+</li>
+<li><p><strong>第三次挥手</strong>：服务端准备好关闭连接时，向客户端再发送FIN[服务端进入LAST_ACK状态，等待客户端的确认]</p>
+</li>
+<li><p>第四次挥手：客户端接收到来自服务器端的关闭请求，发送一个ACK包[客户端进入 TIME_WAIT状态，为可能出现的超时重传的FIN包，等待2个MSL时间]</p>
+<ul>
+<li>服务端接收到这个ACK之后，关闭连接，进入CLOSED状态</li>
+</ul>
+</li>
+<li>客户端等待了<strong>2个MSL</strong>后，如果没有收到服务端的FIN，则认为服务端已经正常关闭连接，于是自己也关闭连接，进入CLOSED状态；否则，再次发送ACK</li>
+</ul>
+</li>
+<li><p>参考<a href="https://hit-alibaba.github.io/interview/basic/network/TCP.html#三次握手与四次挥手?fileGuid=zdkyBEa86pCYmlA6">三次握手与四次挥手</a>——博客 [注：第四次挥手客户端等待的是超时重传的FIN而不是ACK]</p>
+</li>
+</ul>
+<h3 id="附加：2个MSL的含义"><a href="#附加：2个MSL的含义" class="headerlink" title="附加：2个MSL的含义"></a>附加：2个MSL的含义</h3><p>TIME_WAIT是如何引起的，有什么作用，在编程时有什么弊端，怎么解决？</p>
+<ul>
+<li><p>引起原因：TCP的四次挥手时，已经完成前三次挥手，在第四次挥手时，客户端收到来自服务端的FIN，它在发送一个ACK后，就会进入TIME_WAIT状态</p>
+<ul>
+<li>此时客户端需要等待两个最大<strong>数据段生命周期</strong>（Maximum segment lifetime，MSL）的时间之后，才会进入CLOSED状态</li>
+</ul>
+</li>
+<li><p>存在原因</p>
+<ul>
+<li><p>①阻止延迟数据段</p>
+<ul>
+<li>每一个TCP数据段都包含唯一的序列号，这个序列号能够保证TCP协议的可靠</li>
+<li>为了保证新TCP连接的数据段不会与还在网络中传输的历史连接的数据段重复，TCP连接在分配新的序列号之前需要至少<strong>静默</strong>数据段在网络中能够存活的最长时间，即MSL</li>
+<li>从而防止延迟的数据段被其他使用相同源地址、源端口、目的地址以及目的端口的TCP连接收到</li>
+</ul>
+</li>
+<li><p>②保证连接关闭</p>
+<ul>
+<li>如果客户端等待的时间不够长，当服务端还没有收到ACK消息，而客户端重新与服务端建立TCP连接时，会发生：<ul>
+<li>服务端因为没有收到ACK消息，所以仍然认为当前连接是合法的</li>
+<li>客户端重新发送SYN消息请求握手时，会收到服务端的RST消息，连接建立的过程被终止</li>
+</ul>
+</li>
+<li>所以要保证TCP连接的远程被正确关闭，即等待被动关闭连接的一方收到FIN对应的ACK消息</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>编程影响</p>
+<ul>
+<li>对于高并发的场景容易出现过多的TIME_WAIT</li>
+<li>而MSL的时长一般是60s，这是难以接受的，可能一个TCP连接只为了通信几秒钟，但TIME_WAIT就需要等待2分钟</li>
+</ul>
+</li>
+<li><p>解决方式</p>
+<ul>
+<li>基于一个<strong>时间戳变量</strong>，记录发送数据包、最近一次接收数据包的时间</li>
+<li>然后配合两个参数<ul>
+<li><strong>reuse</strong>：允许主动关闭连接的一方，再次向对方发起连接的时候，复用处于TIME_WAIT状态的连接</li>
+<li><strong>recycle</strong>：内核会快速回收处于TIME_WAIT的连接，只需等待RTO时间 [数据包重传的超时时间]</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>参考</p>
+<ul>
+<li><a href="https://draveness.me/whys-the-design-tcp-time-wait/?fileGuid=zdkyBEa86pCYmlA6">为什么 TCP 协议有 TIME_WAIT 状态</a>——博客</li>
+<li><a href="https://zhuanlan.zhihu.com/p/40013724?fileGuid=zdkyBEa86pCYmlA6">系统调优你所不知道的TIME_WAIT和CLOSE_WAIT</a>——知乎</li>
+<li><a href="https://www.yisu.com/zixun/63792.html?fileGuid=zdkyBEa86pCYmlA6">理解TIME_WAIT，彻底弄清解决TCP: time wait bucket table overflow</a>——亿速云</li>
+</ul>
+</li>
+</ul>
+<h2 id="什么是HTTPS的SSL认证？"><a href="#什么是HTTPS的SSL认证？" class="headerlink" title="什么是HTTPS的SSL认证？"></a>什么是HTTPS的SSL认证？</h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210622002619.png" style="zoom:50%;"></p>
+<p>参考——<a href="https://www.runoob.com/w3cnote/https-ssl-intro.html">HTTPS 与 SSL 证书概要</a></p>
+<h1 id="——C-C-相关——"><a href="#——C-C-相关——" class="headerlink" title="——C/C++相关——"></a>——C/C++相关——</h1><h2 id="C-为什么不像JAVA一样有垃圾回收机制"><a href="#C-为什么不像JAVA一样有垃圾回收机制" class="headerlink" title="C++为什么不像JAVA一样有垃圾回收机制"></a>C++为什么不像JAVA一样有垃圾回收机制</h2><p>垃圾回收机制——在JAVA中，我们对资源的申请不需要人为的手动释放，JVM会自动释放这些资源</p>
+<p>C++中有RAII（Resource Acquisition is Initialization——资源获取即初始化）技术管理资源</p>
+<ul>
+<li>在构造函数中申请分配资源，在析构函数中释放资源——这是C++语言机制保证的，当一个对象创建的时候，自动调用构造函数，当对象超出作用域的时候会自动调用析构函数，所以，在RAII的指导下，我们应该使用类来管理资源，将资源和对象的生命周期绑定。</li>
+<li>C++中智能指针就利用这样的思想，实现自动的内存管理</li>
+<li>可参考<a href="https://www.cnblogs.com/jiangbin/p/6986511.html">C++RAII介绍</a></li>
+</ul>
+<h2 id="map和unordered-map的区别"><a href="#map和unordered-map的区别" class="headerlink" title="map和unordered_map的区别"></a>map和unordered_map的区别</h2><p>两者底层实现不同：map——红黑树，unordered_map——哈希表</p>
+<p>map：为什么要使用红黑树实现，用其它的呢？</p>
+<ul>
+<li>因为对于单次增删改查操作的时间复杂度都为$O(logn)$</li>
+<li>红黑树是二叉查找树，中序遍历可以有序输出</li>
+<li>对比BST（binary_search_tree）和AVL——BST会退化为链表，排除；而AVL由于其有严格的平衡条件，每次操作可能花费的时间都在平衡上了，影响效率，不适合</li>
+</ul>
+<p>Unordered_map</p>
+<ul>
+<li>哈希表使用拉链法解决哈希冲突，拉链的数据量超过8会使用拉链法，否则自动退化使用红黑树</li>
+<li>Unordered_map查询时间复杂度可能做不到$O(1)$，因为其存在退化</li>
+<li>做不到数据有序</li>
+</ul>
+<h2 id="C-STL-sort的实现"><a href="#C-STL-sort的实现" class="headerlink" title="C++ STL sort的实现"></a>C++ STL sort的实现</h2><p>可参考</p>
+<p><a href="https://srymaker0.com/posts/9271">数据结构力扣刷题集——7.快速排序+优化</a></p>
+<h2 id="const关键字的作用"><a href="#const关键字的作用" class="headerlink" title="const关键字的作用"></a>const关键字的作用</h2><p>修饰变量——该变量不能被改变</p>
+<p>修饰指针——指针常量和常量指针</p>
+<p>修饰引用</p>
+<ul>
+<li>形参引用使用const修饰：<code>foo(const int &amp;a)</code>，这样修饰表示传递过程中不会对值进行修改？</li>
+</ul>
+<p>修饰成员函数</p>
+<ul>
+<li>成员函数不会对成员变量进行修改</li>
+</ul>
+<h2 id="static关键字的作用"><a href="#static关键字的作用" class="headerlink" title="static关键字的作用"></a>static关键字的作用</h2><p>修饰普通变量</p>
+<ul>
+<li>修改变量的存储区域（变为静态区）和生命周期</li>
+</ul>
+<p>修饰普通函数</p>
+<ul>
+<li>仅在该函数的文件内可使用——多人开发中常见，两个人在A文件与B文件写了同名函数的情况，比如用static修饰A文件的同名函数可以别人使用你在A文件内的这个函数</li>
+</ul>
+<p>修饰成员变量</p>
+<ul>
+<li>对很多实例来说，被static修饰的成员变量只有一个，这么多的实例其实共享一个static成员变量（跟着类走的）</li>
+</ul>
+<p>修饰成员函数</p>
+<ul>
+<li>不需要生成对象就可以访问该函数（跟着类走的）</li>
+<li>函数内部不能访问非static的成员属性</li>
+</ul>
+<h1 id="——操作系统相关——"><a href="#——操作系统相关——" class="headerlink" title="——操作系统相关——"></a>——操作系统相关——</h1><h2 id="什么是虚拟内存？"><a href="#什么是虚拟内存？" class="headerlink" title="什么是虚拟内存？"></a>什么是虚拟内存？</h2><h2 id="说一下零拷贝技术"><a href="#说一下零拷贝技术" class="headerlink" title="说一下零拷贝技术"></a>说一下零拷贝技术</h2>]]></content>
+      <tags>
+        <tag>面试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>面向面试选择题之查漏补缺</title>
+    <url>/posts/2dfc.html</url>
+    <content><![CDATA[<blockquote>
+<p>  选择题包含Linux， 计算机网络，C++语法，操作系统，数据结构等方面的知识点，非常适合查漏补缺</p>
+<p>  这些错题个人感觉比较基础，对于操作系统知识需要加强，有一些个人不常见的Linux命令也会考到</p>
+<p>  <span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>需要了解对于图这样的数据结构，对于二叉树来说（结点=边数+1）经常考到</p>
+<p>  计算机网络考查最多的——TCP、UDP等一系列知识，需重点注意</p>
+</blockquote>
+<h1 id="选择题"><a href="#选择题" class="headerlink" title="选择题"></a>选择题</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105933.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105856.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210517133930.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105811.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110007.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110102.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110118.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110154.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110318.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="/Users/sorrymaker/Library/Application Support/typora-user-images/image-20210520110411001.png" alt="image-20210520110411001"></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110445.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210524134029.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210524134125.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201107.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201015.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201200.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201234.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201302.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201320.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201344.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201403.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201424.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201442.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201501.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201519.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201543.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201601.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201620.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201635.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201656.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201720.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201738.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201756.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201849.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201912.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201930.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202132.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202151.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202209.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202230.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202249.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202306.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202337.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202355.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202413.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202429.png" alt=""></p>
+]]></content>
   </entry>
   <entry>
     <title>mysql之基础篇</title>
