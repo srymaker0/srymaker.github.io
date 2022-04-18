@@ -450,34 +450,6 @@
       </tags>
   </entry>
   <entry>
-    <title>数据结构之Leetcode刷题集</title>
-    <url>/posts/1124.html</url>
-    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><ul>
-<li><a href="https://srymaker0.com/posts/d64e">1.链表</a></li>
-<li><a href="https://srymaker0.com/posts/9199">2.栈</a></li>
-<li><a href="https://srymaker0.com/posts/682f">3.队列</a></li>
-<li><a href="https://srymaker0.com/posts/2a0c">4.二叉树</a></li>
-<li><a href="https://srymaker0.com/posts/3c7d">5.堆与优先队列</a></li>
-<li><a href="https://srymaker0.com/posts/20cf">6.并查集</a></li>
-<li><a href="https://srymaker0.com/posts/9271">7.快速排序+优化</a></li>
-<li><a href="https://srymaker0.com/posts/27bc">8.归并排序</a></li>
-<li><a href="https://srymaker0.com/posts/5930">9.有趣的排序</a></li>
-<li><a href="https://srymaker0.com/posts/96d5">10.二分查找</a></li>
-<li><a href="https://srymaker0.com/posts/69d8">11.哈希查找</a></li>
-<li><a href="https://srymaker0.com/posts/8160">12.深搜广搜</a></li>
-<li><a href="https://srymaker0.com/posts/2132">13.单调队列</a></li>
-<li><a href="https://srymaker0.com/posts/831c">14.单调栈</a></li>
-<li><a href="https://srymaker0.com/posts/cdd7">15.专项训练</a></li>
-<li><a href="https://srymaker0.com/posts/416e">16.AVL</a></li>
-<li><a href="https://srymaker0.com/posts/654">17.递推，动归</a></li>
-<li><a href="https://srymaker0.com/posts/a0dd">18.字符串匹配</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于MySQL那点事儿</title>
     <url>/posts/d4d4.html</url>
     <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><p><a href="https://srymaker0.com/posts/54a3">1.关于MySQL架构</a></p>
@@ -1026,6 +998,34 @@ std<span class="token double-colon punctuation">::</span>tr1<span class="token d
 <li>解决办法是第三种调用，分两步执行。</li>
 </ul>
 ]]></content>
+  </entry>
+  <entry>
+    <title>数据结构之Leetcode刷题集</title>
+    <url>/posts/1124.html</url>
+    <content><![CDATA[<h1 id="传送门"><a href="#传送门" class="headerlink" title="传送门"></a>传送门</h1><ul>
+<li><a href="https://srymaker0.com/posts/d64e">1.链表</a></li>
+<li><a href="https://srymaker0.com/posts/9199">2.栈</a></li>
+<li><a href="https://srymaker0.com/posts/682f">3.队列</a></li>
+<li><a href="https://srymaker0.com/posts/2a0c">4.二叉树</a></li>
+<li><a href="https://srymaker0.com/posts/3c7d">5.堆与优先队列</a></li>
+<li><a href="https://srymaker0.com/posts/20cf">6.并查集</a></li>
+<li><a href="https://srymaker0.com/posts/9271">7.快速排序+优化</a></li>
+<li><a href="https://srymaker0.com/posts/27bc">8.归并排序</a></li>
+<li><a href="https://srymaker0.com/posts/5930">9.有趣的排序</a></li>
+<li><a href="https://srymaker0.com/posts/96d5">10.二分查找</a></li>
+<li><a href="https://srymaker0.com/posts/69d8">11.哈希查找</a></li>
+<li><a href="https://srymaker0.com/posts/8160">12.深搜广搜</a></li>
+<li><a href="https://srymaker0.com/posts/2132">13.单调队列</a></li>
+<li><a href="https://srymaker0.com/posts/831c">14.单调栈</a></li>
+<li><a href="https://srymaker0.com/posts/cdd7">15.专项训练</a></li>
+<li><a href="https://srymaker0.com/posts/416e">16.AVL</a></li>
+<li><a href="https://srymaker0.com/posts/654">17.递推，动归</a></li>
+<li><a href="https://srymaker0.com/posts/a0dd">18.字符串匹配</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Leetcode</tag>
+      </tags>
   </entry>
   <entry>
     <title>C/S文件传输软件的设计与实现</title>
@@ -1713,6 +1713,80 @@ public:
 ]]></content>
   </entry>
   <entry>
+    <title>字符串匹配</title>
+    <url>/posts/a0dd.html</url>
+    <content><![CDATA[<p>kmp适合处理流数据的单模匹配问题</p>
+<h1 id="LeetCode环节"><a href="#LeetCode环节" class="headerlink" title="LeetCode环节"></a>LeetCode环节</h1><h2 id="459-重复的子字符串"><a href="#459-重复的子字符串" class="headerlink" title="459. 重复的子字符串"></a><a href="https://leetcode-cn.com/problems/repeated-substring-pattern/">459. 重复的子字符串</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126180905.png" alt=""></p>
+<p>方法一：暴力匹配</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126180932.png" alt=""></p>
+<p>方法二：使用next数组</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126183427.png" alt=""></p>
+<ul>
+<li>abcabcabc：最后一个c——next[c]是整个字符串第二个c的位置，重复字符串的长度即第二个c位置+1～最后一个c</li>
+</ul>
+<h2 id="1392-最长快乐前缀"><a href="#1392-最长快乐前缀" class="headerlink" title="1392. 最长快乐前缀"></a><a href="https://leetcode-cn.com/problems/longest-happy-prefix/">1392. 最长快乐前缀</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126184604.png" alt=""></p>
+<p><span class="github-emoji"><span>😄</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>快乐kmp</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126184616.png" alt=""></p>
+<h2 id="214-最短回文串"><a href="#214-最短回文串" class="headerlink" title="214. 最短回文串"></a><a href="https://leetcode-cn.com/problems/shortest-palindrome/">214. 最短回文串</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126193334.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126185728.png" style="zoom:25%;"></p>
+<p>方法一：暴力+二分</p>
+<p>最简单使得原串变为回文串——把原字符串翻转拼接到原串前面，但是这种方式添加的字符太多了，如上图，需要去掉aa就是添加最少字符。</p>
+<p>问题的关键：如何去掉aa——aa有什么性质</p>
+<ul>
+<li>aa是原串的一个前缀回文，且范围在1～n-1</li>
+<li>遍历aabc：第1个字符是一个前缀回文，第2个也是，而第3，4不是——抽象出000011111，找最后一个0</li>
+</ul>
+<p>方法二：kmp——next</p>
+<p>aabc # cbaa ——将aabc翻转拼接在后面，形成aabccbaa，将此串求每个位置的最长前缀（next数组），可以得到以最后一个a为结尾的最长前缀为aa，接着在cbaa中去掉aa即可</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126193412.png" alt=""></p>
+<h2 id="28-实现-strStr"><a href="#28-实现-strStr" class="headerlink" title="28. 实现 strStr()"></a><a href="https://leetcode-cn.com/problems/implement-strstr/">28. 实现 strStr()</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126210241.png" alt=""></p>
+<p>一、</p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126210340.png" alt=""></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Linux多线程服务器编程——读书笔记</title>
+    <url>/posts/8d81.html</url>
+    <content><![CDATA[<h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><p>Shared_ptr问题——解决空悬指针和野指针</p>
+<p>面试中经常被问到智能指针，基本可以回答shared_ptr/weak_ptr的区别，但是有更多的知识如下<span class="github-emoji"><span>👇</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f447.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<ul>
+<li><p>shared_ptr/weak_ptr都是值语义，不要动态开辟智能指针对象，因为一旦忘记销毁智能指针，则智能指针指向的对象可能永远不会销魂</p>
+</li>
+<li><p>shared_ptr/weak_ptr的“计数”在主流平台上是原子操作，没有用锁，性能很高。</p>
+</li>
+<li><p>weak_ptr的expired和lock操作——弱回调技术，如果对象还活着，就调用它的成员函数，否则忽略之</p>
+<ul>
+<li><p>用来探知对象的生死</p>
+</li>
+<li><p>expired——如果被管理的对象被删除，返回true，其他情况返回false</p>
+</li>
+<li>lock——如果weak_ptr指向了一个shared_ptr，则会返回这个shared_ptr对象，否则会返回一个空的shared_ptr对象，其实也是根据expired的</li>
+</ul>
+</li>
+<li><p>shared_ptr内部结构——两个指针，一个指向被管理的对象，一个是引用计数指针，后者的指针其实是一个类类型，其内部有许多成员函数和变量</p>
+<ul>
+<li>有一个指向对象的指针</li>
+<li>引用计数加，减操作</li>
+<li>weak_ptr</li>
+<li>指向被管理的对象的智能指针数量</li>
+</ul>
+</li>
+<li>shared_ptr在构造时建议使用make_shared，因为其一次会分配足够大的内存，用于存放上面的两个指针指向的内容</li>
+<li>shared_ptr对象本身不是线程安全的，在进行对shared_ptr读写的时候需要考虑同步操作，因为shared_ptr在改变指向的时候不是一个原子操作，它在内部会先改变指针指向的对象，然后再改变引用计数。</li>
+<li>shared_ptr会意外的延长对象的生命周期，在bind函数中，其会把实参拷贝一份，假设实参是shared_ptr，会意外延长对象的生命周期</li>
+<li><p>shared_ptr的拷贝开销比原始指针要高，因为要引用计数通常需要加锁操作，函数传参时可以通过const reference方式传递参数，可以避免拷贝</p>
+</li>
+<li><p>关于shared_ptr析构</p>
+<ul>
+<li>shared_ptr可以定制析构功能，在构造函数中指定删除器deleter，也可以在reset中指定。</li>
+<li>shared_ptr中的reset函数可以重新让shared_ptr指向一个对象，并且会自动调用原来对象的析构函数。若在reset中指定了deleter，则在析构对象（这个对象是被shared_ptr指向的对象）时被调用这个deleter。</li>
+<li>enable_shared_from_this——使this指针变为一个shared_ptr——调用形式shared_from_this()</li>
+</ul>
+</li>
+</ul>
+]]></content>
+  </entry>
+  <entry>
     <title>操作系统</title>
     <url>/posts/437.html</url>
     <content><![CDATA[<p>最进在学习CSAPP，偶然间看到了B站jyy的视频，发现讲的确实帅，想做一点笔记，写在这里。</p>
@@ -1905,38 +1979,6 @@ objdump -S a.out<span aria-hidden="true" class="line-numbers-rows"><span></span>
 </li>
 <li>直到_exit(exit_group)退出</li>
 </ul>
-]]></content>
-  </entry>
-  <entry>
-    <title>字符串匹配</title>
-    <url>/posts/a0dd.html</url>
-    <content><![CDATA[<p>kmp适合处理流数据的单模匹配问题</p>
-<h1 id="LeetCode环节"><a href="#LeetCode环节" class="headerlink" title="LeetCode环节"></a>LeetCode环节</h1><h2 id="459-重复的子字符串"><a href="#459-重复的子字符串" class="headerlink" title="459. 重复的子字符串"></a><a href="https://leetcode-cn.com/problems/repeated-substring-pattern/">459. 重复的子字符串</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126180905.png" alt=""></p>
-<p>方法一：暴力匹配</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126180932.png" alt=""></p>
-<p>方法二：使用next数组</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126183427.png" alt=""></p>
-<ul>
-<li>abcabcabc：最后一个c——next[c]是整个字符串第二个c的位置，重复字符串的长度即第二个c位置+1～最后一个c</li>
-</ul>
-<h2 id="1392-最长快乐前缀"><a href="#1392-最长快乐前缀" class="headerlink" title="1392. 最长快乐前缀"></a><a href="https://leetcode-cn.com/problems/longest-happy-prefix/">1392. 最长快乐前缀</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126184604.png" alt=""></p>
-<p><span class="github-emoji"><span>😄</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>快乐kmp</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126184616.png" alt=""></p>
-<h2 id="214-最短回文串"><a href="#214-最短回文串" class="headerlink" title="214. 最短回文串"></a><a href="https://leetcode-cn.com/problems/shortest-palindrome/">214. 最短回文串</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126193334.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126185728.png" style="zoom:25%;"></p>
-<p>方法一：暴力+二分</p>
-<p>最简单使得原串变为回文串——把原字符串翻转拼接到原串前面，但是这种方式添加的字符太多了，如上图，需要去掉aa就是添加最少字符。</p>
-<p>问题的关键：如何去掉aa——aa有什么性质</p>
-<ul>
-<li>aa是原串的一个前缀回文，且范围在1～n-1</li>
-<li>遍历aabc：第1个字符是一个前缀回文，第2个也是，而第3，4不是——抽象出000011111，找最后一个0</li>
-</ul>
-<p>方法二：kmp——next</p>
-<p>aabc # cbaa ——将aabc翻转拼接在后面，形成aabccbaa，将此串求每个位置的最长前缀（next数组），可以得到以最后一个a为结尾的最长前缀为aa，接着在cbaa中去掉aa即可</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126193412.png" alt=""></p>
-<h2 id="28-实现-strStr"><a href="#28-实现-strStr" class="headerlink" title="28. 实现 strStr()"></a><a href="https://leetcode-cn.com/problems/implement-strstr/">28. 实现 strStr()</a></h2><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126210241.png" alt=""></p>
-<p>一、</p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20220126210340.png" alt=""></p>
 ]]></content>
   </entry>
   <entry>
@@ -2373,63 +2415,6 @@ objdump -S a.out<span aria-hidden="true" class="line-numbers-rows"><span></span>
       </tags>
   </entry>
   <entry>
-    <title>面向面试选择题之查漏补缺</title>
-    <url>/posts/2dfc.html</url>
-    <content><![CDATA[<blockquote>
-<p>  选择题包含Linux， 计算机网络，C++语法，操作系统，数据结构等方面的知识点，非常适合查漏补缺</p>
-<p>  这些错题个人感觉比较基础，对于操作系统知识需要加强，有一些个人不常见的Linux命令也会考到</p>
-<p>  <span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>需要了解对于图这样的数据结构，对于二叉树来说（结点=边数+1）经常考到</p>
-<p>  计算机网络考查最多的——TCP、UDP等一系列知识，需重点注意</p>
-</blockquote>
-<h1 id="选择题"><a href="#选择题" class="headerlink" title="选择题"></a>选择题</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105933.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105856.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210517133930.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105811.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110007.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110102.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110118.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110154.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110318.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="/Users/sorrymaker/Library/Application Support/typora-user-images/image-20210520110411001.png" alt="image-20210520110411001"></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110445.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210524134029.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210524134125.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201107.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201015.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201200.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201234.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201302.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201320.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201344.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201403.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201424.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201442.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201501.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201519.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201543.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201601.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201620.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201635.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201656.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201720.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201738.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201756.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201849.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201912.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201930.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202132.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202151.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202209.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202230.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202249.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202306.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202337.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202355.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202413.png" alt=""></p>
-<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202429.png" alt=""></p>
-]]></content>
-  </entry>
-  <entry>
     <title>面向面试简答题之查漏补缺</title>
     <url>/posts/79b0.html</url>
     <content><![CDATA[<p><code>面试是一个相互引导的过程，面试官会通过相应的问题来考察你的知识广度和深度，而你需要引导面试官你擅长的领域。</code></p>
@@ -2611,6 +2596,63 @@ objdump -S a.out<span aria-hidden="true" class="line-numbers-rows"><span></span>
       <tags>
         <tag>面试</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>面向面试选择题之查漏补缺</title>
+    <url>/posts/2dfc.html</url>
+    <content><![CDATA[<blockquote>
+<p>  选择题包含Linux， 计算机网络，C++语法，操作系统，数据结构等方面的知识点，非常适合查漏补缺</p>
+<p>  这些错题个人感觉比较基础，对于操作系统知识需要加强，有一些个人不常见的Linux命令也会考到</p>
+<p>  <span class="github-emoji"><span>⭐</span><img src="/img/loading.gif" data-original="https://github.githubassets.com/images/icons/emoji/unicode/2b50.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>需要了解对于图这样的数据结构，对于二叉树来说（结点=边数+1）经常考到</p>
+<p>  计算机网络考查最多的——TCP、UDP等一系列知识，需重点注意</p>
+</blockquote>
+<h1 id="选择题"><a href="#选择题" class="headerlink" title="选择题"></a>选择题</h1><p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105933.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105856.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210517133930.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520105811.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110007.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110102.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110118.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110154.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110318.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="/Users/sorrymaker/Library/Application Support/typora-user-images/image-20210520110411001.png" alt="image-20210520110411001"></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210520110445.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210524134029.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210524134125.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201107.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201015.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201200.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201234.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201302.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201320.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201344.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201403.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201424.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201442.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201501.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201519.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201543.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201601.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201620.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201635.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201656.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201720.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201738.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201756.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201849.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201912.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620201930.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202132.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202151.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202209.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202230.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202249.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202306.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202337.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202355.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202413.png" alt=""></p>
+<p><img src="/img/loading.gif" data-original="https://cdn.jsdelivr.net/gh/srymaker0/blogImgs@main/Img/20210620202429.png" alt=""></p>
+]]></content>
   </entry>
   <entry>
     <title>mysql之基础篇</title>
